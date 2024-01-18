@@ -590,23 +590,6 @@
     <PackageReference Include="SkiaSharp" Version="2.88.6" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FlatRedBall.FNA">
-      <HintPath>Libraries\FNA\Debug\FlatRedBall.FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatRedBall.Forms.FNA">
-      <HintPath>Libraries\FNA\Debug\FlatRedBall.Forms.FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="FNA">
-      <HintPath>Libraries\FNA\Debug\FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="GumCore.FNA">
-      <HintPath>Libraries\FNA\Debug\GumCore.FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="StateInterpolation.FNA">
-      <HintPath>Libraries\FNA\Debug\StateInterpolation.FNA.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="Content\Shader.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -631,6 +614,26 @@
     <None Update="SDL2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/FlatRedBallXNA/3rd Party Libraries/FNA/FNA.Core.csproj">
+      <Name>FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/FlatRedBallXNA/FlatRedBall.FNA/FlatRedBall.FNA.csproj">
+      <Name>FlatRedBall.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/Forms/FlatRedBall.Forms/FlatRedBall.Forms.FNA/FlatRedBall.Forms.FNA.csproj">
+      <Name>FlatRedBall.Forms.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/Forms/FlatRedBall.Forms/StateInterpolation/StateInterpolation.FNA/StateInterpolation.FNA.csproj">
+      <Name>StateInterpolation.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../source/repos/Gum/GumCore/GumCoreXnaPc/GumCore.FNA/GumCore.FNA.csproj">
+      <Name>GumCore.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../source/repos/Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.FNA.csproj">
+      <Name>SkiaInGum.FNA</Name>
+    </ProjectReference>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

@@ -113,6 +113,141 @@
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
       "DefinedByBase": true
+    },
+    {
+      "InstanceName": "EnemyList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\Enemy",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true,
+      "ContainedObjects": [
+        {
+          "InstanceName": "Enemy1",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 96.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -104.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy2",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 144.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -392.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy3",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 360.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -112.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy4",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 384.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -376.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        }
+      ]
     }
   ],
   "Name": "Screens\\TestLevel",

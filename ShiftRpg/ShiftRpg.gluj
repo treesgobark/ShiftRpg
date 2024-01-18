@@ -75,6 +75,14 @@
         }
       ],
       "GenerateCode": true
+    },
+    {
+      "Name": "TopDownValues",
+      "CsvFilesUsingThis": [
+        "Entities/Player/TopDownValuesStatic.csv"
+      ],
+      "RequiredProperties": [],
+      "GenerateCode": true
     }
   ],
   "ApplyToFixedResolutionPlatforms": true,
@@ -88,7 +96,17 @@
       "Name": "Screens\\TestLevel"
     }
   ],
-  "EntityReferences": [],
+  "EntityReferences": [
+    {
+      "Name": "Entities\\Bullet"
+    },
+    {
+      "Name": "Entities\\Enemy"
+    },
+    {
+      "Name": "Entities\\Player"
+    }
+  ],
   "Bookmarks": [],
   "PluginData": {
     "RequiredPlugins": [
@@ -108,7 +126,7 @@
     "AspectRatioWidth": 16.0,
     "AspectRatioHeight": 9.0,
     "SupportLandscape": true,
-    "Scale": 100,
+    "Scale": 200,
     "ScaleGum": 100,
     "DominantInternalCoordinates": 1,
     "TextureFilter": 1

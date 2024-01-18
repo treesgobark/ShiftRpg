@@ -1,0 +1,142 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/Player/TopDownValuesStatic.csv",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "Name": "TeamIndex",
+      "DefaultValue": 0,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "decimal",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 100.0,
+      "SetByDerived": true
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "InputDevice",
+      "Value": 0,
+      "Type": "int"
+    },
+    {
+      "Name": "IsTopDown",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsIDamageable",
+      "Value": true,
+      "Type": "Object"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "Color",
+          "Member": "Color",
+          "Value": "LimeGreen",
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Entities\\Player",
+  "CustomClassesForExport": []
+}

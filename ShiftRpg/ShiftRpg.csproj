@@ -171,6 +171,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>verticallines</Name>
     </None>
+    <None Include="content\gumproject\components\mainmenu.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>mainmenu</Name>
+    </None>
+    <None Include="content\gumproject\components\options.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>options</Name>
+    </None>
+    <None Include="content\gumproject\components\pausemenu.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>pausemenu</Name>
+    </None>
     <None Include="content\gumproject\fontcache\font10arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>font10arial</Name>
@@ -243,6 +255,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>font28arial_bold_0</Name>
     </None>
+    <None Include="content\gumproject\fontcache\font36arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font36arial</Name>
+    </None>
+    <None Include="content\gumproject\fontcache\font36arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font36arial_0</Name>
+    </None>
+    <None Include="content\gumproject\fontcache\font36arial_o1_nosmooth.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font36arial_o1_nosmooth</Name>
+    </None>
+    <None Include="content\gumproject\fontcache\font36arial_o1_nosmooth_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font36arial_o1_nosmooth_0</Name>
+    </None>
     <None Include="content\gumproject\gumproject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
@@ -250,6 +278,10 @@
     <None Include="content\gumproject\screens\gamescreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GameScreenGum</Name>
+    </None>
+    <None Include="content\gumproject\screens\mainmenugum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MainMenuGum</Name>
     </None>
     <None Include="content\gumproject\screens\testlevelgum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -327,7 +359,12 @@
     <Compile Include="Factories\EnemyFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
+    <Compile Include="Forms\Components\Custom\MainMenuForms.Generated.cs" />
+    <Compile Include="Forms\Components\MainMenuForms.Generated.cs" />
+    <Compile Include="Forms\Components\OptionsForms.Generated.cs" />
+    <Compile Include="Forms\Components\PauseMenuForms.Generated.cs" />
     <Compile Include="Forms\Screens\GameScreenGumForms.Generated.cs" />
+    <Compile Include="Forms\Screens\MainMenuGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\TestLevelGumForms.Generated.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Game1.Generated.cs">
@@ -552,7 +589,23 @@
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
+    <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
+    <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
+      <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\MainMenuRuntime.cs" />
+    <Compile Include="GumRuntimes\MainMenuRuntime.Generated.cs">
+      <DependentUpon>MainMenuRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\OptionsRuntime.cs" />
+    <Compile Include="GumRuntimes\OptionsRuntime.Generated.cs">
+      <DependentUpon>OptionsRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\PauseMenuRuntime.cs" />
+    <Compile Include="GumRuntimes\PauseMenuRuntime.Generated.cs">
+      <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
@@ -567,6 +620,10 @@
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\GameScreen.Generated.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Screens\MainMenu.Generated.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TestLevel.cs" />
     <Compile Include="Screens\TestLevel.Generated.cs">

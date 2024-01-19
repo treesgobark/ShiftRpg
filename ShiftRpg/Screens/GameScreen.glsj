@@ -384,6 +384,12 @@
           "Member": "Map",
           "Value": "Map",
           "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "LerpCoefficient",
+          "Value": 15.0,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,

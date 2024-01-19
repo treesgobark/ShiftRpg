@@ -47,10 +47,28 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>CheckboxBackground.Alpha</Name>
+      <ExposedAsName>CheckboxBackgroundAlpha</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>CheckboxBackground.Blue</Name>
+      <ExposedAsName>CheckboxBackgroundBlue</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>ColorCategory</Type>
       <Name>CheckboxBackground.ColorCategoryState</Name>
       <Value xsi:type="xsd:string">Primary</Value>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>CheckboxBackground.Green</Name>
+      <ExposedAsName>CheckboxBackgroundGreen</ExposedAsName>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
@@ -63,6 +81,12 @@
       <Name>CheckboxBackground.Height Units</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>CheckboxBackground.Red</Name>
+      <ExposedAsName>CheckboxBackgroundRed</ExposedAsName>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>StyleCategory</Type>

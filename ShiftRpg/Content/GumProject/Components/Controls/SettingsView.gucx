@@ -11,6 +11,11 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>FullscreenCheckboxInstance.CheckboxBackgroundAlpha</Name>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
       <Name>FullscreenCheckboxInstance.CheckboxDisplayText</Name>
       <Value xsi:type="xsd:string">Fullscreen</Value>

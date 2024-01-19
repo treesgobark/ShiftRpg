@@ -8,8 +8,10 @@ using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
+using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Factories;
+using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
@@ -37,6 +39,12 @@ namespace ShiftRpg.Entities
                     bullet.Position = Position;
                     bullet.Velocity = dir * 100 + Velocity;
                 }
+            }
+
+            if (InputDevice.DefaultPauseInput.WasJustPressed)
+            {
+                var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
+                gameScreen.Pause();
             }
         }
 

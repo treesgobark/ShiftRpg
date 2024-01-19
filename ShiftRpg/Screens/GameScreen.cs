@@ -13,8 +13,7 @@ using FlatRedBall.Math;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
-
-
+using ShiftRpg.GumRuntimes;
 
 
 namespace ShiftRpg.Screens
@@ -44,6 +43,12 @@ namespace ShiftRpg.Screens
         {
 
 
+        }
+
+        public void Pause()
+        {
+            PauseThisScreen();
+            GameScreenGum.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Pause;
         }
 
     }

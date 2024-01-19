@@ -207,9 +207,17 @@
     <State>
       <Name>Enabled</Name>
       <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">Primary</Value>
+        <ExposedAsName>BackgroundColorCategoryState</ExposedAsName>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -227,6 +235,13 @@
     </State>
     <State>
       <Name>Disabled</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
       <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
@@ -249,6 +264,13 @@
     <State>
       <Name>Highlighted</Name>
       <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">PrimaryLight</Value>
@@ -269,6 +291,13 @@
     </State>
     <State>
       <Name>Pushed</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
       <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
@@ -291,6 +320,13 @@
     <State>
       <Name>HighlightedFocused</Name>
       <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">PrimaryLight</Value>
@@ -312,6 +348,13 @@
     <State>
       <Name>Focused</Name>
       <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">Primary</Value>
@@ -332,6 +375,13 @@
     </State>
     <State>
       <Name>DisabledFocused</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>Background.Alpha</Name>
+        <Value xsi:type="xsd:int">255</Value>
+        <ExposedAsName>BackgroundAlpha</ExposedAsName>
+        <SetsValue>true</SetsValue>
+      </Variable>
       <Variable>
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>

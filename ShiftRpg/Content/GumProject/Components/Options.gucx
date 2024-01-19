@@ -43,7 +43,7 @@
     <Variable>
       <Type>float</Type>
       <Name>BackButton.Y</Name>
-      <Value xsi:type="xsd:float">-12</Value>
+      <Value xsi:type="xsd:float">-7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -79,7 +79,7 @@
     <Variable>
       <Type>float</Type>
       <Name>SettingsViewInstance.Height</Name>
-      <Value xsi:type="xsd:float">72.5925751</Value>
+      <Value xsi:type="xsd:float">76.85183</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

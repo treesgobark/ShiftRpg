@@ -40,12 +40,6 @@ namespace ShiftRpg.Entities
                     bullet.Velocity = dir * 100 + Velocity;
                 }
             }
-
-            if (InputDevice.DefaultPauseInput.WasJustPressed)
-            {
-                var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
-                gameScreen.Pause();
-            }
         }
 
         private void CustomDestroy()

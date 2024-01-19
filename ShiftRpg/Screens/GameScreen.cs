@@ -1,20 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-
 using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Gui;
-using FlatRedBall.Math;
-using FlatRedBall.Math.Geometry;
-using FlatRedBall.Localization;
-using Microsoft.Xna.Framework;
+using FlatRedBall.Input;
+using FlatRedBall.Screens;
 using ShiftRpg.GumRuntimes;
-
 
 namespace ShiftRpg.Screens
 {
@@ -23,13 +11,36 @@ namespace ShiftRpg.Screens
 
         void CustomInitialize()
         {
-
-
+            var controller = InputManager.Xbox360GamePads[0];
+            if (controller.IsConnected)
+            {
+                GuiManager.GamePadsForUiControl.Add(controller);
+                Forms.PauseMenuInstance.ResumeButton.IsFocused = true;
+            }
+            
+            GumScreen.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Play;
+            Forms.PauseMenuInstance.ResumeButton.Click += (_, _) => Resume();
+            Forms.PauseMenuInstance.OptionsButton.Click += (_, _) =>
+            {
+                GumScreen.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Options;
+                Forms.OptionsInstance.BackButton.IsFocused = true;
+            };
+            Forms.PauseMenuInstance.ExitToMainButton.Click += (_, _) => ScreenManager.MoveToScreen("MainMenu");
+            Forms.PauseMenuInstance.ExitToDesktopButton.Click += (_, _) => FlatRedBallServices.Game.Exit();
+            Forms.OptionsInstance.BackButton.Click += (_, _) =>
+            {
+                GumScreen.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Pause;
+                Forms.PauseMenuInstance.ResumeButton.IsFocused = true;
+            };
         }
 
         void CustomActivity(bool firstTimeCalled)
         {
-
+            if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
+            {
+                var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
+                gameScreen.TogglePause();
+            }
 
         }
 
@@ -49,6 +60,25 @@ namespace ShiftRpg.Screens
         {
             PauseThisScreen();
             GameScreenGum.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Pause;
+            Forms.PauseMenuInstance.ResumeButton.IsFocused = true;
+        }
+
+        private void Resume()
+        {
+            ScreenManager.CurrentScreen.UnpauseThisScreen();
+            GumScreen.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Play;
+        }
+
+        private void TogglePause()
+        {
+            if (GumScreen.CurrentPauseStateState is GameScreenGumRuntime.PauseState.Play)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
         }
 
     }

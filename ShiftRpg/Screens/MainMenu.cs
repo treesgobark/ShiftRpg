@@ -29,13 +29,19 @@ namespace ShiftRpg.Screens
         private void OnClickBack(object o, EventArgs eventArgs)
         {
             GumScreen.CurrentScreenState = MainMenuGumRuntime.Screen.Main;
-            Forms.MainMenuInstance.PlayButton.IsFocused = true;
+            if (InputManager.Xbox360GamePads[0].IsConnected)
+            {
+                Forms.MainMenuInstance.PlayButton.IsFocused = true;
+            }
         }
 
         private void OnClickOptions(object o, EventArgs eventArgs)
         {
             GumScreen.CurrentScreenState = MainMenuGumRuntime.Screen.Options;
-            Forms.OptionsInstance.BackButton.IsFocused = true;
+            if (InputManager.Xbox360GamePads[0].IsConnected)
+            {
+                Forms.OptionsInstance.BackButton.IsFocused = true;
+            }
         }
 
         void CustomActivity(bool firstTimeCalled)

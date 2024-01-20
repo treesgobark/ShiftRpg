@@ -10,48 +10,61 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Contracts;
 using ShiftRpg.Factories;
+using ShiftRpg.InputDevices;
 using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
     public partial class Player
     {
-        /// <summary>
-        /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
-        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
-        /// added to managers will not have this method called.
-        /// </summary>
+        private IGun Gun { get; set; }
+        private IGameplayInputDevice GameplayInputDevice { get; set; }
+        
         private void CustomInitialize()
         {
+            var gun = DefaultGunFactory.CreateNew();
+            gun.AttachTo(this);
+            gun.ParentRotationChangesRotation = true;
+            Gun = gun;
+            // InitializeTopDownInput(InputManager.Keyboard);
+        }
 
-
+        partial void CustomInitializeTopDownInput()
+        {
+            GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
         }
 
         private void CustomActivity()
         {
-            if (InputDevice.DefaultPrimaryActionInput.WasJustPressed)
-            {
-                var dir = MovementInput.Position3D().NormalizedOrZero();
-                if (dir != Vector3.Zero)
-                {
-                    var bullet = BulletFactory.CreateNew();
-                    bullet.Position = Position;
-                    bullet.Velocity = dir * 100 + Velocity;
-                }
-            }
+            RotationZ = GameplayInputDevice.Aim.GetAngle() ?? 0;
+            HandleGunInput();
         }
 
         private void CustomDestroy()
         {
-
-
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
+        }
 
+        private void HandleGunInput()
+        {
+            if (GameplayInputDevice.Attack.WasJustPressed)
+            {
+                Gun.BeginFire();
+            }
+            else if (GameplayInputDevice.Attack.WasJustReleased)
+            {
+                Gun.EndFire();
+            }
 
+            // if (GameplayInputDevice.Reload.WasJustPressed)
+            // {
+            //     Gun.Reload();
+            // }
         }
     }
 }

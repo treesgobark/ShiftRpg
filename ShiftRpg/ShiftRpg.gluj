@@ -104,7 +104,13 @@
       "Name": "Entities\\Bullet"
     },
     {
+      "Name": "Entities\\DefaultGun"
+    },
+    {
       "Name": "Entities\\Enemy"
+    },
+    {
+      "Name": "Entities\\Gun"
     },
     {
       "Name": "Entities\\Player"
@@ -124,8 +130,8 @@
     "Name": "Custom",
     "GenerateDisplayCode": true,
     "Is2D": true,
-    "ResolutionWidth": 320,
-    "ResolutionHeight": 180,
+    "ResolutionWidth": 480,
+    "ResolutionHeight": 270,
     "FixedAspectRatio": true,
     "AspectRatioBehavior": 1,
     "AspectRatioWidth": 16.0,

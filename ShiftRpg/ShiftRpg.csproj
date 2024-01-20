@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <DefineConstants>DESKTOP;XNA4;FRN_XNA;FNA</DefineConstants>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -341,21 +342,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IGameplayInputDevice.cs" />
+    <Compile Include="Contracts\IGun.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DefaultGun.cs" />
+    <Compile Include="Entities\DefaultGun.Generated.cs">
+      <DependentUpon>DefaultGun.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Enemy.Generated.cs">
       <DependentUpon>Enemy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Gun.cs" />
+    <Compile Include="Entities\Gun.Generated.cs">
+      <DependentUpon>Gun.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Player.Generated.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="Factories\BulletFactory.Generated.cs" />
+    <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
     <Compile Include="Factories\EnemyFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
@@ -614,6 +626,8 @@
       <DependentUpon>TestLevelGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="InputDevices\GameplayInputDevice.cs" />
+    <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
     <Compile Include="Program.cs" />
@@ -717,6 +731,10 @@
     <ProjectReference Include="../../../../source/repos/Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.FNA.csproj">
       <Name>SkiaInGum.FNA</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\source\repos\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Guns\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

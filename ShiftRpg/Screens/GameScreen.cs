@@ -1,8 +1,12 @@
 using System;
+using System.Linq;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;
 using FlatRedBall.Screens;
+using Microsoft.Xna.Framework;
+using ShiftRpg.Entities;
 using ShiftRpg.GumRuntimes;
 
 namespace ShiftRpg.Screens;
@@ -19,8 +23,7 @@ public partial class GameScreen
     {
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {
-            var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
-            gameScreen.TogglePause();
+            TogglePause();
         }
     }
 
@@ -34,6 +37,11 @@ public partial class GameScreen
     {
 
 
+    }
+
+    public Player GetClosestPlayer(Vector3 position)
+    {
+        return PlayerList.MinBy(p => p.Position.DistanceSquared(position));
     }
 
     private void InitializePauseMenu()

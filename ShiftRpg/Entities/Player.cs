@@ -28,7 +28,8 @@ namespace ShiftRpg.Entities
             gun.AttachTo(this);
             gun.ParentRotationChangesRotation = true;
             Gun = gun;
-            // InitializeTopDownInput(InputManager.Keyboard);
+            
+            InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
         }
 
         partial void CustomInitializeTopDownInput()

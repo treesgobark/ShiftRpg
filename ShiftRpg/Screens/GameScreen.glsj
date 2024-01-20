@@ -593,6 +593,13 @@
     }
   ],
   "Name": "Screens\\GameScreen",
+  "Events": [
+    {
+      "EventName": "EnemyVsBulletCollided",
+      "SourceObject": "EnemyVsBullet",
+      "SourceObjectEvent": "CollisionOccurred"
+    }
+  ],
   "CustomClassesForExport": [],
   "IsAbstract": true
 }

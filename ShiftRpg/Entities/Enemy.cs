@@ -8,7 +8,9 @@ using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
+using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
@@ -22,13 +24,14 @@ namespace ShiftRpg.Entities
         private void CustomInitialize()
         {
 
-
         }
 
         private void CustomActivity()
         {
-
-
+            var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
+            var target = gameScreen.GetClosestPlayer(Position);
+            Vector3 dir = (target.Position - Position).NormalizedOrZero();
+            Velocity = dir * 10;
         }
 
         private void CustomDestroy()

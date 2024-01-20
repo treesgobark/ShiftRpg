@@ -87,7 +87,7 @@
         }
       ],
       "Name": "DamageToDeal",
-      "DefaultValue": 100.0,
+      "DefaultValue": 30.0,
       "SetByDerived": true
     }
   ],

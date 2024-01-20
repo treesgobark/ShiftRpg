@@ -9,7 +9,6 @@ namespace ShiftRpg.Screens
 {
     public partial class MainMenu
     {
-
         void CustomInitialize()
         {
             var controller = InputManager.Xbox360GamePads[0];

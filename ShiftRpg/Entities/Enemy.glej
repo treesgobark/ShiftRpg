@@ -160,6 +160,22 @@
       "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "EnemyHealthBarRuntimeInstance",
+      "SourceClassType": "ShiftRpg.GumRuntimes.EnemyHealthBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 3,
+      "SourceFile": "EnemyHealthBarRuntime",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Enemy",

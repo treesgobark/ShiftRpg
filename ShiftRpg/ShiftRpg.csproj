@@ -172,6 +172,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>verticallines</Name>
     </None>
+    <None Include="content\gumproject\components\enemyhealthbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>enemyhealthbar</Name>
+    </None>
     <None Include="content\gumproject\components\mainmenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>mainmenu</Name>
@@ -595,6 +599,10 @@
     <Compile Include="GumRuntimes\Elements\VerticalLinesRuntime.cs" />
     <Compile Include="GumRuntimes\Elements\VerticalLinesRuntime.Generated.cs">
       <DependentUpon>VerticalLinesRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\EnemyHealthBarRuntime.cs" />
+    <Compile Include="GumRuntimes\EnemyHealthBarRuntime.Generated.cs">
+      <DependentUpon>EnemyHealthBarRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GameScreenGumRuntime.cs" />
     <Compile Include="GumRuntimes\GameScreenGumRuntime.Generated.cs">

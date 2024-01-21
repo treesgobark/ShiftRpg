@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<map xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="16" tileheight="16" infinite="0">
-  <tileset tilecount="0" columns="0" source="../../StandardTileset.tsx" firstgid="1">
-    <wangsets />
-  </tileset>
-  <layer name="GameplayLayer" id="0" tintcolor="#ffffff" opacity="1" visible="1" parallaxx="1" parallaxy="1" offsetx="0" offsety="0" width="32" height="32">
-    <properties />
-    <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACuzXwQkAAAhCUd1/6bbIyws8B1H5bZKOtSr9zd/+uT//x//lP/wXf+Av/Im/5Q/56zN/LnUAAAD//wMAQZZTxQAQAAA=
-<length>1024</length></data>
-  </layer>
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="../../StandardTileset.tsx"/>
+ <layer id="2" name="Floor" width="48" height="48">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAgFcDEWH4ywAkAAA=
+  </data>
+ </layer>
+ <layer id="1" name="GameplayLayer" width="48" height="48" tintcolor="#ffffff">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2YWwoAMQjE7P0vvVeoZcYHm4B/rROKIPRExFleWV7uOPrir2W7fxb8e5nmv33+8ffkZPo69rFiZ9/6Z89Pe//sefx14N8L/r0w/54cV1/8teDvyXH1xV8L/p4cF/j3Ms1/+/zj78lx9cVfS6V/Vd3kvvhPAP9epv2fZMG/l7/OP/4aKveoqz5HIBjFACQAAA==
+  </data>
+ </layer>
 </map>

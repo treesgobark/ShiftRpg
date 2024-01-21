@@ -16,7 +16,7 @@ public class GameplayInputDevice : IGameplayInputDevice
             case Xbox360GamePad gamePad:
                 Movement = gamePad.LeftStick;
                 Aim = gamePad.RightStick;
-                Attack = Attack.Or(gamePad.GetButton(Xbox360GamePad.Button.RightShoulder));
+                Attack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder);
                 Reload = gamePad.GetButton(Xbox360GamePad.Button.X);
                 Dash = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
                 break;

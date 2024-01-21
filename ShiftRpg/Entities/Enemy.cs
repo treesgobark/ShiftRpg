@@ -46,7 +46,7 @@ namespace ShiftRpg.Entities
                 return;
             }
             Vector3 dir = (target.Position - Position).NormalizedOrZero();
-            Velocity = dir * 10;
+            Velocity = dir * MoveSpeed;
         }
 
         private void CustomDestroy()

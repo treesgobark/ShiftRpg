@@ -44,13 +44,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 256.0,
+              "Value": 352.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -256.0,
+              "Value": -168.0,
               "Time": 0.0
             }
           ],
@@ -193,6 +193,11 @@
           "Name": "CollisionTileTypeName",
           "Value": "SolidCollision",
           "Type": "String"
+        },
+        {
+          "Name": "RemoveTilesAfterCreatingCollision",
+          "Value": false,
+          "Type": "bool"
         }
       ],
       "InstructionSaves": [],
@@ -365,7 +370,7 @@
         },
         {
           "Name": "IsDestroyFirstOnDamageChecked",
-          "Value": true,
+          "Value": false,
           "Type": "Object"
         },
         {

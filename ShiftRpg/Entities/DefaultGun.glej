@@ -41,38 +41,6 @@
       "Type": "int"
     }
   ],
-  "NamedObjects": [
-    {
-      "InstanceName": "SpriteInstance",
-      "SourceClassType": "FlatRedBall.Sprite",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "float",
-          "Member": "TextureScale",
-          "Value": 1.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": true,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 2,
-      "SourceFile": "Sprite",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "DefinedByBase": true
-    }
-  ],
   "Name": "Entities\\DefaultGun",
   "CustomClassesForExport": []
 }

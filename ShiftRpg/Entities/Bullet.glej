@@ -135,7 +135,7 @@
         {
           "Type": "float",
           "Member": "Radius",
-          "Value": 4.0,
+          "Value": 3.0,
           "Time": 0.0
         }
       ],

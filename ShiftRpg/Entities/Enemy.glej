@@ -118,6 +118,18 @@
       "Name": "KnockbackFactor",
       "DefaultValue": 1.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "MoveSpeed",
+      "DefaultValue": 10.0,
+      "SetByDerived": true
     }
   ],
   "Properties": [

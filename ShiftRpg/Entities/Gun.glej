@@ -70,36 +70,6 @@
   ],
   "NamedObjects": [
     {
-      "InstanceName": "SpriteInstance",
-      "SourceClassType": "FlatRedBall.Sprite",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "float",
-          "Member": "TextureScale",
-          "Value": 1.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": true,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 2,
-      "SourceFile": "Sprite",
-      "SetByDerived": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
       "InstanceName": "MagazineBar",
       "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
       "Properties": [
@@ -158,9 +128,38 @@
       "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 5.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "X",
+          "Value": 0.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Gun",
-  "CustomClassesForExport": [],
-  "IsAbstract": true
+  "CustomClassesForExport": []
 }

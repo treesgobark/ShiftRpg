@@ -27,6 +27,7 @@ namespace ShiftRpg.Entities
         private void InitializeGun()
         {
             var gun = DefaultGunFactory.CreateNew();
+            gun.RelativeX = 10;
             gun.AttachTo(this);
             gun.ParentRotationChangesRotation = true;
             Gun = gun;

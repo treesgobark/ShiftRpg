@@ -14,6 +14,7 @@ namespace ShiftRpg.Screens;
 
 public partial class GameScreen
 {
+    protected bool GameOver { get; set; } = false;
     protected FrameCache<Player> ClosestPlayer { get; } = new();
 
     void CustomInitialize()
@@ -26,6 +27,12 @@ public partial class GameScreen
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {
             TogglePause();
+        }
+
+        if (PlayerList.Count == 0 && !GameOver)
+        {
+            GameOver = true;
+            Pause();
         }
     }
 
@@ -41,7 +48,7 @@ public partial class GameScreen
 
     }
 
-    public Player GetClosestPlayer(Vector3 position)
+    public Player? GetClosestPlayer(Vector3 position)
     {
         if (ClosestPlayer.TryGetObj(out var player))
         {

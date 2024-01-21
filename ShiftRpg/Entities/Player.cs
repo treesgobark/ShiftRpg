@@ -33,6 +33,8 @@ namespace ShiftRpg.Entities
 
         private void CustomDestroy()
         {
+            var gun = (IDestroyable)Gun;
+            gun.Destroy();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

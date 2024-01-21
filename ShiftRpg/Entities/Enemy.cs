@@ -41,6 +41,10 @@ namespace ShiftRpg.Entities
         {
             var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
             var target = gameScreen.GetClosestPlayer(Position);
+            if (target is null)
+            {
+                return;
+            }
             Vector3 dir = (target.Position - Position).NormalizedOrZero();
             Velocity = dir * 10;
         }

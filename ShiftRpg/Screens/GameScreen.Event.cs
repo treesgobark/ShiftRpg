@@ -15,13 +15,6 @@ namespace ShiftRpg.Screens
 {
     public partial class GameScreen
     {
-        void OnEnemyVsBulletCollided (Entities.Enemy enemy, Entities.Bullet bullet)
-        {
-            if (!enemy.ShouldTakeDamage(bullet)) return;
-            
-            var dir = bullet.Velocity.NormalizedOrZero();
-            enemy.Position += dir * 10;
-        }
         
     }
 }

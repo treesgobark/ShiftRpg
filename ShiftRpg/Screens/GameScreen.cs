@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;
@@ -13,6 +14,7 @@ namespace ShiftRpg.Screens;
 
 public partial class GameScreen
 {
+    protected FrameCache<Player> ClosestPlayer { get; } = new();
 
     void CustomInitialize()
     {
@@ -41,7 +43,13 @@ public partial class GameScreen
 
     public Player GetClosestPlayer(Vector3 position)
     {
-        return PlayerList.MinBy(p => p.Position.DistanceSquared(position));
+        if (ClosestPlayer.TryGetObj(out var player))
+        {
+            return player;
+        }
+
+        ClosestPlayer.Obj = PlayerList.MinBy(p => p.Position.DistanceSquared(position));
+        return ClosestPlayer.Obj;
     }
 
     private void InitializePauseMenu()
@@ -61,7 +69,7 @@ public partial class GameScreen
         Forms.OptionsInstance.BackButton.Click += OnClickOptionsBack;
     }
 
-    public void Pause()
+    private void Pause()
     {
         PauseThisScreen();
         GameScreenGum.CurrentPauseStateState = GameScreenGumRuntime.PauseState.Pause;

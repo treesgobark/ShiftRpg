@@ -583,6 +583,10 @@
           "Name": "IsDestroySecondOnDamageChecked",
           "Value": true,
           "Type": "Object"
+        },
+        {
+          "Name": "SecondSubCollisionSelectedItem",
+          "Type": "String"
         }
       ],
       "InstructionSaves": [],
@@ -593,13 +597,6 @@
     }
   ],
   "Name": "Screens\\GameScreen",
-  "Events": [
-    {
-      "EventName": "EnemyVsBulletCollided",
-      "SourceObject": "EnemyVsBullet",
-      "SourceObjectEvent": "CollisionOccurred"
-    }
-  ],
   "CustomClassesForExport": [],
   "IsAbstract": true
 }

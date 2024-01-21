@@ -638,9 +638,6 @@
     <Compile Include="Screens\GameScreen.Generated.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\GameScreen.Generated.Event.cs">
-      <DependentUpon>GameScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\MainMenu.Generated.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>

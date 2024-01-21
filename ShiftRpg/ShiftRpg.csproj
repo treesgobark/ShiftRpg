@@ -729,25 +729,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/FlatRedBallXNA/3rd Party Libraries/FNA/FNA.Core.csproj">
+    <ProjectReference Include="../../FlatRedBall/Engines/FlatRedBallXNA/3rd Party Libraries/FNA/FNA.Core.csproj">
       <Name>FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/FlatRedBallXNA/FlatRedBall.FNA/FlatRedBall.FNA.csproj">
+    <ProjectReference Include="../../FlatRedBall/Engines/FlatRedBallXNA/FlatRedBall.FNA/FlatRedBall.FNA.csproj">
       <Name>FlatRedBall.FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/Forms/FlatRedBall.Forms/FlatRedBall.Forms.FNA/FlatRedBall.Forms.FNA.csproj">
+    <ProjectReference Include="../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/FlatRedBall.Forms.FNA/FlatRedBall.Forms.FNA.csproj">
       <Name>FlatRedBall.Forms.FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="../../../../source/repos/FlatRedBall/Engines/Forms/FlatRedBall.Forms/StateInterpolation/StateInterpolation.FNA/StateInterpolation.FNA.csproj">
+    <ProjectReference Include="../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/StateInterpolation/StateInterpolation.FNA/StateInterpolation.FNA.csproj">
       <Name>StateInterpolation.FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="../../../../source/repos/Gum/GumCore/GumCoreXnaPc/GumCore.FNA/GumCore.FNA.csproj">
+    <ProjectReference Include="../../Gum/GumCore/GumCoreXnaPc/GumCore.FNA/GumCore.FNA.csproj">
       <Name>GumCore.FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="../../../../source/repos/Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.FNA.csproj">
+    <ProjectReference Include="../../Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.FNA.csproj">
       <Name>SkiaInGum.FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\source\repos\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj" />
+    <ProjectReference Include="../..\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Guns\" />

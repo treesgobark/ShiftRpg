@@ -5,29 +5,29 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftRpg", "ShiftRpg\ShiftRpg.csproj", "{D7079294-70C6-4204-B29E-C505EC181815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateInterpolation.FNA", "..\..\..\source\repos\FlatRedBall\Engines\Forms\FlatRedBall.Forms\StateInterpolation\StateInterpolation.FNA\StateInterpolation.FNA.csproj", "{0827C3F4-3103-4D96-949F-D7CE458BC2E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateInterpolation.FNA", "..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\StateInterpolation\StateInterpolation.FNA\StateInterpolation.FNA.csproj", "{0827C3F4-3103-4D96-949F-D7CE458BC2E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatRedBall.FNA", "..\..\..\source\repos\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBall.FNA\FlatRedBall.FNA.csproj", "{A776ABAB-86D0-4481-BB53-CC5C4963D63F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatRedBall.FNA", "..\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBall.FNA\FlatRedBall.FNA.csproj", "{A776ABAB-86D0-4481-BB53-CC5C4963D63F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatRedBall.Forms.FNA", "..\..\..\source\repos\FlatRedBall\Engines\Forms\FlatRedBall.Forms\FlatRedBall.Forms.FNA\FlatRedBall.Forms.FNA.csproj", "{66DCBB3D-2B60-4C8B-9379-38507E8EBCE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatRedBall.Forms.FNA", "..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\FlatRedBall.Forms.FNA\FlatRedBall.Forms.FNA.csproj", "{66DCBB3D-2B60-4C8B-9379-38507E8EBCE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GumCore.FNA", "..\..\..\source\repos\Gum\GumCore\GumCoreXnaPc\GumCore.FNA\GumCore.FNA.csproj", "{1D379B0C-F691-4435-B4BC-F377EA7C1B88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GumCore.FNA", "..\Gum\GumCore\GumCoreXnaPc\GumCore.FNA\GumCore.FNA.csproj", "{1D379B0C-F691-4435-B4BC-F377EA7C1B88}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FlatRedBallShared", "..\..\..\source\repos\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBall\FlatRedBallShared.shproj", "{0BB8CBE3-8503-46C1-9272-D98E153A230E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FlatRedBallShared", "..\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBall\FlatRedBallShared.shproj", "{0BB8CBE3-8503-46C1-9272-D98E153A230E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FlatRedBall.Forms.Shared", "..\..\..\source\repos\FlatRedBall\Engines\Forms\FlatRedBall.Forms\FlatRedBall.Forms.Shared\FlatRedBall.Forms.Shared.shproj", "{728151F0-03E0-4253-94FE-46B9C77EDEA6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FlatRedBall.Forms.Shared", "..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\FlatRedBall.Forms.Shared\FlatRedBall.Forms.Shared.shproj", "{728151F0-03E0-4253-94FE-46B9C77EDEA6}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GumCoreShared", "..\..\..\source\repos\Gum\GumCoreShared.shproj", "{F919C045-EAC7-4806-9A1F-CE421F923E97}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GumCoreShared", "..\Gum\GumCoreShared.shproj", "{F919C045-EAC7-4806-9A1F-CE421F923E97}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GumCoreShared.FlatRedBall", "..\..\..\source\repos\FlatRedBall\FRBDK\Glue\GumPlugin\GumPlugin\GumCoreShared.FlatRedBall.shproj", "{0EE8A96C-A754-453D-9E65-19A24E9A5E76}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GumCoreShared.FlatRedBall", "..\FlatRedBall\FRBDK\Glue\GumPlugin\GumPlugin\GumCoreShared.FlatRedBall.shproj", "{0EE8A96C-A754-453D-9E65-19A24E9A5E76}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StateInterpolationShared", "..\..\..\source\repos\FlatRedBall\FRBDK\Glue\StateInterpolationPlugin\StateInterpolationPlugin\StateInterpolationShared.shproj", "{D00D287D-385B-42FB-BF5F-04401E7D37D0}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StateInterpolationShared", "..\FlatRedBall\FRBDK\Glue\StateInterpolationPlugin\StateInterpolationPlugin\StateInterpolationShared.shproj", "{D00D287D-385B-42FB-BF5F-04401E7D37D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaInGum.FNA", "..\..\..\source\repos\Gum\SvgPlugin\SkiaInGumShared\SkiaInGum.FNA.csproj", "{0D86F613-3768-42AD-85A3-E76A0EFDCE48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaInGum.FNA", "..\Gum\SvgPlugin\SkiaInGumShared\SkiaInGum.FNA.csproj", "{0D86F613-3768-42AD-85A3-E76A0EFDCE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA.Core", "..\..\..\source\repos\FlatRedBall\Engines\FlatRedBallXNA\3rd Party Libraries\FNA\FNA.Core.csproj", "{7DF848BC-7251-404E-8B17-DB7E51450834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA.Core", "..\FlatRedBall\Engines\FlatRedBallXNA\3rd Party Libraries\FNA\FNA.Core.csproj", "{7DF848BC-7251-404E-8B17-DB7E51450834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities.FlatRedBall.FNA", "..\..\..\source\repos\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj", "{F1A826CF-CA64-4875-8E34-F7DF106F3B93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities.FlatRedBall.FNA", "..\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj", "{F1A826CF-CA64-4875-8E34-F7DF106F3B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

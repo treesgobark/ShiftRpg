@@ -8,4 +8,5 @@ public interface IGameplayInputDevice
     I2DInput Aim { get; }
     IPressableInput Attack { get; }
     IPressableInput Reload { get; }
+    IPressableInput Dash { get; }
 }

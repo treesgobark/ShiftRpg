@@ -1,4 +1,9 @@
+using ANLG.Utilities.FlatRedBall.Extensions;
+using FlatRedBall;
+using FlatRedBall.Entities;
+using FlatRedBall.Graphics;
 using FlatRedBall.Input;
+using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
@@ -12,12 +17,19 @@ namespace ShiftRpg.Entities
         
         private void CustomInitialize()
         {
+            InitializeGun();
+            ReactToDamageReceived += OnReactToDamageReceived;
+            var hudParent = gumAttachmentWrappers[0];
+            hudParent.ParentRotationChangesRotation = false;
+            InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+        }
+
+        private void InitializeGun()
+        {
             var gun = DefaultGunFactory.CreateNew();
             gun.AttachTo(this);
             gun.ParentRotationChangesRotation = true;
             Gun = gun;
-            
-            InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
         }
 
         partial void CustomInitializeTopDownInput()
@@ -28,7 +40,7 @@ namespace ShiftRpg.Entities
         private void CustomActivity()
         {
             RotationZ = GameplayInputDevice.Aim.GetAngle() ?? 0;
-            HandleGunInput();
+            HandleInput();
         }
 
         private void CustomDestroy()
@@ -41,7 +53,17 @@ namespace ShiftRpg.Entities
         {
         }
 
-        private void HandleGunInput()
+        private void OnReactToDamageReceived(decimal damage, IDamageArea area)
+        {
+            if (area is PositionedObject pObject)
+            {
+                Position += pObject.Velocity.NormalizedOrZero() * 30;
+            }
+
+            HealthBar.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
+        }
+
+        private void HandleInput()
         {
             if (GameplayInputDevice.Attack.WasJustPressed)
             {
@@ -55,6 +77,15 @@ namespace ShiftRpg.Entities
             if (GameplayInputDevice.Reload.WasJustPressed)
             {
                 Gun.Reload();
+            }
+
+            if (GameplayInputDevice.Dash.WasJustPressed)
+            {
+                var dir = GameplayInputDevice.Movement.GetNormalizedPositionOrZero().ToVec3();
+                if (dir != Vector3.Zero)
+                {
+                    Position += dir * DashDistance;
+                }
             }
         }
     }

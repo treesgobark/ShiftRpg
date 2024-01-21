@@ -106,6 +106,18 @@
       "Name": "DamageToDeal",
       "DefaultValue": 20.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "KnockbackFactor",
+      "DefaultValue": 1.0,
+      "SetByDerived": true
     }
   ],
   "Properties": [

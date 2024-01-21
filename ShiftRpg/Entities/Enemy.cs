@@ -33,7 +33,7 @@ namespace ShiftRpg.Entities
         private void OnReactToDamageReceived(decimal damage, IDamageArea area)
         {
             if(area is Bullet bullet)
-                Position += bullet.Velocity.NormalizedOrZero() * 10;
+                Position += bullet.Velocity.NormalizedOrZero() * bullet.KnockbackDistance * KnockbackFactor;
             EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
         }
 

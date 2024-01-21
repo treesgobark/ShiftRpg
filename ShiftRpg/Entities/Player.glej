@@ -81,6 +81,18 @@
       "Name": "MaxHealth",
       "DefaultValue": 100.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "DashDistance",
+      "DefaultValue": 30.0,
+      "SetByDerived": true
     }
   ],
   "Properties": [
@@ -133,6 +145,29 @@
       "SourceType": 2,
       "SourceFile": "Circle",
       "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "HealthBar",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -15.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 3,
+      "SourceFile": "ProgressBarRuntime",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

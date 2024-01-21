@@ -15,7 +15,6 @@ public class DefaultGunController(Entities.DefaultGun parent)
 
     public override void OnActivate()
     {
-        Debugger.CommandLineWrite($"[{TimeManager.CurrentFrame}] Ready to fire!");
     }
 
     public override void CustomActivity() { }

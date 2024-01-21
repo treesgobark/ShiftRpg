@@ -98,6 +98,66 @@
       "SetByDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "MagazineBar",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "int",
+          "Member": "BackgroundBlue",
+          "Value": 75,
+          "Time": 0.0
+        },
+        {
+          "Type": "int",
+          "Member": "BackgroundGreen",
+          "Value": 25,
+          "Time": 0.0
+        },
+        {
+          "Type": "int",
+          "Member": "BackgroundRed",
+          "Value": 10,
+          "Time": 0.0
+        },
+        {
+          "Type": "int",
+          "Member": "ForegroundBlue",
+          "Value": 150,
+          "Time": 0.0
+        },
+        {
+          "Type": "int",
+          "Member": "ForegroundGreen",
+          "Value": 50,
+          "Time": 0.0
+        },
+        {
+          "Type": "int",
+          "Member": "ForegroundRed",
+          "Value": 20,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": 15.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 3,
+      "SourceFile": "ProgressBarRuntime",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Gun",

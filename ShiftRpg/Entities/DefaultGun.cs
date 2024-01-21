@@ -34,8 +34,6 @@ namespace ShiftRpg.Entities
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
-
-
         }
 
         public override void BeginFire() => DefaultGunControllers.CurrentController.BeginFire();

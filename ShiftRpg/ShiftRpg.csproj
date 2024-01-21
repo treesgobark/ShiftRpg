@@ -173,10 +173,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>verticallines</Name>
     </None>
-    <None Include="content\gumproject\components\enemyhealthbar.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>enemyhealthbar</Name>
-    </None>
     <None Include="content\gumproject\components\mainmenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>mainmenu</Name>
@@ -188,6 +184,10 @@
     <None Include="content\gumproject\components\pausemenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>pausemenu</Name>
+    </None>
+    <None Include="content\gumproject\components\progressbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>progressbar</Name>
     </None>
     <None Include="content\gumproject\fontcache\font10arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -604,10 +604,7 @@
     <Compile Include="GumRuntimes\Elements\VerticalLinesRuntime.Generated.cs">
       <DependentUpon>VerticalLinesRuntime.cs</DependentUpon>
     </Compile>
-    <Compile Include="GumRuntimes\EnemyHealthBarRuntime.cs" />
-    <Compile Include="GumRuntimes\EnemyHealthBarRuntime.Generated.cs">
-      <DependentUpon>EnemyHealthBarRuntime.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GumRuntimes\EnemyHealthBarRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\GameScreenGumRuntime.cs" />
     <Compile Include="GumRuntimes\GameScreenGumRuntime.Generated.cs">
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
@@ -631,6 +628,10 @@
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ProgressBarRuntime.cs" />
+    <Compile Include="GumRuntimes\ProgressBarRuntime.Generated.cs">
+      <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TestLevelGumRuntime.cs" />

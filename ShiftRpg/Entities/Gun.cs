@@ -7,8 +7,18 @@ namespace ShiftRpg.Entities
 {
     public abstract partial class Gun : IGun
     {
-        public int MagazineRemaining { get; set; }
-        
+        private int _magazineRemaining;
+
+        public int MagazineRemaining
+        {
+            get => _magazineRemaining;
+            set
+            {
+                _magazineRemaining = value;
+                MagazineBar.ProgressPercentage = 100 * _magazineRemaining / (float)MagazineSize;
+            }
+        }
+
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -17,6 +27,8 @@ namespace ShiftRpg.Entities
         private void CustomInitialize()
         {
             MagazineRemaining = MagazineSize;
+            var hudParent = gumAttachmentWrappers[0];
+            hudParent.ParentRotationChangesRotation = false;
         }
 
         private void CustomActivity()

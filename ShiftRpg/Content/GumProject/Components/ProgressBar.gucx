@@ -1,19 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ComponentSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>EnemyHealthBar</Name>
+  <Name>ProgressBar</Name>
   <BaseType>Container</BaseType>
   <State>
     <Name>Default</Name>
     <Variable>
       <Type>int</Type>
+      <Name>Background.Alpha</Name>
+      <ExposedAsName>BackgroundAlpha</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
       <Name>Background.Blue</Name>
       <Value xsi:type="xsd:int">165</Value>
+      <ExposedAsName>BackgroundBlue</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>Background.Green</Name>
       <Value xsi:type="xsd:int">165</Value>
+      <ExposedAsName>BackgroundGreen</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -32,6 +40,7 @@
       <Type>int</Type>
       <Name>Background.Red</Name>
       <Value xsi:type="xsd:int">202</Value>
+      <ExposedAsName>BackgroundRed</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -84,14 +93,22 @@
     </Variable>
     <Variable>
       <Type>int</Type>
+      <Name>Foreground.Alpha</Name>
+      <ExposedAsName>ForegroundAlpha</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
       <Name>Foreground.Blue</Name>
       <Value xsi:type="xsd:int">73</Value>
+      <ExposedAsName>ForegroundBlue</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>Foreground.Green</Name>
       <Value xsi:type="xsd:int">69</Value>
+      <ExposedAsName>ForegroundGreen</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -110,13 +127,14 @@
       <Type>int</Type>
       <Name>Foreground.Red</Name>
       <Value xsi:type="xsd:int">209</Value>
+      <ExposedAsName>ForegroundRed</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>Foreground.Width</Name>
       <Value xsi:type="xsd:float">100</Value>
-      <ExposedAsName>HealthPercentage</ExposedAsName>
+      <ExposedAsName>ProgressPercentage</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

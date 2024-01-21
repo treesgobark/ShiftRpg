@@ -163,7 +163,7 @@
     },
     {
       "InstanceName": "EnemyHealthBarRuntimeInstance",
-      "SourceClassType": "ShiftRpg.GumRuntimes.EnemyHealthBarRuntime",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
@@ -171,7 +171,14 @@
           "Type": "bool"
         }
       ],
-      "InstructionSaves": [],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -15.0,
+          "Time": 0.0
+        }
+      ],
       "SourceType": 3,
       "SourceFile": "EnemyHealthBarRuntime",
       "AttachToContainer": true,

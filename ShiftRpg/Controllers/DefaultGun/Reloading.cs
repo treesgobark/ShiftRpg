@@ -5,14 +5,22 @@ namespace ShiftRpg.Controllers.DefaultGun;
 
 public class Reloading(Entities.DefaultGun parent) : DefaultGunController(parent)
 {
-    protected double ReloadStartTime { get; set; }
+    private double ReloadStartTime { get; set; }
+    private int BarColor { get; set; }
     
     public override void OnActivate()
     {
         ReloadStartTime = TimeManager.CurrentScreenTime;
-        Debugger.CommandLineWrite($"[{TimeManager.CurrentFrame}] Reloading!");
+        BarColor = parent.MagazineBar.ForegroundGreen;
+        parent.MagazineBar.ForegroundGreen = 150;
     }
-    
+
+    public override void CustomActivity()
+    {
+        double progress = 100 * TimeManager.CurrentScreenSecondsSince(ReloadStartTime) / Parent.ReloadTimeSeconds;
+        parent.MagazineBar.ProgressPercentage = (float)progress;
+    }
+
     public override DefaultGunController? EvaluateExitConditions()
     {
         if (TimeManager.CurrentScreenSecondsSince(ReloadStartTime) > Parent.ReloadTimeSeconds)
@@ -26,6 +34,7 @@ public class Reloading(Entities.DefaultGun parent) : DefaultGunController(parent
     public override void BeforeDeactivate()
     {
         Parent.MagazineRemaining = parent.MagazineSize;
+        parent.MagazineBar.ForegroundGreen = BarColor;
     }
 
     public override void BeginFire() { }

@@ -28,14 +28,13 @@ namespace ShiftRpg.Entities
             ReactToDamageReceived += OnReactToDamageReceived;
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
-            EnemyHealthBarRuntimeInstance.Y = -20;
         }
 
         private void OnReactToDamageReceived(decimal damage, IDamageArea area)
         {
             if(area is Bullet bullet)
                 Position += bullet.Velocity.NormalizedOrZero() * 10;
-            EnemyHealthBarRuntimeInstance.HealthPercentage = (float)(100 * CurrentHealth / MaxHealth);
+            EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
         }
 
         private void CustomActivity()

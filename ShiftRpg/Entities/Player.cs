@@ -50,10 +50,10 @@ namespace ShiftRpg.Entities
                 Gun.EndFire();
             }
 
-            // if (GameplayInputDevice.Reload.WasJustPressed)
-            // {
-            //     Gun.Reload();
-            // }
+            if (GameplayInputDevice.Reload.WasJustPressed)
+            {
+                Gun.Reload();
+            }
         }
     }
 }

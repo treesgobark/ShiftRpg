@@ -6,6 +6,34 @@
   "BaseEntity": "Entities\\Gun",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        }
+      ],
+      "Name": "MagazineSize",
+      "DefaultValue": 5,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "double",
+          "Type": "String"
+        }
+      ],
+      "Name": "ReloadTimeSeconds",
+      "DefaultValue": 1.5,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    }
+  ],
   "Properties": [
     {
       "Name": "InputDevice",

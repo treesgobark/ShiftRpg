@@ -8,5 +8,5 @@ public interface IGun
     // void BeginSecondaryFire();
     // void EndSecondaryFire();
     
-    // void Reload();
+    void Reload();
 }

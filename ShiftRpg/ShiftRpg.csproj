@@ -8,6 +8,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <DefineConstants>DESKTOP;XNA4;FRN_XNA;FNA</DefineConstants>
     <LangVersion>default</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -348,6 +349,9 @@
   <ItemGroup>
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
     <Compile Include="Contracts\IGun.cs" />
+    <Compile Include="Controllers\DefaultGun\DefaultGunController.cs" />
+    <Compile Include="Controllers\DefaultGun\DefaultGunControllerCollection.cs" />
+    <Compile Include="Controllers\DefaultGun\Reloading.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Entities\Bullet.cs" />

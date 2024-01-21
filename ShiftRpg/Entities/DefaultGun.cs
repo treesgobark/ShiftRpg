@@ -1,10 +1,15 @@
+using ANLG.Utilities.FlatRedBall.Controllers;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Controllers.DefaultGun;
 using ShiftRpg.Factories;
 
 namespace ShiftRpg.Entities
 {
-    public partial class DefaultGun
+    public partial class DefaultGun : IHasControllers<DefaultGun, DefaultGunController>
     {
+        public ControllerCollection<DefaultGun, DefaultGunController> Controllers => DefaultGunControllers;
+        private DefaultGunControllerCollection DefaultGunControllers { get; set; }
+        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -12,20 +17,19 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-
-
+            DefaultGunControllers = new DefaultGunControllerCollection();
+            DefaultGunControllers.Add(new DefaultGunController(this));
+            DefaultGunControllers.Add(new Reloading(this));
+            DefaultGunControllers.InitializeStartingController<DefaultGunController>();
         }
 
         private void CustomActivity()
         {
-
-
+            DefaultGunControllers.DoCurrentControllerActivity();
         }
 
         private void CustomDestroy()
         {
-
-
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)
@@ -34,19 +38,8 @@ namespace ShiftRpg.Entities
 
         }
 
-        public override void BeginFire()
-        {
-            var dir = Vector2ExtensionMethods.FromAngle(RotationZ).NormalizedOrZero().ToVector3();
-            if (dir != Vector3.Zero)
-            {
-                var bullet = BulletFactory.CreateNew();
-                bullet.Position = Position;
-                bullet.Velocity = dir * 500;
-            }
-        }
-
-        public override void EndFire()
-        {
-        }
+        public override void BeginFire() => DefaultGunControllers.CurrentController.BeginFire();
+        public override void EndFire() => DefaultGunControllers.CurrentController.EndFire();
+        public override void Reload() => DefaultGunControllers.CurrentController.Reload();
     }
 }

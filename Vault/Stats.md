@@ -1,0 +1,18 @@
+- Health
+- Magazine Size
+- Reload Speed
+- Attack Speed (ROF)
+- Damage
+- Crit Chance
+- Crit Damage
+- Weakpoint Damage
+- Soul Damage
+- Shield Capacity
+- Shield Recharge
+- Shield Recharge Delay
+- Movement Speed
+- Dash Distance
+- Dash Cooldown
+- Elemental Type
+- Elemental Damage
+- Elemental Chance

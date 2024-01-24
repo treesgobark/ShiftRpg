@@ -21,6 +21,10 @@
     <None Remove="**\*.glsj" />
     <None Remove="**\*.glej" />
     <None Remove="**\*.gluj" />
+    <None Include="content\entities\enemy\topdownvaluesstatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="content\entities\player\topdownvaluesstatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
@@ -349,6 +353,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
     <Compile Include="Contracts\IGun.cs" />
+    <Compile Include="Contracts\IMeleeWeapon.cs" />
     <Compile Include="Controllers\DefaultGun\DefaultGunController.cs" />
     <Compile Include="Controllers\DefaultGun\DefaultGunControllerCollection.cs" />
     <Compile Include="Controllers\DefaultGun\Reloading.cs" />
@@ -639,6 +644,8 @@
       <DependentUpon>TestLevelGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="InputDevices\EnemyInputDevice.cs" />
+    <Compile Include="InputDevices\EntityTracker.cs" />
     <Compile Include="InputDevices\GameplayInputDevice.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />

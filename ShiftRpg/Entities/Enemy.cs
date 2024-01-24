@@ -12,6 +12,7 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
+using ShiftRpg.InputDevices;
 using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
@@ -28,12 +29,13 @@ namespace ShiftRpg.Entities
             ReactToDamageReceived += OnReactToDamageReceived;
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
+            InitializeTopDownInput(new EnemyInputDevice<Enemy>(this));
         }
 
         private void OnReactToDamageReceived(decimal damage, IDamageArea area)
         {
             if(area is Bullet bullet)
-                Position += bullet.Velocity.NormalizedOrZero() * bullet.KnockbackDistance * KnockbackFactor;
+                Velocity += bullet.Velocity.NormalizedOrZero() * bullet.KnockbackVelocity / KnockbackResistance;
             EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
         }
 
@@ -41,12 +43,11 @@ namespace ShiftRpg.Entities
         {
             var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
             var target = gameScreen.GetClosestPlayer(Position);
-            if (target is null)
+            if (InputDevice is EnemyInputDevice<Enemy> eInput)
             {
-                return;
+                eInput.Target = target;
+                InitializeTopDownInput(InputDevice);
             }
-            Vector3 dir = (target.Position - Position).NormalizedOrZero();
-            Velocity = dir * MoveSpeed;
         }
 
         private void CustomDestroy()

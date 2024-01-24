@@ -5,6 +5,15 @@
   "Source": "GLUE",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/Enemy/TopDownValuesStatic.csv",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -115,7 +124,7 @@
           "Type": "String"
         }
       ],
-      "Name": "KnockbackFactor",
+      "Name": "KnockbackResistance",
       "DefaultValue": 1.0,
       "SetByDerived": true
     },
@@ -129,6 +138,18 @@
       ],
       "Name": "MoveSpeed",
       "DefaultValue": 10.0,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "KnockbackVelocity",
+      "DefaultValue": 300.0,
       "SetByDerived": true
     }
   ],
@@ -145,13 +166,18 @@
     },
     {
       "Name": "InputDevice",
-      "Value": 0,
+      "Value": 1,
       "Type": "int"
     },
     {
       "Name": "ImplementsIDamageArea",
       "Value": true,
       "Type": "Object"
+    },
+    {
+      "Name": "IsTopDown",
+      "Value": true,
+      "Type": "bool"
     }
   ],
   "NamedObjects": [

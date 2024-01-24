@@ -135,35 +135,6 @@
       "InstantiatedByBase": true,
       "ContainedObjects": [
         {
-          "InstanceName": "Enemy1",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 96.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -104.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        },
-        {
           "InstanceName": "Enemy2",
           "SourceClassType": "Entities\\Enemy",
           "Properties": [
@@ -177,13 +148,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 312.0,
+              "Value": 376.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -480.0,
+              "Value": -384.0,
               "Time": 0.0
             }
           ],
@@ -205,13 +176,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 664.0,
+              "Value": 104.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -80.0,
+              "Value": -104.0,
               "Time": 0.0
             }
           ],
@@ -239,7 +210,91 @@
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -688.0,
+              "Value": -96.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy5",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 104.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -640.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy6",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 672.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -448.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Enemy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Enemy7",
+          "SourceClassType": "Entities\\Enemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 504.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -696.0,
               "Time": 0.0
             }
           ],

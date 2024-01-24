@@ -1,3 +1,4 @@
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Entities;
@@ -26,8 +27,10 @@ public class VirtualAimer : I2DInput
         get
         {
             var mouseWorldPos = new Vector2(_mouse.WorldXAt(_player.Z), _mouse.WorldYAt(_player.Z));
-            var normalizedPos = (mouseWorldPos - _player.Position.ToVector2()).NormalizedOrZero();
-            return normalizedPos;
+            var mouseToPlayer = mouseWorldPos - _player.Position.ToVector2();
+            var newMagnitude = mouseToPlayer.Length() / _player.MeleeAimThreshold;
+            var newM2P = mouseToPlayer.WithMagnitude(newMagnitude);
+            return newM2P; 
         }
     }
 }

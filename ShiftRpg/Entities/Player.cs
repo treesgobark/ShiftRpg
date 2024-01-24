@@ -1,5 +1,6 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
+using FlatRedBall.Debugging;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
 using FlatRedBall.Input;
@@ -13,6 +14,7 @@ namespace ShiftRpg.Entities
     public partial class Player
     {
         private IGun Gun { get; set; }
+        private IMeleeWeapon MeleeWeapon { get; set; }
         private IGameplayInputDevice GameplayInputDevice { get; set; }
         
         private void CustomInitialize()
@@ -41,6 +43,7 @@ namespace ShiftRpg.Entities
         private void CustomActivity()
         {
             RotationZ = GameplayInputDevice.Aim.GetAngle() ?? 0;
+            AimThresholdCircle.Radius = MeleeAimThreshold;
             HandleInput();
         }
 
@@ -56,9 +59,9 @@ namespace ShiftRpg.Entities
 
         private void OnReactToDamageReceived(decimal damage, IDamageArea area)
         {
-            if (area is PositionedObject pObject)
+            if (area is Enemy enemy)
             {
-                Position += pObject.Velocity.NormalizedOrZero() * 30;
+                Velocity += enemy.Velocity.NormalizedOrZero() * enemy.KnockbackVelocity;
             }
 
             HealthBar.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
@@ -66,18 +69,29 @@ namespace ShiftRpg.Entities
 
         private void HandleInput()
         {
-            if (GameplayInputDevice.Attack.WasJustPressed)
+            Debugger.Write($"Aim: ({GameplayInputDevice.Aim.X}, {GameplayInputDevice.Aim.Y}): {GameplayInputDevice.Aim.Magnitude}");
+            
+            if (GameplayInputDevice.Aim.Magnitude >= 1)
             {
-                Gun.BeginFire();
+                if (GameplayInputDevice.Attack.WasJustPressed)
+                {
+                    Gun.BeginFire();
+                }
+                else if (GameplayInputDevice.Attack.WasJustReleased)
+                {
+                    Gun.EndFire();
+                }
             }
-            else if (GameplayInputDevice.Attack.WasJustReleased)
+            else
             {
-                Gun.EndFire();
-            }
-
-            if (GameplayInputDevice.Reload.WasJustPressed)
-            {
-                Gun.Reload();
+                if (GameplayInputDevice.Attack.WasJustPressed)
+                {
+                    // MeleeWeapon.BeginAttack();
+                }
+                else if (GameplayInputDevice.Attack.WasJustReleased)
+                {
+                    // MeleeWeapon.EndAttack();
+                }
             }
 
             if (GameplayInputDevice.Dash.WasJustPressed)
@@ -87,6 +101,11 @@ namespace ShiftRpg.Entities
                 {
                     Position += dir * DashDistance;
                 }
+            }
+
+            if (GameplayInputDevice.Reload.WasJustPressed)
+            {
+                Gun.Reload();
             }
         }
     }

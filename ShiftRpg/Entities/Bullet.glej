@@ -98,8 +98,8 @@
           "Type": "String"
         }
       ],
-      "Name": "KnockbackDistance",
-      "DefaultValue": 10.0,
+      "Name": "KnockbackVelocity",
+      "DefaultValue": 300.0,
       "SetByDerived": true
     }
   ],

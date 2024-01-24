@@ -93,6 +93,18 @@
       "Name": "DashDistance",
       "DefaultValue": 30.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "MeleeAimThreshold",
+      "DefaultValue": 35.0,
+      "SetByDerived": true
     }
   ],
   "Properties": [
@@ -170,6 +182,37 @@
       "SourceFile": "ProgressBarRuntime",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "AimThresholdCircle",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "Color",
+          "Member": "Color",
+          "Value": "Gray",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "IncludeInICollidable": false
     }
   ],
   "Name": "Entities\\Player",

@@ -156,10 +156,12 @@
       "SourceType": 2,
       "SourceFile": "Circle",
       "HasPublicProperty": true,
+      "SetByDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Gun",
-  "CustomClassesForExport": []
+  "CustomClassesForExport": [],
+  "IsAbstract": true
 }

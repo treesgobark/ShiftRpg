@@ -104,6 +104,11 @@
           "Name": "CollisionTileTypeName",
           "Value": "SolidCollision",
           "Type": "String"
+        },
+        {
+          "Name": "RemoveTilesAfterCreatingCollision",
+          "Value": true,
+          "Type": "Object"
         }
       ],
       "InstructionSaves": [],

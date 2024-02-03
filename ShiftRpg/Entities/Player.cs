@@ -1,3 +1,4 @@
+using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Debugging;
@@ -16,23 +17,45 @@ namespace ShiftRpg.Entities
         private IGun Gun { get; set; }
         private IMeleeWeapon MeleeWeapon { get; set; }
         private IGameplayInputDevice GameplayInputDevice { get; set; }
+        private bool _meleeLastFrame = true;
+        private bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
+        private float _lastMeleeRotation = 0;
         
         private void CustomInitialize()
         {
             InitializeGun();
+            InitializeMeleeWeapon();
             ReactToDamageReceived += OnReactToDamageReceived;
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
+            AimThresholdCircle.Radius = MeleeAimThreshold;
+            Gun.Unequip();
+            MeleeWeapon.Equip();
+            InvulnerabilityTimeAfterDamage = 0.5;
             InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
         }
 
         private void InitializeGun()
         {
             var gun = DefaultGunFactory.CreateNew();
+            
             gun.RelativeX = 10;
             gun.AttachTo(this);
             gun.ParentRotationChangesRotation = true;
+            
             Gun = gun;
+        }
+
+        private void InitializeMeleeWeapon()
+        {
+            var melee = DefaultSwordFactory.CreateNew();
+            
+            melee.RelativeX = 24;
+            melee.AttachTo(this);
+            melee.ParentRotationChangesRotation = true;
+            melee.IsDamageDealingEnabled        = false;
+
+            MeleeWeapon = melee;
         }
 
         partial void CustomInitializeTopDownInput()
@@ -42,9 +65,29 @@ namespace ShiftRpg.Entities
 
         private void CustomActivity()
         {
-            RotationZ = GameplayInputDevice.Aim.GetAngle() ?? 0;
-            AimThresholdCircle.Radius = MeleeAimThreshold;
+            // Debugger.Write($"Is player Invulnerable: {IsInvulnerable}");
+            SetRotation();
             HandleInput();
+        }
+
+        private void SetRotation()
+        {
+            float? angle = AimInMeleeRange
+                ? GameplayInputDevice.Movement.GetAngle()
+                : GameplayInputDevice.Aim.GetAngle();
+            
+            if (angle is null)
+            {
+                RotationZ = _lastMeleeRotation;
+            }
+            else
+            {
+                RotationZ          = angle.Value;
+                if (AimInMeleeRange)
+                {
+                    _lastMeleeRotation = RotationZ;
+                }
+            }
         }
 
         private void CustomDestroy()
@@ -69,10 +112,33 @@ namespace ShiftRpg.Entities
 
         private void HandleInput()
         {
-            Debugger.Write($"Aim: ({GameplayInputDevice.Aim.X}, {GameplayInputDevice.Aim.Y}): {GameplayInputDevice.Aim.Magnitude}");
-            
-            if (GameplayInputDevice.Aim.Magnitude >= 1)
+            if (AimInMeleeRange)
             {
+                if (!_meleeLastFrame)
+                {
+                    MeleeWeapon.Equip();
+                    Gun.Unequip();
+                }
+                
+                if (GameplayInputDevice.Attack.WasJustPressed)
+                {
+                    MeleeWeapon.BeginAttack();
+                }
+                else if (GameplayInputDevice.Attack.WasJustReleased)
+                {
+                    MeleeWeapon.EndAttack();
+                }
+
+                _meleeLastFrame = true;
+            }
+            else
+            {
+                if (_meleeLastFrame)
+                {
+                    Gun.Equip();
+                    MeleeWeapon.Unequip();
+                }
+                
                 if (GameplayInputDevice.Attack.WasJustPressed)
                 {
                     Gun.BeginFire();
@@ -81,19 +147,10 @@ namespace ShiftRpg.Entities
                 {
                     Gun.EndFire();
                 }
-            }
-            else
-            {
-                if (GameplayInputDevice.Attack.WasJustPressed)
-                {
-                    // MeleeWeapon.BeginAttack();
-                }
-                else if (GameplayInputDevice.Attack.WasJustReleased)
-                {
-                    // MeleeWeapon.EndAttack();
-                }
-            }
 
+                _meleeLastFrame = false;
+            }
+            
             if (GameplayInputDevice.Dash.WasJustPressed)
             {
                 var dir = GameplayInputDevice.Movement.GetNormalizedPositionOrZero().ToVec3();

@@ -3,17 +3,7 @@
     "GLUE"
   ],
   "Source": "GLUE",
-  "CreatedByOtherEntities": true,
   "Is2D": true,
-  "ReferencedFiles": [
-    {
-      "Name": "Entities/Enemy/TopDownValuesStatic.csv",
-      "IsSharedStatic": true,
-      "HasPublicProperty": true,
-      "CreatesDictionary": true,
-      "ProjectsToExcludeFrom": []
-    }
-  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -62,24 +52,7 @@
         }
       ],
       "Name": "TeamIndex",
-      "DefaultValue": 1,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "MaxHealth",
-      "DefaultValue": 100.0,
+      "DefaultValue": 0,
       "SetByDerived": true
     },
     {
@@ -112,31 +85,6 @@
         }
       ],
       "Name": "DamageToDeal",
-      "DefaultValue": 20.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "float",
-          "Type": "String"
-        }
-      ],
-      "Name": "KnockbackResistance",
-      "DefaultValue": 1.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "float",
-          "Type": "String"
-        }
-      ],
-      "Name": "MoveSpeed",
-      "DefaultValue": 10.0,
       "SetByDerived": true
     },
     {
@@ -148,7 +96,6 @@
         }
       ],
       "Name": "KnockbackVelocity",
-      "DefaultValue": 300.0,
       "SetByDerived": true
     }
   ],
@@ -159,24 +106,14 @@
       "Type": "bool"
     },
     {
-      "Name": "ImplementsIDamageable",
+      "Name": "ImplementsIDamageArea",
       "Value": true,
       "Type": "bool"
     },
     {
       "Name": "InputDevice",
-      "Value": 1,
+      "Value": 0,
       "Type": "int"
-    },
-    {
-      "Name": "ImplementsIDamageArea",
-      "Value": true,
-      "Type": "Object"
-    },
-    {
-      "Name": "IsTopDown",
-      "Value": true,
-      "Type": "bool"
     }
   ],
   "NamedObjects": [
@@ -194,46 +131,25 @@
         {
           "Type": "Color",
           "Member": "Color",
-          "Value": "HotPink",
+          "Value": "SkyBlue",
           "Time": 0.0
         },
         {
           "Type": "float",
           "Member": "Radius",
-          "Value": 8.0,
+          "Value": 16.0,
           "Time": 0.0
         }
       ],
       "SourceType": 2,
       "SourceFile": "Circle",
       "HasPublicProperty": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "EnemyHealthBarRuntimeInstance",
-      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "float",
-          "Member": "Y",
-          "Value": -15.0,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 3,
-      "SourceFile": "EnemyHealthBarRuntime",
+      "SetByDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }
   ],
-  "Name": "Entities\\Enemy",
-  "CustomClassesForExport": []
+  "Name": "Entities\\MeleeWeapon",
+  "CustomClassesForExport": [],
+  "IsAbstract": true
 }

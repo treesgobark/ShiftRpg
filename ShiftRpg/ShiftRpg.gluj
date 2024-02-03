@@ -108,10 +108,16 @@
       "Name": "Entities\\DefaultGun"
     },
     {
+      "Name": "Entities\\DefaultSword"
+    },
+    {
       "Name": "Entities\\Enemy"
     },
     {
       "Name": "Entities\\Gun"
+    },
+    {
+      "Name": "Entities\\MeleeWeapon"
     },
     {
       "Name": "Entities\\Player"

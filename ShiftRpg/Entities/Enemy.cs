@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
@@ -34,8 +35,17 @@ namespace ShiftRpg.Entities
 
         private void OnReactToDamageReceived(decimal damage, IDamageArea area)
         {
-            if(area is Bullet bullet)
+            if (area is Bullet bullet)
+            {
                 Velocity += bullet.Velocity.NormalizedOrZero() * bullet.KnockbackVelocity / KnockbackResistance;
+            }
+
+            if (area is MeleeWeapon melee)
+            {
+                var toEnemy = melee.Position.GetVectorTo(Position).Scale(z: 0);
+                Velocity += toEnemy.NormalizedOrZero() * melee.KnockbackVelocity / KnockbackResistance;
+            }
+
             EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
         }
 

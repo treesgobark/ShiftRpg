@@ -51,5 +51,17 @@ namespace ShiftRpg.Entities
         public abstract void BeginFire();
         public abstract void EndFire();
         public abstract void Reload();
+        
+        public void Equip()
+        {
+            CircleInstance.Visible = true;
+            MagazineBar.Visible    = true;
+        }
+
+        public void Unequip()
+        {
+            CircleInstance.Visible = false;
+            MagazineBar.Visible    = false;
+        }
     }
 }

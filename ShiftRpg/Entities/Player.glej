@@ -127,6 +127,11 @@
       "Name": "ImplementsIDamageable",
       "Value": true,
       "Type": "Object"
+    },
+    {
+      "Name": "ImplementsIHasControllers",
+      "Value": true,
+      "Type": "Object"
     }
   ],
   "NamedObjects": [

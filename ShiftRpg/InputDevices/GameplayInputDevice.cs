@@ -1,3 +1,4 @@
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework.Input;
 using ShiftRpg.Contracts;
@@ -14,11 +15,11 @@ public class GameplayInputDevice : IGameplayInputDevice
         switch (inputDevice)
         {
             case Xbox360GamePad gamePad:
-                Movement = gamePad.LeftStick;
-                Aim = gamePad.RightStick;
-                Attack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder);
-                Reload = gamePad.GetButton(Xbox360GamePad.Button.X);
-                Dash = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
+                Movement = new Gated2DInput(gamePad.LeftStick, 8);
+                Aim      = gamePad.RightStick;
+                Attack   = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder);
+                Reload   = gamePad.GetButton(Xbox360GamePad.Button.X);
+                Dash     = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
                 break;
             case Keyboard keyboard:
                 Movement = keyboard.GetWasdInput();

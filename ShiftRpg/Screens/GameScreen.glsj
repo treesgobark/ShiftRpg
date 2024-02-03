@@ -116,6 +116,24 @@
       "GenerateTimedEmit": true
     },
     {
+      "InstanceName": "MeleeWeaponList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\MeleeWeapon",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
       "InstanceName": "Map",
       "SourceClassType": "FlatRedBall.TileGraphics.LayeredTileMap",
       "Properties": [
@@ -196,7 +214,7 @@
         },
         {
           "Name": "RemoveTilesAfterCreatingCollision",
-          "Value": false,
+          "Value": true,
           "Type": "bool"
         }
       ],
@@ -588,6 +606,11 @@
           "Name": "IsDestroySecondOnDamageChecked",
           "Value": false,
           "Type": "Object"
+        },
+        {
+          "Name": "CollisionType",
+          "Value": 1,
+          "Type": "int"
         }
       ],
       "InstructionSaves": [],
@@ -683,6 +706,92 @@
       "InstructionSaves": [],
       "SourceType": 2,
       "SourceFile": "FlatRedBall.Math.Collision.CollidableListVsTileShapeCollectionRelationship<Entities.Bullet>",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "MeleeWeaponVsEnemy",
+      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeWeapon, Entities.Enemy>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutoNameEnabled",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionName",
+          "Value": "MeleeWeaponList",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondCollisionName",
+          "Value": "EnemyList",
+          "Type": "String"
+        },
+        {
+          "Name": "FirstSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "IsCollisionActive",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutomaticallyApplyPhysicsChecked",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SecondCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SoftCollisionCoefficient",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionElasticity",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "IsDealDamageChecked",
+          "Value": true,
+          "Type": "Object"
+        },
+        {
+          "Name": "IsDestroyFirstOnDamageChecked",
+          "Value": false,
+          "Type": "Object"
+        },
+        {
+          "Name": "IsDestroySecondOnDamageChecked",
+          "Value": false,
+          "Type": "Object"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeWeapon, Entities.Enemy>",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

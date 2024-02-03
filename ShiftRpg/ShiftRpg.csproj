@@ -354,9 +354,13 @@
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
     <Compile Include="Contracts\IGun.cs" />
     <Compile Include="Contracts\IMeleeWeapon.cs" />
+    <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Controllers\DefaultGun\DefaultGunController.cs" />
     <Compile Include="Controllers\DefaultGun\DefaultGunControllerCollection.cs" />
     <Compile Include="Controllers\DefaultGun\Reloading.cs" />
+    <Compile Include="Controllers\DefaultSword\Active.cs" />
+    <Compile Include="Controllers\DefaultSword\DefaultSwordController.cs" />
+    <Compile Include="Controllers\DefaultSword\DefaultSwordControllerCollection.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Entities\Bullet.cs" />
@@ -367,6 +371,10 @@
     <Compile Include="Entities\DefaultGun.Generated.cs">
       <DependentUpon>DefaultGun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DefaultSword.cs" />
+    <Compile Include="Entities\DefaultSword.Generated.cs">
+      <DependentUpon>DefaultSword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Enemy.Generated.cs">
       <DependentUpon>Enemy.cs</DependentUpon>
@@ -375,12 +383,17 @@
     <Compile Include="Entities\Gun.Generated.cs">
       <DependentUpon>Gun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MeleeWeapon.cs" />
+    <Compile Include="Entities\MeleeWeapon.Generated.cs">
+      <DependentUpon>MeleeWeapon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Player.Generated.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="Factories\BulletFactory.Generated.cs" />
     <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
+    <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
     <Compile Include="Factories\EnemyFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
@@ -650,6 +663,9 @@
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
+    <Compile Include="Platformer\Enums.Generated.cs" />
+    <Compile Include="Platformer\IPlatformer.Generated.cs" />
+    <Compile Include="Platformer\PlatformerAnimationController.Generated.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\GameScreen.Event.cs">

@@ -153,6 +153,7 @@
       ],
       "InstructionSaves": [
         {
+          "Type": "List<Vector2>",
           "Member": "Points",
           "Value": [],
           "Time": 0.0
@@ -161,6 +162,7 @@
       "SourceType": 2,
       "SourceFile": "Polygon",
       "HasPublicProperty": true,
+      "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

@@ -1,4 +1,5 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Debugging;
 using Microsoft.Xna.Framework;
@@ -6,8 +7,8 @@ using ShiftRpg.Factories;
 
 namespace ShiftRpg.Controllers.DefaultSword;
 
-public class DefaultSwordController(Entities.DefaultSword parent)
-    : EntityController<Entities.DefaultSword, DefaultSwordController>(parent)
+public class DefaultSwordController(Entities.DefaultSword obj)
+    : EntityController<Entities.DefaultSword, DefaultSwordController>(obj)
 {
     protected DefaultSwordController? NextState { get; set; }
     
@@ -36,7 +37,8 @@ public class DefaultSwordController(Entities.DefaultSword parent)
 
     public virtual void BeginAttack()
     {
-        NextState = Get<Active>();
+        Parent.Owner.Velocity += Parent.AttackForwardVelocity * Vector2ExtensionMethods.FromAngle(Parent.Owner.RotationZ).ToVec3();
+        NextState             =  Get<Active>();
     }
 
     public virtual void EndAttack()

@@ -29,6 +29,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
     </None>
+    <None Include="content\globalcontent\attackdata.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AttackData</Name>
+    </None>
     <None Include="content\gumproject\components\controls\buttonclose.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>buttonclose</Name>
@@ -361,6 +365,7 @@
     <Compile Include="Controllers\DefaultSword\Active.cs" />
     <Compile Include="Controllers\DefaultSword\DefaultSwordController.cs" />
     <Compile Include="Controllers\DefaultSword\DefaultSwordControllerCollection.cs" />
+    <Compile Include="DataTypes\AttackData.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Entities\Bullet.cs" />

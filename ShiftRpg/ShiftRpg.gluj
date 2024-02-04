@@ -50,6 +50,16 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/AttackData.csv",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "SourceFile": "GlobalContent/AttackData.ods",
+      "BuildTool": "*.ods -> soffice.exe -> *.csv",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},

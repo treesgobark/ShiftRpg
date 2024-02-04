@@ -15,6 +15,8 @@ namespace ShiftRpg.Entities;
 
 public abstract partial class MeleeWeapon : IMeleeWeapon
 {
+    public Player Owner { get; set; }
+    
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
     /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -47,11 +49,11 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         
     public void Equip()
     {
-        CircleInstance.Visible = true;
+        PolygonInstance.Visible = true;
     }
 
     public void Unequip()
     {
-        CircleInstance.Visible = false;
+        PolygonInstance.Visible = false;
     }
 }

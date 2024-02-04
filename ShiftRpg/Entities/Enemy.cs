@@ -42,8 +42,7 @@ namespace ShiftRpg.Entities
 
             if (area is MeleeWeapon melee)
             {
-                var toEnemy = melee.Position.GetVectorTo(Position).Scale(z: 0);
-                Velocity += toEnemy.NormalizedOrZero() * melee.KnockbackVelocity / KnockbackResistance;
+                Velocity += melee.Owner.GetForwardVector3() * melee.KnockbackVelocity / KnockbackResistance;
             }
 
             EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);

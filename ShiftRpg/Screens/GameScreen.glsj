@@ -594,7 +594,7 @@
         },
         {
           "Name": "IsDealDamageChecked",
-          "Value": true,
+          "Value": false,
           "Type": "Object"
         },
         {

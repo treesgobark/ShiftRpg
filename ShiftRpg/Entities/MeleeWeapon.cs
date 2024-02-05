@@ -1,17 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
-using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Content.Polygon;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
-using Microsoft.Xna.Framework;
+using FlatRedBall.Debugging;
+using FlatRedBall.Input;
 using ShiftRpg.Contracts;
 using ShiftRpg.Controllers.MeleeWeapon;
 using ShiftRpg.DataTypes;
@@ -23,11 +15,12 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 {
     public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
     public AttackData CurrentAttackData { get; set; }
+    public CyclableList<string> AttackList = new(AttackData.OrderedList);
     
     public Player Owner { get; set; }
 
-    private readonly PolygonSave _polygonSave = new();
-    
+    public PolygonSave PolygonSave { get; } = new();
+
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
     /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -35,22 +28,30 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
     /// </summary>
     private void CustomInitialize()
     {
-        var data = GlobalContent.AttackData[AttackData.DefaultSwordSlash];
-        _polygonSave.Points =
+        PolygonSave.Points =
         [
-            new Point(data.HitboxOffsetX, data.HitboxOffsetY + data.HitboxSizeY / 2),
-            new Point(data.HitboxOffsetX + data.HitboxSizeX, data.HitboxOffsetY + data.HitboxSizeY / 2),
-            new Point(data.HitboxOffsetX + data.HitboxSizeX, data.HitboxOffsetY - data.HitboxSizeY / 2),
-            new Point(data.HitboxOffsetX, data.HitboxOffsetY - data.HitboxSizeY / 2),
-            new Point(data.HitboxOffsetX, data.HitboxOffsetY + data.HitboxSizeY / 2),
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(0, 0),
         ];
-        _polygonSave.MapShapeRelative(PolygonInstance);
+        PolygonSave.MapShapeRelative(PolygonInstance);
+        CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
     }
 
     private void CustomActivity()
     {
-
-
+        if (InputManager.Mouse.ScrollWheelChange > 0)
+        {
+            CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
+            Debugger.CommandLineWrite($"Switched to {CurrentAttackData.Name}");
+        }
+        else if (InputManager.Mouse.ScrollWheelChange < 0)
+        {
+            CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToPreviousItem()];
+            Debugger.CommandLineWrite($"Switched to {CurrentAttackData.Name}");
+        }
     }
 
     private void CustomDestroy()

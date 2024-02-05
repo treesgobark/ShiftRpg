@@ -34,9 +34,35 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
 
     public override void BeginAttack()
     {
-        Parent.Owner.Velocity += Parent.AttackForwardVelocity * Vector2ExtensionMethods.FromAngle(Parent.Owner.RotationZ).ToVec3();
-        Parent.CurrentAttackData = GlobalContent.AttackData[AttackData.DefaultSwordSlash];
+        PrepareAttackData();
+        
         NextState = Get<Startup>();
+    }
+
+    private void PrepareAttackData()
+    {
+        var data = Parent.CurrentAttackData;
+        
+        Parent.PolygonSave.Points[0].X = data.HitboxOffsetX;
+        Parent.PolygonSave.Points[4].X = data.HitboxOffsetX;
+        Parent.PolygonSave.Points[0].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        Parent.PolygonSave.Points[4].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        
+        Parent.PolygonSave.Points[1].X = data.HitboxOffsetX + data.HitboxSizeX;
+        Parent.PolygonSave.Points[1].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        
+        Parent.PolygonSave.Points[2].X = data.HitboxOffsetX + data.HitboxSizeX;
+        Parent.PolygonSave.Points[2].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
+        
+        Parent.PolygonSave.Points[3].X = data.HitboxOffsetX;
+        Parent.PolygonSave.Points[3].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
+        
+        Parent.PolygonSave.MapShapeRelative(Parent.PolygonInstance);
+
+        Parent.DamageToDeal = data.Damage;
+        Parent.SecondsBetweenDamage = data.ActiveTime;
+        Parent.KnockbackVelocity = data.KnockbackVelocity;
+        Parent.Owner.Velocity += data.ForwardMovementVelocity * Vector2ExtensionMethods.FromAngle(Parent.Owner.RotationZ).ToVec3();
     }
 
     public override void EndAttack()

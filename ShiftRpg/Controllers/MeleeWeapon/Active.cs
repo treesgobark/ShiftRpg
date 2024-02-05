@@ -11,7 +11,6 @@ public class Active(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
     public override void OnActivate()
     {
         Parent.Owner.CircleInstance.Color = Color.Red;
-        Parent.SecondsBetweenDamage       = Parent.CurrentAttackData.ActiveTime;
         Parent.PolygonInstance.Visible    = true;
         Parent.IsDamageDealingEnabled     = true;
         Parent.Owner.InputEnabled         = false;

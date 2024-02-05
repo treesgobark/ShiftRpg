@@ -353,6 +353,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>standardtileseticons</Name>
     </None>
+    <None Remove="Controllers\DefaultSword\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
@@ -726,6 +727,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
     <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Remove="Controllers\DefaultSword\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -781,7 +783,6 @@
     <ProjectReference Include="../..\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\DefaultSword\" />
     <Folder Include="Guns\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

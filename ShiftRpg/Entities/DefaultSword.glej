@@ -86,19 +86,6 @@
       "DefaultValue": 100.0,
       "SetByDerived": true,
       "DefinedByBase": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "double",
-          "Type": "String"
-        }
-      ],
-      "Name": "SwingActiveTime",
-      "DefaultValue": 0.2,
-      "SetByDerived": true,
-      "DefinedByBase": true
     }
   ],
   "Properties": [

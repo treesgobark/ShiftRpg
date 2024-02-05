@@ -1,21 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
+using FlatRedBall.Content.Polygon;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
+using ShiftRpg.DataTypes;
+using Point = FlatRedBall.Math.Geometry.Point;
 
 namespace ShiftRpg.Entities;
 
 public abstract partial class MeleeWeapon : IMeleeWeapon
 {
     public Player Owner { get; set; }
+
+    private PolygonSave _polygonSave = new();
     
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -24,6 +30,16 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
     /// </summary>
     private void CustomInitialize()
     {
+        var data = GlobalContent.AttackData[AttackData.DefaultSwordSlash];
+        _polygonSave.Points =
+        [
+            new Point(data.HitboxOffsetX, data.HitboxOffsetY + data.HitboxSizeY / 2),
+            new Point(data.HitboxOffsetX + data.HitboxSizeX, data.HitboxOffsetY + data.HitboxSizeY / 2),
+            new Point(data.HitboxOffsetX + data.HitboxSizeX, data.HitboxOffsetY - data.HitboxSizeY / 2),
+            new Point(data.HitboxOffsetX, data.HitboxOffsetY - data.HitboxSizeY / 2),
+            new Point(data.HitboxOffsetX, data.HitboxOffsetY + data.HitboxSizeY / 2),
+        ];
+        _polygonSave.MapShapeRelative(PolygonInstance);
     }
 
     private void CustomActivity()

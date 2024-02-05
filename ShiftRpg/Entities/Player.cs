@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
+using FlatRedBall.Content.Polygon;
 using FlatRedBall.Debugging;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
@@ -50,9 +51,9 @@ public partial class Player
     {
         var melee = DefaultSwordFactory.CreateNew();
 
-        melee.Owner     = this;
-        melee.RelativeX = 24;
         melee.AttachTo(this);
+        melee.Owner                         = this;
+        // melee.RelativeX                     = 24;
         melee.ParentRotationChangesRotation = true;
         melee.IsDamageDealingEnabled        = false;
 
@@ -89,6 +90,7 @@ public partial class Player
                 _lastMeleeRotation = RotationZ;
             }
         }
+        ForceUpdateDependenciesDeep();
     }
 
     private void CustomDestroy()

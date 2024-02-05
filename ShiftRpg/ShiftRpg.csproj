@@ -366,6 +366,7 @@
     <Compile Include="Controllers\DefaultSword\DefaultSwordController.cs" />
     <Compile Include="Controllers\DefaultSword\DefaultSwordControllerCollection.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs" />
+    <Compile Include="DataTypes\OpenOfficeLibreOfficeSpreadsheet.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Entities\Bullet.cs" />

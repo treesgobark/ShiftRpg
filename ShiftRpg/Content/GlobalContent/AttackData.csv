@@ -1,2 +1,2 @@
-"Name (string, required)",Health (float)
-Monster,100
+WeaponName (string),AttackName (string),"Name (string, required)",StartupTime (double),ActiveTime (double),RecoveryTime (double),HitboxSizeX (float),HitboxSizeY (float),HitboxOffsetX (float),HitboxOffsetY (float)
+DefaultSword,Slash,DefaultSwordSlash,0.25,0.5,1,25,50,0,0

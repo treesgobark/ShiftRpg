@@ -153,6 +153,7 @@
       ],
       "InstructionSaves": [
         {
+          "Type": "List<Vector2>",
           "Member": "Points",
           "Value": [],
           "Time": 0.0

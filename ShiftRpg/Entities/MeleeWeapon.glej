@@ -157,6 +157,12 @@
           "Member": "Points",
           "Value": [],
           "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,

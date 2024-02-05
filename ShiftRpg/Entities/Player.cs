@@ -74,6 +74,11 @@ public partial class Player
 
     private void SetRotation()
     {
+        if (!InputEnabled)
+        {
+            return;
+        }
+        
         float? angle = AimInMeleeRange
             ? GameplayInputDevice.Movement.GetAngle()
             : GameplayInputDevice.Aim.GetAngle();

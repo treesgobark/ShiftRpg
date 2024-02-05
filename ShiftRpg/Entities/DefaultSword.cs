@@ -10,15 +10,12 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
-using ShiftRpg.Controllers.DefaultSword;
+using ShiftRpg.Controllers.MeleeWeapon;
 
 namespace ShiftRpg.Entities
 {
-    public partial class DefaultSword : IHasControllers<DefaultSword, DefaultSwordController>
+    public partial class DefaultSword
     {
-        public ControllerCollection<DefaultSword, DefaultSwordController> Controllers => DefaultSwordControllers;
-        public DefaultSwordControllerCollection DefaultSwordControllers { get; set; }
-        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -26,10 +23,12 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            DefaultSwordControllers = new DefaultSwordControllerCollection();
-            Controllers.Add(new DefaultSwordController(this));
+            Controllers = new ControllerCollection<MeleeWeapon, MeleeWeaponController>();
+            Controllers.Add(new Idle(this));
+            Controllers.Add(new Startup(this));
             Controllers.Add(new Active(this));
-            Controllers.InitializeStartingController<DefaultSwordController>();
+            Controllers.Add(new Recovery(this));
+            Controllers.InitializeStartingController<Idle>();
         }
 
         private void CustomActivity()
@@ -45,7 +44,7 @@ namespace ShiftRpg.Entities
         {
         }
 
-        public override void BeginAttack() => DefaultSwordControllers.CurrentController.BeginAttack();
-        public override void EndAttack() => DefaultSwordControllers.CurrentController.EndAttack();
+        public override void BeginAttack() => Controllers.CurrentController.BeginAttack();
+        public override void EndAttack() => Controllers.CurrentController.EndAttack();
     }
 }

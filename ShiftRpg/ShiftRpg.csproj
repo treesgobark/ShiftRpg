@@ -362,9 +362,11 @@
     <Compile Include="Controllers\DefaultGun\DefaultGunController.cs" />
     <Compile Include="Controllers\DefaultGun\DefaultGunControllerCollection.cs" />
     <Compile Include="Controllers\DefaultGun\Reloading.cs" />
-    <Compile Include="Controllers\DefaultSword\Active.cs" />
-    <Compile Include="Controllers\DefaultSword\DefaultSwordController.cs" />
-    <Compile Include="Controllers\DefaultSword\DefaultSwordControllerCollection.cs" />
+    <Compile Include="Controllers\MeleeWeapon\Active.cs" />
+    <Compile Include="Controllers\MeleeWeapon\Idle.cs" />
+    <Compile Include="Controllers\MeleeWeapon\MeleeWeaponController.cs" />
+    <Compile Include="Controllers\MeleeWeapon\Recovery.cs" />
+    <Compile Include="Controllers\MeleeWeapon\Startup.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs" />
     <Compile Include="DataTypes\OpenOfficeLibreOfficeSpreadsheet.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
@@ -779,6 +781,7 @@
     <ProjectReference Include="../..\ANLG.Utilities\ANLG.Utilities.FlatRedBall.FNA\ANLG.Utilities.FlatRedBall.FNA.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\DefaultSword\" />
     <Folder Include="Guns\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

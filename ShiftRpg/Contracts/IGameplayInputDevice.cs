@@ -9,4 +9,5 @@ public interface IGameplayInputDevice
     IPressableInput Attack { get; }
     IPressableInput Reload { get; }
     IPressableInput Dash { get; }
+    IPressableInput SwitchWeapon { get; }
 }

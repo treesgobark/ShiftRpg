@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
@@ -12,16 +13,20 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
+using ShiftRpg.Controllers.MeleeWeapon;
 using ShiftRpg.DataTypes;
 using Point = FlatRedBall.Math.Geometry.Point;
 
 namespace ShiftRpg.Entities;
 
-public abstract partial class MeleeWeapon : IMeleeWeapon
+public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeWeapon, MeleeWeaponController>
 {
+    public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
+    public AttackData CurrentAttackData { get; set; }
+    
     public Player Owner { get; set; }
 
-    private PolygonSave _polygonSave = new();
+    private readonly PolygonSave _polygonSave = new();
     
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -65,11 +70,11 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         
     public void Equip()
     {
-        PolygonInstance.Visible = true;
+        // PolygonInstance.Visible = true;
     }
 
     public void Unequip()
     {
-        PolygonInstance.Visible = false;
+        // PolygonInstance.Visible = false;
     }
 }

@@ -149,7 +149,7 @@
         {
           "Type": "Color",
           "Member": "Color",
-          "Value": "LimeGreen",
+          "Value": "Green",
           "Time": 0.0
         },
         {
@@ -218,6 +218,36 @@
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
       "IncludeInICollidable": false
+    },
+    {
+      "InstanceName": "DirectionIndicator",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 2.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "X",
+          "Value": 8.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Player",

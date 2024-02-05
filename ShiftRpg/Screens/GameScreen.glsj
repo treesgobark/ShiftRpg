@@ -422,14 +422,14 @@
         },
         {
           "Type": "string",
-          "Member": "Targets",
-          "Value": "Player1",
+          "Member": "Map",
+          "Value": "Map",
           "Time": 0.0
         },
         {
           "Type": "string",
-          "Member": "Map",
-          "Value": "Map",
+          "Member": "Targets",
+          "Value": "Player1",
           "Time": 0.0
         }
       ],

@@ -3,29 +3,31 @@ using FlatRedBall.Debugging;
 
 namespace ShiftRpg.Controllers.DefaultGun;
 
-public class Reloading(Entities.DefaultGun parent) : DefaultGunController(parent)
+public class Reloading(Entities.DefaultGun obj) : GunController(obj)
 {
     private double ReloadStartTime { get; set; }
     private int BarColor { get; set; }
-    
+
+    public override void Initialize() { }
+
     public override void OnActivate()
     {
         ReloadStartTime = TimeManager.CurrentScreenTime;
-        BarColor = parent.MagazineBar.ForegroundGreen;
-        parent.MagazineBar.ForegroundGreen = 150;
+        BarColor = Parent.MagazineBar.ForegroundGreen;
+        Parent.MagazineBar.ForegroundGreen = 150;
     }
 
     public override void CustomActivity()
     {
         double progress = 100 * TimeManager.CurrentScreenSecondsSince(ReloadStartTime) / Parent.ReloadTimeSeconds;
-        parent.MagazineBar.ProgressPercentage = (float)progress;
+        Parent.MagazineBar.ProgressPercentage = (float)progress;
     }
 
-    public override DefaultGunController? EvaluateExitConditions()
+    public override GunController? EvaluateExitConditions()
     {
         if (TimeManager.CurrentScreenSecondsSince(ReloadStartTime) > Parent.ReloadTimeSeconds)
         {
-            return Get<DefaultGunController>();
+            return Get<Ready>();
         }
 
         return null;
@@ -33,11 +35,7 @@ public class Reloading(Entities.DefaultGun parent) : DefaultGunController(parent
 
     public override void BeforeDeactivate()
     {
-        Parent.MagazineRemaining = parent.MagazineSize;
-        parent.MagazineBar.ForegroundGreen = BarColor;
+        Parent.MagazineRemaining = Parent.MagazineSize;
+        Parent.MagazineBar.ForegroundGreen = BarColor;
     }
-
-    public override void BeginFire() { }
-    public override void EndFire() { }
-    public override void Reload() { }
 }

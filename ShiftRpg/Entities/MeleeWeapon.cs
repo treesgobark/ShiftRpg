@@ -15,11 +15,10 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 {
     public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
     public AttackData CurrentAttackData { get; set; }
-    public CyclableList<string> AttackList = new(AttackData.OrderedList);
-    
+    public readonly CyclableList<string> AttackList = new(AttackData.OrderedList);
     public Player Owner { get; set; }
-
     public PolygonSave PolygonSave { get; } = new();
+    public bool IsAttacking { get; protected set; }
 
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -37,11 +36,13 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
             new Point(0, 0),
         ];
         PolygonSave.MapShapeRelative(PolygonInstance);
+        AttackList.CycleToPreviousItem();
         CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
     }
 
     private void CustomActivity()
     {
+        Controllers.DoCurrentControllerActivity();
         if (InputManager.Mouse.ScrollWheelChange > 0)
         {
             CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
@@ -66,9 +67,16 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 
     }
 
-    public abstract void BeginAttack();
-    public abstract void EndAttack();
-        
+    public virtual void BeginAttack()
+    {
+        IsAttacking = true;
+    }
+
+    public virtual void EndAttack()
+    {
+        IsAttacking = false;
+    }
+
     public void Equip()
     {
         // PolygonInstance.Visible = true;

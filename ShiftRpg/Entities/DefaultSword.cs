@@ -12,17 +12,11 @@ public partial class DefaultSword
     /// </summary>
     private void CustomInitialize()
     {
-        Controllers = new ControllerCollection<MeleeWeapon, MeleeWeaponController>();
-        Controllers.Add(new Idle(this));
-        Controllers.Add(new Startup(this));
-        Controllers.Add(new Active(this));
-        Controllers.Add(new Recovery(this));
-        Controllers.InitializeStartingController<Idle>();
+        InitializeControllers();
     }
 
     private void CustomActivity()
     {
-        Controllers.DoCurrentControllerActivity();
     }
 
     private void CustomDestroy()
@@ -31,6 +25,16 @@ public partial class DefaultSword
 
     private static void CustomLoadStaticContent(string contentManagerName)
     {
+    }
+
+    private void InitializeControllers()
+    {
+        Controllers = new ControllerCollection<MeleeWeapon, MeleeWeaponController>();
+        Controllers.Add(new Idle(this));
+        Controllers.Add(new Startup(this));
+        Controllers.Add(new Active(this));
+        Controllers.Add(new Recovery(this));
+        Controllers.InitializeStartingController<Idle>();
     }
 
     public override void BeginAttack() => Controllers.CurrentController.BeginAttack();

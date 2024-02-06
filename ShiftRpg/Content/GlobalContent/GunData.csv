@@ -1,0 +1,2 @@
+"GunName (string, required)",Damage (decimal),ProjectileSpeed (float),ProjectileRadius (float),MagazineSize (float),ReloadTime (double),RoundsPerSecond (double),IsSingleShot (bool),ProjectileCount (int),ProjectileSpreadDegrees (float),ProjectileSpreadWidth (float),IsRandomSpread (bool),Accuracy (float),Handling (float)
+Pistol,20,500,4,10,1,15,TRUE,1,0,0,FALSE,100,100

@@ -60,6 +60,16 @@
       "SourceFile": "GlobalContent/AttackData.ods",
       "BuildTool": "*.ods -> soffice.exe -> *.csv",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/GunData.csv",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "SourceFile": "GlobalContent/GunData.ods",
+      "BuildTool": "*.ods -> soffice.exe -> *.csv",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},

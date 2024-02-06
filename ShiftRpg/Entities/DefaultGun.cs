@@ -5,11 +5,8 @@ using ShiftRpg.Factories;
 
 namespace ShiftRpg.Entities
 {
-    public partial class DefaultGun : IHasControllers<DefaultGun, DefaultGunController>
+    public partial class DefaultGun
     {
-        public ControllerCollection<DefaultGun, DefaultGunController> Controllers => DefaultGunControllers;
-        private DefaultGunControllerCollection DefaultGunControllers { get; set; }
-        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -17,15 +14,15 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            DefaultGunControllers = new DefaultGunControllerCollection();
-            DefaultGunControllers.Add(new DefaultGunController(this));
-            DefaultGunControllers.Add(new Reloading(this));
-            DefaultGunControllers.InitializeStartingController<DefaultGunController>();
+            Controllers = new ControllerCollection<Gun, GunController>();
+            Controllers.Add(new Ready(this));
+            Controllers.Add(new Reloading(this));
+            Controllers.InitializeStartingController<Ready>();
         }
 
         private void CustomActivity()
         {
-            DefaultGunControllers.DoCurrentControllerActivity();
+            Controllers.DoCurrentControllerActivity();
         }
 
         private void CustomDestroy()
@@ -35,9 +32,5 @@ namespace ShiftRpg.Entities
         private static void CustomLoadStaticContent(string contentManagerName)
         {
         }
-
-        public override void BeginFire() => DefaultGunControllers.CurrentController.BeginFire();
-        public override void EndFire() => DefaultGunControllers.CurrentController.EndFire();
-        public override void Reload() => DefaultGunControllers.CurrentController.Reload();
     }
 }

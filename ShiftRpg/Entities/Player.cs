@@ -1,39 +1,45 @@
+using System;
 using ANLG.Utilities.FlatRedBall.Controllers;
-using ANLG.Utilities.FlatRedBall.Extensions;
-using FlatRedBall;
-using FlatRedBall.Content.Polygon;
-using FlatRedBall.Debugging;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
+using ShiftRpg.Controllers.Player;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player
+public partial class Player : IHasControllers<Player, PlayerController>
 {
-    private IGun Gun { get; set; }
-    private IMeleeWeapon MeleeWeapon { get; set; }
-    private IGameplayInputDevice GameplayInputDevice { get; set; }
-    private bool _meleeLastFrame = true;
-    private bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
-    private float _lastMeleeRotation = 0;
-        
+    public IGun Gun { get; set; }
+    public IMeleeWeapon MeleeWeapon { get; set; }
+    public IGameplayInputDevice GameplayInputDevice { get; set; }
+    public IGunInputDevice GunInputDevice { get; set; }
+    public ControllerCollection<Player, PlayerController> Controllers { get; protected set; }
+    public bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
+    public float LastMeleeRotation { get; set; }
+
     private void CustomInitialize()
     {
         InitializeGun();
         InitializeMeleeWeapon();
+        InitializeControllers();
         ReactToDamageReceived += OnReactToDamageReceived;
         var hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
-        AimThresholdCircle.Radius               = MeleeAimThreshold;
-        Gun.Unequip();
-        MeleeWeapon.Equip();
         InvulnerabilityTimeAfterDamage = 0.5;
-        InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+        // InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+    }
+
+    private void InitializeControllers()
+    {
+        Controllers = new ControllerCollection<Player, PlayerController>();
+        Controllers.Add(new Idle(this));
+        Controllers.Add(new MeleeMode(this));
+        Controllers.Add(new GunMode(this));
+        Controllers.InitializeStartingController<MeleeMode>();
     }
 
     private void InitializeGun()
@@ -43,6 +49,7 @@ public partial class Player
         gun.RelativeX = 10;
         gun.AttachTo(this);
         gun.ParentRotationChangesRotation = true;
+        gun.ApplyImpulse = ApplyImpulse;
             
         Gun = gun;
     }
@@ -63,39 +70,12 @@ public partial class Player
     partial void CustomInitializeTopDownInput()
     {
         GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
+        GunInputDevice      = new GunInputDevice(GameplayInputDevice);
     }
 
     private void CustomActivity()
     {
-        // Debugger.Write($"Is player Invulnerable: {IsInvulnerable}");
-        SetRotation();
-        HandleInput();
-    }
-
-    private void SetRotation()
-    {
-        if (!InputEnabled)
-        {
-            return;
-        }
-        
-        float? angle = AimInMeleeRange
-            ? GameplayInputDevice.Movement.GetAngle()
-            : GameplayInputDevice.Aim.GetAngle();
-            
-        if (angle is null)
-        {
-            RotationZ = _lastMeleeRotation;
-        }
-        else
-        {
-            RotationZ = angle.Value;
-            if (AimInMeleeRange)
-            {
-                _lastMeleeRotation = RotationZ;
-            }
-        }
-        ForceUpdateDependenciesDeep();
+        Controllers.DoCurrentControllerActivity();
     }
 
     private void CustomDestroy()
@@ -104,9 +84,7 @@ public partial class Player
         gun.Destroy();
     }
 
-    private static void CustomLoadStaticContent(string contentManagerName)
-    {
-    }
+    private static void CustomLoadStaticContent(string contentManagerName) { }
 
     private void OnReactToDamageReceived(decimal damage, IDamageArea area)
     {
@@ -118,59 +96,8 @@ public partial class Player
         HealthBar.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
     }
 
-    private void HandleInput()
+    private void ApplyImpulse(object obj)
     {
-        if (AimInMeleeRange)
-        {
-            if (!_meleeLastFrame)
-            {
-                MeleeWeapon.Equip();
-                Gun.Unequip();
-            }
-                
-            if (GameplayInputDevice.Attack.WasJustPressed)
-            {
-                MeleeWeapon.BeginAttack();
-            }
-            else if (GameplayInputDevice.Attack.WasJustReleased)
-            {
-                MeleeWeapon.EndAttack();
-            }
-
-            _meleeLastFrame = true;
-        }
-        else
-        {
-            if (_meleeLastFrame)
-            {
-                Gun.Equip();
-                MeleeWeapon.Unequip();
-            }
-                
-            if (GameplayInputDevice.Attack.WasJustPressed)
-            {
-                Gun.BeginFire();
-            }
-            else if (GameplayInputDevice.Attack.WasJustReleased)
-            {
-                Gun.EndFire();
-            }
-
-            _meleeLastFrame = false;
-        }
-            
-        if (GameplayInputDevice.Dash.WasJustPressed)
-        {
-            var dir = GameplayInputDevice.Movement.GetNormalizedPositionOrZero().ToVec3();
-            if (dir != Vector3.Zero)
-            {
-                Position += dir * DashDistance;
-            }
-        }
-
-        if (GameplayInputDevice.Reload.WasJustPressed)
-        {
-            Gun.Reload();
-        }
+        throw new NotImplementedException();
     }
 }

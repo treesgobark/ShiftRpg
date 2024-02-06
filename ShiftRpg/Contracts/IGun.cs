@@ -1,12 +1,13 @@
+using System;
+using System.Collections.Generic;
+using FlatRedBall.Input;
+
 namespace ShiftRpg.Contracts;
 
-public interface IGun : IWeapon
+public interface IGun
 {
-    void BeginFire();
-    void EndFire();
+    Action<IReadOnlyList<object>> ApplyImpulse { set; }
     
-    // void BeginSecondaryFire();
-    // void EndSecondaryFire();
-    
-    void Reload();
+    void Equip(IGunInputDevice inputDevice);
+    void Unequip();
 }

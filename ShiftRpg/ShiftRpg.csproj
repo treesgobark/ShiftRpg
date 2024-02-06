@@ -9,6 +9,9 @@
     <DefineConstants>DESKTOP;XNA4;FRN_XNA;FNA</DefineConstants>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ShiftRpgKey.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -32,6 +35,10 @@
     <None Include="content\globalcontent\attackdata.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AttackData</Name>
+    </None>
+    <None Include="content\globalcontent\gundata.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GunData</Name>
     </None>
     <None Include="content\gumproject\components\controls\buttonclose.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -358,17 +365,27 @@
   <ItemGroup>
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
     <Compile Include="Contracts\IGun.cs" />
+    <Compile Include="Contracts\IGunInputDevice.cs" />
     <Compile Include="Contracts\IMeleeWeapon.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
-    <Compile Include="Controllers\DefaultGun\DefaultGunController.cs" />
-    <Compile Include="Controllers\DefaultGun\DefaultGunControllerCollection.cs" />
+    <Compile Include="Controllers\DefaultGun\GunController.cs" />
+    <Compile Include="Controllers\DefaultGun\Ready.cs" />
+    <Compile Include="Controllers\DefaultGun\Recovery.cs" />
     <Compile Include="Controllers\DefaultGun\Reloading.cs" />
     <Compile Include="Controllers\MeleeWeapon\Active.cs" />
     <Compile Include="Controllers\MeleeWeapon\Idle.cs" />
     <Compile Include="Controllers\MeleeWeapon\MeleeWeaponController.cs" />
     <Compile Include="Controllers\MeleeWeapon\Recovery.cs" />
     <Compile Include="Controllers\MeleeWeapon\Startup.cs" />
+    <Compile Include="Controllers\Player\GunMode.cs" />
+    <Compile Include="Controllers\Player\Idle.cs" />
+    <Compile Include="Controllers\Player\MeleeMode.cs" />
+    <Compile Include="Controllers\Player\PlayerController.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs" />
+    <Compile Include="DataTypes\GunData.cs" />
+    <Compile Include="DataTypes\GunData.Generated.cs">
+      <DependentUpon>GunData.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypes\OpenOfficeLibreOfficeSpreadsheet.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
@@ -669,6 +686,9 @@
     <Compile Include="InputDevices\EnemyInputDevice.cs" />
     <Compile Include="InputDevices\EntityTracker.cs" />
     <Compile Include="InputDevices\GameplayInputDevice.cs" />
+    <Compile Include="InputDevices\GunInputDevice.cs" />
+    <Compile Include="InputDevices\GunInputFacade.cs" />
+    <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />

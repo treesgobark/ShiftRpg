@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
+using ShiftRpg.Effects;
 
 namespace ShiftRpg.Contracts;
 
 public interface IEffectReceiver
 {
-    void HandleEffects(IEnumerable<object> effects);
+    IList<(Guid EffectId, double EffectTime)> RecentEffects { get; }
+    Team Team { get; set; }
+    
+    void HandleEffects(IReadOnlyList<IEffect> effects);
 }

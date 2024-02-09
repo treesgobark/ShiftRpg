@@ -1,12 +1,9 @@
+using System;
 using ANLG.Utilities.FlatRedBall.Constants;
-using ANLG.Utilities.FlatRedBall.Controllers;
-using FlatRedBall;
-using FlatRedBall.Debugging;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Effects;
-using ShiftRpg.Factories;
 
-namespace ShiftRpg.Controllers.DefaultGun;
+namespace ShiftRpg.Controllers.Gun;
 
 public class Ready(Entities.Gun obj) : GunController(obj)
 {
@@ -54,15 +51,21 @@ public class Ready(Entities.Gun obj) : GunController(obj)
         
         var dir = Vector2ExtensionMethods.FromAngle(Parent.RotationZ).NormalizedOrZero().ToVector3();
         if (dir == Vector3.Zero) return;
-        
-        var bullet = BulletFactory.CreateNew();
-        bullet.Position = Parent.Position;
+
+        var proj = Parent.SpawnProjectile();
+        proj.Position = Parent.Position;
         
         // bullet.DamageToDeal          = data.Damage;
-        bullet.CircleInstance.Radius = data.ProjectileRadius;
-        bullet.Velocity              = dir * data.ProjectileSpeed;
+        proj.CircleInstance.Radius = data.ProjectileRadius;
+        proj.Velocity              = dir * data.ProjectileSpeed;
+        proj.ApplyHolderEffects    = Parent.ApplyHolderEffects;
+        proj.TargetHitEffects      = Parent.TargetHitEffects;
+        proj.HolderHitEffects      = Parent.HolderHitEffects;
 
-        Parent.ApplyHolderEffects(new[] { new KnockbackEffect(100, Parent.RotationZ + MathConstants.HalfTurn) });
+        Parent.ApplyHolderEffects(new[]
+        {
+            new KnockbackEffect(Parent.Team, Guid.NewGuid(), 100, Parent.RotationZ + MathConstants.HalfTurn)
+        });
 
         Parent.MagazineRemaining--;
     }

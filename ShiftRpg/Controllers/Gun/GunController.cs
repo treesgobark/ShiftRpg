@@ -1,10 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
 using FlatRedBall;
-using FlatRedBall.Debugging;
-using Microsoft.Xna.Framework;
-using ShiftRpg.Factories;
 
-namespace ShiftRpg.Controllers.DefaultGun;
+namespace ShiftRpg.Controllers.Gun;
 
 public abstract class GunController(Entities.Gun obj)
     : EntityController<Entities.Gun, GunController>(obj)

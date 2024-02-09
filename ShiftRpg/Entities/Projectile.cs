@@ -5,7 +5,6 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
@@ -14,7 +13,7 @@ using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Entities
 {
-    public partial class Bullet
+    public abstract partial class Projectile : IProjectile
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -23,6 +22,7 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
+            IsActive = true;
         }
 
         private void CustomActivity()
@@ -31,10 +31,16 @@ namespace ShiftRpg.Entities
 
         private void CustomDestroy()
         {
+            IsActive = false;
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
         }
+
+        public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
+        public IReadOnlyList<IEffect> TargetHitEffects { get; set; }
+        public IReadOnlyList<IEffect> HolderHitEffects { get; set; }
+        public bool IsActive { get; set; }
     }
 }

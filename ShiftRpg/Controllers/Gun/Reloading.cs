@@ -1,7 +1,6 @@
 using FlatRedBall;
-using FlatRedBall.Debugging;
 
-namespace ShiftRpg.Controllers.DefaultGun;
+namespace ShiftRpg.Controllers.Gun;
 
 public class Reloading(Entities.DefaultGun obj) : GunController(obj)
 {

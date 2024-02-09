@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
 using Microsoft.Xna.Framework;
-using ShiftRpg.Controllers.DefaultGun;
+using ShiftRpg.Contracts;
+using ShiftRpg.Controllers.Gun;
 using ShiftRpg.Factories;
 
 namespace ShiftRpg.Entities
@@ -31,6 +32,11 @@ namespace ShiftRpg.Entities
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
+        }
+
+        public override Projectile SpawnProjectile()
+        {
+            return BulletFactory.CreateNew();
         }
     }
 }

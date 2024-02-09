@@ -1,5 +1,7 @@
+using System;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Contracts;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 
@@ -68,7 +70,16 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
 
         // Parent.DamageToDeal = data.Damage;
 
-        Parent.ApplyHolderEffects(new[] { new KnockbackEffect(data.KnockbackVelocity, Parent.Owner.RotationZ) });
+        Parent.ApplyHolderEffects(new[]
+        {
+            new KnockbackEffect(Parent.Team, Guid.NewGuid(), data.KnockbackVelocity, Parent.Owner.RotationZ)
+        });
+        
+        Parent.TargetHitEffects = new IEffect[]
+        {
+            new DamageEffect(~Parent.Team, Guid.NewGuid(), 2),
+            new KnockbackEffect(~Parent.Team, Guid.NewGuid(), 100, Parent.RotationZ),
+        };
     }
 
     public override void EndAttack()

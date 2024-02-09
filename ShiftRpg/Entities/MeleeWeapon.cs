@@ -9,6 +9,7 @@ using FlatRedBall.Input;
 using ShiftRpg.Contracts;
 using ShiftRpg.Controllers.MeleeWeapon;
 using ShiftRpg.DataTypes;
+using ShiftRpg.Effects;
 using ShiftRpg.InputDevices;
 using Point = FlatRedBall.Math.Geometry.Point;
 
@@ -69,23 +70,17 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 
     }
     
+    public Team Team { get; set; }
+    
     // Implement IHasControllers
     
     public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
     
     // Implement IMeleeWeapon
 
-    public Action<IReadOnlyList<object>> ApplyHolderEffects { get; set; }
-    
-    public IReadOnlyList<object> GetTargetHitEffects()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IReadOnlyList<object> GetHolderHitEffects()
-    {
-        throw new NotImplementedException();
-    }
+    public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
+    public IReadOnlyList<IEffect> TargetHitEffects { get; set; } = new List<IEffect>();
+    public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
 
     public void Equip(IMeleeWeaponInputDevice inputDevice)
     {

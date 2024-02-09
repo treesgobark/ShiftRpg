@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using FlatRedBall;
 using FlatRedBall.Input;
@@ -9,6 +10,8 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Contracts;
+using ShiftRpg.Effects;
 
 namespace ShiftRpg.Entities
 {
@@ -25,24 +28,13 @@ namespace ShiftRpg.Entities
 
         }
 
-        // private void OnReactToDamageReceived(decimal damage, IDamageArea area)
-        // {
-        //     if (area is Bullet bullet)
-        //     {
-        //         Velocity += bullet.Velocity.NormalizedOrZero() * bullet.KnockbackVelocity / KnockbackResistance;
-        //     }
-        //
-        //     if (area is MeleeWeapon melee)
-        //     {
-        //         Velocity += melee.Owner.GetForwardVector3() * melee.KnockbackVelocity / KnockbackResistance;
-        //     }
-        //
-        //     // EnemyHealthBarRuntimeInstance.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
-        // }
-
         private void CustomActivity()
         {
-
+            if (TimeSinceLastDamage > 1.5)
+            {
+                CurrentHealth                                    = MaxHealth;
+                EnemyHealthBarRuntimeInstance.ProgressPercentage = CurrentHealthPercentage;
+            }
 
         }
 
@@ -56,6 +48,25 @@ namespace ShiftRpg.Entities
         {
 
 
+        }
+
+        public override void HandleEffects(IReadOnlyList<IEffect> effects)
+        {
+            foreach (var effect in effects)
+            {
+                if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
+                {
+                    continue;
+                }
+                
+                effect.HandleStandardDamage(this);
+            }
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            CurrentHealth                                    -= damage;
+            EnemyHealthBarRuntimeInstance.ProgressPercentage =  CurrentHealthPercentage;
         }
     }
 }

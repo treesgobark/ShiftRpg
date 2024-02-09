@@ -45,6 +45,19 @@
       "DefaultValue": 300.0,
       "SetByDerived": true,
       "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 10,
+      "SetByDerived": true,
+      "DefinedByBase": true
     }
   ],
   "Properties": [

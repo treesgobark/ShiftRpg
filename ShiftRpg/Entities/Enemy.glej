@@ -3,7 +3,6 @@
     "GLUE"
   ],
   "Source": "GLUE",
-  "CreatedByOtherEntities": true,
   "Is2D": true,
   "ReferencedFiles": [
     {
@@ -83,6 +82,29 @@
       "Name": "KnockbackVelocity",
       "DefaultValue": 300.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 10,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "double",
+          "Type": "String"
+        }
+      ],
+      "Name": "InvulnerabilityTimeAfterDamage",
+      "SetByDerived": true
     }
   ],
   "Properties": [
@@ -153,6 +175,7 @@
       ],
       "SourceType": 3,
       "SourceFile": "EnemyHealthBarRuntime",
+      "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

@@ -1,9 +1,6 @@
-using FlatRedBall;
-using ShiftRpg.Entities;
+namespace ShiftRpg.Controllers.Gun;
 
-namespace ShiftRpg.Controllers.DefaultGun;
-
-public class Recovery(Gun obj) : GunController(obj)
+public class Recovery(Entities.Gun obj) : GunController(obj)
 {
     protected GunController? NextState { get; set; }
     

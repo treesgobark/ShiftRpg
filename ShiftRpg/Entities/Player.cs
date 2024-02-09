@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using FlatRedBall;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
 using FlatRedBall.Input;
@@ -14,7 +16,7 @@ using ShiftRpg.InputDevices;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player : IHasControllers<Player, PlayerController>, IEffectReceiver
+public partial class Player : IHasControllers<Player, PlayerController>, ITakesDamage
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public IGunInputDevice GunInputDevice { get; set; }
@@ -33,6 +35,8 @@ public partial class Player : IHasControllers<Player, PlayerController>, IEffect
         InitializeControllers();
         var hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
+        Team                                    = Team.Player;
+        CurrentHealth                           = MaxHealth;
         InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
     }
 
@@ -53,6 +57,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, IEffect
         gun.AttachTo(this);
         gun.ParentRotationChangesRotation = true;
         gun.ApplyHolderEffects            = HandleEffects;
+        gun.Team                          = Team.Player;
             
         Gun = gun;
     }
@@ -65,6 +70,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, IEffect
         melee.Owner                         = this;
         melee.ApplyHolderEffects            = HandleEffects;
         melee.ParentRotationChangesRotation = true;
+        melee.Team                          = Team.Player;
 
         MeleeWeapon = melee;
     }
@@ -93,31 +99,37 @@ public partial class Player : IHasControllers<Player, PlayerController>, IEffect
     
     // Implement IEffectReceiver
 
-    public void HandleEffects(IEnumerable<object> effects)
+    public void HandleEffects(IReadOnlyList<IEffect> effects)
     {
-        foreach (object effect in effects)
+        foreach (var effect in effects)
         {
-            switch (effect)
+            if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
             {
-                case KnockbackEffect knockbackEffect: Handle(knockbackEffect);
-                    break;
-                case DamageEffect damageEffect: Handle(damageEffect);
-                    break;
+                continue;
             }
+            
+            effect.HandleStandardDamage(this)
+                .HandleStandardKnockback(this);
         }
     }
 
-    private void Handle(KnockbackEffect knockbackEffect)
-    {
-        Velocity += knockbackEffect.KnockbackVector;
-    }
-
-    private void Handle(DamageEffect damageEffect)
-    {
-        // CurrentHealth -= (decimal)damageEffect.Damage;
-    }
+    public Team Team { get; set; }
     
     // Implement IHasControllers
     
     public ControllerCollection<Player, PlayerController> Controllers { get; protected set; }
+    
+    // Implement ITakesDamage
+    
+    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid AttackId, double AttackTime)>();
+    public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
+    public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
+    public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
+    public int CurrentHealth { get; set; }
+    public double LastDamageTime { get; set; }
+    public void TakeDamage(int damage)
+    {
+        CurrentHealth                -= damage;
+        HealthBar.ProgressPercentage =  CurrentHealthPercentage;
+    }
 }

@@ -71,6 +71,30 @@
       "Name": "MeleeAimThreshold",
       "DefaultValue": 35.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 10,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "double",
+          "Type": "String"
+        }
+      ],
+      "Name": "InvulnerabilityTimeAfterDamage",
+      "DefaultValue": 1.0,
+      "SetByDerived": true
     }
   ],
   "Properties": [

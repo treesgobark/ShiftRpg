@@ -5,8 +5,9 @@ using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Debugging;
 using FlatRedBall.Input;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.DefaultGun;
+using ShiftRpg.Controllers.Gun;
 using ShiftRpg.DataTypes;
+using ShiftRpg.Effects;
 using ShiftRpg.InputDevices;
 
 namespace ShiftRpg.Entities
@@ -59,6 +60,7 @@ namespace ShiftRpg.Entities
 
         private void CustomDestroy() { }
         private static void CustomLoadStaticContent(string contentManagerName) { }
+        public Team Team { get; set; }
         
         // Implement IHasControllers
         
@@ -66,7 +68,13 @@ namespace ShiftRpg.Entities
         
         // Implement IGun
 
-        public Action<IReadOnlyList<object>> ApplyHolderEffects { get; set; }
+        public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
+        public IReadOnlyList<IEffect> TargetHitEffects => new IEffect[]
+        {
+            new DamageEffect(~Team, Guid.NewGuid(), 2),
+            new KnockbackEffect(~Team, Guid.NewGuid(), 100, RotationZ),
+        };
+        public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
         public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
 
         public void Equip(IGunInputDevice inputDevice)
@@ -82,5 +90,7 @@ namespace ShiftRpg.Entities
             CircleInstance.Visible = false;
             MagazineBar.Visible    = false;
         }
+
+        public abstract Projectile SpawnProjectile();
     }
 }

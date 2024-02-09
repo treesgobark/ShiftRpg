@@ -50,57 +50,6 @@
       "Name": "KnockbackVelocity",
       "DefaultValue": 300.0,
       "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "int",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "TeamIndex",
-      "DefaultValue": 0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "double",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "SecondsBetweenDamage",
-      "DefaultValue": 0.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "DamageToDeal",
-      "DefaultValue": 10.0,
-      "SetByDerived": true
     }
   ],
   "Properties": [
@@ -113,11 +62,6 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
-    },
-    {
-      "Name": "ImplementsIDamageArea",
-      "Value": true,
-      "Type": "Object"
     }
   ],
   "NamedObjects": [

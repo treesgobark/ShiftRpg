@@ -12,7 +12,7 @@ public class Active(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
     {
         Parent.Owner.CircleInstance.Color = Color.Red;
         Parent.PolygonInstance.Visible    = true;
-        Parent.IsDamageDealingEnabled     = true;
+        // Parent.IsDamageDealingEnabled     = true;
         Parent.Owner.InputEnabled         = false;
         base.OnActivate();
     }
@@ -34,7 +34,7 @@ public class Active(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
     public override void BeforeDeactivate()
     {
         Parent.PolygonInstance.Visible = false;
-        Parent.IsDamageDealingEnabled  = false;
+        // Parent.IsDamageDealingEnabled  = false;
         Parent.Owner.InputEnabled      = true;
     }
 

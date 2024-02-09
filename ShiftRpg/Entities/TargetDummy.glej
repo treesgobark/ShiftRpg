@@ -3,7 +3,7 @@
     "GLUE"
   ],
   "Source": "GLUE",
-  "BaseEntity": "Entities\\MeleeWeapon",
+  "BaseEntity": "Entities\\Enemy",
   "CreatedByOtherEntities": true,
   "Is2D": true,
   "CustomVariables": [
@@ -15,8 +15,8 @@
           "Type": "String"
         }
       ],
-      "Name": "KnockbackVelocity",
-      "DefaultValue": 500.0,
+      "Name": "KnockbackResistance",
+      "DefaultValue": 1.0,
       "SetByDerived": true,
       "DefinedByBase": true
     },
@@ -28,8 +28,21 @@
           "Type": "String"
         }
       ],
-      "Name": "AttackForwardVelocity",
-      "DefaultValue": 100.0,
+      "Name": "MoveSpeed",
+      "DefaultValue": 10.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "KnockbackVelocity",
+      "DefaultValue": 300.0,
       "SetByDerived": true,
       "DefinedByBase": true
     }
@@ -41,6 +54,6 @@
       "Type": "int"
     }
   ],
-  "Name": "Entities\\DefaultSword",
+  "Name": "Entities\\TargetDummy",
   "CustomClassesForExport": []
 }

@@ -1,9 +1,15 @@
-using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace ShiftRpg.Contracts;
 
-public interface IMeleeWeapon : IWeapon
+public interface IMeleeWeapon
 {
-    void BeginAttack();
-    void EndAttack();
+    Action<IReadOnlyList<object>> ApplyHolderEffects { get; set; }
+    
+    IReadOnlyList<object> GetTargetHitEffects();
+    IReadOnlyList<object> GetHolderHitEffects();
+    
+    void Equip(IMeleeWeaponInputDevice inputDevice);
+    void Unequip();
 }

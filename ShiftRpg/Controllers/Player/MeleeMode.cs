@@ -10,21 +10,13 @@ public class MeleeMode(Entities.Player obj) : PlayerController(obj)
 
     public override void OnActivate()
     {
-        Parent.MeleeWeapon.Equip();
+        Parent.MeleeWeapon.Equip(Parent.MeleeInputDevice);
         base.OnActivate();
     }
 
     public override void CustomActivity()
     {
         SetRotation();
-        if (Parent.GameplayInputDevice.Attack.WasJustPressed)
-        {
-            Parent.MeleeWeapon.BeginAttack();
-        }
-        else if (Parent.GameplayInputDevice.Attack.WasJustReleased)
-        {
-            Parent.MeleeWeapon.EndAttack();
-        }
     }
 
     public override PlayerController? EvaluateExitConditions()

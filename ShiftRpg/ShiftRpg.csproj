@@ -304,6 +304,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MainMenuGum</Name>
     </None>
+    <None Include="content\gumproject\screens\shootingrangegum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShootingRangeGum</Name>
+    </None>
     <None Include="content\gumproject\screens\testlevelgum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TestLevelGum</Name>
@@ -348,6 +352,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>uispritesheet</Name>
     </None>
+    <None Include="content\screens\shootingrange\shootingrangemap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShootingRangeMap</Name>
+    </None>
     <None Include="content\screens\testlevel\testlevelmap.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TestLevelMap</Name>
@@ -363,11 +371,13 @@
     <None Remove="Controllers\DefaultSword\**" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEffectReceiver.cs" />
     <Compile Include="Contracts\IGameplayInputDevice.cs" />
     <Compile Include="Contracts\IGun.cs" />
     <Compile Include="Contracts\IGunInputDevice.cs" />
     <Compile Include="Contracts\IMeleeWeapon.cs" />
-    <Compile Include="Contracts\IWeapon.cs" />
+    <Compile Include="Contracts\IMeleeWeaponInputDevice.cs" />
+    <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Controllers\DefaultGun\GunController.cs" />
     <Compile Include="Controllers\DefaultGun\Ready.cs" />
     <Compile Include="Controllers\DefaultGun\Recovery.cs" />
@@ -387,11 +397,18 @@
       <DependentUpon>GunData.cs</DependentUpon>
     </Compile>
     <Compile Include="DataTypes\OpenOfficeLibreOfficeSpreadsheet.Generated.cs" />
+    <Compile Include="DataTypes\PlatformerValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
+    <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\KnockbackEffect.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DefaultEnemy.cs" />
+    <Compile Include="Entities\DefaultEnemy.Generated.cs">
+      <DependentUpon>DefaultEnemy.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\DefaultGun.cs" />
     <Compile Include="Entities\DefaultGun.Generated.cs">
@@ -417,11 +434,17 @@
     <Compile Include="Entities\Player.Generated.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TargetDummy.cs" />
+    <Compile Include="Entities\TargetDummy.Generated.cs">
+      <DependentUpon>TargetDummy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factories\BulletFactory.Generated.cs" />
+    <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
     <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
     <Compile Include="Factories\EnemyFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
+    <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
     <Compile Include="Forms\Components\Custom\MainMenuForms.Generated.cs" />
     <Compile Include="Forms\Components\MainMenuForms.Generated.cs" />
@@ -429,6 +452,7 @@
     <Compile Include="Forms\Components\PauseMenuForms.Generated.cs" />
     <Compile Include="Forms\Screens\GameScreenGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\MainMenuGumForms.Generated.cs" />
+    <Compile Include="Forms\Screens\ShootingRangeGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\TestLevelGumForms.Generated.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Game1.Generated.cs">
@@ -677,6 +701,10 @@
       <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ShootingRangeGumRuntime.cs" />
+    <Compile Include="GumRuntimes\ShootingRangeGumRuntime.Generated.cs">
+      <DependentUpon>ShootingRangeGumRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TestLevelGumRuntime.cs" />
     <Compile Include="GumRuntimes\TestLevelGumRuntime.Generated.cs">
@@ -687,14 +715,11 @@
     <Compile Include="InputDevices\EntityTracker.cs" />
     <Compile Include="InputDevices\GameplayInputDevice.cs" />
     <Compile Include="InputDevices\GunInputDevice.cs" />
-    <Compile Include="InputDevices\GunInputFacade.cs" />
+    <Compile Include="InputDevices\MeleeWeaponInputDevice.cs" />
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
-    <Compile Include="Platformer\Enums.Generated.cs" />
-    <Compile Include="Platformer\IPlatformer.Generated.cs" />
-    <Compile Include="Platformer\PlatformerAnimationController.Generated.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\GameScreen.Event.cs">
@@ -703,9 +728,16 @@
     <Compile Include="Screens\GameScreen.Generated.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\GameScreen.Generated.Event.cs">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\MainMenu.Generated.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ShootingRange.cs" />
+    <Compile Include="Screens\ShootingRange.Generated.cs">
+      <DependentUpon>ShootingRange.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TestLevel.cs" />
     <Compile Include="Screens\TestLevel.Generated.cs">

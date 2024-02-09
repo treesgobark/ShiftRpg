@@ -1,23 +1,28 @@
 using System;
+using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Controllers;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
 using ShiftRpg.Controllers.Player;
+using ShiftRpg.Effects;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player : IHasControllers<Player, PlayerController>
+public partial class Player : IHasControllers<Player, PlayerController>, IEffectReceiver
 {
-    public IGun Gun { get; set; }
-    public IMeleeWeapon MeleeWeapon { get; set; }
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public IGunInputDevice GunInputDevice { get; set; }
-    public ControllerCollection<Player, PlayerController> Controllers { get; protected set; }
+    public IMeleeWeaponInputDevice MeleeInputDevice { get; set; }
+    
+    public IGun Gun { get; set; }
+    public IMeleeWeapon MeleeWeapon { get; set; }
+    
     public bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
     public float LastMeleeRotation { get; set; }
 
@@ -26,11 +31,9 @@ public partial class Player : IHasControllers<Player, PlayerController>
         InitializeGun();
         InitializeMeleeWeapon();
         InitializeControllers();
-        ReactToDamageReceived += OnReactToDamageReceived;
         var hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
-        InvulnerabilityTimeAfterDamage = 0.5;
-        // InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+        InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
     }
 
     private void InitializeControllers()
@@ -49,7 +52,7 @@ public partial class Player : IHasControllers<Player, PlayerController>
         gun.RelativeX = 10;
         gun.AttachTo(this);
         gun.ParentRotationChangesRotation = true;
-        gun.ApplyImpulse = ApplyImpulse;
+        gun.ApplyHolderEffects            = HandleEffects;
             
         Gun = gun;
     }
@@ -60,9 +63,8 @@ public partial class Player : IHasControllers<Player, PlayerController>
 
         melee.AttachTo(this);
         melee.Owner                         = this;
-        // melee.RelativeX                     = 24;
+        melee.ApplyHolderEffects            = HandleEffects;
         melee.ParentRotationChangesRotation = true;
-        melee.IsDamageDealingEnabled        = false;
 
         MeleeWeapon = melee;
     }
@@ -71,6 +73,7 @@ public partial class Player : IHasControllers<Player, PlayerController>
     {
         GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
         GunInputDevice      = new GunInputDevice(GameplayInputDevice);
+        MeleeInputDevice    = new MeleeWeaponInputDevice(GameplayInputDevice);
     }
 
     private void CustomActivity()
@@ -82,22 +85,39 @@ public partial class Player : IHasControllers<Player, PlayerController>
     {
         var gun = (IDestroyable)Gun;
         gun.Destroy();
+        var melee = (IDestroyable)Gun;
+        melee.Destroy();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName) { }
+    
+    // Implement IEffectReceiver
 
-    private void OnReactToDamageReceived(decimal damage, IDamageArea area)
+    public void HandleEffects(IEnumerable<object> effects)
     {
-        if (area is Enemy enemy)
+        foreach (object effect in effects)
         {
-            Velocity += enemy.Velocity.NormalizedOrZero() * enemy.KnockbackVelocity;
+            switch (effect)
+            {
+                case KnockbackEffect knockbackEffect: Handle(knockbackEffect);
+                    break;
+                case DamageEffect damageEffect: Handle(damageEffect);
+                    break;
+            }
         }
-
-        HealthBar.ProgressPercentage = (float)(100 * CurrentHealth / MaxHealth);
     }
 
-    private void ApplyImpulse(object obj)
+    private void Handle(KnockbackEffect knockbackEffect)
     {
-        throw new NotImplementedException();
+        Velocity += knockbackEffect.KnockbackVector;
     }
+
+    private void Handle(DamageEffect damageEffect)
+    {
+        // CurrentHealth -= (decimal)damageEffect.Damage;
+    }
+    
+    // Implement IHasControllers
+    
+    public ControllerCollection<Player, PlayerController> Controllers { get; protected set; }
 }

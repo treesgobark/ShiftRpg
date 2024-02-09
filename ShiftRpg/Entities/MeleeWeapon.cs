@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
@@ -7,18 +9,19 @@ using FlatRedBall.Input;
 using ShiftRpg.Contracts;
 using ShiftRpg.Controllers.MeleeWeapon;
 using ShiftRpg.DataTypes;
+using ShiftRpg.InputDevices;
 using Point = FlatRedBall.Math.Geometry.Point;
 
 namespace ShiftRpg.Entities;
 
 public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeWeapon, MeleeWeaponController>
 {
-    public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
     public AttackData CurrentAttackData { get; set; }
     public readonly CyclableList<string> AttackList = new(AttackData.OrderedList);
     public Player Owner { get; set; }
     public PolygonSave PolygonSave { get; } = new();
     public bool IsAttacking { get; protected set; }
+    public IMeleeWeaponInputDevice InputDevice { get; set; }
 
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -42,7 +45,6 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 
     private void CustomActivity()
     {
-        Controllers.DoCurrentControllerActivity();
         if (InputManager.Mouse.ScrollWheelChange > 0)
         {
             CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
@@ -66,24 +68,32 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
 
 
     }
+    
+    // Implement IHasControllers
+    
+    public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
+    
+    // Implement IMeleeWeapon
 
-    public virtual void BeginAttack()
+    public Action<IReadOnlyList<object>> ApplyHolderEffects { get; set; }
+    
+    public IReadOnlyList<object> GetTargetHitEffects()
     {
-        IsAttacking = true;
+        throw new NotImplementedException();
     }
 
-    public virtual void EndAttack()
+    public IReadOnlyList<object> GetHolderHitEffects()
     {
-        IsAttacking = false;
+        throw new NotImplementedException();
     }
 
-    public void Equip()
+    public void Equip(IMeleeWeaponInputDevice inputDevice)
     {
-        // PolygonInstance.Visible = true;
+        InputDevice = inputDevice;
     }
 
     public void Unequip()
     {
-        // PolygonInstance.Visible = false;
+        InputDevice = ZeroMeleeWeaponInputDevice.Instance;
     }
 }

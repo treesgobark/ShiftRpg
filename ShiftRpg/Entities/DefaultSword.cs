@@ -17,6 +17,7 @@ public partial class DefaultSword
 
     private void CustomActivity()
     {
+        Controllers.DoCurrentControllerActivity();
     }
 
     private void CustomDestroy()
@@ -36,7 +37,4 @@ public partial class DefaultSword
         Controllers.Add(new Recovery(this));
         Controllers.InitializeStartingController<Idle>();
     }
-
-    public override void BeginAttack() => Controllers.CurrentController.BeginAttack();
-    public override void EndAttack() => Controllers.CurrentController.EndAttack();
 }

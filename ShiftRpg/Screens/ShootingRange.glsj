@@ -7,19 +7,13 @@
   "BaseElement": "Screens\\GameScreen",
   "ReferencedFiles": [
     {
-      "Name": "GumProject/Screens/TestLevelGum.gusx",
+      "Name": "gumproject/Screens/ShootingRangeGum.gusx",
       "IsSharedStatic": true,
-      "RuntimeType": "ShiftRpg.GumRuntimes.TestLevelGumRuntime",
+      "RuntimeType": "ShiftRpg.GumRuntimes.ShootingRangeGumRuntime",
       "ProjectsToExcludeFrom": []
     },
     {
-      "Name": "Screens/TestLevel/TestLevelMap.tmx",
-      "Properties": [
-        {
-          "Name": "CreationOptions",
-          "Value": "{\"IncludeDefaultTileset\":true,\"IncludeGameplayLayer\":true,\"SolidCollisionCheckBoxVisibility\":0,\"IsSolidCollisionBorderChecked\":true,\"ShouldAddCollisionBorder\":true}"
-        }
-      ],
+      "Name": "Screens/ShootingRange/ShootingRangeMap.tmx",
       "IsSharedStatic": true,
       "RuntimeType": "FlatRedBall.TileGraphics.LayeredTileMap",
       "ProjectsToExcludeFrom": []
@@ -50,7 +44,7 @@
           "Time": 0.0
         }
       ],
-      "SourceFile": "Screens/TestLevel/TestLevelMap.tmx",
+      "SourceFile": "Screens/ShootingRange/ShootingRangeMap.tmx",
       "SourceName": "Entire File (LayeredTileMap)",
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
@@ -108,7 +102,7 @@
         {
           "Name": "RemoveTilesAfterCreatingCollision",
           "Value": true,
-          "Type": "Object"
+          "Type": "bool"
         }
       ],
       "InstructionSaves": [],
@@ -140,8 +134,8 @@
       "InstantiatedByBase": true,
       "ContainedObjects": [
         {
-          "InstanceName": "DefaultEnemy1",
-          "SourceClassType": "Entities\\DefaultEnemy",
+          "InstanceName": "TargetDummy1",
+          "SourceClassType": "Entities\\TargetDummy",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -153,24 +147,24 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 385.76447,
+              "Value": 240.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -198.66821,
+              "Value": -240.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultEnemy",
+          "SourceFile": "Entities\\TargetDummy",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         }
       ]
     }
   ],
-  "Name": "Screens\\TestLevel",
+  "Name": "Screens\\ShootingRange",
   "CustomClassesForExport": []
 }

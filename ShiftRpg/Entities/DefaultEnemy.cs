@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
-using FlatRedBall.Entities;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
@@ -18,7 +15,7 @@ using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
-    public partial class Enemy
+    public partial class DefaultEnemy
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -27,12 +24,18 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            var hudParent = gumAttachmentWrappers[0];
-            hudParent.ParentRotationChangesRotation = false;
+            InitializeTopDownInput(new EnemyInputDevice<Enemy>(this));
         }
 
         private void CustomActivity()
         {
+            var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
+            var target     = gameScreen.GetClosestPlayer(Position);
+            if (InputDevice is EnemyInputDevice<Enemy> eInput)
+            {
+                eInput.Target = target;
+                InitializeTopDownInput(InputDevice);
+            }
         }
 
         private void CustomDestroy()

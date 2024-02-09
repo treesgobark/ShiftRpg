@@ -52,40 +52,6 @@
       "Properties": [
         {
           "Name": "Type",
-          "Value": "int",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "TeamIndex",
-      "DefaultValue": 0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "MaxHealth",
-      "DefaultValue": 100.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
           "Value": "float",
           "Type": "String"
         }
@@ -122,11 +88,6 @@
       "Name": "IsTopDown",
       "Value": true,
       "Type": "bool"
-    },
-    {
-      "Name": "ImplementsIDamageable",
-      "Value": true,
-      "Type": "Object"
     },
     {
       "Name": "ImplementsIHasControllers",

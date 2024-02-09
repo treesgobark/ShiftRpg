@@ -66,7 +66,7 @@ namespace ShiftRpg.Entities
         
         // Implement IGun
 
-        public Action<IReadOnlyList<object>> ApplyImpulse { get; set; }
+        public Action<IReadOnlyList<object>> ApplyHolderEffects { get; set; }
         public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
 
         public void Equip(IGunInputDevice inputDevice)

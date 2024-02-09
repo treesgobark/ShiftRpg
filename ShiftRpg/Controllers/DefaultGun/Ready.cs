@@ -1,7 +1,9 @@
+using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using FlatRedBall;
 using FlatRedBall.Debugging;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Effects;
 using ShiftRpg.Factories;
 
 namespace ShiftRpg.Controllers.DefaultGun;
@@ -56,9 +58,11 @@ public class Ready(Entities.Gun obj) : GunController(obj)
         var bullet = BulletFactory.CreateNew();
         bullet.Position = Parent.Position;
         
-        bullet.DamageToDeal          = data.Damage;
+        // bullet.DamageToDeal          = data.Damage;
         bullet.CircleInstance.Radius = data.ProjectileRadius;
         bullet.Velocity              = dir * data.ProjectileSpeed;
+
+        Parent.ApplyHolderEffects(new[] { new KnockbackEffect(100, Parent.RotationZ + MathConstants.HalfTurn) });
 
         Parent.MagazineRemaining--;
     }

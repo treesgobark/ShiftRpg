@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using FlatRedBall.Input;
 
 namespace ShiftRpg.Contracts;
 
 public interface IGun
 {
-    Action<IReadOnlyList<object>> ApplyImpulse { set; }
+    Action<IReadOnlyList<object>> ApplyHolderEffects { set; }
     
     void Equip(IGunInputDevice inputDevice);
     void Unequip();

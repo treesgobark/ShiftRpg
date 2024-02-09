@@ -42,55 +42,6 @@
       "Properties": [
         {
           "Name": "Type",
-          "Value": "int",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "TeamIndex",
-      "DefaultValue": 0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "double",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "SecondsBetweenDamage",
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "DamageToDeal",
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
           "Value": "float",
           "Type": "String"
         }
@@ -114,11 +65,6 @@
   "Properties": [
     {
       "Name": "ImplementsICollidable",
-      "Value": true,
-      "Type": "bool"
-    },
-    {
-      "Name": "ImplementsIDamageArea",
       "Value": true,
       "Type": "bool"
     },

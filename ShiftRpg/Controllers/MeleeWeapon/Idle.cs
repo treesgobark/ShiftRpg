@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using Microsoft.Xna.Framework;
 using ShiftRpg.DataTypes;
+using ShiftRpg.Effects;
 
 namespace ShiftRpg.Controllers.MeleeWeapon;
 
@@ -20,7 +21,13 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
         base.OnActivate();
     }
 
-    public override void CustomActivity() { }
+    public override void CustomActivity()
+    {
+        if (Parent.InputDevice.Attack.WasJustPressed)
+        {
+            BeginAttack();
+        }
+    }
 
     public override MeleeWeaponController? EvaluateExitConditions()
     {
@@ -59,10 +66,9 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
         
         Parent.PolygonSave.MapShapeRelative(Parent.PolygonInstance);
 
-        Parent.DamageToDeal = data.Damage;
-        Parent.SecondsBetweenDamage = data.ActiveTime;
-        Parent.KnockbackVelocity = data.KnockbackVelocity;
-        Parent.Owner.Velocity += data.ForwardMovementVelocity * Vector2ExtensionMethods.FromAngle(Parent.Owner.RotationZ).ToVec3();
+        // Parent.DamageToDeal = data.Damage;
+
+        Parent.ApplyHolderEffects(new[] { new KnockbackEffect(data.KnockbackVelocity, Parent.Owner.RotationZ) });
     }
 
     public override void EndAttack()

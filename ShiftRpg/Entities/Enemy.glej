@@ -52,73 +52,6 @@
       "Properties": [
         {
           "Name": "Type",
-          "Value": "int",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "TeamIndex",
-      "DefaultValue": 1,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "MaxHealth",
-      "DefaultValue": 100.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "double",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "SecondsBetweenDamage",
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "decimal",
-          "Type": "String"
-        },
-        {
-          "Name": "CreatesProperties",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "Name": "DamageToDeal",
-      "DefaultValue": 20.0,
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
           "Value": "float",
           "Type": "String"
         }
@@ -159,19 +92,9 @@
       "Type": "bool"
     },
     {
-      "Name": "ImplementsIDamageable",
-      "Value": true,
-      "Type": "bool"
-    },
-    {
       "Name": "InputDevice",
       "Value": 1,
       "Type": "int"
-    },
-    {
-      "Name": "ImplementsIDamageArea",
-      "Value": true,
-      "Type": "Object"
     },
     {
       "Name": "IsTopDown",

@@ -74,7 +74,7 @@
   ],
   "GlobalContentSettingsSave": {},
   "SyncedProjects": [],
-  "StartUpScreen": "Screens\\MainMenu",
+  "StartUpScreen": "Screens\\ShootingRange",
   "ResolutionPresets": [],
   "PerformanceSettingsSave": {},
   "IgnoredDirectories": [],
@@ -104,6 +104,12 @@
       ],
       "RequiredProperties": [],
       "GenerateCode": true
+    },
+    {
+      "Name": "PlatformerValues",
+      "CsvFilesUsingThis": [],
+      "RequiredProperties": [],
+      "GenerateCode": true
     }
   ],
   "ApplyToFixedResolutionPlatforms": true,
@@ -117,12 +123,18 @@
       "Name": "Screens\\MainMenu"
     },
     {
+      "Name": "Screens\\ShootingRange"
+    },
+    {
       "Name": "Screens\\TestLevel"
     }
   ],
   "EntityReferences": [
     {
       "Name": "Entities\\Bullet"
+    },
+    {
+      "Name": "Entities\\DefaultEnemy"
     },
     {
       "Name": "Entities\\DefaultGun"
@@ -141,6 +153,9 @@
     },
     {
       "Name": "Entities\\Player"
+    },
+    {
+      "Name": "Entities\\TargetDummy"
     }
   ],
   "Bookmarks": [],

@@ -380,6 +380,7 @@
     <Compile Include="Contracts\IMeleeWeaponInputDevice.cs" />
     <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\ITakesDamage.cs" />
+    <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Controllers\Gun\GunController.cs" />
     <Compile Include="Controllers\Gun\Ready.cs" />
     <Compile Include="Controllers\Gun\Recovery.cs" />
@@ -403,6 +404,7 @@
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\SourceTag.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
     <Compile Include="Effects\StandardEffectHandlers.cs" />
     <Compile Include="Effects\Team.cs" />

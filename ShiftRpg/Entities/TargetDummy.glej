@@ -67,6 +67,34 @@
       "Type": "int"
     }
   ],
+  "NamedObjects": [
+    {
+      "InstanceName": "EnemyHealthBarRuntimeInstance",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -15.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 3,
+      "SourceFile": "EnemyHealthBarRuntime",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    }
+  ],
   "Name": "Entities\\TargetDummy",
   "CustomClassesForExport": []
 }

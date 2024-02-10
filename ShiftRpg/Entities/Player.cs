@@ -57,8 +57,9 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
         gun.AttachTo(this);
         gun.ParentRotationChangesRotation = true;
         gun.ApplyHolderEffects            = HandleEffects;
+        gun.ModifyTargetEffects           = ModifyOutgoingEffects;
         gun.Team                          = Team.Player;
-            
+        
         Gun = gun;
     }
 
@@ -69,6 +70,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
         melee.AttachTo(this);
         melee.Owner                         = this;
         melee.ApplyHolderEffects            = HandleEffects;
+        melee.ModifyTargetEffects           = ModifyOutgoingEffects;
         melee.ParentRotationChangesRotation = true;
         melee.Team                          = Team.Player;
 
@@ -110,6 +112,17 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
             
             effect.HandleStandardDamage(this)
                 .HandleStandardKnockback(this);
+        }
+    }
+
+    public void ModifyOutgoingEffects(IReadOnlyList<IEffect> effects)
+    {
+        foreach (var effect in effects)
+        {
+            if (effect is DamageEffect damage && damage.Source.IsSubsetOf(SourceTag.Gun))
+            {
+                damage.AdditiveIncreases.Add(1);
+            }
         }
     }
 

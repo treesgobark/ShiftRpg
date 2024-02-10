@@ -37,28 +37,6 @@
       ],
       "Name": "Z",
       "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "int",
-          "Type": "String"
-        }
-      ],
-      "Name": "MagazineSize",
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "double",
-          "Type": "String"
-        }
-      ],
-      "Name": "ReloadTimeSeconds",
-      "SetByDerived": true
     }
   ],
   "Properties": [

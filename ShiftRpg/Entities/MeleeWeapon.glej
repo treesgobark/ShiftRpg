@@ -37,29 +37,6 @@
       ],
       "Name": "Z",
       "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "float",
-          "Type": "String"
-        }
-      ],
-      "Name": "KnockbackVelocity",
-      "SetByDerived": true
-    },
-    {
-      "Properties": [
-        {
-          "Name": "Type",
-          "Value": "float",
-          "Type": "String"
-        }
-      ],
-      "Name": "AttackForwardVelocity",
-      "DefaultValue": 100.0,
-      "SetByDerived": true
     }
   ],
   "Properties": [

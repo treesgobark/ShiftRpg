@@ -62,10 +62,11 @@ public class Ready(Entities.Gun obj) : GunController(obj)
         proj.TargetHitEffects      = Parent.TargetHitEffects;
         proj.HolderHitEffects      = Parent.HolderHitEffects;
 
-        Parent.ApplyHolderEffects(new[]
+        var effects = new[]
         {
-            new KnockbackEffect(Parent.Team, Guid.NewGuid(), 100, Parent.RotationZ + MathConstants.HalfTurn)
-        });
+            new KnockbackEffect(Parent.Team, Parent.Source, Guid.NewGuid(), 100, Parent.RotationZ + MathConstants.HalfTurn)
+        };
+        Parent.ApplyHolderEffects(effects);
 
         Parent.MagazineRemaining--;
     }

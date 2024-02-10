@@ -14,8 +14,7 @@ namespace ShiftRpg.Entities
 {
     public abstract partial class Gun : IGun, IHasControllers<Gun, GunController>
     {
-        public GunData CurrentGunData { get; set; }
-        protected readonly CyclableList<string> GunList = new(GunData.OrderedList);
+        public GunData CurrentGunData { get; set; } = GlobalContent.GunData[GunData.Pistol];
         
         private int _magazineRemaining;
 
@@ -29,6 +28,9 @@ namespace ShiftRpg.Entities
             }
         }
 
+        public int MagazineSize { get; set; }
+        public double ReloadTimeSeconds { get; set; }
+
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -36,32 +38,23 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
+            MagazineSize      = CurrentGunData.MagazineSize;
             MagazineRemaining = MagazineSize;
+            ReloadTimeSeconds = CurrentGunData.ReloadTime;
             
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
-
-            CurrentGunData = GlobalContent.GunData[GunList.CycleToNextItem()];
         }
 
         private void CustomActivity()
         {
-            if (InputManager.Mouse.ScrollWheelChange > 0)
-            {
-                CurrentGunData = GlobalContent.GunData[GunList.CycleToNextItem()];
-                Debugger.CommandLineWrite($"Switched to {CurrentGunData.GunName}");
-            }
-            else if (InputManager.Mouse.ScrollWheelChange < 0)
-            {
-                CurrentGunData = GlobalContent.GunData[GunList.CycleToPreviousItem()];
-                Debugger.CommandLineWrite($"Switched to {CurrentGunData.GunName}");
-            }
         }
 
         private void CustomDestroy() { }
         private static void CustomLoadStaticContent(string contentManagerName) { }
         public Team Team { get; set; }
-        
+        public SourceTag Source { get; set; } = SourceTag.Gun;
+
         // Implement IHasControllers
         
         public ControllerCollection<Gun, GunController> Controllers { get; protected set; }
@@ -69,11 +62,22 @@ namespace ShiftRpg.Entities
         // Implement IGun
 
         public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-        public IReadOnlyList<IEffect> TargetHitEffects => new IEffect[]
+        public Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; }
+
+        public IReadOnlyList<IEffect> TargetHitEffects
         {
-            new DamageEffect(~Team, Guid.NewGuid(), 2),
-            new KnockbackEffect(~Team, Guid.NewGuid(), 100, RotationZ),
-        };
+            get
+            {
+                var effects = new IEffect[]
+                {
+                    new DamageEffect(~Team, Source, Guid.NewGuid(), 2),
+                    new KnockbackEffect(~Team, Source, Guid.NewGuid(), 100, RotationZ),
+                };
+                ModifyTargetEffects(effects);
+                return effects;
+            }
+        }
+
         public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
         public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
 

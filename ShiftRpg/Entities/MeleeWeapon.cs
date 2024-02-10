@@ -71,7 +71,8 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
     }
     
     public Team Team { get; set; }
-    
+    public SourceTag Source { get; set; } = SourceTag.Melee;
+
     // Implement IHasControllers
     
     public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
@@ -79,6 +80,7 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
     // Implement IMeleeWeapon
 
     public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
+    public Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; }
     public IReadOnlyList<IEffect> TargetHitEffects { get; set; } = new List<IEffect>();
     public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
 

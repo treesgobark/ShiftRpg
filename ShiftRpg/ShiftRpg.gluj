@@ -134,6 +134,9 @@
       "Name": "Entities\\Bullet"
     },
     {
+      "Name": "Entities\\DamageNumber"
+    },
+    {
       "Name": "Entities\\DefaultEnemy"
     },
     {

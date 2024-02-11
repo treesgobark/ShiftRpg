@@ -1,5 +1,20 @@
 {
   "UserEvents": {
-    "Logan": []
+    "Logan": [
+      {
+        "NewName": "DamageNumber",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-02-10T18:56:37.974068Z"
+      },
+      {
+        "NewName": "DamageNumber (Container).TextInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-02-10T18:59:52.9571433Z"
+      }
+    ]
   }
 }

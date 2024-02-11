@@ -2,12 +2,13 @@ using System;
 using System.Linq;
 using FlatRedBall;
 using ShiftRpg.Contracts;
+using ShiftRpg.Factories;
 
 namespace ShiftRpg.Effects;
 
 public static class StandardEffectHandlers
 {
-    public static IEffect HandleStandardDamage<T>(this IEffect effect, T receiver) where T : ITakesDamage
+    public static IEffect HandleStandardDamage<T>(this IEffect effect, T receiver) where T : PositionedObject, ITakesDamage
     {
         if (effect is not DamageEffect damage) { return effect; }
         if (!receiver.Team.IsSubsetOf(damage.AppliesTo)) { return effect; }
@@ -24,8 +25,12 @@ public static class StandardEffectHandlers
         
         receiver.TakeDamage(finalDamage);
         receiver.LastDamageTime = TimeManager.CurrentScreenTime;
-        
         receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
+
+        var damageNumber = DamageNumberFactory.CreateNew();
+        damageNumber.DamageNumberRuntimeInstance.Text = finalDamage.ToString();
+        damageNumber.Position                         = receiver.Position;
+        
         return effect;
     }
     

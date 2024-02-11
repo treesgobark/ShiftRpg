@@ -152,6 +152,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>usercontrol</Name>
     </None>
+    <None Include="content\gumproject\components\damagenumber.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>damagenumber</Name>
+    </None>
     <None Include="content\gumproject\components\elements\cautionlines.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>cautionlines</Name>
@@ -219,6 +223,14 @@
     <None Include="content\gumproject\fontcache\font12arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>font12arial_0</Name>
+    </None>
+    <None Include="content\gumproject\fontcache\font13pixelfont6x9_nosmooth.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font13pixelfont6x9_nosmooth</Name>
+    </None>
+    <None Include="content\gumproject\fontcache\font13pixelfont6x9_nosmooth_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font13pixelfont6x9_nosmooth_0</Name>
     </None>
     <None Include="content\gumproject\fontcache\font14arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -369,6 +381,8 @@
       <Name>standardtileseticons</Name>
     </None>
     <None Remove="Controllers\DefaultSword\**" />
+    <None Remove="Content\GumProject\Standards\Canvas.gutx" />
+    <None Remove="Content\GumProject\Standards\ColoredCircle.gutx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IEffect.cs" />
@@ -412,6 +426,10 @@
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DamageNumber.cs" />
+    <Compile Include="Entities\DamageNumber.Generated.cs">
+      <DependentUpon>DamageNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DefaultEnemy.cs" />
     <Compile Include="Entities\DefaultEnemy.Generated.cs">
       <DependentUpon>DefaultEnemy.cs</DependentUpon>
@@ -449,6 +467,7 @@
       <DependentUpon>TargetDummy.cs</DependentUpon>
     </Compile>
     <Compile Include="Factories\BulletFactory.Generated.cs" />
+    <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
     <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
@@ -644,6 +663,10 @@
     <Compile Include="GumRuntimes\Controls\UserControlRuntime.cs" />
     <Compile Include="GumRuntimes\Controls\UserControlRuntime.Generated.cs">
       <DependentUpon>UserControlRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\DamageNumberRuntime.cs" />
+    <Compile Include="GumRuntimes\DamageNumberRuntime.Generated.cs">
+      <DependentUpon>DamageNumberRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\Elements\CautionLinesRuntime.cs" />
     <Compile Include="GumRuntimes\Elements\CautionLinesRuntime.Generated.cs">

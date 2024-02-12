@@ -1,0 +1,3 @@
+- Static effects (character/skill tree stats)
+- Persisting effects (DOTs, buffs/debuffs)
+- ~~Equipped weapon switching~~

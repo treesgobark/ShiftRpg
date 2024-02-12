@@ -12,6 +12,10 @@ public class Recovery(IGun obj) : GunController(obj)
 
     public override void CustomActivity()
     {
+        if (Parent.InputDevice.Reload.WasJustPressed)
+        {
+            NextState = Get<Reloading>();
+        }
     }
 
     public override GunController? EvaluateExitConditions()
@@ -31,5 +35,6 @@ public class Recovery(IGun obj) : GunController(obj)
 
     public override void BeforeDeactivate()
     {
+        NextState = null;
     }
 }

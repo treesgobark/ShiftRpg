@@ -19,6 +19,7 @@ namespace ShiftRpg.Entities
         {
             Controllers = new ControllerCollection<IGun, GunController>();
             Controllers.Add(new Ready(this));
+            Controllers.Add(new Recovery(this));
             Controllers.Add(new Reloading(this));
             Controllers.InitializeStartingController<Ready>();
         }
@@ -42,7 +43,7 @@ namespace ShiftRpg.Entities
             if (dir == Vector3.Zero) return;
             
             var proj = BulletFactory.CreateNew();
-            proj.Position = Parent.Position;
+            proj.Position = Position;
         
             // bullet.DamageToDeal          = data.Damage;
             proj.CircleInstance.Radius = CurrentGunData.ProjectileRadius;

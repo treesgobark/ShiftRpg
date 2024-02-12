@@ -9,15 +9,15 @@ namespace ShiftRpg.Controllers.Gun;
 public class Ready(IGun obj) : GunController(obj)
 {
     protected GunController? NextState { get; set; }
-    protected bool IsFiring { get; set; }
 
     public override void Initialize() { }
 
     public override void CustomActivity()
     {
-        if (Parent.InputDevice.Fire.WasJustPressed)
+        if (Parent.InputDevice.Fire.WasJustPressed || Parent is { FiringType: FiringType.Automatic, InputDevice.Fire.IsDown: true })
         {
             FireBullet();
+            NextState = Get<Recovery>();
         }
 
         if (Parent.InputDevice.Reload.WasJustPressed)
@@ -28,14 +28,14 @@ public class Ready(IGun obj) : GunController(obj)
 
     public override GunController? EvaluateExitConditions()
     {
-        if (NextState is not null)
-        {
-            return NextState;
-        }
-        
         if (Parent.MagazineRemaining <= 0)
         {
             return Get<Reloading>();
+        }
+        
+        if (NextState is not null)
+        {
+            return NextState;
         }
 
         return null;

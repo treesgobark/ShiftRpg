@@ -14,8 +14,15 @@ public interface IGun : IWeapon<IGunInputDevice>, IHasControllers<IGun, GunContr
     int MagazineSize { get; }
     TimeSpan TimePerRound { get; }
     TimeSpan ReloadTime { get; }
+    FiringType FiringType { get; }
     
     void Fire();
     void StartReload();
     void FillMagazine();
+}
+
+public enum FiringType
+{
+    Semiautomatic,
+    Automatic,
 }

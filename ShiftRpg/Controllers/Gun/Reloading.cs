@@ -10,6 +10,7 @@ public class Reloading(IGun obj) : GunController(obj)
     public override void OnActivate()
     {
         Parent.StartReload();
+        base.OnActivate();
     }
 
     public override void CustomActivity() { }

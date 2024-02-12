@@ -15,7 +15,6 @@ namespace ShiftRpg.Screens;
 public partial class GameScreen
 {
     protected bool GameOver { get; set; } = false;
-    protected FrameCache<Player> ClosestPlayer { get; } = new();
 
     void CustomInitialize()
     {
@@ -50,13 +49,7 @@ public partial class GameScreen
 
     public Player? GetClosestPlayer(Vector3 position)
     {
-        if (ClosestPlayer.TryGetObj(out var player))
-        {
-            return player;
-        }
-
-        ClosestPlayer.Obj = PlayerList.MinBy(p => p.Position.DistanceSquared(position));
-        return ClosestPlayer.Obj;
+        return PlayerList.MinBy(p => p.Position.DistanceSquared(position));
     }
 
     private void InitializePauseMenu()

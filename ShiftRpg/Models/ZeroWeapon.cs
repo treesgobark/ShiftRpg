@@ -31,6 +31,7 @@ public class ZeroGun : ZeroWeapon<IGunInputDevice>, IGun
     public int MagazineSize => 0;
     public TimeSpan TimePerRound => TimeSpan.Zero;
     public TimeSpan ReloadTime => TimeSpan.Zero;
+    public FiringType FiringType { get; } = (FiringType)(-1);
 
     public void Fire() { }
     public void StartReload() { }

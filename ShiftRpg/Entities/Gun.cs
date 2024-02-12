@@ -16,7 +16,8 @@ namespace ShiftRpg.Entities
 {
     public abstract partial class Gun : IGun
     {
-        public GunData CurrentGunData { get; set; }
+        public GunData CurrentGunData => GunDataCache.Obj;
+        protected FrameCache<GunData> GunDataCache { get; } = new(() => GlobalContent.GunData[GunData.Pistol]);
         
         private int _magazineRemaining;
 
@@ -30,9 +31,10 @@ namespace ShiftRpg.Entities
             }
         }
 
-        public int MagazineSize { get; protected set; }
-        public TimeSpan TimePerRound { get; protected set; }
-        public TimeSpan ReloadTime { get; protected set; }
+        public int MagazineSize => CurrentGunData.MagazineSize;
+        public TimeSpan TimePerRound => TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
+        public TimeSpan ReloadTime => TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
+        public FiringType FiringType => CurrentGunData.IsSingleShot ? FiringType.Semiautomatic : FiringType.Automatic;
         private int BarColor { get; set; }
 
         /// <summary>
@@ -42,11 +44,7 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            CurrentGunData    = GlobalContent.GunData[GunData.Pistol];
-            MagazineSize      = CurrentGunData.MagazineSize;
             MagazineRemaining = MagazineSize;
-            ReloadTime        = TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
-            TimePerRound      = TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
             
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
@@ -77,7 +75,7 @@ namespace ShiftRpg.Entities
             {
                 var effects = new IEffect[]
                 {
-                    new DamageEffect(~Team, Source, Guid.NewGuid(), 2),
+                    new DamageEffect(~Team, Source, Guid.NewGuid(), CurrentGunData.Damage),
                     new KnockbackEffect(~Team, Source, Guid.NewGuid(), 100, RotationZ),
                 };
                 ModifyTargetEffects(effects);

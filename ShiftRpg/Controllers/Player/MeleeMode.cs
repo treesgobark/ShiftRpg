@@ -10,7 +10,7 @@ public class MeleeMode(Entities.Player obj) : PlayerController(obj)
 
     public override void OnActivate()
     {
-        Parent.MeleeWeapon.Equip(Parent.MeleeInputDevice);
+        Parent.MeleeWeaponCache.IsActive = true;
         base.OnActivate();
     }
 
@@ -36,7 +36,7 @@ public class MeleeMode(Entities.Player obj) : PlayerController(obj)
 
     public override void BeforeDeactivate()
     {
-        Parent.MeleeWeapon.Unequip();
+        Parent.MeleeWeaponCache.IsActive = false;
     }
 
     private void SetRotation()

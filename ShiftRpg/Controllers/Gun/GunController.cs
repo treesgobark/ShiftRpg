@@ -1,10 +1,11 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
 using FlatRedBall;
+using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Controllers.Gun;
 
-public abstract class GunController(Entities.Gun obj)
-    : EntityController<Entities.Gun, GunController>(obj)
+public abstract class GunController(IGun obj)
+    : EntityController<IGun, GunController>(obj)
 {
     private double StartTime { get; set; }
     protected double TimeInState => TimeManager.CurrentScreenSecondsSince(StartTime);

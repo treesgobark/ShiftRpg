@@ -5,7 +5,7 @@ using FlatRedBall.Math;
 
 namespace ShiftRpg.Contracts;
 
-public interface IProjectile : IDestroyable
+public interface IProjectile : IDestroyable, IPositionable
 {
     Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
     IReadOnlyList<IEffect> TargetHitEffects { get; set; }

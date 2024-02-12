@@ -1,11 +1,12 @@
 using System;
 using ANLG.Utilities.FlatRedBall.Constants;
 using Microsoft.Xna.Framework;
+using ShiftRpg.Contracts;
 using ShiftRpg.Effects;
 
 namespace ShiftRpg.Controllers.Gun;
 
-public class Ready(Entities.Gun obj) : GunController(obj)
+public class Ready(IGun obj) : GunController(obj)
 {
     protected GunController? NextState { get; set; }
     protected bool IsFiring { get; set; }
@@ -47,27 +48,6 @@ public class Ready(Entities.Gun obj) : GunController(obj)
 
     private void FireBullet()
     {
-        var data = Parent.CurrentGunData;
-        
-        var dir = Vector2ExtensionMethods.FromAngle(Parent.RotationZ).NormalizedOrZero().ToVector3();
-        if (dir == Vector3.Zero) return;
-
-        var proj = Parent.SpawnProjectile();
-        proj.Position = Parent.Position;
-        
-        // bullet.DamageToDeal          = data.Damage;
-        proj.CircleInstance.Radius = data.ProjectileRadius;
-        proj.Velocity              = dir * data.ProjectileSpeed;
-        proj.ApplyHolderEffects    = Parent.ApplyHolderEffects;
-        proj.TargetHitEffects      = Parent.TargetHitEffects;
-        proj.HolderHitEffects      = Parent.HolderHitEffects;
-
-        var effects = new[]
-        {
-            new KnockbackEffect(Parent.Team, Parent.Source, Guid.NewGuid(), 100, Parent.RotationZ + MathConstants.HalfTurn)
-        };
-        Parent.ApplyHolderEffects(effects);
-
-        Parent.MagazineRemaining--;
+        Parent.Fire();
     }
 }

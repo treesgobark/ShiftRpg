@@ -395,6 +395,7 @@
     <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\ITakesDamage.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
+    <Compile Include="Contracts\IWeaponCache.cs" />
     <Compile Include="Controllers\Gun\GunController.cs" />
     <Compile Include="Controllers\Gun\Ready.cs" />
     <Compile Include="Controllers\Gun\Recovery.cs" />
@@ -750,6 +751,8 @@
     <Compile Include="InputDevices\MeleeWeaponInputDevice.cs" />
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\WeaponCache.cs" />
+    <Compile Include="Models\ZeroWeapon.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
     <Compile Include="Program.cs" />

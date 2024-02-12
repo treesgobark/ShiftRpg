@@ -41,7 +41,8 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
         ];
         PolygonSave.MapShapeRelative(PolygonInstance);
         AttackList.CycleToPreviousItem();
-        CurrentAttackData = GlobalContent.AttackData[AttackList.CycleToNextItem()];
+        CurrentAttackData             = GlobalContent.AttackData[AttackList.CycleToNextItem()];
+        ParentRotationChangesRotation = true;
     }
 
     private void CustomActivity()

@@ -13,6 +13,7 @@ using ShiftRpg.Controllers.Player;
 using ShiftRpg.Effects;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
+using ShiftRpg.Models;
 
 namespace ShiftRpg.Entities;
 
@@ -22,8 +23,10 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     public IGunInputDevice GunInputDevice { get; set; }
     public IMeleeWeaponInputDevice MeleeInputDevice { get; set; }
     
-    public IGun Gun { get; set; }
-    public IMeleeWeapon MeleeWeapon { get; set; }
+    public IWeaponCache<IGun, IGunInputDevice> GunCache { get; set; }
+    public IWeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice> MeleeWeaponCache { get; set; }
+    public IGun Gun => GunCache.CurrentWeapon;
+    public IMeleeWeapon MeleeWeapon => MeleeWeaponCache.CurrentWeapon;
     
     public bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
     public float LastMeleeRotation { get; set; }
@@ -51,37 +54,43 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
 
     private void InitializeGun()
     {
+        GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, GunInputDevice);
+        
         var gun = DefaultGunFactory.CreateNew();
             
         gun.RelativeX = 10;
         gun.AttachTo(this);
-        gun.ParentRotationChangesRotation = true;
         gun.ApplyHolderEffects            = HandleEffects;
         gun.ModifyTargetEffects           = ModifyOutgoingEffects;
         gun.Team                          = Team.Player;
-        
-        Gun = gun;
+
+        GunCache.Add(gun);
     }
 
     private void InitializeMeleeWeapon()
     {
+        MeleeWeaponCache = new WeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice>(ZeroMeleeWeapon.Instance, MeleeInputDevice);
+        
         var melee = DefaultSwordFactory.CreateNew();
 
         melee.AttachTo(this);
         melee.Owner                         = this;
         melee.ApplyHolderEffects            = HandleEffects;
         melee.ModifyTargetEffects           = ModifyOutgoingEffects;
-        melee.ParentRotationChangesRotation = true;
         melee.Team                          = Team.Player;
 
-        MeleeWeapon = melee;
+        MeleeWeaponCache.Add(melee);
     }
 
     partial void CustomInitializeTopDownInput()
     {
-        GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
-        GunInputDevice      = new GunInputDevice(GameplayInputDevice);
-        MeleeInputDevice    = new MeleeWeaponInputDevice(GameplayInputDevice);
+        GameplayInputDevice          = new GameplayInputDevice(InputDevice, this);
+        
+        GunInputDevice               = new GunInputDevice(GameplayInputDevice);
+        if (GunCache != null) GunCache.InputDevice = GunInputDevice;
+
+        MeleeInputDevice             = new MeleeWeaponInputDevice(GameplayInputDevice);
+        if (MeleeWeaponCache != null) MeleeWeaponCache.InputDevice = MeleeInputDevice;
     }
 
     private void CustomActivity()
@@ -134,7 +143,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     
     // Implement ITakesDamage
     
-    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid AttackId, double AttackTime)>();
+    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid EffectId, double EffectTime)>();
     public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
     public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
     public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;

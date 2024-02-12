@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Debugging;
+using FlatRedBall.Glue.StateInterpolation;
 using FlatRedBall.Input;
 using ShiftRpg.Contracts;
 using ShiftRpg.Controllers.Gun;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 using ShiftRpg.InputDevices;
+using StateInterpolationPlugin;
 
 namespace ShiftRpg.Entities
 {
-    public abstract partial class Gun : IGun, IHasControllers<Gun, GunController>
+    public abstract partial class Gun : IGun
     {
-        public GunData CurrentGunData { get; set; } = GlobalContent.GunData[GunData.Pistol];
+        public GunData CurrentGunData { get; set; }
         
         private int _magazineRemaining;
 
@@ -28,8 +30,10 @@ namespace ShiftRpg.Entities
             }
         }
 
-        public int MagazineSize { get; set; }
-        public double ReloadTimeSeconds { get; set; }
+        public int MagazineSize { get; protected set; }
+        public TimeSpan TimePerRound { get; protected set; }
+        public TimeSpan ReloadTime { get; protected set; }
+        private int BarColor { get; set; }
 
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -38,12 +42,15 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
+            CurrentGunData    = GlobalContent.GunData[GunData.Pistol];
             MagazineSize      = CurrentGunData.MagazineSize;
             MagazineRemaining = MagazineSize;
-            ReloadTimeSeconds = CurrentGunData.ReloadTime;
+            ReloadTime        = TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
+            TimePerRound      = TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
             
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
+            ParentRotationChangesRotation           = true;
         }
 
         private void CustomActivity()
@@ -57,7 +64,7 @@ namespace ShiftRpg.Entities
 
         // Implement IHasControllers
         
-        public ControllerCollection<Gun, GunController> Controllers { get; protected set; }
+        public ControllerCollection<IGun, GunController> Controllers { get; protected set; }
         
         // Implement IGun
 
@@ -95,6 +102,20 @@ namespace ShiftRpg.Entities
             MagazineBar.Visible    = false;
         }
 
-        public abstract Projectile SpawnProjectile();
+        public abstract void Fire();
+        
+        public void StartReload()
+        {
+            BarColor                           = MagazineBar.ForegroundGreen;
+            MagazineBar.ForegroundGreen = 150;
+            
+            this.TweenAsync(p => MagazineBar.ProgressPercentage = p, 0, 100, (float)ReloadTime.TotalSeconds, InterpolationType.Linear, Easing.InOut);
+        }
+
+        public void FillMagazine()
+        {
+            MagazineRemaining                  = MagazineSize;
+            MagazineBar.ForegroundGreen = BarColor;
+        }
     }
 }

@@ -1,30 +1,22 @@
 using FlatRedBall;
+using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Controllers.Gun;
 
-public class Reloading(Entities.DefaultGun obj) : GunController(obj)
+public class Reloading(IGun obj) : GunController(obj)
 {
-    private double ReloadStartTime { get; set; }
-    private int BarColor { get; set; }
-
     public override void Initialize() { }
 
     public override void OnActivate()
     {
-        ReloadStartTime = TimeManager.CurrentScreenTime;
-        BarColor = Parent.MagazineBar.ForegroundGreen;
-        Parent.MagazineBar.ForegroundGreen = 150;
+        Parent.StartReload();
     }
 
-    public override void CustomActivity()
-    {
-        double progress = 100 * TimeManager.CurrentScreenSecondsSince(ReloadStartTime) / Parent.ReloadTimeSeconds;
-        Parent.MagazineBar.ProgressPercentage = (float)progress;
-    }
+    public override void CustomActivity() { }
 
     public override GunController? EvaluateExitConditions()
     {
-        if (TimeManager.CurrentScreenSecondsSince(ReloadStartTime) > Parent.ReloadTimeSeconds)
+        if (TimeInState > Parent.ReloadTime.TotalSeconds)
         {
             return Get<Ready>();
         }
@@ -34,7 +26,6 @@ public class Reloading(Entities.DefaultGun obj) : GunController(obj)
 
     public override void BeforeDeactivate()
     {
-        Parent.MagazineRemaining = Parent.MagazineSize;
-        Parent.MagazineBar.ForegroundGreen = BarColor;
+        Parent.FillMagazine();
     }
 }

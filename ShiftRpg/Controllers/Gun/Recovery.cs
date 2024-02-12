@@ -1,6 +1,8 @@
+using ShiftRpg.Contracts;
+
 namespace ShiftRpg.Controllers.Gun;
 
-public class Recovery(Entities.Gun obj) : GunController(obj)
+public class Recovery(IGun obj) : GunController(obj)
 {
     protected GunController? NextState { get; set; }
     
@@ -19,7 +21,7 @@ public class Recovery(Entities.Gun obj) : GunController(obj)
             return NextState;
         }
 
-        if (TimeInState > Parent.CurrentGunData.SecondsPerRound)
+        if (TimeInState > Parent.TimePerRound.TotalSeconds)
         {
             return Get<Ready>();
         }

@@ -10,7 +10,7 @@ public class GunMode(Entities.Player obj) : PlayerController(obj)
 
     public override void OnActivate()
     {
-        Parent.Gun.Equip(Parent.GunInputDevice);
+        Parent.GunCache.IsActive = true;
         base.OnActivate();
     }
 
@@ -36,7 +36,7 @@ public class GunMode(Entities.Player obj) : PlayerController(obj)
 
     public override void BeforeDeactivate()
     {
-        Parent.Gun.Unequip();
+        Parent.GunCache.IsActive = false;
     }
     
     private void SetRotation()

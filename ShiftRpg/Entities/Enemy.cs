@@ -34,10 +34,13 @@ namespace ShiftRpg.Entities
             hudParent.ParentRotationChangesRotation = false;
             Team                                    = Team.Enemy;
             CurrentHealth                           = MaxHealth;
+            PersistentEffects                       = new List<IPersistentEffect>();
+            RecentEffects = new List<(Guid EffectId, double EffectTime)>();
         }
 
         private void CustomActivity()
         {
+            HandlePersistentEffects();
         }
 
         private void CustomDestroy()
@@ -52,6 +55,29 @@ namespace ShiftRpg.Entities
 
         }
 
+        public void HandlePersistentEffects()
+        {
+            List<IEffect> effects = [];
+
+            for (var i = PersistentEffects.Count - 1; i >= 0; i--)
+            {
+                var effect = PersistentEffects[i];
+                if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
+                {
+                    effects.Add(dot.GetDamageEffect());
+                    if (dot.RemainingTicks <= 0)
+                    {
+                        PersistentEffects.RemoveAt(i);
+                    }
+                }
+            }
+
+            if (effects.Count > 0)
+            {
+                HandleEffects(effects);
+            }
+        }
+
         public virtual void HandleEffects(IReadOnlyList<IEffect> effects)
         {
             foreach (var effect in effects)
@@ -62,13 +88,15 @@ namespace ShiftRpg.Entities
                 }
                 
                 effect.HandleStandardDamage(this)
-                    .HandleStandardKnockback(this);
+                    .HandleStandardKnockback(this)
+                    .HandleStandardPersistentEffect(this);
             }
         }
 
-        public Team Team { get; set; }
+        public IList<IPersistentEffect> PersistentEffects { get; protected set; }
+        public Team Team { get; protected set; }
 
-        public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid EffectId, double EffectTime)>();
+        public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; protected set; }
         public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
         public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
         public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;

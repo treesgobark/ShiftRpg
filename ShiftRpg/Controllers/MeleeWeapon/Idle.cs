@@ -72,13 +72,14 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
 
         Parent.ApplyHolderEffects(new[]
         {
-            new KnockbackEffect(Parent.Team, Parent.Source, Guid.NewGuid(), data.KnockbackVelocity, Parent.Owner.RotationZ)
+            new KnockbackEffect(Parent.Team, Parent.Source, data.KnockbackVelocity, Parent.Owner.RotationZ)
         });
         
         Parent.TargetHitEffects = new IEffect[]
         {
-            new DamageEffect(~Parent.Team, Parent.Source, Guid.NewGuid(), 2),
-            new KnockbackEffect(~Parent.Team, Parent.Source, Guid.NewGuid(), 100, Parent.RotationZ),
+            new DamageEffect(~Parent.Team, Parent.Source, 2),
+            new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.RotationZ),
+            new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1),
         };
     }
 

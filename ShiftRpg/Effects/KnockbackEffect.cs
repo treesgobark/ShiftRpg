@@ -5,7 +5,8 @@ using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects;
 
-public record class KnockbackEffect(Team AppliesTo, SourceTag Source, Guid EffectId, float Magnitude, float Direction) : IEffect
+public record class KnockbackEffect(Team AppliesTo, SourceTag Source, float Magnitude, float Direction) : IEffect
 {
     public Vector3 KnockbackVector => Vector2Extensions.FromAngleAndLength(Direction, Magnitude).ToVec3();
+    public Guid EffectId { get; } = Guid.NewGuid();
 }

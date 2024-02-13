@@ -12,6 +12,6 @@ public record DamageEffect(
     ICollection<float> AdditiveIncreases,
     ICollection<float> MultiplicativeIncreases) : IEffect
 {
-    public DamageEffect(Team AppliesTo, SourceTag Source, Guid EffectId, int Damage)
-        : this(AppliesTo, Source, EffectId, Damage, new List<float>(), new List<float>()) { }
+    public DamageEffect(Team AppliesTo, SourceTag Source, int Damage)
+        : this(AppliesTo, Source, Guid.NewGuid(), Damage, new List<float>(), new List<float>()) { }
 }

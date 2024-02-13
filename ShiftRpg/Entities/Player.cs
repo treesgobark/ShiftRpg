@@ -95,6 +95,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
 
     private void CustomActivity()
     {
+        HandlePersistentEffects();
         Controllers.DoCurrentControllerActivity();
     }
 
@@ -110,6 +111,29 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     
     // Implement IEffectReceiver
 
+    public IList<IPersistentEffect> PersistentEffects { get; } = new List<IPersistentEffect>();
+    public Team Team { get; set; }
+
+    public void HandlePersistentEffects()
+    {
+        List<IEffect> effects = [];
+
+        for (var i = PersistentEffects.Count - 1; i >= 0; i--)
+        {
+            var effect = PersistentEffects[i];
+            if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
+            {
+                effects.Add(dot.GetDamageEffect());
+                if (dot.RemainingTicks <= 0)
+                {
+                    PersistentEffects.RemoveAt(i);
+                }
+            }
+        }
+
+        HandleEffects(effects);
+    }
+
     public void HandleEffects(IReadOnlyList<IEffect> effects)
     {
         foreach (var effect in effects)
@@ -120,7 +144,8 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
             }
             
             effect.HandleStandardDamage(this)
-                .HandleStandardKnockback(this);
+                .HandleStandardKnockback(this)
+                .HandleStandardPersistentEffect(this);
         }
     }
 
@@ -134,8 +159,6 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
             }
         }
     }
-
-    public Team Team { get; set; }
     
     // Implement IHasControllers
     

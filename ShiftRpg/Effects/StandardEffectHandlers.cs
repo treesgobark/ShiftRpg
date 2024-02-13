@@ -15,8 +15,8 @@ public static class StandardEffectHandlers
         if (receiver.TimeSinceLastDamage < receiver.InvulnerabilityTimeAfterDamage) { return effect; }
 
         int finalDamage = damage.Damage;
-        
-        finalDamage = (int)((damage.AdditiveIncreases.Sum() + 1)                          * finalDamage);
+
+        finalDamage = (int)((damage.AdditiveIncreases.Sum() + 1) * finalDamage);
 
         if (damage.MultiplicativeIncreases.Count > 0)
         {
@@ -42,6 +42,18 @@ public static class StandardEffectHandlers
         receiver.Velocity += knockback.KnockbackVector;
         
         receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
+        return effect;
+    }
+
+    public static IEffect HandleStandardPersistentEffect<T>(this IEffect effect, T receiver)
+        where T : IEffectReceiver
+    {
+        if (effect is not IPersistentEffect persistentEffect) { return effect; }
+        if (!receiver.Team.IsSubsetOf(persistentEffect.AppliesTo)) { return effect; }
+
+        receiver.PersistentEffects.Add(persistentEffect);
+        receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
+        
         return effect;
     }
 }

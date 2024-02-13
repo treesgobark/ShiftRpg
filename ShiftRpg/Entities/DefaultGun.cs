@@ -54,7 +54,7 @@ namespace ShiftRpg.Entities
 
             var effects = new[]
             {
-                new KnockbackEffect(Team, Source, Guid.NewGuid(), 100, RotationZ + MathConstants.HalfTurn)
+                new KnockbackEffect(Team, Source, 100, RotationZ + MathConstants.HalfTurn)
             };
             ApplyHolderEffects(effects);
 

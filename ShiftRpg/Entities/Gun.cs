@@ -75,8 +75,8 @@ namespace ShiftRpg.Entities
             {
                 var effects = new IEffect[]
                 {
-                    new DamageEffect(~Team, Source, Guid.NewGuid(), CurrentGunData.Damage),
-                    new KnockbackEffect(~Team, Source, Guid.NewGuid(), 100, RotationZ),
+                    new DamageEffect(~Team, Source, CurrentGunData.Damage),
+                    new KnockbackEffect(~Team, Source, 100, RotationZ),
                 };
                 ModifyTargetEffects(effects);
                 return effects;

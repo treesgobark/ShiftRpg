@@ -59,7 +59,8 @@ namespace ShiftRpg.Entities
                     continue;
                 }
                 
-                effect.HandleStandardDamage(this);
+                effect.HandleStandardDamage(this)
+                    .HandleStandardPersistentEffect(this);
             }
         }
 

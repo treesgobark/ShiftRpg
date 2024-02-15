@@ -155,7 +155,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
         {
             if (effect is DamageEffect damage && damage.Source.IsSubsetOf(SourceTag.Gun))
             {
-                damage.AdditiveIncreases.Add(1);
+                // damage.AdditiveIncreases.Add(1);
             }
         }
     }

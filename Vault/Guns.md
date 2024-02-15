@@ -3,7 +3,7 @@ Core Mechanics:
 - Headshots (maybe called critical hits?)
 - Recoil
 - ADS for better accuracy (maybe less visibility)
-- Soul Damage: normal attacks build up a gray health bar over an enemy's current health and you can explode the soul damage with melee damage
+- Shatter Damage: normal attacks build up a gray health bar over an enemy's current health and you can explode the Shatter damage with melee damage
 
 Limitations:
 - Magazine size and reloading

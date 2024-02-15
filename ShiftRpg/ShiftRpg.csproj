@@ -224,13 +224,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>font12arial_0</Name>
     </None>
-    <None Include="content\gumproject\fontcache\font13pixelfont6x9_nosmooth.fnt">
+    <None Include="content\gumproject\fontcache\font13pixelfont6x9_o1_nosmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>font13pixelfont6x9_nosmooth</Name>
+      <Name>font13pixelfont6x9_o1_nosmooth</Name>
     </None>
-    <None Include="content\gumproject\fontcache\font13pixelfont6x9_nosmooth_0.png">
+    <None Include="content\gumproject\fontcache\font13pixelfont6x9_o1_nosmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>font13pixelfont6x9_nosmooth_0</Name>
+      <Name>font13pixelfont6x9_o1_nosmooth_0</Name>
     </None>
     <None Include="content\gumproject\fontcache\font14arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -395,6 +395,7 @@
     <Compile Include="Contracts\IPersistentEffect.cs" />
     <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\ITakesDamage.cs" />
+    <Compile Include="Contracts\ITakesShatterDamage.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
     <Compile Include="Controllers\Gun\GunController.cs" />
@@ -419,8 +420,10 @@
     <Compile Include="DataTypes\PlatformerValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
+    <Compile Include="Effects\ApplyShatterEffect.cs" />
     <Compile Include="Effects\DamageEffect.cs" />
     <Compile Include="Effects\DamageOverTimeEffect.cs" />
+    <Compile Include="Effects\ShatterDamageEffect.cs" />
     <Compile Include="Effects\SourceTag.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
     <Compile Include="Effects\StandardEffectHandlers.cs" />

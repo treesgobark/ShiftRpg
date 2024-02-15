@@ -13,14 +13,14 @@
     <Variable>
       <Type>int</Type>
       <Name>Background.Blue</Name>
-      <Value xsi:type="xsd:int">165</Value>
+      <Value xsi:type="xsd:int">149</Value>
       <ExposedAsName>BackgroundBlue</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>Background.Green</Name>
-      <Value xsi:type="xsd:int">165</Value>
+      <Value xsi:type="xsd:int">149</Value>
       <ExposedAsName>BackgroundGreen</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -39,7 +39,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Background.Red</Name>
-      <Value xsi:type="xsd:int">202</Value>
+      <Value xsi:type="xsd:int">198</Value>
       <ExposedAsName>BackgroundRed</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -192,6 +192,107 @@
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>SubProgress.Alpha</Name>
+      <Value xsi:type="xsd:int">255</Value>
+      <ExposedAsName>SubProgressAlpha</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>SubProgress.Blue</Name>
+      <Value xsi:type="xsd:int">81</Value>
+      <ExposedAsName>SubProgressBlue</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>SubProgress.Green</Name>
+      <Value xsi:type="xsd:int">143</Value>
+      <ExposedAsName>SubProgressGreen</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>SubProgress.Height</Name>
+      <Value xsi:type="xsd:float">50</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>SubProgress.Height Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>SubProgress.Parent</Name>
+      <Value xsi:type="xsd:string">Foreground</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>SubProgress.Red</Name>
+      <Value xsi:type="xsd:int">243</Value>
+      <ExposedAsName>SubProgressRed</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>SubProgress.Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>SubProgress.Width</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <ExposedAsName>SubProgressPercentage</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>SubProgress.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>SubProgress.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>SubProgress.X Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>SubProgress.X Units</Name>
+      <Value xsi:type="xsd:int">4</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>SubProgress.Y</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>SubProgress.Y Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>SubProgress.Y Units</Name>
+      <Value xsi:type="xsd:int">5</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>Width</Name>
       <Value xsi:type="xsd:float">30</Value>
@@ -241,6 +342,11 @@
   </Instance>
   <Instance>
     <Name>Foreground</Name>
+    <BaseType>ColoredRectangle</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>SubProgress</Name>
     <BaseType>ColoredRectangle</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>

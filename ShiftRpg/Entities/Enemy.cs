@@ -21,7 +21,7 @@ using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
-    public abstract partial class Enemy : ITakesDamage
+    public abstract partial class Enemy : ITakesShatterDamage
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -88,6 +88,8 @@ namespace ShiftRpg.Entities
                 }
                 
                 effect.HandleStandardDamage(this)
+                    .HandleStandardShatterDamage(this)
+                    .HandleStandardApplyShatter(this)
                     .HandleStandardKnockback(this)
                     .HandleStandardPersistentEffect(this);
             }
@@ -98,6 +100,7 @@ namespace ShiftRpg.Entities
 
         public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; protected set; }
         public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
+        public float ShatterSubProgressPercentage => CurrentHealth == 0 ? 100f : 100f * CurrentShatterDamage / CurrentHealth;
         public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
         public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
         public int CurrentHealth { get; set; }
@@ -105,12 +108,29 @@ namespace ShiftRpg.Entities
         public double LastDamageTime { get; set; }
         public virtual void TakeDamage(int damage)
         {
-            CurrentHealth                                    -= damage;
-            EnemyHealthBarRuntimeInstance.ProgressPercentage =  CurrentHealthPercentage;
+            CurrentHealth                                       -= damage;
+            EnemyHealthBarRuntimeInstance.ProgressPercentage    =  CurrentHealthPercentage;
             if (CurrentHealth <= 0)
             {
                 Destroy();
             }
+        }
+
+        public int CurrentShatterDamage { get; set; }
+        public float MaxShatterDamagePercentage => 20;
+
+        public void TakeShatterDamage(int damage)
+        {
+            CurrentShatterDamage                                += damage;
+            CurrentShatterDamage = Math.Min((int)(MaxShatterDamagePercentage / 100f * MaxHealth), CurrentShatterDamage);
+            CurrentShatterDamage = Math.Min(CurrentHealth, CurrentShatterDamage);
+            EnemyHealthBarRuntimeInstance.SubProgressPercentage = ShatterSubProgressPercentage;
+        }
+
+        public void ResetShatterDamage()
+        {
+            CurrentShatterDamage                                = 0;
+            EnemyHealthBarRuntimeInstance.SubProgressPercentage = ShatterSubProgressPercentage;
         }
     }
 }

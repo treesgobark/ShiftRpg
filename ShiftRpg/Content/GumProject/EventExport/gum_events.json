@@ -14,6 +14,20 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2024-02-10T18:59:52.9571433Z"
+      },
+      {
+        "NewName": "ProgressBar (Container).Foreground1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-02-14T20:41:12.118646Z"
+      },
+      {
+        "NewName": "ProgressBar (Container).SubProgress",
+        "OldName": "ProgressBar (Container).Foreground1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-02-14T21:45:24.3773006Z"
       }
     ]
   }

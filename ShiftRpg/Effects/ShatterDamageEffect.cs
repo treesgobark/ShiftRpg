@@ -1,18 +1,20 @@
-using System;
 using System.Collections.Generic;
 using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects;
 
-public record DamageEffect(
+public record ShatterDamageEffect(
     Team AppliesTo,
     SourceTag Source,
-    int Damage,
+    int ShatterDamage,
     ICollection<float> AdditiveIncreases,
     ICollection<float> MultiplicativeIncreases) : IEffect
 {
-    public DamageEffect(Team AppliesTo, SourceTag Source, int Damage)
-        : this(AppliesTo, Source, Damage, new List<float>(), new List<float>()) { }
-
+    public ShatterDamageEffect(Team AppliesTo, SourceTag Source, int ShatterDamage)
+        : this(AppliesTo, Source, ShatterDamage, new List<float>(), new List<float>())
+    {
+        
+    }
+    
     public Guid EffectId { get; } = Guid.NewGuid();
 }

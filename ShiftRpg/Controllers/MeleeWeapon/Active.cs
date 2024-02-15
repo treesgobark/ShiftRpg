@@ -35,7 +35,8 @@ public class Active(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
     {
         Parent.PolygonInstance.Visible = false;
         // Parent.IsDamageDealingEnabled  = false;
-        Parent.Owner.InputEnabled      = true;
+        Parent.Owner.InputEnabled = true;
+        Parent.TargetHitEffects   = [];
     }
 
     public override void BeginAttack() { }

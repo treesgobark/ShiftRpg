@@ -34,6 +34,7 @@ namespace ShiftRpg.Entities
             {
                 CurrentHealth                                    = MaxHealth;
                 EnemyHealthBarRuntimeInstance.ProgressPercentage = CurrentHealthPercentage;
+                ResetShatterDamage();
             }
 
         }
@@ -60,6 +61,8 @@ namespace ShiftRpg.Entities
                 }
                 
                 effect.HandleStandardDamage(this)
+                    .HandleStandardShatterDamage(this)
+                    .HandleStandardApplyShatter(this)
                     .HandleStandardPersistentEffect(this);
             }
         }

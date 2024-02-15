@@ -28,9 +28,43 @@ public static class StandardEffectHandlers
         receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
 
         var damageNumber = DamageNumberFactory.CreateNew();
-        damageNumber.DamageNumberRuntimeInstance.Text = finalDamage.ToString();
-        damageNumber.Position                         = receiver.Position;
+        damageNumber.DamageNumberRuntimeInstance.Text                   = finalDamage.ToString();
+        damageNumber.DamageNumberRuntimeInstance.TextInstanceFont_Scale = float.Sqrt(finalDamage);
+        damageNumber.Position                                           = receiver.Position;
         
+        return effect;
+    }
+    
+    public static IEffect HandleStandardShatterDamage<T>(this IEffect effect, T receiver) where T : PositionedObject, ITakesShatterDamage
+    {
+        if (effect is not ShatterDamageEffect damage) { return effect; }
+        if (!receiver.Team.IsSubsetOf(damage.AppliesTo)) { return effect; }
+
+        int finalDamage = damage.ShatterDamage;
+
+        finalDamage = (int)((damage.AdditiveIncreases.Sum() + 1) * finalDamage);
+
+        if (damage.MultiplicativeIncreases.Count > 0)
+        {
+            finalDamage = (int)(damage.MultiplicativeIncreases.Aggregate((f1, f2) => f1 * f2) * finalDamage);
+        }
+        
+        receiver.TakeShatterDamage(finalDamage);
+        receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
+
+        return effect;
+    }
+
+    public static IEffect HandleStandardApplyShatter<T>(this IEffect effect, T receiver)
+        where T : PositionedObject, ITakesShatterDamage
+    {
+        if (effect is not ApplyShatterEffect damage) { return effect; }
+        if (!receiver.Team.IsSubsetOf(damage.AppliesTo)) { return effect; }
+
+        receiver.HandleEffects([new DamageEffect(effect.AppliesTo, SourceTag.Shatter, receiver.CurrentShatterDamage)]);
+        receiver.ResetShatterDamage();
+
+        receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
         return effect;
     }
     

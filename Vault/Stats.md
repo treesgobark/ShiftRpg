@@ -6,7 +6,7 @@
 - Crit Chance
 - Crit Damage
 - Weakpoint Damage
-- Soul Damage
+- Shatter Damage
 - Shield Capacity
 - Shield Recharge
 - Shield Recharge Delay

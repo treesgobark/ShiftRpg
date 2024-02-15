@@ -80,6 +80,7 @@ public class Idle(Entities.MeleeWeapon obj) : MeleeWeaponController(obj)
             new DamageEffect(~Parent.Team, Parent.Source, 2),
             new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.RotationZ),
             new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1),
+            new ApplyShatterEffect(~Parent.Team, Parent.Source),
         };
     }
 

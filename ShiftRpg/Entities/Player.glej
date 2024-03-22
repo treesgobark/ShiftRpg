@@ -152,7 +152,7 @@
     },
     {
       "InstanceName": "HealthBar",
-      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
+      "SourceClassType": "ShiftRpg.GumRuntimes.OldProgressBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",

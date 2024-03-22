@@ -23,6 +23,9 @@ namespace ShiftRpg.Entities
 {
     public abstract partial class Enemy : ITakesShatterDamage
     {
+        private int _currentShatterDamage;
+        private int _currentHealth;
+
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -103,7 +106,12 @@ namespace ShiftRpg.Entities
         public float ShatterSubProgressPercentage => CurrentHealth == 0 ? 100f : 100f * CurrentShatterDamage / CurrentHealth;
         public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
         public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
-        public int CurrentHealth { get; set; }
+
+        public int CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = (int)MathHelper.Clamp(value, -1, MaxHealth);
+        }
 
         public double LastDamageTime { get; set; }
         public virtual void TakeDamage(int damage)
@@ -116,7 +124,19 @@ namespace ShiftRpg.Entities
             }
         }
 
-        public int CurrentShatterDamage { get; set; }
+        public int CurrentShatterDamage
+        {
+            get => _currentShatterDamage;
+            set
+            {
+                _currentShatterDamage = value;
+                if (_currentShatterDamage < 0)
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+
         public float MaxShatterDamagePercentage => 20;
 
         public void TakeShatterDamage(int damage)

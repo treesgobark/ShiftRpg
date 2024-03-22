@@ -192,9 +192,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>verticallines</Name>
     </None>
+    <None Include="content\gumproject\components\healthbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>healthbar</Name>
+    </None>
+    <None Include="content\gumproject\components\healthbar2.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>healthbar2</Name>
+    </None>
     <None Include="content\gumproject\components\mainmenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>mainmenu</Name>
+    </None>
+    <None Include="content\gumproject\components\oldprogressbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>oldprogressbar</Name>
     </None>
     <None Include="content\gumproject\components\options.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -396,6 +408,7 @@
     <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\ITakesDamage.cs" />
     <Compile Include="Contracts\ITakesShatterDamage.cs" />
+    <Compile Include="Contracts\ITakesWeaknessDamage.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
     <Compile Include="Controllers\Gun\GunController.cs" />
@@ -716,6 +729,11 @@
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
+    <Compile Include="GumRuntimes\HealthBar2Runtime.cs" />
+    <Compile Include="GumRuntimes\HealthBar2Runtime.Generated.cs">
+      <DependentUpon>HealthBar2Runtime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
@@ -725,6 +743,10 @@
       <DependentUpon>MainMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\OldProgressBarRuntime.cs" />
+    <Compile Include="GumRuntimes\OldProgressBarRuntime.Generated.cs">
+      <DependentUpon>OldProgressBarRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\OptionsRuntime.cs" />
     <Compile Include="GumRuntimes\OptionsRuntime.Generated.cs">
       <DependentUpon>OptionsRuntime.cs</DependentUpon>
@@ -734,6 +756,7 @@
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ProgressBar1Runtime.Generated.cs" />
     <Compile Include="GumRuntimes\ProgressBarRuntime.cs" />
     <Compile Include="GumRuntimes\ProgressBarRuntime.Generated.cs">
       <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
@@ -809,12 +832,11 @@
     <Compile Include="TileGraphics\TileNodeNetworkCreator.Generated.cs" />
     <Compile Include="TileGraphics\Tileset.Generated.cs" />
     <Compile Include="TileGraphics\TilesetExtensionMethods.Generated.cs" />
-    <Compile Include="TopDown\AnimationSet.Generated.cs" />
-    <Compile Include="TopDown\DirectionBasedAnimationLayer.Generated.cs" />
     <Compile Include="TopDown\Enums.Generated.cs" />
     <Compile Include="TopDown\Interfaces.Generated.cs" />
     <Compile Include="TopDown\TopDownAiInput.Generated.cs" />
     <Compile Include="TopDown\TopDownAiTargetLogic.Generated.cs" />
+    <Compile Include="TopDown\TopDownAnimationControllerGenerator.Generated.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />

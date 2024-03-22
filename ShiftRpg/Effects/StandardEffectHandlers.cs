@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using FlatRedBall;
+using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
 using ShiftRpg.Factories;
 
@@ -29,7 +30,7 @@ public static class StandardEffectHandlers
 
         var damageNumber = DamageNumberFactory.CreateNew();
         damageNumber.DamageNumberRuntimeInstance.Text                   = finalDamage.ToString();
-        damageNumber.DamageNumberRuntimeInstance.TextInstanceFont_Scale = float.Sqrt(finalDamage);
+        damageNumber.DamageNumberRuntimeInstance.TextInstanceFont_Scale = float.Sqrt(MathHelper.Max(finalDamage, 1));
         damageNumber.Position                                           = receiver.Position;
         
         return effect;
@@ -61,8 +62,11 @@ public static class StandardEffectHandlers
         if (effect is not ApplyShatterEffect damage) { return effect; }
         if (!receiver.Team.IsSubsetOf(damage.AppliesTo)) { return effect; }
 
-        receiver.HandleEffects([new DamageEffect(effect.AppliesTo, SourceTag.Shatter, receiver.CurrentShatterDamage)]);
-        receiver.ResetShatterDamage();
+        if (receiver.CurrentShatterDamage > 0)
+        {
+            receiver.HandleEffects([new DamageEffect(effect.AppliesTo, SourceTag.Shatter, receiver.CurrentShatterDamage)]);
+            receiver.ResetShatterDamage();
+        }
 
         receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
         return effect;

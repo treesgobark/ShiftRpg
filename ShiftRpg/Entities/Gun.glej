@@ -49,7 +49,7 @@
   "NamedObjects": [
     {
       "InstanceName": "MagazineBar",
-      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressBarRuntime",
+      "SourceClassType": "ShiftRpg.GumRuntimes.OldProgressBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",

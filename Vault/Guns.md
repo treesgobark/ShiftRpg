@@ -4,6 +4,9 @@ Core Mechanics:
 - Recoil
 - ADS for better accuracy (maybe less visibility)
 - Shatter Damage: normal attacks build up a gray health bar over an enemy's current health and you can explode the Shatter damage with melee damage
+	- Upgrades:
+	- can chain to other enemies on pop
+	- buildup is aoe
 
 Limitations:
 - Magazine size and reloading

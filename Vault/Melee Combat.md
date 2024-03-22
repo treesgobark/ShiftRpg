@@ -7,6 +7,10 @@ Core Mechanics:
 - Weakpoints
 	- Also pretty much godfall
 - Poise/Stun/Stagger
+- Damage increasing bar
+	- bar fills from melee attacks
+	- bar provides damage increase to ranged damage depending on how full it is
+	- dealing ranged damage depletes the bar by some amount
 
 Limitations:
 - Low range

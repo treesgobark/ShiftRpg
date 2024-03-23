@@ -170,9 +170,9 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
     public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
     public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
-    public int CurrentHealth { get; set; }
+    public float CurrentHealth { get; set; }
     public double LastDamageTime { get; set; }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         CurrentHealth                -= damage;
         HealthBar.ProgressPercentage =  CurrentHealthPercentage;

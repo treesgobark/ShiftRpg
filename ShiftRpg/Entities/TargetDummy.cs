@@ -33,10 +33,9 @@ namespace ShiftRpg.Entities
             if (TimeSinceLastDamage > 1.5)
             {
                 CurrentHealth                                    = MaxHealth;
-                EnemyHealthBarRuntimeInstance.ProgressPercentage = CurrentHealthPercentage;
+                HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
                 ResetShatterDamage();
             }
-
         }
 
         private void CustomDestroy()
@@ -67,10 +66,10 @@ namespace ShiftRpg.Entities
             }
         }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(float damage)
         {
-            CurrentHealth                                    -= damage;
-            EnemyHealthBarRuntimeInstance.ProgressPercentage =  CurrentHealthPercentage;
+            CurrentHealth                                      -= damage;
+            HealthBarRuntimeInstance.MainBarProgressPercentage =  CurrentHealthPercentage;
         }
     }
 }

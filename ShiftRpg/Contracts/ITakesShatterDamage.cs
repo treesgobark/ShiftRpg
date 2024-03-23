@@ -2,9 +2,9 @@ namespace ShiftRpg.Contracts;
 
 public interface ITakesShatterDamage : ITakesDamage
 {
-    int CurrentShatterDamage { get; }
+    float CurrentShatterDamage { get; }
     float MaxShatterDamagePercentage { get; }
     
-    void TakeShatterDamage(int damage);
+    void TakeShatterDamage(float damage);
     void ResetShatterDamage();
 }

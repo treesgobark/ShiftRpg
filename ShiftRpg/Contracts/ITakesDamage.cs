@@ -6,8 +6,8 @@ namespace ShiftRpg.Contracts;
 
 public interface ITakesDamage : IEffectReceiver
 {
-    int CurrentHealth { get; }
-    int MaxHealth { get; }
+    float CurrentHealth { get; }
+    float MaxHealth { get; }
     double LastDamageTime { get; set; }
     double InvulnerabilityTimeAfterDamage { get; set; }
     
@@ -15,5 +15,5 @@ public interface ITakesDamage : IEffectReceiver
     double TimeSinceLastDamage { get; }
     bool IsInvulnerable { get; }
 
-    void TakeDamage(int damage);
+    void TakeDamage(float damage);
 }

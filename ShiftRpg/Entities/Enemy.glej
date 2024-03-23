@@ -87,12 +87,12 @@
       "Properties": [
         {
           "Name": "Type",
-          "Value": "int",
+          "Value": "float",
           "Type": "String"
         }
       ],
       "Name": "MaxHealth",
-      "DefaultValue": 10,
+      "DefaultValue": 100.0,
       "SetByDerived": true
     },
     {
@@ -156,8 +156,8 @@
       "GenerateTimedEmit": true
     },
     {
-      "InstanceName": "EnemyHealthBarRuntimeInstance",
-      "SourceClassType": "ShiftRpg.GumRuntimes.OldProgressBarRuntime",
+      "InstanceName": "HealthBarRuntimeInstance",
+      "SourceClassType": "ShiftRpg.GumRuntimes.HealthBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
@@ -169,12 +169,12 @@
         {
           "Type": "float",
           "Member": "Y",
-          "Value": -15.0,
+          "Value": -20.0,
           "Time": 0.0
         }
       ],
       "SourceType": 3,
-      "SourceFile": "EnemyHealthBarRuntime",
+      "SourceFile": "HealthBarRuntime",
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true

@@ -2,9 +2,9 @@ namespace ShiftRpg.Contracts;
 
 public interface ITakesWeaknessDamage : ITakesDamage
 {
-    int CurrentWeaknessDamage { get; }
+    float CurrentWeaknessDamage { get; }
     float MaxWeaknessDamagePercentage { get; }
     
-    void TakeWeaknessDamage(int damage);
+    void TakeWeaknessDamage(float damage);
     void ResetWeaknessDamage();
 }

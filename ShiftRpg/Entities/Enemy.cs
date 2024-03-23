@@ -21,9 +21,8 @@ using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
-    public abstract partial class Enemy : ITakesShatterDamage
+    public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
     {
-        private int _currentShatterDamage;
         private int _currentHealth;
 
         /// <summary>
@@ -107,50 +106,55 @@ namespace ShiftRpg.Entities
         public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
         public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
 
-        public int CurrentHealth
+        public float CurrentHealth
         {
             get => _currentHealth;
             set => _currentHealth = (int)MathHelper.Clamp(value, -1, MaxHealth);
         }
 
         public double LastDamageTime { get; set; }
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(float damage)
         {
             CurrentHealth                                       -= damage;
-            EnemyHealthBarRuntimeInstance.ProgressPercentage    =  CurrentHealthPercentage;
+            HealthBarRuntimeInstance.MainBarProgressPercentage    =  CurrentHealthPercentage;
             if (CurrentHealth <= 0)
             {
                 Destroy();
             }
         }
 
-        public int CurrentShatterDamage
-        {
-            get => _currentShatterDamage;
-            set
-            {
-                _currentShatterDamage = value;
-                if (_currentShatterDamage < 0)
-                {
-                    Console.WriteLine();
-                }
-            }
-        }
+        public float CurrentShatterDamage { get; private set; }
 
         public float MaxShatterDamagePercentage => 20;
+        public int MaxShatterDamageAmount => (int)(MaxShatterDamagePercentage / 100f * MaxHealth);
 
-        public void TakeShatterDamage(int damage)
+        public void TakeShatterDamage(float damage)
         {
-            CurrentShatterDamage                                += damage;
-            CurrentShatterDamage = Math.Min((int)(MaxShatterDamagePercentage / 100f * MaxHealth), CurrentShatterDamage);
+            CurrentShatterDamage += damage;
+            CurrentShatterDamage = Math.Min(MaxShatterDamageAmount, CurrentShatterDamage);
             CurrentShatterDamage = Math.Min(CurrentHealth, CurrentShatterDamage);
-            EnemyHealthBarRuntimeInstance.SubProgressPercentage = ShatterSubProgressPercentage;
+            HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
         }
 
         public void ResetShatterDamage()
         {
-            CurrentShatterDamage                                = 0;
-            EnemyHealthBarRuntimeInstance.SubProgressPercentage = ShatterSubProgressPercentage;
+            CurrentShatterDamage                                  = 0;
+            HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
+        }
+
+        public float CurrentWeaknessDamage { get; private set; }
+        public float MaxWeaknessDamagePercentage => 100;
+        public int MaxWeaknessDamageAmount => (int)(MaxWeaknessDamagePercentage / 100f * MaxHealth);
+        
+        public void TakeWeaknessDamage(float damage)
+        {
+            CurrentWeaknessDamage += damage;
+            CurrentWeaknessDamage =  Math.Min(MaxWeaknessDamageAmount, CurrentWeaknessDamage);
+        }
+
+        public void ResetWeaknessDamage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

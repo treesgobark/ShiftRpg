@@ -76,12 +76,12 @@
       "Properties": [
         {
           "Name": "Type",
-          "Value": "int",
+          "Value": "float",
           "Type": "String"
         }
       ],
       "Name": "MaxHealth",
-      "DefaultValue": 10,
+      "DefaultValue": 10.0,
       "SetByDerived": true
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "InstanceName": "HealthBar",
-      "SourceClassType": "ShiftRpg.GumRuntimes.OldProgressBarRuntime",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressAndSubprogressBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",

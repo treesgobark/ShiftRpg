@@ -6,15 +6,15 @@ namespace ShiftRpg.Effects;
 public class DamageOverTimeEffect(
     Team appliesTo,
     SourceTag source,
-    int damagePerTick,
+    float damagePerTick,
     double ticksPerSecond,
     int numberOfTicks,
     double activationDelay = -1)
     : IPersistentEffect
 {
     public double DamagePerSecond => DamagePerTick * TicksPerSecond;
-    public int RemainingDamage => DamagePerTick * RemainingTicks;
-    public int DamagePerTick { get; } = damagePerTick;
+    public float RemainingDamage => DamagePerTick  * RemainingTicks;
+    public float DamagePerTick { get; } = damagePerTick;
     public int RemainingTicks { get; protected set; } = numberOfTicks;
     public double TicksPerSecond { get; } = ticksPerSecond;
     public double SecondsPerTick => 1 / TicksPerSecond;

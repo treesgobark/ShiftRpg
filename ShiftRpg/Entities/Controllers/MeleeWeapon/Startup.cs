@@ -5,7 +5,7 @@ namespace ShiftRpg.Entities;
 
 public partial class MeleeWeapon
 {
-    public class Startup : TimedState<MeleeWeapon>
+    protected class Startup : TimedState<MeleeWeapon>
     {
         public Startup(MeleeWeapon parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
         

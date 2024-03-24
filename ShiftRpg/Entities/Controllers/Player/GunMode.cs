@@ -5,7 +5,7 @@ namespace ShiftRpg.Entities;
 
 public partial class Player
 {
-    public class GunMode : TimedState<Player>
+    protected class GunMode : TimedState<Player>
     {
         public GunMode(Player parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
         

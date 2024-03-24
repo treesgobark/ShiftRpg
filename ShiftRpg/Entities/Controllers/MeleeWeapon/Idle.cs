@@ -10,7 +10,7 @@ namespace ShiftRpg.Entities;
 
 partial class MeleeWeapon
 {
-    public class Idle : TimedState<MeleeWeapon>
+    protected class Idle : TimedState<MeleeWeapon>
     {
         protected IState? NextState { get; set; }
         

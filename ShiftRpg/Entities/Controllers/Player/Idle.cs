@@ -5,7 +5,7 @@ namespace ShiftRpg.Entities;
 
 public partial class Player
 {
-    public class Idle : TimedState<Player>
+    protected class Idle : TimedState<Player>
     {
         public Idle(Player parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
         

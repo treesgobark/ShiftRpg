@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Controllers;
-using ShiftRpg.Controllers.Gun;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 using ShiftRpg.Entities;
 
 namespace ShiftRpg.Contracts;
 
-public interface IGun : IWeapon<IGunInputDevice>, IHasControllers<IGun, GunController>
+public interface IGun : IWeapon<IGunInputDevice>
 {
     int MagazineRemaining { get; }
     int MagazineSize { get; }

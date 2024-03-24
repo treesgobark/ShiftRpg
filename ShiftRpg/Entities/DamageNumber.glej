@@ -61,7 +61,6 @@
       "InstructionSaves": [],
       "SourceType": 3,
       "SourceFile": "DamageNumberRuntime",
-      "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

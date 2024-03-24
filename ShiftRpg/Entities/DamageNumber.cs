@@ -51,5 +51,12 @@ namespace ShiftRpg.Entities
 
 
         }
+
+        public void SetStartingValues(string text, float fontScale, Vector3 position)
+        {
+            DamageNumberRuntimeInstance.Text                   = text;
+            DamageNumberRuntimeInstance.TextInstanceFont_Scale = fontScale;
+            Position                                           = position;
+        }
     }
 }

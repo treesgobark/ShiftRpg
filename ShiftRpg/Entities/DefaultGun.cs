@@ -1,8 +1,8 @@
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Controllers;
+using ANLG.Utilities.FlatRedBall.States;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.Gun;
 using ShiftRpg.Effects;
 using ShiftRpg.Factories;
 
@@ -10,6 +10,8 @@ namespace ShiftRpg.Entities
 {
     public partial class DefaultGun
     {
+        protected StateMachine StateMachine { get; set; }
+        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -17,40 +19,29 @@ namespace ShiftRpg.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            Controllers = new ControllerCollection<IGun, GunController>();
-            Controllers.Add(new Ready(this));
-            Controllers.Add(new Recovery(this));
-            Controllers.Add(new Reloading(this));
-            Controllers.InitializeStartingController<Ready>();
+            StateMachine = new StateMachine();
+            StateMachine.Add(new Ready(this, StateMachine));
+            StateMachine.Add(new Recovery(this, StateMachine));
+            StateMachine.Add(new Reloading(this, StateMachine));
+            StateMachine.InitializeStartingState<Ready>();
         }
 
         private void CustomActivity()
         {
-            Controllers.DoCurrentControllerActivity();
+            StateMachine.DoCurrentStateActivity();
         }
 
-        private void CustomDestroy()
-        {
-        }
+        private void CustomDestroy() { }
 
-        private static void CustomLoadStaticContent(string contentManagerName)
-        {
-        }
+        private static void CustomLoadStaticContent(string contentManagerName) { }
 
         public override void Fire()
         {
             var dir = Vector2ExtensionMethods.FromAngle(Parent.RotationZ).NormalizedOrZero().ToVector3();
             if (dir == Vector3.Zero) return;
             
-            var proj = BulletFactory.CreateNew();
-            proj.Position = Position;
-        
-            // bullet.DamageToDeal          = data.Damage;
-            proj.CircleInstance.Radius = CurrentGunData.ProjectileRadius;
-            proj.Velocity              = dir * CurrentGunData.ProjectileSpeed;
-            proj.ApplyHolderEffects    = ApplyHolderEffects;
-            proj.TargetHitEffects      = TargetHitEffects;
-            proj.HolderHitEffects      = HolderHitEffects;
+            var proj = BulletFactory.CreateNew(Position);
+            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, ApplyHolderEffects, TargetHitEffects, HolderHitEffects);
 
             var effects = new[]
             {

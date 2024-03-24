@@ -196,17 +196,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>healthbar</Name>
     </None>
-    <None Include="content\gumproject\components\healthbar2.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>healthbar2</Name>
-    </None>
     <None Include="content\gumproject\components\mainmenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>mainmenu</Name>
-    </None>
-    <None Include="content\gumproject\components\oldprogressbar.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>oldprogressbar</Name>
     </None>
     <None Include="content\gumproject\components\options.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -215,6 +207,10 @@
     <None Include="content\gumproject\components\pausemenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>pausemenu</Name>
+    </None>
+    <None Include="content\gumproject\components\progressandsubprogressbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>progressandsubprogressbar</Name>
     </None>
     <None Include="content\gumproject\components\progressbar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -411,19 +407,6 @@
     <Compile Include="Contracts\ITakesWeaknessDamage.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
-    <Compile Include="Controllers\Gun\GunController.cs" />
-    <Compile Include="Controllers\Gun\Ready.cs" />
-    <Compile Include="Controllers\Gun\Recovery.cs" />
-    <Compile Include="Controllers\Gun\Reloading.cs" />
-    <Compile Include="Controllers\MeleeWeapon\Active.cs" />
-    <Compile Include="Controllers\MeleeWeapon\Idle.cs" />
-    <Compile Include="Controllers\MeleeWeapon\MeleeWeaponController.cs" />
-    <Compile Include="Controllers\MeleeWeapon\Recovery.cs" />
-    <Compile Include="Controllers\MeleeWeapon\Startup.cs" />
-    <Compile Include="Controllers\Player\GunMode.cs" />
-    <Compile Include="Controllers\Player\Idle.cs" />
-    <Compile Include="Controllers\Player\MeleeMode.cs" />
-    <Compile Include="Controllers\Player\PlayerController.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs" />
     <Compile Include="DataTypes\GunData.cs" />
     <Compile Include="DataTypes\GunData.Generated.cs">
@@ -441,10 +424,21 @@
     <Compile Include="Effects\KnockbackEffect.cs" />
     <Compile Include="Effects\StandardEffectHandlers.cs" />
     <Compile Include="Effects\Team.cs" />
+    <Compile Include="Entities\Controllers\Gun\Ready.cs" />
+    <Compile Include="Entities\Controllers\Gun\Recovery.cs" />
+    <Compile Include="Entities\Controllers\Gun\Reloading.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Controllers\MeleeWeapon\Active.cs" />
+    <Compile Include="Entities\Controllers\MeleeWeapon\Idle.cs" />
+    <Compile Include="Entities\Controllers\MeleeWeapon\Recovery.cs" />
+    <Compile Include="Entities\Controllers\MeleeWeapon\Startup.cs" />
+    <Compile Include="Entities\Controllers\Player\GunMode.cs" />
+    <Compile Include="Entities\Controllers\Player\Idle.cs" />
+    <Compile Include="Entities\Controllers\Player\MeleeMode.cs" />
+    <Compile Include="Entities\Controllers\TimedState.cs" />
     <Compile Include="Entities\DamageNumber.cs" />
     <Compile Include="Entities\DamageNumber.Generated.cs">
       <DependentUpon>DamageNumber.cs</DependentUpon>
@@ -729,11 +723,10 @@
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
-    <Compile Include="GumRuntimes\HealthBar2Runtime.cs" />
-    <Compile Include="GumRuntimes\HealthBar2Runtime.Generated.cs">
-      <DependentUpon>HealthBar2Runtime.cs</DependentUpon>
+    <Compile Include="GumRuntimes\HealthBarRuntime.cs" />
+    <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs">
+      <DependentUpon>HealthBarRuntime.cs</DependentUpon>
     </Compile>
-    <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
@@ -743,10 +736,6 @@
       <DependentUpon>MainMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\OldProgressBarRuntime.cs" />
-    <Compile Include="GumRuntimes\OldProgressBarRuntime.Generated.cs">
-      <DependentUpon>OldProgressBarRuntime.cs</DependentUpon>
-    </Compile>
     <Compile Include="GumRuntimes\OptionsRuntime.cs" />
     <Compile Include="GumRuntimes\OptionsRuntime.Generated.cs">
       <DependentUpon>OptionsRuntime.cs</DependentUpon>
@@ -756,6 +745,10 @@
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.cs" />
+    <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.Generated.cs">
+      <DependentUpon>ProgressAndSubprogressBarRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\ProgressBar1Runtime.Generated.cs" />
     <Compile Include="GumRuntimes\ProgressBarRuntime.cs" />
     <Compile Include="GumRuntimes\ProgressBarRuntime.Generated.cs">

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Controllers;
+using ANLG.Utilities.FlatRedBall.States;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.Gun;
 using ShiftRpg.Effects;
 using ShiftRpg.Entities;
 using ShiftRpg.InputDevices;
@@ -36,15 +36,12 @@ public class ZeroGun : ZeroWeapon<IGunInputDevice>, IGun
     public void Fire() { }
     public void StartReload() { }
     public void FillMagazine() { }
-
-    public ControllerCollection<IGun, GunController> Controllers { get; }
     public override IGunInputDevice InputDevice => ZeroGunInputDevice.Instance;
 }
 
 public class ZeroMeleeWeapon : ZeroWeapon<IMeleeWeaponInputDevice>, IMeleeWeapon
 {
     public static readonly ZeroMeleeWeapon Instance = new();
-
-    public ControllerCollection<IGun, GunController> Controllers { get; }
+    
     public override IMeleeWeaponInputDevice InputDevice => ZeroMeleeWeaponInputDevice.Instance;
 }

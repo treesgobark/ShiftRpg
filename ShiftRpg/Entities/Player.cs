@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.FlatRedBall.States;
 using FlatRedBall;
 using FlatRedBall.Entities;
 using FlatRedBall.Graphics;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.Player;
 using ShiftRpg.Effects;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
@@ -17,7 +17,7 @@ using ShiftRpg.Models;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player : IHasControllers<Player, PlayerController>, ITakesDamage
+public partial class Player : ITakesDamage
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public IGunInputDevice GunInputDevice { get; set; }
@@ -45,11 +45,11 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
 
     private void InitializeControllers()
     {
-        Controllers = new ControllerCollection<Player, PlayerController>();
-        Controllers.Add(new Idle(this));
-        Controllers.Add(new MeleeMode(this));
-        Controllers.Add(new GunMode(this));
-        Controllers.InitializeStartingController<MeleeMode>();
+        StateMachine = new StateMachine();
+        StateMachine.Add(new Idle(this, StateMachine));
+        StateMachine.Add(new MeleeMode(this, StateMachine));
+        StateMachine.Add(new GunMode(this, StateMachine));
+        StateMachine.InitializeStartingState<MeleeMode>();
     }
 
     private void InitializeGun()
@@ -96,7 +96,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     private void CustomActivity()
     {
         HandlePersistentEffects();
-        Controllers.DoCurrentControllerActivity();
+        StateMachine.DoCurrentStateActivity();
     }
 
     private void CustomDestroy()
@@ -162,7 +162,7 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     
     // Implement IHasControllers
     
-    public ControllerCollection<Player, PlayerController> Controllers { get; protected set; }
+    public StateMachine StateMachine { get; protected set; }
     
     // Implement ITakesDamage
     
@@ -176,5 +176,10 @@ public partial class Player : IHasControllers<Player, PlayerController>, ITakesD
     {
         CurrentHealth                -= damage;
         HealthBar.ProgressPercentage =  CurrentHealthPercentage;
+    }
+
+    public void SetPlayerColor(Color color)
+    {
+        CircleInstance.Color = color;
     }
 }

@@ -7,7 +7,6 @@ using FlatRedBall.Content.Polygon;
 using FlatRedBall.Debugging;
 using FlatRedBall.Input;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.MeleeWeapon;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 using ShiftRpg.InputDevices;
@@ -15,7 +14,7 @@ using Point = FlatRedBall.Math.Geometry.Point;
 
 namespace ShiftRpg.Entities;
 
-public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeWeapon, MeleeWeaponController>
+public abstract partial class MeleeWeapon : IMeleeWeapon
 {
     public AttackData CurrentAttackData { get; set; }
     public readonly CyclableList<string> AttackList = new(AttackData.OrderedList);
@@ -73,10 +72,6 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
     
     public Team Team { get; set; }
     public SourceTag Source { get; set; } = SourceTag.Melee;
-
-    // Implement IHasControllers
-    
-    public ControllerCollection<MeleeWeapon, MeleeWeaponController> Controllers { get; protected set; }
     
     // Implement IMeleeWeapon
 
@@ -93,5 +88,30 @@ public abstract partial class MeleeWeapon : IMeleeWeapon, IHasControllers<MeleeW
     public void Unequip()
     {
         InputDevice = ZeroMeleeWeaponInputDevice.Instance;
+    }
+    
+    public void ShowHitbox(bool isVisible)
+    {
+        PolygonInstance.Visible = isVisible;
+    }
+
+    public void PrepareAttackData(AttackData data, IReadOnlyList<IEffect> holderEffects,
+        IReadOnlyList<IEffect> targetHitEffects)
+    {
+        PolygonSave.Points[0].X = data.HitboxOffsetX;
+        PolygonSave.Points[4].X = data.HitboxOffsetX;
+        PolygonSave.Points[0].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        PolygonSave.Points[4].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        
+        PolygonSave.Points[1].X = data.HitboxOffsetX + data.HitboxSizeX;
+        PolygonSave.Points[1].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
+        
+        PolygonSave.Points[2].X = data.HitboxOffsetX + data.HitboxSizeX;
+        PolygonSave.Points[2].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
+        
+        PolygonSave.Points[3].X = data.HitboxOffsetX;
+        PolygonSave.Points[3].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
+        
+        PolygonSave.MapShapeRelative(PolygonInstance);
     }
 }

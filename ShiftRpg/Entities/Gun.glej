@@ -49,7 +49,7 @@
   "NamedObjects": [
     {
       "InstanceName": "MagazineBar",
-      "SourceClassType": "ShiftRpg.GumRuntimes.OldProgressBarRuntime",
+      "SourceClassType": "ShiftRpg.GumRuntimes.ProgressAndSubprogressBarRuntime",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
@@ -103,7 +103,6 @@
       ],
       "SourceType": 3,
       "SourceFile": "ProgressBarRuntime",
-      "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     },
@@ -133,7 +132,6 @@
       ],
       "SourceType": 2,
       "SourceFile": "Circle",
-      "HasPublicProperty": true,
       "SetByDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true

@@ -72,7 +72,7 @@
       ],
       "SourceType": 2,
       "SourceFile": "Circle",
-      "HasPublicProperty": true,
+      "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

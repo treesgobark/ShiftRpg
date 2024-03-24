@@ -78,7 +78,6 @@
       ],
       "SourceType": 2,
       "SourceFile": "Polygon",
-      "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

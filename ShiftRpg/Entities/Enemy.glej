@@ -151,7 +151,6 @@
       ],
       "SourceType": 2,
       "SourceFile": "Circle",
-      "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     },

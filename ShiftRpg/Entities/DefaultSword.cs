@@ -1,10 +1,12 @@
 using ANLG.Utilities.FlatRedBall.Controllers;
-using ShiftRpg.Controllers.MeleeWeapon;
+using ANLG.Utilities.FlatRedBall.States;
 
 namespace ShiftRpg.Entities;
 
 public partial class DefaultSword
 {
+    protected StateMachine StateMachine { get; set; }
+    
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
     /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -17,7 +19,7 @@ public partial class DefaultSword
 
     private void CustomActivity()
     {
-        Controllers.DoCurrentControllerActivity();
+        StateMachine.DoCurrentStateActivity();
     }
 
     private void CustomDestroy()
@@ -30,11 +32,11 @@ public partial class DefaultSword
 
     private void InitializeControllers()
     {
-        Controllers = new ControllerCollection<MeleeWeapon, MeleeWeaponController>();
-        Controllers.Add(new Idle(this));
-        Controllers.Add(new Startup(this));
-        Controllers.Add(new Active(this));
-        Controllers.Add(new Recovery(this));
-        Controllers.InitializeStartingController<Idle>();
+        StateMachine = new StateMachine();
+        StateMachine.Add(new Idle(this, StateMachine));
+        StateMachine.Add(new Startup(this, StateMachine));
+        StateMachine.Add(new Active(this, StateMachine));
+        StateMachine.Add(new Recovery(this, StateMachine));
+        StateMachine.InitializeStartingState<Idle>();
     }
 }

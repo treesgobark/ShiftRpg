@@ -15,7 +15,7 @@ public static class StandardEffectHandlers
         if (!receiver.Team.IsSubsetOf(damage.AppliesTo)) { return effect; }
         if (receiver.TimeSinceLastDamage < receiver.InvulnerabilityTimeAfterDamage) { return effect; }
 
-        int finalDamage = damage.Damage;
+        float finalDamage = damage.Damage;
 
         finalDamage = (int)((damage.AdditiveIncreases.Sum() + 1) * finalDamage);
 
@@ -28,10 +28,8 @@ public static class StandardEffectHandlers
         receiver.LastDamageTime = TimeManager.CurrentScreenTime;
         receiver.RecentEffects.Add((effect.EffectId, TimeManager.CurrentScreenTime));
 
-        var damageNumber = DamageNumberFactory.CreateNew();
-        damageNumber.DamageNumberRuntimeInstance.Text                   = finalDamage.ToString();
-        damageNumber.DamageNumberRuntimeInstance.TextInstanceFont_Scale = float.Sqrt(MathHelper.Max(finalDamage, 1));
-        damageNumber.Position                                           = receiver.Position;
+        DamageNumberFactory.CreateNew()
+            .SetStartingValues(finalDamage.ToString(), float.Sqrt(MathHelper.Max(finalDamage, 1)), receiver.Position);
         
         return effect;
     }

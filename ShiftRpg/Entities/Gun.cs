@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Debugging;
 using FlatRedBall.Glue.StateInterpolation;
 using FlatRedBall.Input;
 using ShiftRpg.Contracts;
-using ShiftRpg.Controllers.Gun;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 using ShiftRpg.InputDevices;
@@ -59,10 +57,6 @@ namespace ShiftRpg.Entities
         private static void CustomLoadStaticContent(string contentManagerName) { }
         public Team Team { get; set; }
         public SourceTag Source { get; set; } = SourceTag.Gun;
-
-        // Implement IHasControllers
-        
-        public ControllerCollection<IGun, GunController> Controllers { get; protected set; }
         
         // Implement IGun
 

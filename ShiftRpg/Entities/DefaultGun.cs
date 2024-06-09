@@ -1,5 +1,6 @@
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Controllers;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
@@ -22,7 +23,7 @@ namespace ShiftRpg.Entities
             StateMachine = new StateMachine();
             StateMachine.Add(new Ready(this, StateMachine));
             StateMachine.Add(new Recovery(this, StateMachine));
-            StateMachine.Add(new Reloading(this, StateMachine));
+            StateMachine.Add(new SuperRocketReloading(this, StateMachine));
             StateMachine.InitializeStartingState<Ready>();
         }
 
@@ -41,13 +42,11 @@ namespace ShiftRpg.Entities
             if (dir == Vector3.Zero) return;
             
             var proj = BulletFactory.CreateNew(Position);
-            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, ApplyHolderEffects, TargetHitEffects, HolderHitEffects);
+            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects);
 
-            var effects = new[]
-            {
-                new KnockbackEffect(Team, Source, 100, RotationZ + MathConstants.HalfTurn)
-            };
-            ApplyHolderEffects(effects);
+            var effects = new EffectBundle(Team, Source);
+            effects.AddEffect(new KnockbackEffect(Team, Source, 100, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn)));
+            Holder.HandlerCollection.Handle(effects);
 
             MagazineRemaining--;
         }

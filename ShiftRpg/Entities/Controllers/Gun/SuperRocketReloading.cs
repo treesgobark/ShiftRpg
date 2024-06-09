@@ -5,18 +5,14 @@ namespace ShiftRpg.Entities;
 
 public partial class Gun
 {
-    protected class Reloading : TimedState<IGun>
+    protected class SuperRocketReloading : Reloading
     {
-        public Reloading(IGun parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
-        
-        public override void Initialize() { }
+        public SuperRocketReloading(IGun parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
 
-        protected override void AfterTimedStateActivate() { }
-    
-        public override void OnActivate()
+        protected override void AfterTimedStateActivate()
         {
+            Parent.Fire();
             Parent.StartReload();
-            base.OnActivate();
         }
     
         public override void CustomActivity() { }
@@ -35,7 +31,5 @@ public partial class Gun
         {
             Parent.FillMagazine();
         }
-
-        public override void Uninitialize() { }
     }
 }

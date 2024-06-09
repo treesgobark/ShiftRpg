@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.States;
 using ShiftRpg.Contracts;
+using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Entities;
 
@@ -42,5 +44,7 @@ public partial class Gun
         {
             NextState = null;
         }
+
+        public override void Uninitialize() { }
     }
 }

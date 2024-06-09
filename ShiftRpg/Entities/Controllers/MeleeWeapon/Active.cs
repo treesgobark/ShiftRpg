@@ -14,10 +14,10 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Owner.SetPlayerColor(Color.Red);
             Parent.ShowHitbox(true);
+            // Parent.Holder.SetPlayerColor(Color.Red);
             // Parent.IsDamageDealingEnabled     = true;
-            Parent.Owner.InputEnabled = false;
+            // Parent.Holder.InputEnabled = false;
         }
 
         public override void CustomActivity()
@@ -38,8 +38,10 @@ partial class MeleeWeapon
         {
             Parent.ShowHitbox(false);
             // Parent.IsDamageDealingEnabled  = false;
-            Parent.Owner.InputEnabled = true;
-            Parent.TargetHitEffects   = [];
+            // Parent.Holder.InputEnabled = true;
+            // Parent.TargetHitEffects   = EffectBundle.Empty;
         }
+
+        public override void Uninitialize() { }
     }
 }

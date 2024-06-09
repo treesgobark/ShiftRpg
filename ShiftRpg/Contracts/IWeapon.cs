@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
 using ShiftRpg.Effects;
+using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Contracts;
 
 public interface IWeapon<TInput>
 {
-    Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-    Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; }
+    IWeaponHolder Holder { get; set; }
     
-    IReadOnlyList<IEffect> TargetHitEffects { get; }
-    IReadOnlyList<IEffect> HolderHitEffects { get; }
+    IEffectBundle TargetHitEffects { get; }
+    IEffectBundle HolderHitEffects { get; }
     
-    Team Team { get; set; }
     SourceTag Source { get; set; }
 
     TInput InputDevice { get; }

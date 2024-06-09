@@ -40,6 +40,8 @@ public partial class Player
         {
             Parent.MeleeWeaponCache.IsActive = false;
         }
+
+        public override void Uninitialize() { }
     
         private void SetRotation()
         {

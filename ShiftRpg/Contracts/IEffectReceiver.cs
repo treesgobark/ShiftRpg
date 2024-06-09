@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
 using ShiftRpg.Effects;
+using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Contracts;
 
-public interface IEffectReceiver
+public interface IReadOnlyEffectReceiver
 {
-    IList<(Guid EffectId, double EffectTime)> RecentEffects { get; }
-    IList<IPersistentEffect> PersistentEffects { get; }
+    IReadOnlyEffectHandlerCollection HandlerCollection { get; }
     Team Team { get; }
-    
-    void HandleEffects(IReadOnlyList<IEffect> effects);
+}
+
+public interface IEffectReceiver : IReadOnlyEffectReceiver
+{
+    new IEffectHandlerCollection HandlerCollection { get; }
+    IList<(Guid EffectId, double EffectTime)> RecentEffects { get; }
+    // IList<IPersistentEffect> PersistentEffects { get; }
 }

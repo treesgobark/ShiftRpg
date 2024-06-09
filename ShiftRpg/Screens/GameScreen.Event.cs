@@ -22,30 +22,26 @@ namespace ShiftRpg.Screens
         {
             if (!projectile.IsActive) { return; }
             
-            projectile.ApplyHolderEffects(projectile.HolderHitEffects);
-            player.HandleEffects(projectile.TargetHitEffects);
+            player.HandlerCollection.Handle(projectile.TargetHitEffects);
             projectile.Destroy();
         }
         
         void OnPlayerVsMeleeWeaponCollided (Player player, MeleeWeapon meleeWeapon)
         {
-            meleeWeapon.ApplyHolderEffects(meleeWeapon.HolderHitEffects);
-            player.HandleEffects(meleeWeapon.TargetHitEffects);
+            player.HandlerCollection.Handle(meleeWeapon.TargetHitEffects);
         }
         
         void OnProjectileVsEnemyCollided (Projectile projectile, Enemy enemy) 
         {
             if (!projectile.IsActive) { return; }
             
-            projectile.ApplyHolderEffects(projectile.HolderHitEffects);
-            enemy.HandleEffects(projectile.TargetHitEffects);
+            enemy.HandlerCollection.Handle(projectile.TargetHitEffects);
             projectile.Destroy();
         }
         
         void OnMeleeWeaponVsEnemyCollided (MeleeWeapon meleeWeapon, Enemy enemy) 
         {
-            meleeWeapon.ApplyHolderEffects(meleeWeapon.HolderHitEffects);
-            enemy.HandleEffects(meleeWeapon.TargetHitEffects);
+            enemy.HandlerCollection.Handle(meleeWeapon.TargetHitEffects);
         }
         
         void OnProjectileVsSolidCollisionCollided (Projectile projectile, TileShapeCollection tileShapeCollection) 

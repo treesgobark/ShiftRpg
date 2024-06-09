@@ -13,8 +13,8 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Owner.SetPlayerColor(Color.Blue);
-            Parent.Owner.InputEnabled = false;
+            // Parent.Owner.SetPlayerColor(Color.Blue);
+            Parent.Holder.SetInputEnabled(false);
         }
 
         public override void CustomActivity() { }
@@ -31,7 +31,9 @@ partial class MeleeWeapon
 
         public override void BeforeDeactivate()
         {
-            Parent.Owner.InputEnabled = true;
+            Parent.Holder.SetInputEnabled(true);
         }
+
+        public override void Uninitialize() { }
     }
 }

@@ -1,19 +1,18 @@
 using System.Collections.Generic;
-using ANLG.Utilities.FlatRedBall.Controllers;
-using ANLG.Utilities.FlatRedBall.States;
 using ShiftRpg.Contracts;
 using ShiftRpg.Effects;
-using ShiftRpg.Entities;
+using ShiftRpg.Effects.Handlers;
 using ShiftRpg.InputDevices;
 
 namespace ShiftRpg.Models;
 
 public abstract class ZeroWeapon<T> : IWeapon<T>
 {
-    public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; } = _ => { };
-    public Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; } = _ => { };
-    public IReadOnlyList<IEffect> TargetHitEffects => IEffect.EmptyList;
-    public IReadOnlyList<IEffect> HolderHitEffects => IEffect.EmptyList;
+    public Action<IEffectBundle> ApplyHolderEffects { get; set; } = _ => { };
+    public Action<IEffectBundle> ModifyTargetEffects { get; set; } = _ => { };
+    public IWeaponHolder Holder { get; set; } = ZeroWeaponHolder.Instance;
+    public IEffectBundle TargetHitEffects => EffectBundle.Empty;
+    public IEffectBundle HolderHitEffects => EffectBundle.Empty;
     public Team Team { get; set; } = (Team)(-1);
     public SourceTag Source { get; set; } = (SourceTag)(-1);
 
@@ -44,4 +43,23 @@ public class ZeroMeleeWeapon : ZeroWeapon<IMeleeWeaponInputDevice>, IMeleeWeapon
     public static readonly ZeroMeleeWeapon Instance = new();
     
     public override IMeleeWeaponInputDevice InputDevice => ZeroMeleeWeaponInputDevice.Instance;
+}
+
+public class ZeroWeaponHolder : IWeaponHolder, IEffectReceiver
+{
+    public static readonly ZeroWeaponHolder Instance = new();
+    
+    public ZeroWeaponHolder()
+    {
+        HandlerCollection = new EffectHandlerCollection(this);
+    }
+
+    IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
+
+    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } =
+        new List<(Guid EffectId, double EffectTime)>();
+    public IEffectHandlerCollection HandlerCollection { get; }
+    public Team Team => (Team)(-1);
+    public IEffectBundle ModifyTargetEffects(IEffectBundle effects) => effects;
+    public void SetInputEnabled(bool isEnabled) { }
 }

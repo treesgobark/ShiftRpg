@@ -11,13 +11,14 @@ using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
 using ShiftRpg.Effects;
+using ShiftRpg.Effects.Handlers;
 using ShiftRpg.Factories;
 using ShiftRpg.InputDevices;
 using ShiftRpg.Models;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player : ITakesDamage
+public partial class Player : ITakesDamage, IWeaponHolder
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public IGunInputDevice GunInputDevice { get; set; }
@@ -41,6 +42,7 @@ public partial class Player : ITakesDamage
         Team                                    = Team.Player;
         CurrentHealth                           = MaxHealth;
         InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+        HandlerCollection = new EffectHandlerCollection(this);
     }
 
     private void InitializeControllers()
@@ -60,9 +62,8 @@ public partial class Player : ITakesDamage
             
         gun.RelativeX = 10;
         gun.AttachTo(this);
-        gun.ApplyHolderEffects            = HandleEffects;
-        gun.ModifyTargetEffects           = ModifyOutgoingEffects;
-        gun.Team                          = Team.Player;
+        gun.Team   = Team.Player;
+        gun.Holder = this;
 
         GunCache.Add(gun);
     }
@@ -74,10 +75,8 @@ public partial class Player : ITakesDamage
         var melee = DefaultSwordFactory.CreateNew();
 
         melee.AttachTo(this);
-        melee.Owner                         = this;
-        melee.ApplyHolderEffects            = HandleEffects;
-        melee.ModifyTargetEffects           = ModifyOutgoingEffects;
-        melee.Team                          = Team.Player;
+        melee.Team   = Team.Player;
+        melee.Holder = this;
 
         MeleeWeaponCache.Add(melee);
     }
@@ -95,7 +94,7 @@ public partial class Player : ITakesDamage
 
     private void CustomActivity()
     {
-        HandlePersistentEffects();
+        // HandlePersistentEffects();
         StateMachine.DoCurrentStateActivity();
     }
 
@@ -111,49 +110,51 @@ public partial class Player : ITakesDamage
     
     // Implement IEffectReceiver
 
-    public IList<IPersistentEffect> PersistentEffects { get; } = new List<IPersistentEffect>();
+    IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
+    public IEffectHandlerCollection HandlerCollection { get; protected set; }
+    // public IList<IPersistentEffect> PersistentEffects { get; } = new List<IPersistentEffect>();
     public Team Team { get; set; }
 
-    public void HandlePersistentEffects()
-    {
-        List<IEffect> effects = [];
+    // public void HandlePersistentEffects()
+    // {
+    //     List<IEffect> effects = [];
+    //
+    //     for (var i = PersistentEffects.Count - 1; i >= 0; i--)
+    //     {
+    //         var effect = PersistentEffects[i];
+    //         if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
+    //         {
+    //             effects.Add(dot.GetDamageEffect());
+    //             if (dot.RemainingTicks <= 0)
+    //             {
+    //                 PersistentEffects.RemoveAt(i);
+    //             }
+    //         }
+    //     }
+    //
+    //     HandleEffects(effects);
+    // }
+    //
+    // public void HandleEffects(IEffectBundle effects)
+    // {
+    //     foreach (var effect in effects)
+    //     {
+    //         if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
+    //         {
+    //             continue;
+    //         }
+    //         
+    //         effect.HandleStandardDamage(this)
+    //             .HandleStandardKnockback(this)
+    //             .HandleStandardPersistentEffect(this);
+    //     }
+    // }
 
-        for (var i = PersistentEffects.Count - 1; i >= 0; i--)
-        {
-            var effect = PersistentEffects[i];
-            if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
-            {
-                effects.Add(dot.GetDamageEffect());
-                if (dot.RemainingTicks <= 0)
-                {
-                    PersistentEffects.RemoveAt(i);
-                }
-            }
-        }
-
-        HandleEffects(effects);
-    }
-
-    public void HandleEffects(IReadOnlyList<IEffect> effects)
+    public void ModifyOutgoingEffects(IEffectBundle effects)
     {
         foreach (var effect in effects)
         {
-            if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
-            {
-                continue;
-            }
-            
-            effect.HandleStandardDamage(this)
-                .HandleStandardKnockback(this)
-                .HandleStandardPersistentEffect(this);
-        }
-    }
-
-    public void ModifyOutgoingEffects(IReadOnlyList<IEffect> effects)
-    {
-        foreach (var effect in effects)
-        {
-            if (effect is DamageEffect damage && damage.Source.IsSubsetOf(SourceTag.Gun))
+            if (effect is DamageEffect damage && damage.Source.IsContainedIn(SourceTag.Gun))
             {
                 // damage.AdditiveIncreases.Add(1);
             }
@@ -167,19 +168,24 @@ public partial class Player : ITakesDamage
     // Implement ITakesDamage
     
     public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid EffectId, double EffectTime)>();
-    public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
-    public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
-    public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
     public float CurrentHealth { get; set; }
     public double LastDamageTime { get; set; }
-    public void TakeDamage(float damage)
+
+    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
     {
-        CurrentHealth                -= damage;
-        HealthBar.ProgressPercentage =  CurrentHealthPercentage;
+        foreach (object effect in effects)
+        {
+            if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
+            {
+                damageEffect.AdditiveIncreases.Add(1f);
+            }
+        }
+
+        return effects;
     }
 
-    public void SetPlayerColor(Color color)
+    public void SetInputEnabled(bool isEnabled)
     {
-        CircleInstance.Color = color;
+        InputEnabled = isEnabled;
     }
 }

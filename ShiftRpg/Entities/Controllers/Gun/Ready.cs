@@ -7,7 +7,7 @@ public partial class Gun
 {
     protected class Ready : TimedState<IGun>
     {
-        public Ready(IGun parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+        public Ready(IGun parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine) { }
         
         protected IState? NextState { get; set; }
     
@@ -48,7 +48,9 @@ public partial class Gun
         {
             NextState = null;
         }
-    
+
+        public override void Uninitialize() { }
+
         private void FireBullet()
         {
             Parent.Fire();

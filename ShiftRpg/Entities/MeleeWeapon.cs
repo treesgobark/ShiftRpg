@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Content.Polygon;
@@ -18,9 +15,7 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
 {
     public AttackData CurrentAttackData { get; set; }
     public readonly CyclableList<string> AttackList = new(AttackData.OrderedList);
-    public Player Owner { get; set; }
     public PolygonSave PolygonSave { get; } = new();
-    public bool IsAttacking { get; protected set; }
     public IMeleeWeaponInputDevice InputDevice { get; set; }
 
     /// <summary>
@@ -42,6 +37,8 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         AttackList.CycleToPreviousItem();
         CurrentAttackData             = GlobalContent.AttackData[AttackList.CycleToNextItem()];
         ParentRotationChangesRotation = true;
+        TargetHitEffects              = EffectBundle.Empty;
+        HolderHitEffects              = EffectBundle.Empty;
     }
 
     private void CustomActivity()
@@ -58,27 +55,18 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         }
     }
 
-    private void CustomDestroy()
-    {
+    private void CustomDestroy() { }
 
+    private static void CustomLoadStaticContent(string contentManagerName) { }
 
-    }
-
-    private static void CustomLoadStaticContent(string contentManagerName)
-    {
-
-
-    }
-    
     public Team Team { get; set; }
     public SourceTag Source { get; set; } = SourceTag.Melee;
     
     // Implement IMeleeWeapon
 
-    public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-    public Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; }
-    public IReadOnlyList<IEffect> TargetHitEffects { get; set; } = new List<IEffect>();
-    public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
+    public IWeaponHolder Holder { get; set; }
+    public IEffectBundle TargetHitEffects { get; set; }
+    public IEffectBundle HolderHitEffects { get; set; }
 
     public void Equip(IMeleeWeaponInputDevice inputDevice)
     {
@@ -93,25 +81,5 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
     public void ShowHitbox(bool isVisible)
     {
         PolygonInstance.Visible = isVisible;
-    }
-
-    public void PrepareAttackData(AttackData data, IReadOnlyList<IEffect> holderEffects,
-        IReadOnlyList<IEffect> targetHitEffects)
-    {
-        PolygonSave.Points[0].X = data.HitboxOffsetX;
-        PolygonSave.Points[4].X = data.HitboxOffsetX;
-        PolygonSave.Points[0].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-        PolygonSave.Points[4].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-        
-        PolygonSave.Points[1].X = data.HitboxOffsetX + data.HitboxSizeX;
-        PolygonSave.Points[1].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-        
-        PolygonSave.Points[2].X = data.HitboxOffsetX + data.HitboxSizeX;
-        PolygonSave.Points[2].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
-        
-        PolygonSave.Points[3].X = data.HitboxOffsetX;
-        PolygonSave.Points[3].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
-        
-        PolygonSave.MapShapeRelative(PolygonInstance);
     }
 }

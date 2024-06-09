@@ -1,5 +1,7 @@
 using System;
+using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
@@ -18,7 +20,7 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Owner.SetPlayerColor(Color.Green);
+            // Parent.Holder.SetPlayerColor(Color.Green);
         }
 
         public override void CustomActivity()
@@ -40,6 +42,8 @@ partial class MeleeWeapon
         {
             NextState = null;
         }
+
+        public override void Uninitialize() { }
 
         private void PrepareAttackData()
         {
@@ -63,18 +67,17 @@ partial class MeleeWeapon
 
             // Parent.DamageToDeal = data.Damage;
 
-            Parent.ApplyHolderEffects(new[]
-            {
-                new KnockbackEffect(Parent.Team, Parent.Source, data.KnockbackVelocity, Parent.Owner.RotationZ)
-            });
+            var holderEffects = new EffectBundle(Parent.Team, Parent.Source);
+            holderEffects.AddEffect(new KnockbackEffect(Parent.Team, Parent.Source, data.KnockbackVelocity, Rotation.Zero, true));
+            Parent.Holder.HandlerCollection.Handle(holderEffects);
             
-            Parent.TargetHitEffects = new IEffect[]
-            {
-                new DamageEffect(~Parent.Team, Parent.Source, 2),
-                new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.RotationZ),
-                new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1),
-                new ApplyShatterEffect(~Parent.Team, Parent.Source),
-            };
+            var targetEffects = new EffectBundle(Parent.Team, Parent.Source);
+            targetEffects.AddEffect(new DamageEffect(~Parent.Team, Parent.Source, 2));
+            targetEffects.AddEffect(new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.GetRotationZ()));
+            targetEffects.AddEffect(new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1));
+            targetEffects.AddEffect(new ApplyShatterEffect(~Parent.Team, Parent.Source));
+            targetEffects.AddEffect(new WeaknessDamageEffect(~Parent.Team, Parent.Source, 10));
+            Parent.TargetHitEffects = targetEffects;
         }
 
         public Idle(MeleeWeapon parent, IStateMachine stateMachine) : base(parent, stateMachine)

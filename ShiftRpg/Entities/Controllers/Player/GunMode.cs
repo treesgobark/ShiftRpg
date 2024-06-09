@@ -1,3 +1,4 @@
+using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.States;
 using FlatRedBall.Input;
 
@@ -8,7 +9,7 @@ public partial class Player
     protected class GunMode : TimedState<Player>
     {
         public GunMode(Player parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
-        
+
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
@@ -40,6 +41,8 @@ public partial class Player
         {
             Parent.GunCache.IsActive = false;
         }
+
+        public override void Uninitialize() { }
     
         private void SetRotation()
         {

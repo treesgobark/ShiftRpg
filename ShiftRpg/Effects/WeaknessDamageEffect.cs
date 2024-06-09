@@ -3,15 +3,15 @@ using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects;
 
-public record ShatterDamageEffect(
+public record WeaknessDamageEffect(
     Team AppliesTo,
     SourceTag Source,
-    float ShatterDamage,
+    float WeaknessDamage,
     ICollection<float> AdditiveIncreases,
     ICollection<float> MultiplicativeIncreases) : IEffect
 {
-    public ShatterDamageEffect(Team AppliesTo, SourceTag Source, float ShatterDamage)
-        : this(AppliesTo, Source, ShatterDamage, new List<float>(), new List<float>())
+    public WeaknessDamageEffect(Team AppliesTo, SourceTag Source, float WeaknessDamage)
+        : this(AppliesTo, Source, WeaknessDamage, new List<float>(), new List<float>())
     {
         
     }

@@ -5,7 +5,7 @@ namespace ShiftRpg.Entities;
 
 public abstract class TimedState<T> : State<T>
 {
-    protected TimedState(T parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+    protected TimedState(T parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine) { }
     
     private double StartTime { get; set; }
     protected double TimeInState => TimeManager.CurrentScreenSecondsSince(StartTime);

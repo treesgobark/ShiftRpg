@@ -8,12 +8,10 @@ namespace ShiftRpg.Contracts;
 
 public interface IProjectile : IDestroyable, IPositionable
 {
-    Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-    IReadOnlyList<IEffect> TargetHitEffects { get; set; }
-    IReadOnlyList<IEffect> HolderHitEffects { get; set; }
+    IEffectBundle TargetHitEffects { get; set; }
+    IEffectBundle HolderHitEffects { get; set; }
     bool IsActive { get; }
 
-    void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed,
-        Action<IReadOnlyList<IEffect>> applyHolderEffects, IReadOnlyList<IEffect> targetHitEffects,
-        IReadOnlyList<IEffect> holderHitEffects);
+    void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed, IEffectBundle targetHitEffects,
+        IEffectBundle holderHitEffects);
 }

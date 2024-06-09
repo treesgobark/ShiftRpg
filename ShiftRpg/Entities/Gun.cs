@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Debugging;
 using FlatRedBall.Glue.StateInterpolation;
@@ -60,25 +61,23 @@ namespace ShiftRpg.Entities
         
         // Implement IGun
 
-        public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-        public Action<IReadOnlyList<IEffect>> ModifyTargetEffects { get; set; }
+        public IWeaponHolder Holder { get; set; }
 
-        public IReadOnlyList<IEffect> TargetHitEffects
+        public IEffectBundle TargetHitEffects
         {
             get
             {
-                var effects = new IEffect[]
-                {
-                    new DamageEffect(~Team, Source, CurrentGunData.Damage),
-                    new KnockbackEffect(~Team, Source, 100, RotationZ),
-                    new ShatterDamageEffect(~Team, Source, 1)
-                };
-                ModifyTargetEffects(effects);
-                return effects;
+                var effects = new EffectBundle(~Team, Source);
+                
+                effects.AddEffect(new DamageEffect(~Team, Source, CurrentGunData.Damage));
+                effects.AddEffect(new KnockbackEffect(~Team, Source, 100, this.GetRotationZ()));
+                effects.AddEffect(new ShatterDamageEffect(~Team, Source, 1));
+
+                return Holder.ModifyTargetEffects(effects);
             }
         }
 
-        public IReadOnlyList<IEffect> HolderHitEffects { get; set; } = new List<IEffect>();
+        public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
         public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
 
         public void Equip(IGunInputDevice inputDevice)

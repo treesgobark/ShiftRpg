@@ -17,6 +17,8 @@ namespace ShiftRpg.Entities
 {
     public partial class TargetDummy
     {
+        private float _currentHealth;
+
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -32,9 +34,10 @@ namespace ShiftRpg.Entities
         {
             if (TimeSinceLastDamage > 1.5)
             {
-                CurrentHealth                                    = MaxHealth;
+                CurrentHealth                                      = MaxHealth;
                 HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
-                ResetShatterDamage();
+                CurrentShatterDamage = 0;
+                HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
             }
         }
 
@@ -50,26 +53,16 @@ namespace ShiftRpg.Entities
 
         }
 
-        public override void HandleEffects(IReadOnlyList<IEffect> effects)
+        public override float CurrentHealth
         {
-            foreach (var effect in effects)
+            get => _currentHealth;
+            set
             {
-                if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
-                {
-                    continue;
-                }
-                
-                effect.HandleStandardDamage(this)
-                    .HandleStandardShatterDamage(this)
-                    .HandleStandardApplyShatter(this)
-                    .HandleStandardPersistentEffect(this);
+                _currentHealth                                     = (int)MathHelper.Clamp(value, -1, MaxHealth); 
+                HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
             }
         }
-
-        public override void TakeDamage(float damage)
-        {
-            CurrentHealth                                      -= damage;
-            HealthBarRuntimeInstance.MainBarProgressPercentage =  CurrentHealthPercentage;
-        }
+        
+        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
     }
 }

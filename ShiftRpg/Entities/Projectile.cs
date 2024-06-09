@@ -38,18 +38,15 @@ namespace ShiftRpg.Entities
         {
         }
 
-        public Action<IReadOnlyList<IEffect>> ApplyHolderEffects { get; set; }
-        public IReadOnlyList<IEffect> TargetHitEffects { get; set; }
-        public IReadOnlyList<IEffect> HolderHitEffects { get; set; }
+        public IEffectBundle TargetHitEffects { get; set; }
+        public IEffectBundle HolderHitEffects { get; set; }
         public bool IsActive { get; set; }
         
-        public void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed,
-            Action<IReadOnlyList<IEffect>> applyHolderEffects, IReadOnlyList<IEffect> targetHitEffects,
-            IReadOnlyList<IEffect> holderHitEffects)
+        public void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed, IEffectBundle targetHitEffects,
+            IEffectBundle holderHitEffects)
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileSpeed;
-            ApplyHolderEffects    = applyHolderEffects;
             TargetHitEffects      = targetHitEffects;
             HolderHitEffects      = holderHitEffects;
         }

@@ -1,29 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
-using FlatRedBall.Entities;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
-using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
 using ShiftRpg.Effects;
-using ShiftRpg.InputDevices;
-using ShiftRpg.Screens;
+using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Entities
 {
-    public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
+    public abstract partial class Enemy : ITakesDamage, ITakesShatterDamage
     {
         private int _currentHealth;
+        private float _currentShatterDamage;
+        private float _currentWeaknessAmount;
 
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -38,11 +26,19 @@ namespace ShiftRpg.Entities
             CurrentHealth                           = MaxHealth;
             PersistentEffects                       = new List<IPersistentEffect>();
             RecentEffects = new List<(Guid EffectId, double EffectTime)>();
+            
+            HealthBarRuntimeInstance.SetAllToZero();
+            HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
+
+            HandlerCollection = new EffectHandlerCollection(this);
+            HandlerCollection.Add(new DamageHandler(this));
+            HandlerCollection.Add(new ShatterDamageHandler(this));
+            HandlerCollection.Add(new ApplyShatterDamageHandler(this));
         }
 
         private void CustomActivity()
         {
-            HandlePersistentEffects();
+            // HandlePersistentEffects();
         }
 
         private void CustomDestroy()
@@ -57,104 +53,85 @@ namespace ShiftRpg.Entities
 
         }
 
-        public void HandlePersistentEffects()
-        {
-            List<IEffect> effects = [];
+        // public void HandlePersistentEffects()
+        // {
+        //     List<IEffect> effects = [];
+        //
+        //     for (var i = PersistentEffects.Count - 1; i >= 0; i--)
+        //     {
+        //         var effect = PersistentEffects[i];
+        //         if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
+        //         {
+        //             effects.Add(dot.GetDamageEffect());
+        //             if (dot.RemainingTicks <= 0)
+        //             {
+        //                 PersistentEffects.RemoveAt(i);
+        //             }
+        //         }
+        //     }
+        //
+        //     if (effects.Count > 0)
+        //     {
+        //         HandleEffects(effects);
+        //     }
+        // }
+        
+        #region IEffectReceiver
 
-            for (var i = PersistentEffects.Count - 1; i >= 0; i--)
-            {
-                var effect = PersistentEffects[i];
-                if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
-                {
-                    effects.Add(dot.GetDamageEffect());
-                    if (dot.RemainingTicks <= 0)
-                    {
-                        PersistentEffects.RemoveAt(i);
-                    }
-                }
-            }
-
-            if (effects.Count > 0)
-            {
-                HandleEffects(effects);
-            }
-        }
-
-        public virtual void HandleEffects(IReadOnlyList<IEffect> effects)
-        {
-            foreach (var effect in effects)
-            {
-                if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
-                {
-                    continue;
-                }
-                
-                effect.HandleStandardDamage(this)
-                    .HandleStandardShatterDamage(this)
-                    .HandleStandardApplyShatter(this)
-                    .HandleStandardKnockback(this)
-                    .HandleStandardPersistentEffect(this);
-            }
-        }
-
+        IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
+        public IEffectHandlerCollection HandlerCollection { get; protected set; }
         public IList<IPersistentEffect> PersistentEffects { get; protected set; }
         public Team Team { get; protected set; }
-
         public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; protected set; }
+        
+        #endregion
+        
         public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
-        public float ShatterSubProgressPercentage => CurrentHealth == 0 ? 100f : 100f * CurrentShatterDamage / CurrentHealth;
-        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
-        public bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
 
-        public float CurrentHealth
+        public virtual float CurrentHealth
         {
             get => _currentHealth;
-            set => _currentHealth = (int)MathHelper.Clamp(value, -1, MaxHealth);
+            set
+            {
+                _currentHealth = (int)MathHelper.Clamp(value, -1, MaxHealth); 
+                HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
+                if (CurrentHealth <= 0)
+                {
+                    Destroy();
+                }
+            }
         }
 
         public double LastDamageTime { get; set; }
-        public virtual void TakeDamage(float damage)
+
+        public float ShatterSubProgressPercentage => CurrentHealth == 0 ? 100f : 100f * CurrentShatterDamage / CurrentHealth;
+        public float CurrentShatterDamage
         {
-            CurrentHealth                                       -= damage;
-            HealthBarRuntimeInstance.MainBarProgressPercentage    =  CurrentHealthPercentage;
-            if (CurrentHealth <= 0)
+            get => _currentShatterDamage;
+            set
             {
-                Destroy();
+                _currentShatterDamage = value;
+                _currentShatterDamage = Math.Min(MaxShatterDamageAmount, _currentShatterDamage);
+                _currentShatterDamage = Math.Min(CurrentHealth, _currentShatterDamage);
+                HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
             }
         }
-
-        public float CurrentShatterDamage { get; private set; }
-
+        
         public float MaxShatterDamagePercentage => 20;
         public int MaxShatterDamageAmount => (int)(MaxShatterDamagePercentage / 100f * MaxHealth);
-
-        public void TakeShatterDamage(float damage)
-        {
-            CurrentShatterDamage += damage;
-            CurrentShatterDamage = Math.Min(MaxShatterDamageAmount, CurrentShatterDamage);
-            CurrentShatterDamage = Math.Min(CurrentHealth, CurrentShatterDamage);
-            HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
-        }
-
-        public void ResetShatterDamage()
-        {
-            CurrentShatterDamage                                  = 0;
-            HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
-        }
-
-        public float CurrentWeaknessDamage { get; private set; }
-        public float MaxWeaknessDamagePercentage => 100;
-        public int MaxWeaknessDamageAmount => (int)(MaxWeaknessDamagePercentage / 100f * MaxHealth);
-        
-        public void TakeWeaknessDamage(float damage)
-        {
-            CurrentWeaknessDamage += damage;
-            CurrentWeaknessDamage =  Math.Min(MaxWeaknessDamageAmount, CurrentWeaknessDamage);
-        }
-
-        public void ResetWeaknessDamage()
-        {
-            throw new NotImplementedException();
-        }
+        //
+        // public float CurrentWeaknessAmount
+        // {
+        //     get => _currentWeaknessAmount;
+        //     set
+        //     {
+        //         _currentWeaknessAmount = value;
+        //         CurrentWeaknessAmount                                  = Math.Clamp(CurrentWeaknessAmount, 0, MaxWeaknessAmount);
+        //         HealthBarRuntimeInstance.WeaknessBarProgressPercentage =  WeaknessProgressPercentage;
+        //     }
+        // }
+        //
+        // public float MaxWeaknessAmount => 100;
+        // public float WeaknessProgressPercentage => CurrentWeaknessAmount;
     }
 }

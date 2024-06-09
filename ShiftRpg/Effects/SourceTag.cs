@@ -12,7 +12,12 @@ public enum SourceTag
 
 public static class SourceTagExtensions
 {
-    public static bool IsSubsetOf(this SourceTag subset, SourceTag superset)
+    public static bool IsContainedIn(this SourceTag subset, SourceTag superset)
+    {
+        return (subset & superset) == subset;
+    }
+    
+    public static bool Contains(this SourceTag superset, SourceTag subset)
     {
         return (subset & superset) == subset;
     }

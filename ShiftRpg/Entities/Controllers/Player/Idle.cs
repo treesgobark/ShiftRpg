@@ -41,9 +41,9 @@ public partial class Player
             return null;
         }
     
-        public override void BeforeDeactivate()
-        {
-        }
+        public override void BeforeDeactivate() { }
+
+        public override void Uninitialize() { }
     
         private void SetRotation()
         {

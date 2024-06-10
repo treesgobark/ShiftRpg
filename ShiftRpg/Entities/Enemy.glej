@@ -92,7 +92,7 @@
         }
       ],
       "Name": "MaxHealth",
-      "DefaultValue": 100.0,
+      "DefaultValue": 500.0,
       "SetByDerived": true
     },
     {

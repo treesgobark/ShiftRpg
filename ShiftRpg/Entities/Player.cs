@@ -43,6 +43,8 @@ public partial class Player : ITakesDamage, IWeaponHolder
         CurrentHealth                           = MaxHealth;
         InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
         HandlerCollection = new EffectHandlerCollection(this);
+        HealthBar.ProgressPercentage = 100f;
+        HealthBar.SubProgressPercentage = 0f;
     }
 
     private void InitializeControllers()

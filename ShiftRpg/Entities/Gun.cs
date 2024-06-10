@@ -48,6 +48,8 @@ namespace ShiftRpg.Entities
             var hudParent = gumAttachmentWrappers[0];
             hudParent.ParentRotationChangesRotation = false;
             ParentRotationChangesRotation           = true;
+            MagazineBar.ProgressPercentage = 100f;
+            MagazineBar.SubProgressPercentage = 0f;
         }
 
         private void CustomActivity()

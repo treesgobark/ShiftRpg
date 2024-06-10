@@ -14,6 +14,7 @@ public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
     private float _currentWeaknessAmount;
     
     private const float WeaknessConversionFactor = 0.04f;
+    private const float WeaknessDepletionRate = 10f;
 
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -46,7 +47,10 @@ public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
 
     private void CustomActivity()
     {
-        // HandlePersistentEffects();
+        if (CurrentWeaknessAmount > 0)
+        {
+            CurrentWeaknessAmount -= TimeManager.SecondDifference * WeaknessDepletionRate;
+        }
     }
 
     private void CustomDestroy()

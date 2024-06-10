@@ -515,7 +515,6 @@
       <DependentUpon>Game1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
-    <Compile Include="GlueCommunication\GameConnectionManager.Generated.cs" />
     <Compile Include="GlueControl\CommandReceiver.Generated.cs" />
     <Compile Include="GlueControl\Dtos.Generated.cs" />
     <Compile Include="GlueControl\Editing\CameraLogic.Generated.cs" />
@@ -538,6 +537,7 @@
     <Compile Include="GlueControl\Editing\SelectionLogic.Generated.cs" />
     <Compile Include="GlueControl\Editing\VariableAssignmentLogic.Generated.cs" />
     <Compile Include="GlueControl\Editing\Visuals\Arrow.Generated.cs" />
+    <Compile Include="GlueControl\GameConnectionManager.Generated.cs" />
     <Compile Include="GlueControl\GlueCallsClassGenerationManager.Generated.cs" />
     <Compile Include="GlueControl\GlueControlManager.Generated.cs" />
     <Compile Include="GlueControl\InstanceLogic.Generated.cs" />

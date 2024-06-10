@@ -55,7 +55,7 @@
         }
       ],
       "Name": "MaxHealth",
-      "DefaultValue": 10,
+      "DefaultValue": 100,
       "SetByDerived": true,
       "DefinedByBase": true
     }
@@ -65,6 +65,34 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "HealthBarRuntimeInstance",
+      "SourceClassType": "ShiftRpg.GumRuntimes.HealthBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -20.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 3,
+      "SourceFile": "HealthBarRuntime",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
     }
   ],
   "Name": "Entities\\DefaultEnemy",

@@ -13,4 +13,6 @@ public interface ITakesDamage : IEffectReceiver, IPositionable
     float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
     double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
     bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
+    
+    IStatModifierCollection<float> DamageModifiers { get; }
 }

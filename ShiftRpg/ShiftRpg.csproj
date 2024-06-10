@@ -393,6 +393,8 @@
     <None Remove="Content\GumProject\Standards\ColoredCircle.gutx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\INumericalEffect.cs" />
+    <Compile Include="Contracts\IStatModifierCollection.cs" />
     <Compile Include="Contracts\IEffect.cs" />
     <Compile Include="Contracts\IEffectBundle.cs" />
     <Compile Include="Contracts\IEffectHandler.cs" />
@@ -421,12 +423,15 @@
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Effects\ApplyShatterEffect.cs" />
     <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\StatModifierCollection.cs" />
     <Compile Include="Effects\DamageOverTimeEffect.cs" />
     <Compile Include="Effects\Handlers\ApplyShatterDamageHandler.cs" />
+    <Compile Include="Effects\Handlers\Base\EffectHandler.cs" />
     <Compile Include="Effects\Handlers\Base\EffectHandlerCollection.cs" />
     <Compile Include="Effects\Handlers\Base\IEffectHandlerCollection.cs" />
     <Compile Include="Effects\Handlers\DamageHandler.cs" />
     <Compile Include="Effects\Handlers\ShatterDamageHandler.cs" />
+    <Compile Include="Effects\Handlers\WeaknessDamageHandler.cs" />
     <Compile Include="Effects\ShatterDamageEffect.cs" />
     <Compile Include="Effects\SourceTag.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />

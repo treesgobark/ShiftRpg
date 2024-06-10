@@ -7,33 +7,21 @@ using ShiftRpg.Factories;
 
 namespace ShiftRpg.Effects.Handlers;
 
-public class DamageHandler : IEffectHandler<DamageEffect>
+public class DamageHandler : EffectHandler<DamageEffect>
 {
-    protected ITakesDamage Receiver { get; }
+    private ITakesDamage Receiver { get; }
     
     public DamageHandler(ITakesDamage receiver)
     {
         Receiver = receiver;
     }
     
-    public void Handle(object effect)
-    {
-        if (effect is DamageEffect damageEffect)
-        {
-            Handle(damageEffect);
-        }
-        else
-        {
-            throw new ArgumentException("Invalid effect type", nameof(effect));
-        }
-    }
-    
-    public void Handle(DamageEffect effect)
+    public override void Handle(DamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }
         
-        float finalDamage = effect.Damage;
+        float finalDamage = effect.Value;
         
         ApplyDamageModifiers(effect, ref finalDamage);
         ApplyDamage(effect, finalDamage);
@@ -50,6 +38,8 @@ public class DamageHandler : IEffectHandler<DamageEffect>
     
     protected virtual void ApplyDamageModifiers(DamageEffect damageEffect, ref float finalDamage)
     {
+        Receiver.DamageModifiers.ModifyEffect(damageEffect);
+        
         finalDamage = (int)((damageEffect.AdditiveIncreases.Sum() + 1) * finalDamage);
         
         if (damageEffect.MultiplicativeIncreases.Count > 0)

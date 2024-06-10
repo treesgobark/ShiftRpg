@@ -34,10 +34,9 @@ namespace ShiftRpg.Entities
         {
             if (TimeSinceLastDamage > 1.5)
             {
-                CurrentHealth                                      = MaxHealth;
-                HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
+                CurrentHealth = MaxHealth;
                 CurrentShatterDamage = 0;
-                HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
+                CurrentWeaknessAmount = 0;
             }
         }
 

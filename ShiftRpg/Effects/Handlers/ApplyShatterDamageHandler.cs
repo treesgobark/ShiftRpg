@@ -2,28 +2,16 @@ using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects.Handlers;
 
-public class ApplyShatterDamageHandler : IEffectHandler<ApplyShatterEffect>
+public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
 {
-    protected ITakesShatterDamage Receiver { get; }
+    private ITakesShatterDamage Receiver { get; }
     
     public ApplyShatterDamageHandler(ITakesShatterDamage receiver)
     {
         Receiver = receiver;
     }
-
-    public void Handle(object effect)
-    {
-        if (effect is ApplyShatterEffect castedEffect)
-        {
-            Handle(castedEffect);
-        }
-        else
-        {
-            throw new ArgumentException("Invalid effect type", nameof(effect));
-        }
-    }
     
-    public void Handle(ApplyShatterEffect effect)
+    public override void Handle(ApplyShatterEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

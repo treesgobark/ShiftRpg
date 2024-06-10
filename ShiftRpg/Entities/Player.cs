@@ -113,6 +113,7 @@ public partial class Player : ITakesDamage, IWeaponHolder
     IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
     public IEffectHandlerCollection HandlerCollection { get; protected set; }
     // public IList<IPersistentEffect> PersistentEffects { get; } = new List<IPersistentEffect>();
+    public IStatModifierCollection<float> DamageModifiers { get; } = new StatModifierCollection<float>();
     public Team Team { get; set; }
 
     // public void HandlePersistentEffects()

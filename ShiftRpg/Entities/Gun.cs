@@ -72,7 +72,7 @@ namespace ShiftRpg.Entities
                 var effects = new EffectBundle(~Team, Source);
                 
                 effects.AddEffect(new DamageEffect(~Team, Source, CurrentGunData.Damage));
-                effects.AddEffect(new KnockbackEffect(~Team, Source, 100, this.GetRotationZ()));
+                effects.AddEffect(new KnockbackEffect(~Team, Source, 200, this.GetRotationZ()));
                 effects.AddEffect(new ShatterDamageEffect(~Team, Source, 1));
 
                 return Holder.ModifyTargetEffects(effects);

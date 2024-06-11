@@ -18,7 +18,7 @@ using ShiftRpg.Models;
 
 namespace ShiftRpg.Entities;
 
-public partial class Player : ITakesDamage, IWeaponHolder
+public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public IGunInputDevice GunInputDevice { get; set; }

@@ -7,7 +7,7 @@ using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Entities;
 
-public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
+public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage, ITakesKnockback
 {
     private int _currentHealth;
     private float _currentShatterDamage;
@@ -38,6 +38,7 @@ public abstract partial class Enemy : ITakesShatterDamage, ITakesWeaknessDamage
         HandlerCollection.Add(new ShatterDamageHandler(this));
         HandlerCollection.Add(new ApplyShatterDamageHandler(this));
         HandlerCollection.Add(new WeaknessDamageHandler(this));
+        HandlerCollection.Add(new KnockbackHandler(this));
         
         DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
             effect => CurrentWeaknessAmount > 0 && effect.Source.Contains(SourceTag.Gun),

@@ -419,6 +419,7 @@
     <Compile Include="Contracts\IPersistentEffect.cs" />
     <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\ITakesDamage.cs" />
+    <Compile Include="Contracts\ITakesKnockback.cs" />
     <Compile Include="Contracts\ITakesShatterDamage.cs" />
     <Compile Include="Contracts\ITakesWeaknessDamage.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
@@ -435,6 +436,7 @@
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Effects\ApplyShatterEffect.cs" />
     <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\Handlers\KnockbackHandler.cs" />
     <Compile Include="Effects\StatModifierCollection.cs" />
     <Compile Include="Effects\DamageOverTimeEffect.cs" />
     <Compile Include="Effects\Handlers\ApplyShatterDamageHandler.cs" />

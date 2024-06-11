@@ -12,6 +12,11 @@ public class EntityTracker(PositionedObject thisEntity, PositionedObject tracked
     public float XVelocity => 64;
     public float YVelocity => 64;
     public float Magnitude => ToTrackedEntity.Length();
+    
+    public float Distance2D => thisEntity.Position
+        .GetVectorTo(trackedEntity.Position)
+        .XY()
+        .Length();
 
     private Vector2 ToTrackedEntity => thisEntity.Position
         .GetVectorTo(trackedEntity.Position)

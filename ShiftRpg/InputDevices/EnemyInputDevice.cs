@@ -4,56 +4,73 @@ using ShiftRpg.Entities;
 
 namespace ShiftRpg.InputDevices;
 
-public class EnemyInputDevice<T> : IInputDevice
-    where T : Enemy
+public class EnemyInputDevice : InputDeviceBase
 {
-    private readonly T _owner;
-    private PositionedObject? _target;
-    private ZeroInputDevice _zeroInput = new();
+    protected Enemy Owner { get; }
+    protected EntityTracker? EntityTracker { get; set; }
 
-    public EnemyInputDevice(T owner)
+    public EnemyInputDevice(Enemy owner)
     {
-        _owner = owner;
-        Default2DInput              = _zeroInput.Default2DInput;
-        DefaultUpPressable          = _zeroInput.DefaultUpPressable;
-        DefaultDownPressable        = _zeroInput.DefaultDownPressable;
-        DefaultLeftPressable        = _zeroInput.DefaultLeftPressable;
-        DefaultRightPressable       = _zeroInput.DefaultRightPressable;
-        DefaultHorizontalInput      = _zeroInput.DefaultHorizontalInput;
-        DefaultVerticalInput        = _zeroInput.DefaultVerticalInput;
-        DefaultPrimaryActionInput   = _zeroInput.DefaultPrimaryActionInput;
-        DefaultSecondaryActionInput = _zeroInput.DefaultSecondaryActionInput;
-        DefaultConfirmInput         = _zeroInput.DefaultConfirmInput;
-        DefaultJoinInput            = _zeroInput.DefaultJoinInput;
-        DefaultPauseInput           = _zeroInput.DefaultPauseInput;
-        DefaultBackInput            = _zeroInput.DefaultBackInput;
-        DefaultCancelInput          = _zeroInput.DefaultCancelInput;
+        Owner = owner;
+    }
+    
+    public float DistanceToEntity => EntityTracker?.Distance2D ?? float.MaxValue;
+    public bool IsTracking => EntityTracker is not null;
+
+    public void SetTarget(PositionedObject target)
+    {
+        EntityTracker = new EntityTracker(Owner, target);
     }
 
-    public PositionedObject? Target
+    public void ClearTarget()
     {
-        get => _target;
-        set
+        EntityTracker = null;
+    }
+
+    protected override float GetDefault2DInputX() => EntityTracker?.X ?? 0;
+    protected override float GetDefault2DInputY() => EntityTracker?.Y ?? 0;
+}
+
+public class RangedEnemyInputDevice : EnemyInputDevice
+{
+    public float FollowDistance { get; set; }
+    public float Tolerance { get; set; }
+
+    public RangedEnemyInputDevice(Enemy owner, float followDistance, float tolerance) : base(owner)
+    {
+        FollowDistance = followDistance;
+        Tolerance = tolerance;
+    }
+    
+    public float MinDistance => FollowDistance - Tolerance;
+    public float MaxDistance => FollowDistance + Tolerance;
+    public bool WithinRange => EntityTracker?.Distance2D >= MinDistance && EntityTracker.Distance2D <= MaxDistance;
+
+    protected override float GetDefault2DInputX()
+    {
+        float direction = 0;
+        if (DistanceToEntity < MinDistance)
         {
-            _target        = value;
-            Default2DInput = _target is not null
-                ? new EntityTracker(_owner, _target)
-                : _zeroInput.Default2DInput;
+            direction = -1;
         }
+        else if (DistanceToEntity > MaxDistance)
+        {
+            direction = 1;
+        }
+        return base.GetDefault2DInputX() * direction;
     }
 
-    public I2DInput Default2DInput { get; private set; }
-    public IRepeatPressableInput DefaultUpPressable { get; }
-    public IRepeatPressableInput DefaultDownPressable { get; }
-    public IRepeatPressableInput DefaultLeftPressable { get; }
-    public IRepeatPressableInput DefaultRightPressable { get; }
-    public I1DInput DefaultHorizontalInput { get; }
-    public I1DInput DefaultVerticalInput { get; }
-    public IPressableInput DefaultPrimaryActionInput { get; }
-    public IPressableInput DefaultSecondaryActionInput { get; }
-    public IPressableInput DefaultConfirmInput { get; }
-    public IPressableInput DefaultJoinInput { get; }
-    public IPressableInput DefaultPauseInput { get; }
-    public IPressableInput DefaultBackInput { get; }
-    public IPressableInput DefaultCancelInput { get; }
+    protected override float GetDefault2DInputY()
+    {
+        float direction = 0;
+        if (DistanceToEntity < MinDistance)
+        {
+            direction = -1;
+        }
+        else if (DistanceToEntity > MaxDistance)
+        {
+            direction = 1;
+        }
+        return base.GetDefault2DInputY() * direction;
+    }
 }

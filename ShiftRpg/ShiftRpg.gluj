@@ -100,7 +100,8 @@
       "Name": "TopDownValues",
       "CsvFilesUsingThis": [
         "Entities/Player/TopDownValuesStatic.csv",
-        "Entities/Enemy/TopDownValuesStatic.csv"
+        "Entities/Enemy/TopDownValuesStatic.csv",
+        "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true
@@ -141,6 +142,12 @@
     },
     {
       "Name": "Entities\\DefaultGun"
+    },
+    {
+      "Name": "Entities\\DefaultMeleeEnemy"
+    },
+    {
+      "Name": "Entities\\DefaultRangedEnemy"
     },
     {
       "Name": "Entities\\DefaultSword"

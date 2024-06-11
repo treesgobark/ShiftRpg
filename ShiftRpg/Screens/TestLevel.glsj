@@ -25,6 +25,24 @@
       "ProjectsToExcludeFrom": []
     }
   ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "string",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Layer",
+          "Type": "String"
+        }
+      ],
+      "Name": "DefaultLayer",
+      "Category": "Layer"
+    }
+  ],
   "NamedObjects": [
     {
       "InstanceName": "Map",
@@ -140,8 +158,8 @@
       "InstantiatedByBase": true,
       "ContainedObjects": [
         {
-          "InstanceName": "DefaultEnemy1",
-          "SourceClassType": "Entities\\DefaultEnemy",
+          "InstanceName": "DefaultRangedEnemy1",
+          "SourceClassType": "Entities\\DefaultRangedEnemy",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -153,18 +171,221 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 385.76447,
+              "Value": 104.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -198.66821,
+              "Value": -496.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultEnemy",
+          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultMeleeEnemy1",
+          "SourceClassType": "Entities\\DefaultMeleeEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 680.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -384.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultMeleeEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultMeleeEnemy2",
+          "SourceClassType": "Entities\\DefaultMeleeEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 328.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -160.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultMeleeEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultRangedEnemy2",
+          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 440.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -160.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultMeleeEnemy3",
+          "SourceClassType": "Entities\\DefaultMeleeEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 108.364426,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -113.90296,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultMeleeEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultRangedEnemy3",
+          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 679.793,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -97.90296,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultRangedEnemy4",
+          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 368.36447,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -685.90295,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "DefaultMeleeEnemy4",
+          "SourceClassType": "Entities\\DefaultMeleeEnemy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 636.3645,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -682.4744,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\DefaultMeleeEnemy",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         }

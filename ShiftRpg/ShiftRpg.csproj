@@ -24,6 +24,18 @@
     <None Remove="**\*.glsj" />
     <None Remove="**\*.glej" />
     <None Remove="**\*.gluj" />
+    <None Include="Content\Entities\DefaultMeleeEnemy\MeleeEnemy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MeleeEnemy</Name>
+    </None>
+    <None Include="Content\Entities\DefaultMeleeEnemy\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
+    <None Include="Content\Entities\DefaultRangedEnemy\RangedEnemy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>RangedEnemy</Name>
+    </None>
     <None Include="content\entities\enemy\topdownvaluesstatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
@@ -466,6 +478,14 @@
     <Compile Include="Entities\DefaultGun.Generated.cs">
       <DependentUpon>DefaultGun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DefaultMeleeEnemy.cs" />
+    <Compile Include="Entities\DefaultMeleeEnemy.Generated.cs">
+      <DependentUpon>DefaultMeleeEnemy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DefaultRangedEnemy.cs" />
+    <Compile Include="Entities\DefaultRangedEnemy.Generated.cs">
+      <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DefaultSword.cs" />
     <Compile Include="Entities\DefaultSword.Generated.cs">
       <DependentUpon>DefaultSword.cs</DependentUpon>
@@ -498,6 +518,8 @@
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
+    <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
+    <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />

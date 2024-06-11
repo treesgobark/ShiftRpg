@@ -32,6 +32,34 @@
       "Type": "int"
     }
   ],
+  "NamedObjects": [
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    }
+  ],
   "Name": "Entities\\Bullet",
   "CustomClassesForExport": []
 }

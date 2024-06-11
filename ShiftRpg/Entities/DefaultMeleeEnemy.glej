@@ -1,0 +1,137 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "BaseEntity": "Entities\\Enemy",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/DefaultMeleeEnemy/MeleeEnemy.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "KnockbackResistance",
+      "DefaultValue": 1.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "MoveSpeed",
+      "DefaultValue": 20.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "KnockbackVelocity",
+      "DefaultValue": 300.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 500.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "InputDevice",
+      "Value": 0,
+      "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "HealthBarRuntimeInstance",
+      "SourceClassType": "ShiftRpg.GumRuntimes.HealthBarRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -20.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 3,
+      "SourceFile": "HealthBarRuntime",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    },
+    {
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "MeleeEnemy",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Entities\\DefaultMeleeEnemy",
+  "CustomClassesForExport": []
+}

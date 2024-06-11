@@ -1,21 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
-using Microsoft.Xna.Framework;
 using ShiftRpg.InputDevices;
 using ShiftRpg.Screens;
 
 namespace ShiftRpg.Entities
 {
-    public partial class DefaultEnemy
+    public partial class DefaultMeleeEnemy
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -30,8 +19,8 @@ namespace ShiftRpg.Entities
         private void CustomActivity()
         {
             var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
-            var target     = gameScreen.GetClosestPlayer(Position);
-            if (InputDevice is EnemyInputDevice eInput)
+            Player? target = gameScreen.GetClosestPlayer(Position);
+            if (InputDevice is EnemyInputDevice eInput && target is not null)
             {
                 eInput.SetTarget(target);
             }

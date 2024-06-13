@@ -12,4 +12,6 @@ public interface IGameplayInputDevice
     IPressableInput QuickSwapWeapon { get; }
     IPressableInput NextWeapon { get; }
     IPressableInput PreviousWeapon { get; }
+    
+    bool AimInMeleeRange { get; }
 }

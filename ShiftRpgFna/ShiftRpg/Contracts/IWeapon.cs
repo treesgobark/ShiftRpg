@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using FlatRedBall.Graphics;
 using ShiftRpg.Effects;
 using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Contracts;
 
-public interface IWeapon<TInput>
+public interface IWeapon<TInput> : IDestroyable
 {
     IWeaponHolder Holder { get; set; }
     

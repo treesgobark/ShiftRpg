@@ -128,4 +128,11 @@ public class WeaponCache<TWeapon, TInput>(TWeapon defaultWeapon, TInput inputDev
     }
 
     public TWeapon GetWeaponAt(int index) => WeaponArray[index] ?? defaultWeapon;
+    public void Destroy()
+    {
+        foreach (TWeapon weapon in WeaponArray)
+        {
+            weapon?.Destroy();
+        }
+    }
 }

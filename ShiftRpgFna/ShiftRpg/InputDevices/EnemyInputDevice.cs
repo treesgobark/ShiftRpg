@@ -38,6 +38,7 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     public IPressableInput QuickSwapWeapon => FalsePressableInput.Instance;
     public IPressableInput NextWeapon => FalsePressableInput.Instance;
     public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
+    public bool AimInMeleeRange => Aim.Magnitude < 1;
 }
 
 public class RangedEnemyInputDevice : EnemyInputDevice

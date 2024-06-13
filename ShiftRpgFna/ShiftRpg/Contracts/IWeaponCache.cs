@@ -1,6 +1,8 @@
+using FlatRedBall.Graphics;
+
 namespace ShiftRpg.Contracts;
 
-public interface IWeaponCache<TWeapon, TInput>
+public interface IWeaponCache<TWeapon, TInput> : IDestroyable
     where TWeapon : IWeapon<TInput>
 {
     public TWeapon CurrentWeapon { get; }

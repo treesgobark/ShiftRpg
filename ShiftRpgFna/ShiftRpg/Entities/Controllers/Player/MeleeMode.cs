@@ -23,14 +23,9 @@ public partial class Player
     
         public override IState? EvaluateExitConditions()
         {
-            if (!Parent.AimInMeleeRange)
+            if (!Parent.GameplayInputDevice.AimInMeleeRange)
             {
                 return StateMachine.Get<GunMode>();
-            }
-    
-            if (TimeInState > 3)
-            {
-                return StateMachine.Get<Idle>();
             }
             
             return null;

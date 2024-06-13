@@ -1,14 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using ANLG.Utilities.FlatRedBall.Controllers;
-using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.States;
-using FlatRedBall;
-using FlatRedBall.Entities;
-using FlatRedBall.Graphics;
 using FlatRedBall.Input;
-using Microsoft.Xna.Framework;
+using GumCoreShared.FlatRedBall.Embedded;
 using ShiftRpg.Contracts;
 using ShiftRpg.Effects;
 using ShiftRpg.Effects.Handlers;
@@ -21,27 +14,48 @@ namespace ShiftRpg.Entities;
 public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
-    public IGunInputDevice GunInputDevice { get; set; }
-    public IMeleeWeaponInputDevice MeleeInputDevice { get; set; }
-    
     public IWeaponCache<IGun, IGunInputDevice> GunCache { get; set; }
     public IWeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice> MeleeWeaponCache { get; set; }
-    public IGun Gun => GunCache.CurrentWeapon;
-    public IMeleeWeapon MeleeWeapon => MeleeWeaponCache.CurrentWeapon;
-    
-    public bool AimInMeleeRange => GameplayInputDevice.Aim.Magnitude < 1;
     public float LastMeleeRotation { get; set; }
+
+    // Implement IHasControllers
+    public StateMachine StateMachine { get; protected set; }
+
+    // Implement IEffectReceiver
+    IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
+    public IEffectHandlerCollection HandlerCollection { get; protected set; }
+
+    // Implement ITakesDamage
+    public IStatModifierCollection<float> DamageModifiers { get; } = new StatModifierCollection<float>();
+    public Team Team { get; set; }
+    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } =
+        new List<(Guid EffectId, double EffectTime)>();
+    public float CurrentHealth { get; set; }
+    public double LastDamageTime { get; set; }
+
+    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
+    {
+        foreach (object effect in effects)
+            if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
+                damageEffect.AdditiveIncreases.Add(1f);
+
+        return effects;
+    }
+
+    public void SetInputEnabled(bool isEnabled)
+    {
+        InputEnabled = isEnabled;
+    }
 
     private void CustomInitialize()
     {
-        InitializeGun();
-        InitializeMeleeWeapon();
-        InitializeControllers();
-        var hudParent = gumAttachmentWrappers[0];
-        hudParent.ParentRotationChangesRotation = false;
-        Team                                    = Team.Player;
-        CurrentHealth                           = MaxHealth;
         InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
+        InitializeWeapons();
+        InitializeControllers();
+        PositionedObjectGueWrapper hudParent = gumAttachmentWrappers[0];
+        hudParent.ParentRotationChangesRotation = false;
+        Team = Team.Player;
+        CurrentHealth = MaxHealth;
         HandlerCollection = new EffectHandlerCollection(this);
         HealthBar.ProgressPercentage = 100f;
         HealthBar.SubProgressPercentage = 0f;
@@ -50,48 +64,34 @@ public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
     private void InitializeControllers()
     {
         StateMachine = new StateMachine();
-        StateMachine.Add(new Idle(this, StateMachine));
         StateMachine.Add(new MeleeMode(this, StateMachine));
         StateMachine.Add(new GunMode(this, StateMachine));
         StateMachine.InitializeStartingState<MeleeMode>();
     }
 
-    private void InitializeGun()
+    private void InitializeWeapons()
     {
-        GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, GunInputDevice);
-        
-        var gun = DefaultGunFactory.CreateNew();
-            
+        GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
+
+        DefaultGun gun = DefaultGunFactory.CreateNew();
+
         gun.RelativeX = 10;
         gun.AttachTo(this);
-        gun.Team   = Team.Player;
+        gun.Team = Team.Player;
         gun.Holder = this;
 
+        GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, new GunInputDevice(GameplayInputDevice));
         GunCache.Add(gun);
-    }
 
-    private void InitializeMeleeWeapon()
-    {
-        MeleeWeaponCache = new WeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice>(ZeroMeleeWeapon.Instance, MeleeInputDevice);
-        
-        var melee = DefaultSwordFactory.CreateNew();
+        DefaultSword melee = DefaultSwordFactory.CreateNew();
 
         melee.AttachTo(this);
-        melee.Team   = Team.Player;
+        melee.Team = Team.Player;
         melee.Holder = this;
 
+        MeleeWeaponCache = new WeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice>(ZeroMeleeWeapon.Instance,
+            new MeleeWeaponInputDevice(GameplayInputDevice));
         MeleeWeaponCache.Add(melee);
-    }
-
-    partial void CustomInitializeTopDownInput()
-    {
-        GameplayInputDevice          = new GameplayInputDevice(InputDevice, this);
-        
-        GunInputDevice               = new GunInputDevice(GameplayInputDevice);
-        if (GunCache != null) GunCache.InputDevice = GunInputDevice;
-
-        MeleeInputDevice             = new MeleeWeaponInputDevice(GameplayInputDevice);
-        if (MeleeWeaponCache != null) MeleeWeaponCache.InputDevice = MeleeInputDevice;
     }
 
     private void CustomActivity()
@@ -102,21 +102,13 @@ public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
 
     private void CustomDestroy()
     {
-        var gun = (IDestroyable)Gun;
-        gun.Destroy();
-        var melee = (IDestroyable)Gun;
-        melee.Destroy();
+        GunCache.Destroy();
+        MeleeWeaponCache.Destroy();
     }
 
-    private static void CustomLoadStaticContent(string contentManagerName) { }
-    
-    // Implement IEffectReceiver
-
-    IReadOnlyEffectHandlerCollection IReadOnlyEffectReceiver.HandlerCollection => HandlerCollection;
-    public IEffectHandlerCollection HandlerCollection { get; protected set; }
-    // public IList<IPersistentEffect> PersistentEffects { get; } = new List<IPersistentEffect>();
-    public IStatModifierCollection<float> DamageModifiers { get; } = new StatModifierCollection<float>();
-    public Team Team { get; set; }
+    private static void CustomLoadStaticContent(string contentManagerName)
+    {
+    }
 
     // public void HandlePersistentEffects()
     // {
@@ -155,40 +147,10 @@ public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
 
     public void ModifyOutgoingEffects(IEffectBundle effects)
     {
-        foreach (var effect in effects)
-        {
+        foreach (object effect in effects)
             if (effect is DamageEffect damage && damage.Source.IsContainedIn(SourceTag.Gun))
             {
                 // damage.AdditiveIncreases.Add(1);
             }
-        }
-    }
-    
-    // Implement IHasControllers
-    
-    public StateMachine StateMachine { get; protected set; }
-    
-    // Implement ITakesDamage
-    
-    public IList<(Guid EffectId, double EffectTime)> RecentEffects { get; } = new List<(Guid EffectId, double EffectTime)>();
-    public float CurrentHealth { get; set; }
-    public double LastDamageTime { get; set; }
-
-    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
-    {
-        foreach (object effect in effects)
-        {
-            if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
-            {
-                damageEffect.AdditiveIncreases.Add(1f);
-            }
-        }
-
-        return effects;
-    }
-
-    public void SetInputEnabled(bool isEnabled)
-    {
-        InputEnabled = isEnabled;
     }
 }

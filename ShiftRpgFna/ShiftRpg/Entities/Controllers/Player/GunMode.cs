@@ -25,7 +25,7 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.AimInMeleeRange)
+            if (Parent.GameplayInputDevice.AimInMeleeRange)
             {
                 return StateMachine.Get<MeleeMode>();
             }

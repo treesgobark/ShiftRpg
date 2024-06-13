@@ -51,4 +51,5 @@ public class GameplayInputDevice : IGameplayInputDevice
     public IPressableInput QuickSwapWeapon { get; }
     public IPressableInput NextWeapon { get; }
     public IPressableInput PreviousWeapon { get; }
+    public bool AimInMeleeRange => Aim.Magnitude < 1;
 }

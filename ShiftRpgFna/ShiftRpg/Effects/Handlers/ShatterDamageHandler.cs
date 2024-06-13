@@ -1,4 +1,3 @@
-using System.Linq;
 using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects.Handlers;

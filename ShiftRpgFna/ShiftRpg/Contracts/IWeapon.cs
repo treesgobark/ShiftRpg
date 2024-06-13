@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using FlatRedBall.Graphics;
 using ShiftRpg.Effects;
-using ShiftRpg.Effects.Handlers;
 
 namespace ShiftRpg.Contracts;
 

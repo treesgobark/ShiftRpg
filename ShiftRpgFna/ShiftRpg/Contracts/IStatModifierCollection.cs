@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Numerics;
-using ShiftRpg.Effects;
 
 namespace ShiftRpg.Contracts;
 

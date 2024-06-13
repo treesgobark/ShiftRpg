@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
 using ANLG.Utilities.FlatRedBall.Extensions;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;

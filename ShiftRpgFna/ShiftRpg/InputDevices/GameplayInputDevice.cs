@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;

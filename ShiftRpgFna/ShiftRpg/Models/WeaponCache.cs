@@ -1,9 +1,6 @@
 using System.Diagnostics;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.StaticUtilities;
-using FlatRedBall.Glue.StateInterpolation;
 using ShiftRpg.Contracts;
-using ShiftRpg.Effects;
 
 namespace ShiftRpg.Models;
 

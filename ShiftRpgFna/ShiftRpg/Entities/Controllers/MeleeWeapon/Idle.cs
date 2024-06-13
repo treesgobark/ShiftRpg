@@ -1,11 +1,7 @@
-using System;
-using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;
-using Microsoft.Xna.Framework;
 using ShiftRpg.Contracts;
-using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;
 
 namespace ShiftRpg.Entities;

@@ -1,16 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-
 using FlatRedBall;
-using FlatRedBall.Graphics;
-using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
-
-using System.Linq;
-
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace ShiftRpg
 {

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
-using FlatRedBall.Debugging;
 using FlatRedBall.Glue.StateInterpolation;
-using FlatRedBall.Input;
 using ShiftRpg.Contracts;
 using ShiftRpg.DataTypes;
 using ShiftRpg.Effects;

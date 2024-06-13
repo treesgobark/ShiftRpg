@@ -1,15 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using RenderingLibrary.Graphics;
 

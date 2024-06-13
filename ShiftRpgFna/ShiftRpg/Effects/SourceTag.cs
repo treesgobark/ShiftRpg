@@ -1,4 +1,3 @@
-using System;
 using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects;

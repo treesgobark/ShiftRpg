@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using FlatRedBall.Graphics;
 using FlatRedBall.Math;
 using Microsoft.Xna.Framework;

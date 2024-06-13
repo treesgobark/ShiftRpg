@@ -1,6 +1,4 @@
 using ANLG.Utilities.FlatRedBall.States;
-using Microsoft.Xna.Framework;
-using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Entities;
 

@@ -1,5 +1,3 @@
-using System.Linq;
-using FlatRedBall;
 using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Effects.Handlers;

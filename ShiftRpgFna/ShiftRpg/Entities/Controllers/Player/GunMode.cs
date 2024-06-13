@@ -1,7 +1,5 @@
-using ANLG.Utilities.FlatRedBall.Controllers;
 using ANLG.Utilities.FlatRedBall.States;
 using FlatRedBall.Input;
-using ShiftRpg.Contracts;
 
 namespace ShiftRpg.Entities;
 

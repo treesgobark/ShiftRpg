@@ -1,5 +1,3 @@
-using FlatRedBall;
-
 namespace ShiftRpg.Effects.Handlers;
 
 public class KnockbackHandler : EffectHandler<KnockbackEffect>

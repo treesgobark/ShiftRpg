@@ -1,4 +1,3 @@
-using System;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using Microsoft.Xna.Framework;

@@ -57,8 +57,7 @@ public partial class Player : ITakesDamage, IWeaponHolder, ITakesKnockback
         Team = Team.Player;
         CurrentHealth = MaxHealth;
         HandlerCollection = new EffectHandlerCollection(this);
-        HealthBar.ProgressPercentage = 100f;
-        HealthBar.SubProgressPercentage = 0f;
+        HealthBar.Reset();
     }
 
     private void InitializeControllers()

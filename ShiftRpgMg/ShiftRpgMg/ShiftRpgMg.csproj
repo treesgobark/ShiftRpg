@@ -490,8 +490,6 @@
       <Name>standardtileseticons</Name>
       <Link>Content\standardtileseticons.png</Link>
     </None>
-    <None Remove="GlueSettings\TreeViewPlugin.settings.user.json" />
-    <None Remove="Content\TiledObjects.Generated.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\ShiftRpgFna\ShiftRpg\Contracts\IEffect.cs">
@@ -1567,9 +1565,6 @@
     <ProjectReference Include="..\..\..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\FlatRedBall.Forms.DesktopGlNet6\FlatRedBall.Forms.DesktopGlNet6.csproj" />
     <ProjectReference Include="..\..\..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\StateInterpolation\StateInterpolation.DesktopGlNet6\StateInterpolation.DesktopNet6.csproj" />
     <ProjectReference Include="..\..\..\Gum\GumCore\GumCoreXnaPc\GumCore.DesktopGlNet6\GumCore.DesktopGlNet6.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GlueSettings\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

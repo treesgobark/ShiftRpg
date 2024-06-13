@@ -19,5 +19,12 @@ namespace ShiftRpg.GumRuntimes
             ShatterBarProgressPercentage  = 100;
             WeaknessBarProgressPercentage = 100;
         }
+
+        public void Reset()
+        {
+            MainBarProgressPercentage     = 100;
+            ShatterBarProgressPercentage  = 0;
+            WeaknessBarProgressPercentage = 0;
+        }
     }
 }

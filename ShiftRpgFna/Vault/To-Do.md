@@ -1,7 +1,0 @@
-- Static effects (character/skill tree stats)
-- ~~Persisting effects (DOTs, buffs/debuffs)~~
-- ~~Equipped weapon switching~~
-- make melee weapons feel good
-	- combos?
-	- hitstun?
-	- hitstop?

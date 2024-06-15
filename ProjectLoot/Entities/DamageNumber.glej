@@ -1,0 +1,70 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "InputDevice",
+      "Value": 0,
+      "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "DamageNumberRuntimeInstance",
+      "SourceClassType": "ProjectLoot.GumRuntimes.DamageNumberRuntime",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 3,
+      "SourceFile": "DamageNumberRuntime",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Entities\\DamageNumber",
+  "CustomClassesForExport": []
+}

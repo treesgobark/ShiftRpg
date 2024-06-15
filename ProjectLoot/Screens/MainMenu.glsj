@@ -1,0 +1,34 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "ReferencedFiles": [
+    {
+      "Name": "GumProject/Screens/MainMenuGum.gusx",
+      "IsSharedStatic": true,
+      "RuntimeType": "ProjectLoot.GumRuntimes.MainMenuGumRuntime",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "string",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Layer",
+          "Type": "String"
+        }
+      ],
+      "Name": "DefaultLayer",
+      "Category": "Layer"
+    }
+  ],
+  "Name": "Screens\\MainMenu",
+  "CustomClassesForExport": []
+}

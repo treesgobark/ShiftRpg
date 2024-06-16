@@ -9,8 +9,8 @@ namespace ProjectLoot.Entities;
 
 public abstract partial class Enemy
 {
-    private const float WeaknessConversionFactor = 1.5f;
-    private const float WeaknessDepletionRate = .2f;
+    private const float WeaknessConversionFactor = .015f;
+    private const float WeaknessDepletionRate = 20f;
     
     public HealthComponent Health { get; private set; }
     public EffectsComponent Effects { get; private set; }
@@ -27,11 +27,11 @@ public abstract partial class Enemy
         Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
         Effects = new EffectsComponent { Team = Team.Enemy };
         Shatter = new ShatterComponent(HealthBarRuntimeInstance);
-        Weakness = new WeaknessComponent();
+        Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
         
         Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
-            effect => Weakness.CurrentWeaknessAmount > 0 && effect.Source.Contains(SourceTag.Gun),
-            effect => 1 + Weakness.CurrentWeaknessAmount * WeaknessConversionFactor,
+            effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
+            effect => 1 + Weakness.CurrentWeaknessPercentage * WeaknessConversionFactor,
             ModifierCategory.Multiplicative));
 
         Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this));
@@ -48,9 +48,9 @@ public abstract partial class Enemy
 
     private void CustomActivity()
     {
-        if (Weakness.CurrentWeaknessAmount > 0)
+        if (Weakness.CurrentWeaknessPercentage > 0)
         {
-            Weakness.CurrentWeaknessAmount -= TimeManager.SecondDifference * WeaknessDepletionRate;
+            Weakness.CurrentWeaknessPercentage -= TimeManager.SecondDifference * WeaknessDepletionRate;
         }
     }
 

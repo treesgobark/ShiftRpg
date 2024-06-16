@@ -14,8 +14,6 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-
-
         }
 
         private void CustomActivity()
@@ -25,7 +23,7 @@ namespace ProjectLoot.Entities
                 Health.CurrentHealth = MaxHealth;
                 Shatter.CurrentShatterDamage = 0;
                 Shatter.CurrentShatterPercentage = 0;
-                Weakness.CurrentWeaknessAmount = 0;
+                Weakness.CurrentWeaknessPercentage = 0;
             }
         }
 

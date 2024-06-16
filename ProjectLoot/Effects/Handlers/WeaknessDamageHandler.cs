@@ -36,16 +36,16 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>
     
     protected virtual void ApplyDamageModifiers(WeaknessDamageEffect damageEffect, ref float finalDamage)
     {
-        finalDamage = (int)((damageEffect.AdditiveIncreases.Sum() + 1) * finalDamage);
+        finalDamage = (damageEffect.AdditiveIncreases.Sum() + 1) * finalDamage;
         
         if (damageEffect.MultiplicativeIncreases.Count > 0)
         {
-            finalDamage = (int)(damageEffect.MultiplicativeIncreases.Aggregate((f1, f2) => f1 * f2) * finalDamage);
+            finalDamage = damageEffect.MultiplicativeIncreases.Aggregate((f1, f2) => f1 * f2) * finalDamage;
         }
     }
     
     protected virtual void ApplyDamage(WeaknessDamageEffect effect, float finalDamage)
     {
-        Weakness.CurrentWeaknessAmount  += finalDamage;
+        Weakness.CurrentWeaknessPercentage += finalDamage * 100f;
     }
 }

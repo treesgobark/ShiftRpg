@@ -61,7 +61,7 @@ public class DamageHandler : EffectHandler<DamageEffect>
     protected virtual void CreateDamageNumber(DamageEffect effect, float finalDamage)
     {
         DamageNumberFactory.CreateNew()
-            .SetStartingValues(finalDamage.ToString(), float.Sqrt(MathHelper.Max(finalDamage, 1)), Position.PositionAsVec3());
+            .SetStartingValues(finalDamage.ToString(), 1, Position.PositionAsVec3());
     }
 }
 

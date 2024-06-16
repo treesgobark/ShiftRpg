@@ -1,8 +1,27 @@
+using FlatRedBall.Forms.MVVM;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.GumRuntimes;
 
 namespace ProjectLoot.Components;
 
-public class WeaknessComponent : IWeaknessComponent
+public class WeaknessComponent : ViewModel, IWeaknessComponent
 {
-    public float CurrentWeaknessAmount { get; set; }
+    public WeaknessComponent() { }
+
+    public WeaknessComponent(HealthBarRuntime healthBarRuntime)
+    {
+        healthBarRuntime.WeaknessBar.BindingContext = this;
+        healthBarRuntime.WeaknessBar.SetBinding(nameof(HealthBarRuntime.WeaknessBar.ProgressPercentage), nameof(CurrentWeaknessPercentage));
+    }
+    
+    public float CurrentWeaknessPercentage
+    {
+        get => Get<float>();
+        set
+        {
+            float newValue = MathHelper.Clamp(value, 0, 100);
+            Set(newValue);
+        }
+    }
 }

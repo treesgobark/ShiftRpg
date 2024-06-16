@@ -9,12 +9,8 @@ namespace ProjectLoot.Entities;
 
 public abstract partial class Enemy
 {
-    private int _currentHealth;
-    private float _currentShatterDamage;
-    private float _currentWeaknessAmount;
-    
-    private const float WeaknessConversionFactor = 0.04f;
-    private const float WeaknessDepletionRate = 10f;
+    private const float WeaknessConversionFactor = 1.5f;
+    private const float WeaknessDepletionRate = .2f;
     
     public HealthComponent Health { get; private set; }
     public EffectsComponent Effects { get; private set; }
@@ -28,14 +24,14 @@ public abstract partial class Enemy
     /// </summary>
     private void CustomInitialize()
     {
-        Health = new HealthComponent { MaxHealth = MaxHealth };
+        Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
         Effects = new EffectsComponent { Team = Team.Enemy };
-        Shatter = new ShatterComponent();
+        Shatter = new ShatterComponent(HealthBarRuntimeInstance);
         Weakness = new WeaknessComponent();
         
         Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
-            effect => CurrentWeaknessAmount > 0 && effect.Source.Contains(SourceTag.Gun),
-            effect => 1 + WeaknessProgressPercentage * WeaknessConversionFactor,
+            effect => Weakness.CurrentWeaknessAmount > 0 && effect.Source.Contains(SourceTag.Gun),
+            effect => 1 + Weakness.CurrentWeaknessAmount * WeaknessConversionFactor,
             ModifierCategory.Multiplicative));
 
         Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this));
@@ -52,9 +48,9 @@ public abstract partial class Enemy
 
     private void CustomActivity()
     {
-        if (CurrentWeaknessAmount > 0)
+        if (Weakness.CurrentWeaknessAmount > 0)
         {
-            CurrentWeaknessAmount -= TimeManager.SecondDifference * WeaknessDepletionRate;
+            Weakness.CurrentWeaknessAmount -= TimeManager.SecondDifference * WeaknessDepletionRate;
         }
     }
 
@@ -92,52 +88,4 @@ public abstract partial class Enemy
     //         HandleEffects(effects);
     //     }
     // }
-        
-    public float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
-
-    public virtual float CurrentHealth
-    {
-        get => _currentHealth;
-        set
-        {
-            _currentHealth = (int)MathHelper.Clamp(value, -1, MaxHealth); 
-            HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
-            if (CurrentHealth <= 0)
-            {
-                Destroy();
-            }
-        }
-    }
-
-    public double LastDamageTime { get; set; }
-
-    public float ShatterSubProgressPercentage => CurrentHealth == 0 ? 100f : 100f * CurrentShatterDamage / CurrentHealth;
-    public float CurrentShatterDamage
-    {
-        get => _currentShatterDamage;
-        set
-        {
-            _currentShatterDamage = value;
-            _currentShatterDamage = Math.Min(MaxShatterDamageAmount, _currentShatterDamage);
-            _currentShatterDamage = Math.Min(CurrentHealth, _currentShatterDamage);
-            HealthBarRuntimeInstance.ShatterBarProgressPercentage = ShatterSubProgressPercentage;
-        }
-    }
-        
-    public float MaxShatterDamagePercentage => 20;
-    public int MaxShatterDamageAmount => (int)(MaxShatterDamagePercentage / 100f * MaxHealth);
-        
-    public float CurrentWeaknessAmount
-    {
-        get => _currentWeaknessAmount;
-        set
-        {
-            _currentWeaknessAmount = value;
-            _currentWeaknessAmount                                 = Math.Clamp(_currentWeaknessAmount, 0, MaxWeaknessAmount);
-            HealthBarRuntimeInstance.WeaknessBarProgressPercentage =  WeaknessProgressPercentage;
-        }
-    }
-        
-    public float MaxWeaknessAmount => 100;
-    public float WeaknessProgressPercentage => CurrentWeaknessAmount / MaxWeaknessAmount * 100f;
 }

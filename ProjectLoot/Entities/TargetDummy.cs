@@ -20,11 +20,12 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
-            if (TimeSinceLastDamage > 1.5)
+            if (TimeSinceLastDamage > 2.0)
             {
-                CurrentHealth = MaxHealth;
-                CurrentShatterDamage = 0;
-                CurrentWeaknessAmount = 0;
+                Health.CurrentHealth = MaxHealth;
+                Shatter.CurrentShatterDamage = 0;
+                Shatter.CurrentShatterPercentage = 0;
+                Weakness.CurrentWeaknessAmount = 0;
             }
         }
 
@@ -39,17 +40,7 @@ namespace ProjectLoot.Entities
 
 
         }
-
-        public override float CurrentHealth
-        {
-            get => _currentHealth;
-            set
-            {
-                _currentHealth                                     = (int)MathHelper.Clamp(value, -1, MaxHealth); 
-                HealthBarRuntimeInstance.MainBarProgressPercentage = CurrentHealthPercentage;
-            }
-        }
         
-        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
+        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(Health.LastDamageTime);
     }
 }

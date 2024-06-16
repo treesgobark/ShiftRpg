@@ -5,6 +5,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Factories;
+using ProjectLoot.GumRuntimes;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
 
@@ -38,14 +39,15 @@ public partial class Player
 
     private void CustomInitialize()
     {
-        Health = new HealthComponent { MaxHealth = MaxHealth };
+        Health = new HealthComponent(MaxHealth, HealthBar);
+        
         Effects = new EffectsComponent { Team = Team.Player };
+        
         InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
         InitializeWeapons();
         InitializeControllers();
         PositionedObjectGueWrapper hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
-        HealthBar.Reset();
     }
 
     private void InitializeControllers()

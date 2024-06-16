@@ -46,7 +46,6 @@ public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
     
     protected virtual void ApplyDamage(ShatterDamageEffect effect, float finalDamage)
     {
-        Shatter.CurrentShatterDamage += finalDamage;
-        Shatter.CurrentShatterDamage = Math.Min(Shatter.CurrentShatterDamage, Shatter.MaxShatterDamagePercentage * Health.MaxHealth);
+        Shatter.SetShatterDamage(Shatter.CurrentShatterDamage + finalDamage, Health);
     }
 }

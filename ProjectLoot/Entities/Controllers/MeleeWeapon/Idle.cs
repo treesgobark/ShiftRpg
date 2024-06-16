@@ -72,7 +72,7 @@ partial class MeleeWeapon
             targetEffects.AddEffect(new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.GetRotationZ()));
             targetEffects.AddEffect(new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1));
             targetEffects.AddEffect(new ApplyShatterEffect(~Parent.Team, Parent.Source));
-            targetEffects.AddEffect(new WeaknessDamageEffect(~Parent.Team, Parent.Source, 10));
+            targetEffects.AddEffect(new WeaknessDamageEffect(~Parent.Team, Parent.Source, .2f));
             Parent.TargetHitEffects = targetEffects;
         }
 

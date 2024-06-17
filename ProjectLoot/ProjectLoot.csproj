@@ -446,8 +446,10 @@
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
     <Compile Include="Components\Interfaces\IShatterComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaknessComponent.cs" />
+    <Compile Include="Components\Interfaces\IWeaponsComponent.cs" />
     <Compile Include="Components\ShatterComponent.cs" />
     <Compile Include="Components\WeaknessComponent.cs" />
+    <Compile Include="Components\WeaponsComponent.cs" />
     <Compile Include="Contracts\IEffect.cs" />
     <Compile Include="Contracts\IEffectBundle.cs" />
     <Compile Include="Contracts\IEffectHandler.cs" />

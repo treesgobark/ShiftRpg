@@ -13,7 +13,7 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.MeleeWeaponCache.IsActive = true;
+            Parent.Weapons.MeleeWeaponCache.IsActive = true;
         }
 
         public override void CustomActivity()
@@ -33,7 +33,7 @@ public partial class Player
     
         public override void BeforeDeactivate()
         {
-            Parent.MeleeWeaponCache.IsActive = false;
+            Parent.Weapons.MeleeWeaponCache.IsActive = false;
         }
 
         public override void Uninitialize() { }

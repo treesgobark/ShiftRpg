@@ -13,7 +13,7 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.GunCache.IsActive = true;
+            Parent.Weapons.GunCache.IsActive = true;
         }
 
         public override void CustomActivity()
@@ -38,7 +38,7 @@ public partial class Player
 
         public override void BeforeDeactivate()
         {
-            Parent.GunCache.IsActive = false;
+            Parent.Weapons.GunCache.IsActive = false;
         }
 
         public override void Uninitialize() { }

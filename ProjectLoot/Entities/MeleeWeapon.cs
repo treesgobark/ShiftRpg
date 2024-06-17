@@ -82,4 +82,6 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
     {
         PolygonInstance.Visible = isVisible;
     }
+
+    public bool IsActive { get; set; } = false;
 }

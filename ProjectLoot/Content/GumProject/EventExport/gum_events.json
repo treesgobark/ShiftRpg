@@ -1,5 +1,174 @@
 {
   "UserEvents": {
-    "Logan": []
+    "Logan": [
+      {
+        "NewName": "ButtonIndicator",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-17T18:41:59.2770174Z"
+      },
+      {
+        "NewName": "ButtonIndicator (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:42:46.6749645Z"
+      },
+      {
+        "NewName": "Pressed",
+        "OldName": "Pressedf",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-17T18:43:54.4673269Z"
+      },
+      {
+        "NewName": "Input2DInidicator",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-17T18:45:37.8989238Z"
+      },
+      {
+        "NewName": "Input2DInidicator (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:46:09.8820241Z"
+      },
+      {
+        "NewName": "Input2DInidicator (Container).WellSprite",
+        "OldName": "Input2DInidicator (Container).SpriteInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T18:51:20.3290983Z"
+      },
+      {
+        "NewName": "Input2DInidicator (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:51:24.2635229Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Input2DInidicator (Container).Sprite SpriteInstance in Input2DInidicator (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-17T18:51:31.4920307Z"
+      },
+      {
+        "NewName": "Input2DInidicator (Container).WellSprite1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:51:33.2484812Z"
+      },
+      {
+        "NewName": "Input2DInidicator (Container).StickSprite",
+        "OldName": "Input2DInidicator (Container).WellSprite1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T18:51:36.9393998Z"
+      },
+      {
+        "NewName": "Input2DIndicator",
+        "OldName": "Input2DInidicator",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-17T18:53:08.6007775Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-17T18:59:14.3627825Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).Input2DIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:59:18.5869453Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:59:22.0928677Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T18:59:24.1433383Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator ButtonIndicatorInstance1 in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-17T18:59:27.0005423Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T19:02:45.2703628Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).TopButton",
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T19:02:56.4166069Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).RightButton",
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T19:03:01.9579306Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).RightButton1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T19:03:19.0883625Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).RightButton2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T19:03:25.621667Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).LeftButton",
+        "OldName": "VirtualControllerDisplay (Container).RightButton2",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T19:03:34.839673Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).BottomButton",
+        "OldName": "VirtualControllerDisplay (Container).RightButton1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-06-17T19:03:42.5740333Z"
+      },
+      {
+        "NewName": "GameScreenGum.VirtualControllerDisplayInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-17T19:04:57.992424Z"
+      }
+    ]
   }
 }

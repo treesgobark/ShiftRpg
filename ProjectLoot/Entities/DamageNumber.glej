@@ -5,6 +5,21 @@
   "Source": "GLUE",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/DamageNumber/HitMarker.wav",
+      "Properties": [
+        {
+          "Name": "UseContentPipeline",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Audio.SoundEffect",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [

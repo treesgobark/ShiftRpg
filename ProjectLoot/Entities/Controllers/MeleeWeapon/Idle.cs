@@ -64,12 +64,12 @@ partial class MeleeWeapon
             // Parent.DamageToDeal = data.Damage;
 
             var holderEffects = new EffectBundle(Parent.Team, Parent.Source);
-            holderEffects.AddEffect(new KnockbackEffect(Parent.Team, Parent.Source, data.KnockbackVelocity, Rotation.Zero, true));
+            holderEffects.AddEffect(new KnockbackEffect(Parent.Team, Parent.Source, data.ForwardMovementVelocity, Rotation.Zero, true));
             Parent.Holder.EffectsComponent.HandlerCollection.Handle(holderEffects);
             
             var targetEffects = new EffectBundle(Parent.Team, Parent.Source);
-            targetEffects.AddEffect(new DamageEffect(~Parent.Team, Parent.Source, 10));
-            targetEffects.AddEffect(new KnockbackEffect(~Parent.Team, Parent.Source, 100, Parent.GetRotationZ()));
+            targetEffects.AddEffect(new DamageEffect(~Parent.Team, Parent.Source, Parent.CurrentAttackData.Damage));
+            targetEffects.AddEffect(new KnockbackEffect(~Parent.Team, Parent.Source, Parent.CurrentAttackData.KnockbackVelocity, Parent.GetRotationZ()));
             targetEffects.AddEffect(new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1));
             targetEffects.AddEffect(new ApplyShatterEffect(~Parent.Team, Parent.Source));
             targetEffects.AddEffect(new WeaknessDamageEffect(~Parent.Team, Parent.Source, .2f));

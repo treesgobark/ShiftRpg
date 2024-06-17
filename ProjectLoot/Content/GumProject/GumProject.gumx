@@ -37,6 +37,11 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ScreenReference>
   <ComponentReference>
+    <Name>ButtonIndicator</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>Controls/ButtonClose</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
@@ -232,12 +237,12 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
-    <Name>MainMenu</Name>
+    <Name>Input2DIndicator</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
-    <Name>ProgressAndSubprogressBar</Name>
+    <Name>MainMenu</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
@@ -252,7 +257,17 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
+    <Name>ProgressAndSubprogressBar</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>ProgressBar</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
+    <Name>VirtualControllerDisplay</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>

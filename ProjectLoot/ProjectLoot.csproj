@@ -21,6 +21,27 @@
     <None Remove="**\*.glsj" />
     <None Remove="**\*.glej" />
     <None Remove="**\*.gluj" />
+    <None Include="..\BuiltXnbs\DesktopGL\Entities\DamageNumber\HitMarker.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HitMarker</Name>
+      <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
+    </None>
+    <None Include="Content\Entities\AnalogStickDisplay\AnalogStick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnalogStick</Name>
+    </None>
+    <None Include="Content\Entities\AnalogStickDisplay\AnalogStickWell.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnalogStickWell</Name>
+    </None>
+    <None Include="Content\Entities\ButtonDisplay\Button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Button</Name>
+    </None>
+    <None Include="Content\Entities\ButtonDisplay\ButtonPressed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ButtonPressed</Name>
+    </None>
     <None Include="Content\Entities\DefaultMeleeEnemy\MeleeEnemy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MeleeEnemy</Name>
@@ -37,6 +58,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
     </None>
+    <None Include="Content\Entities\TargetDummy\DummySprite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>DummySprite</Name>
+    </None>
     <None Include="Content\GlobalContent\AttackData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AttackData</Name>
@@ -44,6 +69,10 @@
     <None Include="Content\GlobalContent\GunData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>
+    </None>
+    <None Include="Content\GumProject\Components\ButtonIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ButtonIndicator</Name>
     </None>
     <None Include="Content\GumProject\Components\Controls\ButtonClose.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -201,6 +230,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
     </None>
+    <None Include="Content\GumProject\Components\Input2DIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Input2DIndicator</Name>
+    </None>
     <None Include="Content\GumProject\Components\MainMenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MainMenu</Name>
@@ -220,6 +253,10 @@
     <None Include="Content\GumProject\Components\ProgressBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressBar</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualControllerDisplay.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>VirtualControllerDisplay</Name>
     </None>
     <None Include="Content\GumProject\FontCache\Font10Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -393,6 +430,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>StandardTilesetIcons</Name>
     </None>
+    <None Include="content\tileset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>tileset</Name>
+    </None>
+    <None Include="content\WhiteVoid.tsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WhiteVoid</Name>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\EffectsComponent.cs" />
@@ -529,6 +574,46 @@
       <DependentUpon>Game1.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
+    <Compile Include="GlueControl\CommandReceiver.Generated.cs" />
+    <Compile Include="GlueControl\Dtos.Generated.cs" />
+    <Compile Include="GlueControl\Editing\CameraLogic.Generated.cs" />
+    <Compile Include="GlueControl\Editing\CopyPasteManager.Generated.cs" />
+    <Compile Include="GlueControl\Editing\EditingManager.Generated.cs" />
+    <Compile Include="GlueControl\Editing\EditorVisuals.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Guides.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\GenerateCodeCommands.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\GlueCommands.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\GlueCommandsStateBase.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\GlueState.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\GluxCommands.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\ObjectFinder.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Managers\RefreshCommands.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Markers\MeasurementMarker.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Markers\PolygonPointHandles.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Markers\SelectionMarker.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Markers\TileShapeCollectionMarker.Generated.cs" />
+    <Compile Include="GlueControl\Editing\MoveObjectToContainerLogic.Generated.cs" />
+    <Compile Include="GlueControl\Editing\SelectionLogic.Generated.cs" />
+    <Compile Include="GlueControl\Editing\VariableAssignmentLogic.Generated.cs" />
+    <Compile Include="GlueControl\Editing\Visuals\Arrow.Generated.cs" />
+    <Compile Include="GlueControl\GameConnectionManager.Generated.cs" />
+    <Compile Include="GlueControl\GlueCallsClassGenerationManager.Generated.cs" />
+    <Compile Include="GlueControl\GlueControlManager.Generated.cs" />
+    <Compile Include="GlueControl\InstanceLogic.Generated.cs" />
+    <Compile Include="GlueControl\Models\CustomVariable.Generated.cs" />
+    <Compile Include="GlueControl\Models\GlueElement.Generated.cs" />
+    <Compile Include="GlueControl\Models\GlueElementFileReference.Generated.cs" />
+    <Compile Include="GlueControl\Models\GlueProjectSave.Generated.cs" />
+    <Compile Include="GlueControl\Models\GlueProjectSaveExtensions.Generated.cs" />
+    <Compile Include="GlueControl\Models\IElementExtensionMethods.Generated.cs" />
+    <Compile Include="GlueControl\Models\INamedObjectContainer.Generated.cs" />
+    <Compile Include="GlueControl\Models\NamedObjectSave.Generated.cs" />
+    <Compile Include="GlueControl\Models\NamedObjectSaveExtensionMethods.Generated.cs" />
+    <Compile Include="GlueControl\Models\ReferencedFileSave.Generated.cs" />
+    <Compile Include="GlueControl\Models\StateSave.Generated.cs" />
+    <Compile Include="GlueControl\Models\StateSaveCategory.Generated.cs" />
+    <Compile Include="GlueControl\Runtime\DynamicEntity.Generated.cs" />
+    <Compile Include="GlueControl\Screens\EntityViewingScreen.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IButtonBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\ICheckBoxBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IComboBoxBehavior.Generated.cs" />
@@ -551,6 +636,10 @@
     <Compile Include="GumRuntimes\Behaviors\ITreeViewBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\ITreeViewItemBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IUserControlBehavior.Generated.cs" />
+    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.Generated.cs">
+      <DependentUpon>ButtonIndicatorRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
@@ -715,6 +804,11 @@
     <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs">
       <DependentUpon>HealthBarRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\Input2DIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\Input2DIndicatorRuntime.Generated.cs">
+      <DependentUpon>Input2DIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\Input2DInidicatorRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
@@ -752,6 +846,10 @@
       <DependentUpon>TestLevelGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.Generated.cs">
+      <DependentUpon>VirtualControllerDisplayRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputDevices\EnemyInputDevice.cs" />
     <Compile Include="InputDevices\EntityTracker.cs" />
     <Compile Include="InputDevices\GameplayInputDevice.cs" />

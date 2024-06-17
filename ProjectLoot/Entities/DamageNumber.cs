@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
+using FlatRedBall.Audio;
 using Microsoft.Xna.Framework;
 using RenderingLibrary.Graphics;
 
@@ -20,6 +21,7 @@ namespace ProjectLoot.Entities
             DamageNumberRuntimeInstance.TextInstance.FontScale = 0.75f;
             Velocity = 50f * Vector3.UnitX.RandomizeAngleBetween(MathConstants.EighthTurn, 3 * MathConstants.EighthTurn)
                 .RandomizeMagnitudeBetween(0.5f, 1f);
+            HitMarker.Play(0.1f, 0f, 0f);
         }
 
         private void CustomActivity()

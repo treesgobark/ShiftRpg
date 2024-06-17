@@ -44,6 +44,7 @@ public class ZeroMeleeWeapon : ZeroWeapon<IMeleeWeaponInputDevice>, IMeleeWeapon
     public static readonly ZeroMeleeWeapon Instance = new();
     
     public override IMeleeWeaponInputDevice InputDevice => ZeroMeleeWeaponInputDevice.Instance;
+    public bool IsActive { get; set; } = false;
 }
 
 public class ZeroWeaponHolder : IWeaponHolder

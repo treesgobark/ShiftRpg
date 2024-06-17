@@ -6,6 +6,14 @@
   "BaseEntity": "Entities\\Enemy",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/TargetDummy/DummySprite.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -88,6 +96,73 @@
       ],
       "SourceType": 3,
       "SourceFile": "HealthBarRuntime",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    },
+    {
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "DummySprite",
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "Color",
+          "Member": "Color",
+          "Value": "HotPink",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,

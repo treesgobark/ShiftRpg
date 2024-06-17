@@ -19,6 +19,24 @@
       "ProjectsToExcludeFrom": []
     }
   ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "string",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Layer",
+          "Type": "String"
+        }
+      ],
+      "Name": "DefaultLayer",
+      "Category": "Layer"
+    }
+  ],
   "NamedObjects": [
     {
       "InstanceName": "Map",
@@ -61,8 +79,18 @@
         },
         {
           "Name": "CollisionCreationOptions",
-          "Value": 4,
-          "Type": "int"
+          "Value": 6,
+          "Type": "Object"
+        },
+        {
+          "Name": "SourceTmxName",
+          "Value": "Map",
+          "Type": "Object"
+        },
+        {
+          "Name": "TmxCollisionName",
+          "Value": "SolidCollision",
+          "Type": "Object"
         },
         {
           "Name": "CollisionTileSize",
@@ -90,24 +118,14 @@
           "Type": "float"
         },
         {
-          "Name": "SourceTmxName",
-          "Value": "Map",
-          "Type": "String"
-        },
-        {
           "Name": "CollisionTileTypeName",
           "Value": "SolidCollision",
-          "Type": "String"
-        },
-        {
-          "Name": "RemoveTilesAfterCreatingCollision",
-          "Value": true,
-          "Type": "bool"
+          "Type": "Object"
         }
       ],
       "InstructionSaves": [],
       "SourceType": 2,
-      "SourceFile": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "SourceFile": "TileShapeCollection",
       "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
@@ -147,13 +165,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 240.0,
+              "Value": 336.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -240.0,
+              "Value": -272.0,
               "Time": 0.0
             }
           ],
@@ -161,32 +179,10 @@
           "SourceFile": "Entities\\TargetDummy",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
-        }
-      ]
-    },
-    {
-      "InstanceName": "DamageNumberList",
-      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
-      "Properties": [
+        },
         {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "PositionedObjectList (Generic)",
-      "SourceClassGenericType": "Entities\\DamageNumber",
-      "ExposedInDerived": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "DefinedByBase": true,
-      "InstantiatedByBase": true,
-      "ContainedObjects": [
-        {
-          "InstanceName": "DamageNumber1",
-          "SourceClassType": "Entities\\DamageNumber",
+          "InstanceName": "TargetDummy2",
+          "SourceClassType": "Entities\\TargetDummy",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -198,18 +194,104 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 374.5625,
+              "Value": 272.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -308.1875,
+              "Value": -272.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DamageNumber",
+          "SourceFile": "Entities\\TargetDummy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "TargetDummy3",
+          "SourceClassType": "Entities\\TargetDummy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 384.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -272.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\TargetDummy",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "TargetDummy4",
+          "SourceClassType": "Entities\\TargetDummy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 432.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -272.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\TargetDummy",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "TargetDummy5",
+          "SourceClassType": "Entities\\TargetDummy",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 480.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -272.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\TargetDummy",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         }

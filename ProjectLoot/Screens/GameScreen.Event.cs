@@ -29,6 +29,8 @@ namespace ProjectLoot.Screens
         
         void OnPlayerVsMeleeWeaponCollided (Player player, MeleeWeapon meleeWeapon)
         {
+            if (!meleeWeapon.IsActive) { return; }
+            
             player.Effects.HandlerCollection.Handle(meleeWeapon.TargetHitEffects);
         }
         
@@ -42,6 +44,8 @@ namespace ProjectLoot.Screens
         
         void OnMeleeWeaponVsEnemyCollided (MeleeWeapon meleeWeapon, Enemy enemy) 
         {
+            if (!meleeWeapon.IsActive) { return; }
+            
             enemy.Effects.Handle(meleeWeapon.TargetHitEffects);
         }
         

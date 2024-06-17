@@ -130,6 +130,38 @@
       "SourceFile": "Sprite",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "Color",
+          "Member": "Color",
+          "Value": "HotPink",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 8.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
     }
   ],
   "Name": "Entities\\DefaultMeleeEnemy",

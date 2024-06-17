@@ -80,6 +80,12 @@
       <Name>PauseStateState</Name>
       <SetsValue>false</SetsValue>
     </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>VirtualControllerDisplayInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
   </State>
   <Category>
     <Name>PauseState</Name>
@@ -104,6 +110,24 @@
         <Value xsi:type="xsd:boolean">false</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>VirtualControllerDisplayInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.X</Name>
+        <Value xsi:type="xsd:float">-208</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.Y</Name>
+        <Value xsi:type="xsd:float">117</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
     <State>
       <Name>Pause</Name>
@@ -123,6 +147,24 @@
         <Type>bool</Type>
         <Name>PauseMenuInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>VirtualControllerDisplayInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.Y</Name>
+        <Value xsi:type="xsd:float">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -146,6 +188,24 @@
         <Value xsi:type="xsd:boolean">false</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>VirtualControllerDisplayInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.Y</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
   </Category>
   <Instance>
@@ -161,6 +221,11 @@
   <Instance>
     <Name>OptionsInstance</Name>
     <BaseType>Options</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>VirtualControllerDisplayInstance</Name>
+    <BaseType>VirtualControllerDisplay</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

@@ -13,6 +13,7 @@ partial class MeleeWeapon
         protected override void AfterTimedStateActivate()
         {
             Parent.ShowHitbox(true);
+            Parent.IsActive = true;
             // Parent.Holder.SetPlayerColor(Color.Red);
             // Parent.IsDamageDealingEnabled     = true;
             // Parent.Holder.InputEnabled = false;
@@ -35,6 +36,7 @@ partial class MeleeWeapon
         public override void BeforeDeactivate()
         {
             Parent.ShowHitbox(false);
+            Parent.IsActive = false;
             // Parent.IsDamageDealingEnabled  = false;
             // Parent.Holder.InputEnabled = true;
             // Parent.TargetHitEffects   = EffectBundle.Empty;

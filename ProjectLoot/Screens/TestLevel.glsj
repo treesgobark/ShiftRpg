@@ -85,53 +85,28 @@
         },
         {
           "Name": "CollisionCreationOptions",
-          "Value": 4,
-          "Type": "int"
-        },
-        {
-          "Name": "CollisionTileSize",
-          "Value": 16.0,
-          "Type": "float"
-        },
-        {
-          "Name": "CollisionFillWidth",
-          "Value": 32,
-          "Type": "int"
-        },
-        {
-          "Name": "CollisionFillHeight",
-          "Value": 1,
-          "Type": "int"
-        },
-        {
-          "Name": "InnerSizeWidth",
-          "Value": 800.0,
-          "Type": "float"
-        },
-        {
-          "Name": "InnerSizeHeight",
-          "Value": 600.0,
-          "Type": "float"
+          "Value": 6,
+          "Type": "Object"
         },
         {
           "Name": "SourceTmxName",
           "Value": "Map",
-          "Type": "String"
+          "Type": "Object"
+        },
+        {
+          "Name": "TmxCollisionName",
+          "Value": "SolidCollision",
+          "Type": "Object"
         },
         {
           "Name": "CollisionTileTypeName",
           "Value": "SolidCollision",
-          "Type": "String"
-        },
-        {
-          "Name": "RemoveTilesAfterCreatingCollision",
-          "Value": true,
           "Type": "Object"
         }
       ],
       "InstructionSaves": [],
       "SourceType": 2,
-      "SourceFile": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "SourceFile": "TileShapeCollection",
       "HasPublicProperty": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,

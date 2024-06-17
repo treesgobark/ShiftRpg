@@ -1,5 +1,6 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
+using FlatRedBall.Graphics;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;
 using FlatRedBall.Screens;
@@ -15,11 +16,15 @@ public partial class GameScreen
 
     void CustomInitialize()
     {
+        SpriteManager.OrderedSortType = SortType.ZSecondaryParentY;
         InitializePauseMenu();
     }
 
     void CustomActivity(bool firstTimeCalled)
     {
+        GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
+        GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(Player1.GameplayInputDevice.Attack);
+        
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {
             TogglePause();

@@ -22,7 +22,7 @@ namespace ProjectLoot.Entities
             StateMachine = new StateMachine();
             StateMachine.Add(new Ready(this, StateMachine));
             StateMachine.Add(new Recovery(this, StateMachine));
-            StateMachine.Add(new SuperRocketReloading(this, StateMachine));
+            StateMachine.Add(new Reloading(this, StateMachine));
             StateMachine.InitializeStartingState<Ready>();
         }
 

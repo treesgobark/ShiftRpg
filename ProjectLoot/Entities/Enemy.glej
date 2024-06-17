@@ -151,6 +151,7 @@
       ],
       "SourceType": 2,
       "SourceFile": "Circle",
+      "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     },

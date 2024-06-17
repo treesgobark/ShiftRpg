@@ -19,8 +19,8 @@ public class KnockbackHandler : EffectHandler<KnockbackEffect>
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }
         
-        Position.XVelocity += effect.KnockbackVector.X;
-        Position.YVelocity += effect.KnockbackVector.Y;
+        Position.XVelocity = effect.KnockbackVector.X;
+        Position.YVelocity = effect.KnockbackVector.Y;
     }
     
     protected virtual bool ValidateEffect(KnockbackEffect effect)

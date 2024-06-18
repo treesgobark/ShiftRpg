@@ -14,9 +14,11 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
 {
     public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent)
     {
-        DefaultGun gun = DefaultGunFactory.CreateNew();
+        DefaultGun gun = new()
+        {
+            RelativeX = 10
+        };
 
-        gun.RelativeX = 10;
         gun.AttachTo(parent);
         gun.Team = team;
         // gun.Holder = this;
@@ -25,7 +27,7 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
         GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, new GunInputDevice(gameplayInputDevice));
         GunCache.Add(gun);
 
-        DefaultSword melee = DefaultSwordFactory.CreateNew();
+        DefaultSword melee = new DefaultSword();
 
         melee.AttachTo(parent);
         melee.Team = team;
@@ -39,6 +41,19 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
     
     public IWeaponCache<IGun, IGunInputDevice> GunCache { get; }
     public IWeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice> MeleeWeaponCache { get; }
+
+    public void Activity()
+    {
+        if (GunCache.IsActive)
+        {
+            GunCache.CurrentWeapon.Activity();
+        }
+
+        if (MeleeWeaponCache.IsActive)
+        {
+            MeleeWeaponCache.CurrentWeapon.Activity();
+        }
+    }
     
     public void Destroy()
     {

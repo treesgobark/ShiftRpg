@@ -3,6 +3,7 @@ using FlatRedBall;
 using FlatRedBall.Graphics;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;
+using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Entities;
@@ -28,6 +29,11 @@ public partial class GameScreen
         foreach (Enemy? enemy in EnemyList)
         {
             enemy?.EnemyInputDevice?.SetTarget(Player1);
+        }
+        
+        foreach(AxisAlignedRectangle? rect in SolidCollision.Rectangles)
+        {
+            rect.RepositionDirections = FlatRedBall.Math.Geometry.RepositionDirections.All;
         }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)

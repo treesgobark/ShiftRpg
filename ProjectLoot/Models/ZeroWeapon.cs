@@ -20,6 +20,8 @@ public abstract class ZeroWeapon<T> : IWeapon<T>
     
     public void Equip(T inputDevice) { }
     public void Unequip() { }
+    public void Activity() { }
+
     public void Destroy() { }
 }
 

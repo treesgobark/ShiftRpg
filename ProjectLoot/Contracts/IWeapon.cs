@@ -16,4 +16,5 @@ public interface IWeapon<TInput> : IDestroyable
     
     void Equip(TInput inputDevice);
     void Unequip();
+    void Activity();
 }

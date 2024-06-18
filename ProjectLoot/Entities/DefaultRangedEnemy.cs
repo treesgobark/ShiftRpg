@@ -36,6 +36,7 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
+            Weapons.Activity();
             StateMachine.DoCurrentStateActivity();
         }
 

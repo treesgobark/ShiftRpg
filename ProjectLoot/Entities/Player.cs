@@ -4,6 +4,7 @@ using GumCoreShared.FlatRedBall.Embedded;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
@@ -29,8 +30,10 @@ public partial class Player
         Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, this);
         
         InitializeControllers();
+        InitializeHandlers();
         PositionedObjectGueWrapper hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
+        HealthBar.Reset();
     }
 
     private void InitializeControllers()
@@ -41,9 +44,15 @@ public partial class Player
         StateMachine.InitializeStartingState<MeleeMode>();
     }
 
+    private void InitializeHandlers()
+    {
+        Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this));
+    }
+
     private void CustomActivity()
     {
         // HandlePersistentEffects();
+        Weapons.Activity();
         StateMachine.DoCurrentStateActivity();
     }
 
@@ -55,64 +64,4 @@ public partial class Player
     private static void CustomLoadStaticContent(string contentManagerName)
     {
     }
-
-    // public void HandlePersistentEffects()
-    // {
-    //     List<IEffect> effects = [];
-    //
-    //     for (var i = PersistentEffects.Count - 1; i >= 0; i--)
-    //     {
-    //         var effect = PersistentEffects[i];
-    //         if (effect is DamageOverTimeEffect { ShouldApply: true } dot)
-    //         {
-    //             effects.Add(dot.GetDamageEffect());
-    //             if (dot.RemainingTicks <= 0)
-    //             {
-    //                 PersistentEffects.RemoveAt(i);
-    //             }
-    //         }
-    //     }
-    //
-    //     HandleEffects(effects);
-    // }
-    //
-    // public void HandleEffects(IEffectBundle effects)
-    // {
-    //     foreach (var effect in effects)
-    //     {
-    //         if (RecentEffects.Any(t => t.EffectId == effect.EffectId))
-    //         {
-    //             continue;
-    //         }
-    //         
-    //         effect.HandleStandardDamage(this)
-    //             .HandleStandardKnockback(this)
-    //             .HandleStandardPersistentEffect(this);
-    //     }
-    // }
-
-    // IWeaponHolder
-    
-    // public void ModifyOutgoingEffects(IEffectBundle effects)
-    // {
-    //     foreach (object effect in effects)
-    //         if (effect is DamageEffect damage && damage.Source.IsContainedIn(SourceTag.Gun))
-    //         {
-    //             // damage.AdditiveIncreases.Add(1);
-    //         }
-    // }
-    //
-    // public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
-    // {
-    //     foreach (object effect in effects)
-    //         if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
-    //             damageEffect.AdditiveIncreases.Add(1f);
-    //
-    //     return effects;
-    // }
-    //
-    // public void SetInputEnabled(bool isEnabled)
-    // {
-    //     InputEnabled = isEnabled;
-    // }
 }

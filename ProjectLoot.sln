@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLoot", "ProjectLoot\ProjectLoot.csproj", "{D7079294-70C6-4204-B29E-C505EC181815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities.FlatRedBall", "..\ANLG.Utilities\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj", "{100E31AC-485B-4FAC-8EB6-E1D976784750}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities.FlatRedBall", "..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj", "{100E31AC-485B-4FAC-8EB6-E1D976784750}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -495,10 +495,12 @@
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Controllers\GunEnemy\GunMode.cs" />
     <Compile Include="Entities\Controllers\Gun\Ready.cs" />
     <Compile Include="Entities\Controllers\Gun\Recovery.cs" />
     <Compile Include="Entities\Controllers\Gun\Reloading.cs" />
     <Compile Include="Entities\Controllers\Gun\SuperRocketReloading.cs" />
+    <Compile Include="Entities\Controllers\MeleeEnemy\MeleeMode.cs" />
     <Compile Include="Entities\Controllers\MeleeWeapon\Active.cs" />
     <Compile Include="Entities\Controllers\MeleeWeapon\Idle.cs" />
     <Compile Include="Entities\Controllers\MeleeWeapon\Recovery.cs" />
@@ -858,6 +860,7 @@
     <Compile Include="InputDevices\GunInputDevice.cs" />
     <Compile Include="InputDevices\MeleeWeaponInputDevice.cs" />
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
+    <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Models\ZeroWeapon.cs" />

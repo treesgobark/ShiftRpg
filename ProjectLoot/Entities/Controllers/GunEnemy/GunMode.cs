@@ -3,11 +3,11 @@ using FlatRedBall.Input;
 
 namespace ProjectLoot.Entities;
 
-public partial class Player
+public partial class DefaultRangedEnemy
 {
-    protected class GunMode : TimedState<Player>
+    protected class GunMode : TimedState<DefaultRangedEnemy>
     {
-        public GunMode(Player parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+        public GunMode(DefaultRangedEnemy parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
 
         public override void Initialize() { }
 
@@ -23,11 +23,6 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.AimInMeleeRange)
-            {
-                return StateMachine.Get<MeleeMode>();
-            }
-        
             return null;
         }
 
@@ -40,7 +35,7 @@ public partial class Player
     
         private void SetRotation()
         {
-            float? angle = Parent.GameplayInputDevice.Aim.GetAngle();
+            float? angle = Parent.EnemyInputDevice.Aim.GetAngle();
             
             if (angle is not null)
             {

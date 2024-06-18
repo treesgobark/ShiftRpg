@@ -1,11 +1,16 @@
-using FlatRedBall.Screens;
+using ANLG.Utilities.FlatRedBall.States;
+using ProjectLoot.Components;
+using ProjectLoot.Effects;
 using ProjectLoot.InputDevices;
-using ProjectLoot.Screens;
 
 namespace ProjectLoot.Entities
 {
     public partial class DefaultMeleeEnemy
     {
+        public WeaponsComponent Weapons { get; private set; }
+
+        public StateMachine StateMachine { get; protected set; }
+        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -13,23 +18,27 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            InitializeTopDownInput(new EnemyInputDevice(this));
+            var eInput = new EnemyInputDevice(this);
+            InitializeTopDownInput(eInput);
+            EnemyInputDevice = eInput;
+            Weapons = new WeaponsComponent(eInput, Team.Enemy, this);
+            InitializeControllers();
         }
 
+        private void InitializeControllers()
+        {
+            StateMachine = new StateMachine();
+            StateMachine.Add(new MeleeMode(this, StateMachine));
+            StateMachine.InitializeStartingState<MeleeMode>();
+        }
         private void CustomActivity()
         {
-            var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
-            Player? target = gameScreen.GetClosestPlayer(Position);
-            if (InputDevice is EnemyInputDevice eInput && target is not null)
-            {
-                eInput.SetTarget(target);
-            }
+            StateMachine.DoCurrentStateActivity();
         }
 
         private void CustomDestroy()
         {
-
-
+            Weapons.Destroy();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

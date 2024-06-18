@@ -4,9 +4,7 @@ using GumCoreShared.FlatRedBall.Embedded;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
-using ProjectLoot.Factories;
 using ProjectLoot.InputDevices;
-using ProjectLoot.Models;
 
 namespace ProjectLoot.Entities;
 
@@ -21,24 +19,10 @@ public partial class Player
 
     public StateMachine StateMachine { get; protected set; }
 
-    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
-    {
-        foreach (object effect in effects)
-            if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
-                damageEffect.AdditiveIncreases.Add(1f);
-
-        return effects;
-    }
-
-    public void SetInputEnabled(bool isEnabled)
-    {
-        InputEnabled = isEnabled;
-    }
-
     private void CustomInitialize()
     {
-        InitializeTopDownInput(InputManager.Keyboard); // TODO: remove
-        GameplayInputDevice = new GameplayInputDevice(InputDevice, this);
+        InitializeTopDownInput(InputManager.Keyboard);
+        GameplayInputDevice = new GameplayInputDevice(InputDevice, this, MeleeAimThreshold);
         
         Health = new HealthComponent(MaxHealth, HealthBar);
         Effects = new EffectsComponent { Team = Team.Player };
@@ -107,12 +91,28 @@ public partial class Player
     //     }
     // }
 
-    public void ModifyOutgoingEffects(IEffectBundle effects)
-    {
-        foreach (object effect in effects)
-            if (effect is DamageEffect damage && damage.Source.IsContainedIn(SourceTag.Gun))
-            {
-                // damage.AdditiveIncreases.Add(1);
-            }
-    }
+    // IWeaponHolder
+    
+    // public void ModifyOutgoingEffects(IEffectBundle effects)
+    // {
+    //     foreach (object effect in effects)
+    //         if (effect is DamageEffect damage && damage.Source.IsContainedIn(SourceTag.Gun))
+    //         {
+    //             // damage.AdditiveIncreases.Add(1);
+    //         }
+    // }
+    //
+    // public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
+    // {
+    //     foreach (object effect in effects)
+    //         if (effect is DamageEffect damageEffect && damageEffect.Source.Contains(SourceTag.Gun))
+    //             damageEffect.AdditiveIncreases.Add(1f);
+    //
+    //     return effects;
+    // }
+    //
+    // public void SetInputEnabled(bool isEnabled)
+    // {
+    //     InputEnabled = isEnabled;
+    // }
 }

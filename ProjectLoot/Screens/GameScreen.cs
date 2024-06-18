@@ -24,6 +24,11 @@ public partial class GameScreen
     {
         GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
         GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(Player1.GameplayInputDevice.Attack);
+
+        foreach (Enemy? enemy in EnemyList)
+        {
+            enemy?.EnemyInputDevice?.SetTarget(Player1);
+        }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {

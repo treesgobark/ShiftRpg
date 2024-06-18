@@ -3,50 +3,50 @@ using FlatRedBall.Input;
 
 namespace ProjectLoot.Entities;
 
-public partial class Player
+public partial class DefaultMeleeEnemy
 {
-    protected class GunMode : TimedState<Player>
+    protected class MeleeMode : TimedState<DefaultMeleeEnemy>
     {
-        public GunMode(Player parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
-
+        public MeleeMode(DefaultMeleeEnemy parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+        
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Weapons.GunCache.IsActive = true;
+            Parent.Weapons.MeleeWeaponCache.IsActive = true;
         }
 
         public override void CustomActivity()
         {
             SetRotation();
         }
-
+    
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.AimInMeleeRange)
-            {
-                return StateMachine.Get<MeleeMode>();
-            }
-        
             return null;
         }
-
+    
         public override void BeforeDeactivate()
         {
-            Parent.Weapons.GunCache.IsActive = false;
+            Parent.Weapons.MeleeWeaponCache.IsActive = false;
         }
 
         public override void Uninitialize() { }
     
         private void SetRotation()
         {
-            float? angle = Parent.GameplayInputDevice.Aim.GetAngle();
+            if (!Parent.InputEnabled)
+            {
+                return;
+            }
             
+            float? angle = Parent.EnemyInputDevice.Movement.GetAngle();
+
             if (angle is not null)
             {
                 Parent.RotationZ = angle.Value;
             }
-        
+
             Parent.ForceUpdateDependenciesDeep();
         }
     }

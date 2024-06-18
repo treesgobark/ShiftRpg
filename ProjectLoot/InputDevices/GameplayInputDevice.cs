@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
+using FlatRedBall.Math;
 using Microsoft.Xna.Framework.Input;
 using ProjectLoot.Contracts;
 using ProjectLoot.Entities;
@@ -11,7 +12,7 @@ namespace ProjectLoot.InputDevices;
 
 public class GameplayInputDevice : IGameplayInputDevice
 {
-    public GameplayInputDevice(IInputDevice inputDevice, Player player)
+    public GameplayInputDevice(IInputDevice inputDevice, IPositionable position, float meleeAimThreshold)
     {
         switch (inputDevice)
         {
@@ -28,7 +29,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 break;
             case Keyboard keyboard:
                 Movement        = keyboard.GetWasdInput();
-                Aim             = new VirtualAimer(InputManager.Mouse, player);
+                Aim             = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
                 Attack          = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
                 Reload          = keyboard.GetKey(Keys.R);
                 Dash            = keyboard.GetKey(Keys.Space);

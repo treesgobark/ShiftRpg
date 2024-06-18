@@ -18,12 +18,6 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
-            var gameScreen = (GameScreen)ScreenManager.CurrentScreen;
-            var target     = gameScreen.GetClosestPlayer(Position);
-            if (InputDevice is EnemyInputDevice eInput)
-            {
-                eInput.SetTarget(target);
-            }
         }
 
         private void CustomDestroy()

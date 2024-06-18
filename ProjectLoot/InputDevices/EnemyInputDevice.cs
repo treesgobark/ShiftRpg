@@ -20,7 +20,14 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
 
     public void SetTarget(PositionedObject target)
     {
-        EntityTracker = new EntityTracker(Owner, target);
+        if (EntityTracker is not null)
+        {
+            EntityTracker.SetTarget(target);
+        }
+        else
+        {
+            EntityTracker = new EntityTracker(Owner, target);
+        }
     }
 
     public void ClearTarget()
@@ -32,13 +39,14 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     protected override float GetDefault2DInputY() => EntityTracker?.Y ?? 0;
     public I2DInput Movement => ((IInputDevice)this).Default2DInput;
     public I2DInput Aim => EntityTracker is not null ? EntityTracker : Zero2DInput.Instance;
-    public IPressableInput Attack => FalsePressableInput.Instance;
+    public IPressableInput Attack => TruePressableInput.Instance;
     public IPressableInput Reload => FalsePressableInput.Instance;
     public IPressableInput Dash => FalsePressableInput.Instance;
     public IPressableInput QuickSwapWeapon => FalsePressableInput.Instance;
     public IPressableInput NextWeapon => FalsePressableInput.Instance;
     public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
-    public bool AimInMeleeRange => Aim.Magnitude < 1;
+    // public bool AimInMeleeRange => Aim.Magnitude < 1;
+    public bool AimInMeleeRange => false;
 }
 
 public class RangedEnemyInputDevice : EnemyInputDevice

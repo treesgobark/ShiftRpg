@@ -4,6 +4,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
+using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
 
@@ -11,6 +12,8 @@ public abstract partial class Enemy
 {
     private const float WeaknessConversionFactor = .015f;
     private const float WeaknessDepletionRate = 20f;
+    
+    public EnemyInputDevice EnemyInputDevice { get; protected set; }
     
     public HealthComponent Health { get; private set; }
     public EffectsComponent Effects { get; private set; }

@@ -24,6 +24,23 @@
    <object id="1" x="0" y="0" width="2" height="2"/>
   </objectgroup>
  </tile>
+ <tile id="6" type="SolidCollision"/>
+ <tile id="7" type="SolidCollision"/>
+ <tile id="8" type="SolidCollision">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="9" type="SolidCollision">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="10" type="SolidCollision">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="64" type="SolidCollision">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -37,6 +54,16 @@
  <tile id="68">
   <objectgroup draworder="index" id="3">
    <object id="2" x="15" y="0" width="1" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="72" type="SolidCollision">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="73" type="SolidCollision">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="131" type="SolidCollision">

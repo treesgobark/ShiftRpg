@@ -36,10 +36,10 @@ public partial class GameScreen
             rect.RepositionDirections = RepositionDirections.All;
         }
         
-        foreach(var rect in SolidCollision.Rectangles)
-        {
-            GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
-        }
+        // foreach(var rect in SolidCollision.Rectangles)
+        // {
+        //     GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
+        // }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {

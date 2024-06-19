@@ -262,6 +262,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font10PixelFont6x9_noSmooth</Name>
     </None>
+    <None Include="Content\GumProject\FontCache\Font10PixelFont6x9_noSmooth_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font10PixelFont6x9_noSmooth_0</Name>
+    </None>
     <None Include="Content\GumProject\FontCache\Font12PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font12PixelFont6x9_noSmooth</Name>
@@ -314,21 +318,41 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font14PixelFont6x9_noSmooth_Italic</Name>
     </None>
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth_Italic_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font14PixelFont6x9_noSmooth_Italic_0</Name>
+    </None>
     <None Include="Content\GumProject\FontCache\Font16PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font16PixelFont6x9_noSmooth_Bold</Name>
+    </None>
+    <None Include="Content\GumProject\FontCache\Font16PixelFont6x9_noSmooth_Bold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font16PixelFont6x9_noSmooth_Bold_0</Name>
     </None>
     <None Include="Content\GumProject\FontCache\Font18PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18PixelFont6x9_noSmooth_Bold</Name>
     </None>
+    <None Include="Content\GumProject\FontCache\Font18PixelFont6x9_noSmooth_Bold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18PixelFont6x9_noSmooth_Bold_0</Name>
+    </None>
     <None Include="Content\GumProject\FontCache\Font22PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font22PixelFont6x9_noSmooth_Bold</Name>
     </None>
+    <None Include="Content\GumProject\FontCache\Font22PixelFont6x9_noSmooth_Bold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font22PixelFont6x9_noSmooth_Bold_0</Name>
+    </None>
     <None Include="Content\GumProject\FontCache\Font28PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font28PixelFont6x9_noSmooth_Bold</Name>
+    </None>
+    <None Include="Content\GumProject\FontCache\Font28PixelFont6x9_noSmooth_Bold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font28PixelFont6x9_noSmooth_Bold_0</Name>
     </None>
     <None Include="Content\GumProject\FontCache\Font36PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

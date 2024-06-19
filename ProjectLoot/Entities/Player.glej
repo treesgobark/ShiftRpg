@@ -239,22 +239,6 @@
       "SourceFile": "HealthBarRuntime",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "DefaultSwordInstance",
-      "SourceClassType": "Entities\\DefaultSword",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 1,
-      "SourceFile": "Entities\\DefaultSword",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Player",

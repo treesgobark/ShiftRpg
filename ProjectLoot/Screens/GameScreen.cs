@@ -33,7 +33,12 @@ public partial class GameScreen
         
         foreach(AxisAlignedRectangle? rect in SolidCollision.Rectangles)
         {
-            rect.RepositionDirections = FlatRedBall.Math.Geometry.RepositionDirections.All;
+            rect.RepositionDirections = RepositionDirections.All;
+        }
+        
+        foreach(var rect in SolidCollision.Rectangles)
+        {
+            GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
         }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)

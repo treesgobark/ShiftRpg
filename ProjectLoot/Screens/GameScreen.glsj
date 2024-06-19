@@ -996,26 +996,7 @@
           "Type": "String"
         }
       ],
-      "InstructionSaves": [
-        {
-          "Type": "bool",
-          "Member": "AdjustRepositionDirectionsOnAddAndRemove",
-          "Value": true,
-          "Time": 0.0
-        },
-        {
-          "Type": "string",
-          "Member": "RepositionUpdateStyle",
-          "Value": "None",
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": false,
-          "Time": 0.0
-        }
-      ],
+      "InstructionSaves": [],
       "SourceType": 2,
       "SourceFile": "TileShapeCollection",
       "HasPublicProperty": true,

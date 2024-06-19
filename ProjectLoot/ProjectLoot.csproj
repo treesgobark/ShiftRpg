@@ -258,21 +258,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>VirtualControllerDisplay</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font10Arial.fnt">
+    <None Include="Content\GumProject\FontCache\Font10PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font10Arial</Name>
+      <Name>Font10PixelFont6x9_noSmooth</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font10Arial_0.png">
+    <None Include="Content\GumProject\FontCache\Font12PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font10Arial_0</Name>
+      <Name>Font12PixelFont6x9_noSmooth</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font12Arial.fnt">
+    <None Include="Content\GumProject\FontCache\Font12PixelFont6x9_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font12Arial</Name>
+      <Name>Font12PixelFont6x9_noSmooth_0</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font12Arial_0.png">
+    <None Include="Content\GumProject\FontCache\Font13PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font12Arial_0</Name>
+      <Name>Font13PixelFont6x9_noSmooth</Name>
+    </None>
+    <None Include="Content\GumProject\FontCache\Font13PixelFont6x9_noSmooth_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font13PixelFont6x9_noSmooth_0</Name>
+    </None>
+    <None Include="Content\GumProject\FontCache\Font13PixelFont6x9_noSmooth_Bold.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font13PixelFont6x9_noSmooth_Bold</Name>
+    </None>
+    <None Include="Content\GumProject\FontCache\Font13PixelFont6x9_noSmooth_Bold_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font13PixelFont6x9_noSmooth_Bold_0</Name>
     </None>
     <None Include="Content\GumProject\FontCache\Font13PixelFont6x9_o1_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -282,77 +294,49 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font13PixelFont6x9_o1_noSmooth_0</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial.fnt">
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial</Name>
+      <Name>Font14PixelFont6x9_noSmooth</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial_0.png">
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial_0</Name>
+      <Name>Font14PixelFont6x9_noSmooth_0</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial_Bold.fnt">
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial_Bold</Name>
+      <Name>Font14PixelFont6x9_noSmooth_Bold</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial_Bold_0.png">
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth_Bold_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial_Bold_0</Name>
+      <Name>Font14PixelFont6x9_noSmooth_Bold_0</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial_Italic.fnt">
+    <None Include="Content\GumProject\FontCache\Font14PixelFont6x9_noSmooth_Italic.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial_Italic</Name>
+      <Name>Font14PixelFont6x9_noSmooth_Italic</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font14Arial_Italic_0.png">
+    <None Include="Content\GumProject\FontCache\Font16PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font14Arial_Italic_0</Name>
+      <Name>Font16PixelFont6x9_noSmooth_Bold</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font16Arial_Bold.fnt">
+    <None Include="Content\GumProject\FontCache\Font18PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font16Arial_Bold</Name>
+      <Name>Font18PixelFont6x9_noSmooth_Bold</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font16Arial_Bold_0.png">
+    <None Include="Content\GumProject\FontCache\Font22PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font16Arial_Bold_0</Name>
+      <Name>Font22PixelFont6x9_noSmooth_Bold</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font18Arial_Bold.fnt">
+    <None Include="Content\GumProject\FontCache\Font28PixelFont6x9_noSmooth_Bold.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font18Arial_Bold</Name>
+      <Name>Font28PixelFont6x9_noSmooth_Bold</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font18Arial_Bold_0.png">
+    <None Include="Content\GumProject\FontCache\Font36PixelFont6x9_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font18Arial_Bold_0</Name>
+      <Name>Font36PixelFont6x9_noSmooth</Name>
     </None>
-    <None Include="Content\GumProject\FontCache\Font22Arial_Bold.fnt">
+    <None Include="Content\GumProject\FontCache\Font36PixelFont6x9_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font22Arial_Bold</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font22Arial_Bold_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font22Arial_Bold_0</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font28Arial_Bold.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font28Arial_Bold</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font28Arial_Bold_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font28Arial_Bold_0</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font36Arial.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font36Arial</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font36Arial_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font36Arial_0</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font36Arial_o1_noSmooth.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font36Arial_o1_noSmooth</Name>
-    </None>
-    <None Include="Content\GumProject\FontCache\Font36Arial_o1_noSmooth_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font36Arial_o1_noSmooth_0</Name>
+      <Name>Font36PixelFont6x9_noSmooth_0</Name>
     </None>
     <None Include="Content\GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

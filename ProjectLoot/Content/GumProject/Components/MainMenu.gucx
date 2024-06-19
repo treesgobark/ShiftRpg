@@ -274,7 +274,13 @@
     <Variable>
       <Type>int</Type>
       <Name>TextInstance.Blue</Name>
-      <Value xsi:type="xsd:int">204</Value>
+      <Value xsi:type="xsd:int">150</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>TextInstance.Font</Name>
+      <Value xsi:type="xsd:string">PixelFont6x9</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -286,7 +292,7 @@
     <Variable>
       <Type>int</Type>
       <Name>TextInstance.Green</Name>
-      <Value xsi:type="xsd:int">204</Value>
+      <Value xsi:type="xsd:int">151</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -298,7 +304,7 @@
     <Variable>
       <Type>int</Type>
       <Name>TextInstance.OutlineThickness</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -309,13 +315,13 @@
     <Variable>
       <Type>int</Type>
       <Name>TextInstance.Red</Name>
-      <Value xsi:type="xsd:int">162</Value>
+      <Value xsi:type="xsd:int">129</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>string</Type>
       <Name>TextInstance.Text</Name>
-      <Value xsi:type="xsd:string">ProjectLoot</Value>
+      <Value xsi:type="xsd:string">Project Loot</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -351,7 +357,7 @@
     <Variable>
       <Type>float</Type>
       <Name>TextInstance.Y</Name>
-      <Value xsi:type="xsd:float">9</Value>
+      <Value xsi:type="xsd:float">42</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

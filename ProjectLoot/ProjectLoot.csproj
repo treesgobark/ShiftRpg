@@ -945,26 +945,11 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FlatRedBallDesktopGLNet6" Version="2024.5.27.1223" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp" Version="2.88.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FlatRedBall.Forms.DesktopGlNet6">
-      <HintPath>Libraries\DesktopGl\Debug\FlatRedBall.Forms.DesktopGlNet6.dll</HintPath>
-    </Reference>
-    <Reference Include="GumCore.DesktopGlNet6">
-      <HintPath>Libraries\DesktopGl\Debug\GumCore.DesktopGlNet6.dll</HintPath>
-    </Reference>
-    <Reference Include="SkiaInGum">
-      <HintPath>Libraries\DesktopGl\Debug\SkiaInGum.dll</HintPath>
-    </Reference>
-    <Reference Include="StateInterpolation.DesktopNet6">
-      <HintPath>Libraries\DesktopGl\Debug\StateInterpolation.DesktopNet6.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Update="Content\Shader.fx">
@@ -981,6 +966,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="../../FlatRedBall/Engines/FlatRedBallXNA/FlatRedBallDesktopGLNet6/FlatRedBallDesktopGLNet6.csproj">
+      <Name>FlatRedBallDesktopGLNet6</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/FlatRedBall.Forms.DesktopGlNet6/FlatRedBall.Forms.DesktopGlNet6.csproj">
+      <Name>FlatRedBall.Forms.DesktopGlNet6</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/StateInterpolation/StateInterpolation.DesktopGlNet6/StateInterpolation.DesktopNet6.csproj">
+      <Name>StateInterpolation.DesktopNet6</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../Gum/GumCore/GumCoreXnaPc/GumCore.DesktopGlNet6/GumCore.DesktopGlNet6.csproj">
+      <Name>GumCore.DesktopGlNet6</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.csproj">
+      <Name>SkiaInGum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

@@ -31,15 +31,15 @@ public partial class GameScreen
             enemy?.EnemyInputDevice?.SetTarget(Player1);
         }
         
-        foreach(AxisAlignedRectangle? rect in SolidCollision.Rectangles)
-        {
-            rect.RepositionDirections = RepositionDirections.All;
-        }
-        
-        // foreach(var rect in SolidCollision.Rectangles)
+        // foreach(AxisAlignedRectangle? rect in SolidCollision.Rectangles)
         // {
-        //     GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
+        //     rect.RepositionDirections = RepositionDirections.All;
         // }
+        
+        foreach(var rect in SolidCollision.Rectangles)
+        {
+            GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
+        }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {

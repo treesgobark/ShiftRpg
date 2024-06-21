@@ -76,7 +76,7 @@
           "SourceFile": "Entities\\Player",
           "AttachToContainer": true,
           "GenerateTimedEmit": true,
-          "LayerOn": "GameLayer"
+          "LayerOn": ""
         }
       ]
     },
@@ -807,7 +807,20 @@
           "Type": "String"
         }
       ],
-      "InstructionSaves": [],
+      "InstructionSaves": [
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "AdjustRepositionDirectionsOnAddAndRemove",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
       "SourceType": 2,
       "SourceFile": "TileShapeCollection",
       "HasPublicProperty": true,
@@ -885,40 +898,6 @@
       "SourceFile": "Collision Relationship",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "GameLayer",
-      "SourceClassType": "FlatRedBall.Graphics.Layer",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "Layer",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "Is2D": true
-    },
-    {
-      "InstanceName": "UiLayer",
-      "SourceClassType": "FlatRedBall.Graphics.Layer",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "Layer",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "Is2D": true
     },
     {
       "InstanceName": "MeleeHitboxVsPlayer",

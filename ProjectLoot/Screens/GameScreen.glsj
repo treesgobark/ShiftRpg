@@ -302,6 +302,12 @@
           "Member": "Targets",
           "Value": "Player1",
           "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "SnapToPixel",
+          "Value": false,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,
@@ -811,7 +817,7 @@
         {
           "Type": "bool",
           "Member": "Visible",
-          "Value": true,
+          "Value": false,
           "Time": 0.0
         },
         {

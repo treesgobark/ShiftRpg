@@ -49,6 +49,12 @@
           "Member": "Radius",
           "Value": 16.0,
           "Time": 0.0
+        },
+        {
+          "Type": "Color",
+          "Member": "Color",
+          "Value": "SlateGray",
+          "Time": 0.0
         }
       ],
       "SourceType": 2,

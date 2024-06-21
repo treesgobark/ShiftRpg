@@ -134,7 +134,7 @@
   ],
   "NamedObjects": [
     {
-      "InstanceName": "CircleInstance",
+      "InstanceName": "Pushbox",
       "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
       "Properties": [
         {
@@ -153,7 +153,31 @@
         {
           "Type": "float",
           "Member": "Radius",
-          "Value": 8.0,
+          "Value": 6.5,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": 6.5,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "X",
+          "Value": -0.5,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
           "Time": 0.0
         }
       ],
@@ -183,6 +207,12 @@
           "Type": "float",
           "Member": "Radius",
           "Value": 35.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
           "Time": 0.0
         }
       ],
@@ -237,7 +267,13 @@
         {
           "Type": "float",
           "Member": "Y",
-          "Value": -20.0,
+          "Value": -30.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
           "Time": 0.0
         }
       ],
@@ -260,7 +296,7 @@
         {
           "Type": "string",
           "Member": "CurrentChainName",
-          "Value": "Floati Boi",
+          "Value": "WalkRight",
           "Time": 0.0
         },
         {
@@ -286,6 +322,49 @@
       "SourceFile": "Sprite",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "GameplayCenter",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 8.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": 12.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "IncludeInICollidable": false
     }
   ],
   "Name": "Entities\\Player",

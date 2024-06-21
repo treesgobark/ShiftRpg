@@ -18,6 +18,7 @@ public partial class GameScreen
     void CustomInitialize()
     {
         SpriteManager.OrderedSortType = SortType.ZSecondaryParentY;
+        CameraControllingEntityInstance.CameraOffset = new Vector3(0, 0, 0);
         InitializePauseMenu();
     }
 
@@ -36,10 +37,10 @@ public partial class GameScreen
         //     rect.RepositionDirections = RepositionDirections.All;
         // }
         
-        foreach(var rect in SolidCollision.Rectangles)
-        {
-            GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
-        }
+        // foreach(var rect in SolidCollision.Rectangles)
+        // {
+        //     GlueControl.Editing.EditorVisuals.DrawRepositionDirections(rect);
+        // }
         
         if (Player1.InputDevice.DefaultPauseInput.WasJustPressed)
         {

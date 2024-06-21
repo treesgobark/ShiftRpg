@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
- <tileset firstgid="1" source="../../StandardTileset.tsx"/>
- <tileset firstgid="1025" source="../../WhiteVoid.tsx"/>
+ <tileset firstgid="1" source="../../WhiteVoid.tsx"/>
  <layer id="2" name="Floor" width="48" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2ZUQqEMAxEy9IfvZWfeooezaN4tM2HLmtxwQyb7pSdj8EqJj5CacI455QGpxYgJiLvnNNq13WytUdITETeYed/2NojJOaOxpyKl4OJfwI4mPgRDvGL/9DozMvG780r/u/K+m+x3Ntd2fvrHvPqybYHtzrvmM99ewmsP9B/S/28znsVR7R/Csv+acXvnVPY+L1zCht/lMT/H/zeOYWNv/fzU/ziF7/4a4H+Dw0/6P/Q8CMc4hf/IdD/oeHv/fwUv/h74Pf6fA4/8HRfe4G7D3jyD9H6R/y/u9L7dz/5h17+KP8KqSOTf9WKn0Xi75M/yr9qxc80P89AL6r7zK9k7FurPhSlJ2H7Y6MAJAAA
+   H4sIAAAAAAAACu2ZUQqDQAxEQ//0Vn7qKfZoHsWjNR9a6mLBDM12ls7H4ComPsKyCeNsZkNQCxCTkXc2W/26Tr6OCInJyDvs/A9fR4TE3NFoVqIcTPwTwMHEj3CIX/yHxmBeNv5oXvF/V95/i+fe7srfX/eYV0/2PbjVeUc79+0lsf5A/y318zrvVRzR/iks+6cVf3ROYeOPzils/FkS/3/wR+cUNv7ez0/xi1/84q8F+j80/KD/Q8OPcIhf/IdA/4eGv/fzU/zi74E/6vMF/MDTfe0F7j7gyT9E65/x/+5K79/95B9G+bP8K6SOTP5VK34Wib9P/iz/qhU/0/w8A72o7jO/krNvrfpQlp7inJK1ACQAAA==
   </data>
  </layer>
  <layer id="1" name="GameplayLayer" width="48" height="48" visible="0" tintcolor="#ffffff">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2YWwoAMQjE7P0vvVeoZcYHm4B/rROKIPRExFleWV7uOPrir2W7fxb8e5nmv33+8ffkZPo69rFiZ9/6Z89Pe//sefx14N8L/r0w/54cV1/8teDvyXH1xV8L/p4cF/j3Ms1/+/zj78lx9cVfS6V/Vd3kvvhPAP9epv2fZMG/l7/OP/4aKveoqz5HIBjFACQAAA==
+   H4sIAAAAAAAACu3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAgFcDEWH4ywAkAAA=
   </data>
  </layer>
 </map>

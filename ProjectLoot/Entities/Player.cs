@@ -24,17 +24,20 @@ public partial class Player : IWeaponHolder
     private void CustomInitialize()
     {
         InitializeTopDownInput(InputManager.Keyboard);
-        GameplayInputDevice = new GameplayInputDevice(InputDevice, this, MeleeAimThreshold);
+        GameplayInputDevice = new GameplayInputDevice(InputDevice, GameplayCenter, MeleeAimThreshold);
         
         Health = new HealthComponent(MaxHealth, HealthBar);
         Effects = new EffectsComponent { Team = Team.Player };
-        Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, this, this);
+        Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, GameplayCenter, this);
         
         InitializeControllers();
         InitializeHandlers();
         PositionedObjectGueWrapper hudParent = gumAttachmentWrappers[0];
         hudParent.ParentRotationChangesRotation = false;
         HealthBar.Reset();
+        
+        AimThresholdCircle.AttachTo(GameplayCenter);
+        DirectionIndicator.AttachTo(GameplayCenter);
     }
 
     private void InitializeControllers()

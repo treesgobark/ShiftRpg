@@ -190,8 +190,6 @@
     "Is2D": true,
     "ResolutionWidth": 480,
     "ResolutionHeight": 270,
-    "FixedAspectRatio": true,
-    "AspectRatioBehavior": 1,
     "AspectRatioWidth": 16.0,
     "AspectRatioHeight": 9.0,
     "SupportLandscape": true,

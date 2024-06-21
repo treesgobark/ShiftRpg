@@ -41,11 +41,11 @@ namespace ProjectLoot.Entities
             if (dir == Vector3.Zero) return;
             
             var proj = BulletFactory.CreateNew(Position);
-            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects);
+            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects, Holder);
 
-            var effects = new EffectBundle(Team, Source);
-            effects.AddEffect(new KnockbackEffect(Team, Source, 100, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn)));
-            Holder.EffectsComponent.HandlerCollection.Handle(effects);
+            var effects = new EffectBundle(Effects.Team, Source);
+            effects.AddEffect(new KnockbackEffect(Effects.Team, Source, 100, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn)));
+            Holder.Effects.Handle(effects);
 
             MagazineRemaining--;
         }

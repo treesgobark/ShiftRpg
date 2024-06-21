@@ -465,15 +465,17 @@
     <Compile Include="Contracts\IGun.cs" />
     <Compile Include="Contracts\IGunInputDevice.cs" />
     <Compile Include="Contracts\IMeleeWeapon.cs" />
+    <Compile Include="Contracts\IWeaponHolder.cs" />
     <Compile Include="Contracts\IMeleeWeaponInputDevice.cs" />
     <Compile Include="Contracts\INumericalEffect.cs" />
     <Compile Include="Contracts\IPersistentEffect.cs" />
-    <Compile Include="Contracts\IProjectile.cs" />
     <Compile Include="Contracts\IStatModifierCollection.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
-    <Compile Include="Contracts\IWeaponHolder.cs" />
-    <Compile Include="DataTypes\AttackData.Generated.cs" />
+    <Compile Include="DataTypes\AttackData.cs" />
+    <Compile Include="DataTypes\AttackData.Generated.cs">
+      <DependentUpon>AttackData.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypes\GunData.cs" />
     <Compile Include="DataTypes\GunData.Generated.cs">
       <DependentUpon>GunData.cs</DependentUpon>
@@ -548,6 +550,10 @@
     <Compile Include="Entities\Gun.Generated.cs">
       <DependentUpon>Gun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MeleeHitbox.cs" />
+    <Compile Include="Entities\MeleeHitbox.Generated.cs">
+      <DependentUpon>MeleeHitbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\MeleeWeapon.cs" />
     <Compile Include="Entities\MeleeWeapon.Generated.cs">
       <DependentUpon>MeleeWeapon.cs</DependentUpon>
@@ -571,6 +577,7 @@
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
+    <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />

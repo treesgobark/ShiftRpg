@@ -1,22 +1,23 @@
 using ANLG.Utilities.FlatRedBall.States;
+using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Entities;
 
 partial class MeleeWeapon
 {
-    protected class Active : TimedState<MeleeWeapon>
+    protected class Active : TimedState<IMeleeWeapon>
     {
-        public Active(MeleeWeapon parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+        public Active(IMeleeWeapon parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine) { }
+
+        protected MeleeHitbox Hitbox { get; set; }
         
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.ShowHitbox(true);
             Parent.IsActive = true;
-            // Parent.Holder.SetPlayerColor(Color.Red);
-            // Parent.IsDamageDealingEnabled     = true;
-            // Parent.Holder.InputEnabled = false;
+            Parent.Holder.InputEnabled = false;
+            Hitbox = Parent.SpawnHitbox();
         }
 
         public override void CustomActivity()
@@ -35,11 +36,9 @@ partial class MeleeWeapon
 
         public override void BeforeDeactivate()
         {
-            Parent.ShowHitbox(false);
             Parent.IsActive = false;
-            // Parent.IsDamageDealingEnabled  = false;
-            // Parent.Holder.InputEnabled = true;
-            // Parent.TargetHitEffects   = EffectBundle.Empty;
+            Parent.Holder.InputEnabled = true;
+            Hitbox.Destroy();
         }
 
         public override void Uninitialize() { }

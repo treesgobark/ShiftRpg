@@ -41,45 +41,9 @@
   ],
   "Properties": [
     {
-      "Name": "ImplementsICollidable",
-      "Value": true,
-      "Type": "bool"
-    },
-    {
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
-    }
-  ],
-  "NamedObjects": [
-    {
-      "InstanceName": "PolygonInstance",
-      "SourceClassType": "FlatRedBall.Math.Geometry.Polygon",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "List<Vector2>",
-          "Member": "Points",
-          "Value": [],
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": false,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 2,
-      "SourceFile": "Polygon",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\MeleeWeapon",

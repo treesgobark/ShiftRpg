@@ -3,7 +3,7 @@ using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Entities
 {
-    public abstract partial class Projectile : IProjectile
+    public abstract partial class Projectile
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -30,15 +30,17 @@ namespace ProjectLoot.Entities
 
         public IEffectBundle TargetHitEffects { get; set; }
         public IEffectBundle HolderHitEffects { get; set; }
+        public IWeaponHolder Holder { get; set; }
         public bool IsActive { get; set; }
         
         public void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed, IEffectBundle targetHitEffects,
-            IEffectBundle holderHitEffects)
+            IEffectBundle holderHitEffects, IWeaponHolder holder)
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileSpeed;
             TargetHitEffects      = targetHitEffects;
             HolderHitEffects      = holderHitEffects;
+            Holder = holder;
         }
     }
 }

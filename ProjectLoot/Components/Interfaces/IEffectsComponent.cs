@@ -8,6 +8,7 @@ public interface IEffectsComponent
 {
     IEffectHandlerCollection HandlerCollection { get; }
     Team Team { get; set; }
+    SourceTag Source { get; set; }
 
     void Handle(IEffectBundle bundle);
 }

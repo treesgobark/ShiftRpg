@@ -8,76 +8,30 @@ namespace ProjectLoot.Entities;
 
 partial class MeleeWeapon
 {
-    protected class Idle : TimedState<MeleeWeapon>
+    protected class Idle : TimedState<IMeleeWeapon>
     {
-        protected IState? NextState { get; set; }
+        public Idle(IMeleeWeapon parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine)
+        {
+        }
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
-        {
-            // Parent.Holder.SetPlayerColor(Color.Green);
-        }
+        protected override void AfterTimedStateActivate() { }
 
-        public override void CustomActivity()
-        {
-            if (Parent.InputDevice.Attack.WasJustPressed)
-            {
-                PrepareAttackData();
-            
-                NextState = StateMachine.Get<Startup>();
-            }
-        }
+        public override void CustomActivity() { }
 
         public override IState? EvaluateExitConditions()
         {
-            return NextState;
+            if (Parent.InputDevice.Attack.WasJustPressed)
+            {
+                return StateMachine.Get<Startup>();
+            }
+
+            return null;
         }
 
-        public override void BeforeDeactivate()
-        {
-            NextState = null;
-        }
+        public override void BeforeDeactivate() { }
 
         public override void Uninitialize() { }
-
-        private void PrepareAttackData()
-        {
-            var data = Parent.CurrentAttackData;
-            
-            Parent.PolygonSave.Points[0].X = data.HitboxOffsetX;
-            Parent.PolygonSave.Points[4].X = data.HitboxOffsetX;
-            Parent.PolygonSave.Points[0].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-            Parent.PolygonSave.Points[4].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-            
-            Parent.PolygonSave.Points[1].X = data.HitboxOffsetX + data.HitboxSizeX;
-            Parent.PolygonSave.Points[1].Y = data.HitboxOffsetY + data.HitboxSizeY / 2;
-            
-            Parent.PolygonSave.Points[2].X = data.HitboxOffsetX + data.HitboxSizeX;
-            Parent.PolygonSave.Points[2].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
-            
-            Parent.PolygonSave.Points[3].X = data.HitboxOffsetX;
-            Parent.PolygonSave.Points[3].Y = data.HitboxOffsetY - data.HitboxSizeY / 2;
-            
-            Parent.PolygonSave.MapShapeRelative(Parent.PolygonInstance);
-
-            // Parent.DamageToDeal = data.Damage;
-
-            var holderEffects = new EffectBundle(Parent.Team, Parent.Source);
-            holderEffects.AddEffect(new KnockbackEffect(Parent.Team, Parent.Source, data.ForwardMovementVelocity, Rotation.Zero, true));
-            Parent.Holder.EffectsComponent.HandlerCollection.Handle(holderEffects);
-            
-            var targetEffects = new EffectBundle(Parent.Team, Parent.Source);
-            targetEffects.AddEffect(new DamageEffect(~Parent.Team, Parent.Source, Parent.CurrentAttackData.Damage));
-            targetEffects.AddEffect(new KnockbackEffect(~Parent.Team, Parent.Source, Parent.CurrentAttackData.KnockbackVelocity, Parent.GetRotationZ()));
-            targetEffects.AddEffect(new DamageOverTimeEffect(~Parent.Team, Parent.Source, 1, 2, 5, 1));
-            targetEffects.AddEffect(new ApplyShatterEffect(~Parent.Team, Parent.Source));
-            targetEffects.AddEffect(new WeaknessDamageEffect(~Parent.Team, Parent.Source, .2f));
-            Parent.TargetHitEffects = targetEffects;
-        }
-
-        public Idle(MeleeWeapon parent, IStateMachine stateMachine) : base(parent, stateMachine)
-        {
-        }
     }
 }

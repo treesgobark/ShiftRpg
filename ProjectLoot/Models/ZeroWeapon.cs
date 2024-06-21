@@ -1,7 +1,9 @@
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Entities;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Models;
@@ -47,6 +49,13 @@ public class ZeroMeleeWeapon : ZeroWeapon<IMeleeWeaponInputDevice>, IMeleeWeapon
     
     public override IMeleeWeaponInputDevice InputDevice => ZeroMeleeWeaponInputDevice.Instance;
     public bool IsActive { get; set; } = false;
+    public AttackData CurrentAttackData { get; }
+    public void ShowHitbox(bool shouldShow) { }
+
+    public MeleeHitbox SpawnHitbox()
+    {
+        return null;
+    }
 }
 
 public class ZeroWeaponHolder : IWeaponHolder
@@ -54,6 +63,15 @@ public class ZeroWeaponHolder : IWeaponHolder
     public static readonly ZeroWeaponHolder Instance = new();
 
     public IEffectBundle ModifyTargetEffects(IEffectBundle effects) => effects;
-    public void SetInputEnabled(bool isEnabled) { }
-    public IEffectsComponent EffectsComponent { get; } = new EffectsComponent { Team = (Team)(-1) };
+    public IEffectsComponent Effects { get; set; } = new EffectsComponent { Team = (Team)(-1) };
+    public bool InputEnabled { get; set; }
+    public float X { get; set; }
+    public float Y { get; set; }
+    public float Z { get; set; }
+    public float XVelocity { get; set; }
+    public float YVelocity { get; set; }
+    public float ZVelocity { get; set; }
+    public float XAcceleration { get; set; }
+    public float YAcceleration { get; set; }
+    public float ZAcceleration { get; set; }
 }

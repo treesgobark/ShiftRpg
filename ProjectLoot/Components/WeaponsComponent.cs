@@ -12,17 +12,21 @@ namespace ProjectLoot.Components;
 
 public class WeaponsComponent : IWeaponsComponent, IDestroyable
 {
-    public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent)
+    public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent, IWeaponHolder? holder = null)
     {
+        if (holder is null)
+        {
+            holder = ZeroWeaponHolder.Instance;
+        }
+        
         DefaultGun gun = new()
         {
             RelativeX = 10
         };
 
         gun.AttachTo(parent);
-        gun.Team = team;
-        // gun.Holder = this;
-        gun.Holder = ZeroWeaponHolder.Instance;
+        gun.Effects.Team = team;
+        gun.Holder = holder;
 
         GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, new GunInputDevice(gameplayInputDevice));
         GunCache.Add(gun);
@@ -30,9 +34,8 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
         DefaultSword melee = new DefaultSword();
 
         melee.AttachTo(parent);
-        melee.Team = team;
-        // melee.Holder = this;
-        melee.Holder = ZeroWeaponHolder.Instance;
+        melee.Effects.Team = team;
+        melee.Holder = holder;
 
         MeleeWeaponCache = new WeaponCache<IMeleeWeapon, IMeleeWeaponInputDevice>(ZeroMeleeWeapon.Instance,
             new MeleeWeaponInputDevice(gameplayInputDevice));

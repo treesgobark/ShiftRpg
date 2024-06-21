@@ -1,19 +1,20 @@
 using ANLG.Utilities.FlatRedBall.States;
+using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Entities;
 
 public partial class MeleeWeapon
 {
-    protected class Startup : TimedState<MeleeWeapon>
+    protected class Startup : TimedState<IMeleeWeapon>
     {
-        public Startup(MeleeWeapon parent, IStateMachine stateMachine) : base(parent, stateMachine) { }
+        public Startup(IMeleeWeapon parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine) { }
         
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
         {
             // Parent.Owner.SetPlayerColor(Color.Yellow);
-            Parent.Holder.SetInputEnabled(false);
+            Parent.Holder.InputEnabled = false;
         }
 
         public override void CustomActivity()
@@ -32,7 +33,7 @@ public partial class MeleeWeapon
 
         public override void BeforeDeactivate()
         {
-            Parent.Holder.SetInputEnabled(true);
+            Parent.Holder.InputEnabled = true;
         }
 
         public override void Uninitialize() { }

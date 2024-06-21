@@ -75,7 +75,8 @@
           "SourceType": 1,
           "SourceFile": "Entities\\Player",
           "AttachToContainer": true,
-          "GenerateTimedEmit": true
+          "GenerateTimedEmit": true,
+          "LayerOn": "GameLayer"
         }
       ]
     },
@@ -98,42 +99,6 @@
       "GenerateTimedEmit": true
     },
     {
-      "InstanceName": "GunList",
-      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "PositionedObjectList (Generic)",
-      "SourceClassGenericType": "Entities\\Gun",
-      "ExposedInDerived": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "MeleeWeaponList",
-      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "PositionedObjectList (Generic)",
-      "SourceClassGenericType": "Entities\\MeleeWeapon",
-      "ExposedInDerived": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
       "InstanceName": "ProjectileList",
       "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
       "Properties": [
@@ -147,6 +112,24 @@
       "SourceType": 2,
       "SourceFile": "PositionedObjectList (Generic)",
       "SourceClassGenericType": "Entities\\Projectile",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "MeleeHitboxList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\MeleeHitbox",
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true
@@ -594,178 +577,6 @@
       "GenerateTimedEmit": true
     },
     {
-      "InstanceName": "PlayerVsMeleeWeapon",
-      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Player, Entities.MeleeWeapon>",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "IsAutoNameEnabled",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "FirstCollisionName",
-          "Value": "PlayerList",
-          "Type": "String"
-        },
-        {
-          "Name": "SecondCollisionName",
-          "Value": "MeleeWeaponList",
-          "Type": "String"
-        },
-        {
-          "Name": "IsCollisionActive",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "IsAutomaticallyApplyPhysicsChecked",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "FirstCollisionMass",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "SecondCollisionMass",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "SoftCollisionCoefficient",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "CollisionElasticity",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "FirstSubCollisionSelectedItem",
-          "Value": "<Entire Object>",
-          "Type": "String"
-        },
-        {
-          "Name": "SecondSubCollisionSelectedItem",
-          "Value": "<Entire Object>",
-          "Type": "String"
-        },
-        {
-          "Name": "IsDealDamageChecked",
-          "Value": true,
-          "Type": "Object"
-        },
-        {
-          "Name": "IsDestroyFirstOnDamageChecked",
-          "Value": true,
-          "Type": "Object"
-        },
-        {
-          "Name": "IsDestroySecondOnDamageChecked",
-          "Value": true,
-          "Type": "Object"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Player, Entities.MeleeWeapon>",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "MeleeWeaponVsEnemy",
-      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeWeapon, Entities.Enemy>",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "IsAutoNameEnabled",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "FirstCollisionName",
-          "Value": "MeleeWeaponList",
-          "Type": "String"
-        },
-        {
-          "Name": "SecondCollisionName",
-          "Value": "EnemyList",
-          "Type": "String"
-        },
-        {
-          "Name": "FirstSubCollisionSelectedItem",
-          "Value": "<Entire Object>",
-          "Type": "String"
-        },
-        {
-          "Name": "SecondSubCollisionSelectedItem",
-          "Value": "<Entire Object>",
-          "Type": "String"
-        },
-        {
-          "Name": "IsCollisionActive",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "IsAutomaticallyApplyPhysicsChecked",
-          "Value": true,
-          "Type": "bool"
-        },
-        {
-          "Name": "FirstCollisionMass",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "SecondCollisionMass",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "SoftCollisionCoefficient",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "CollisionElasticity",
-          "Value": 1.0,
-          "Type": "float"
-        },
-        {
-          "Name": "IsDealDamageChecked",
-          "Value": true,
-          "Type": "Object"
-        },
-        {
-          "Name": "IsDestroyFirstOnDamageChecked",
-          "Value": false,
-          "Type": "Object"
-        },
-        {
-          "Name": "IsDestroySecondOnDamageChecked",
-          "Value": false,
-          "Type": "Object"
-        }
-      ],
-      "InstructionSaves": [],
-      "SourceType": 2,
-      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeWeapon, Entities.Enemy>",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
       "InstanceName": "ProjectileVsEnemy",
       "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Projectile, Entities.Enemy>",
       "Properties": [
@@ -1074,6 +885,192 @@
       "SourceFile": "Collision Relationship",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "GameLayer",
+      "SourceClassType": "FlatRedBall.Graphics.Layer",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "Layer",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "Is2D": true
+    },
+    {
+      "InstanceName": "UiLayer",
+      "SourceClassType": "FlatRedBall.Graphics.Layer",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "Layer",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "Is2D": true
+    },
+    {
+      "InstanceName": "MeleeHitboxVsPlayer",
+      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeHitbox, Entities.Player>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutoNameEnabled",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionName",
+          "Value": "MeleeHitboxList",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondCollisionName",
+          "Value": "PlayerList",
+          "Type": "String"
+        },
+        {
+          "Name": "FirstSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "IsCollisionActive",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutomaticallyApplyPhysicsChecked",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SecondCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SoftCollisionCoefficient",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionElasticity",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "IsDealDamageChecked",
+          "Value": true,
+          "Type": "Object"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeHitbox, Entities.Player>",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "MeleeHitboxVsEnemy",
+      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeHitbox, Entities.Enemy>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutoNameEnabled",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionName",
+          "Value": "MeleeHitboxList",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondCollisionName",
+          "Value": "EnemyList",
+          "Type": "String"
+        },
+        {
+          "Name": "IsCollisionActive",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutomaticallyApplyPhysicsChecked",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SecondCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SoftCollisionCoefficient",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionElasticity",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "FirstSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "IsDealDamageChecked",
+          "Value": true,
+          "Type": "Object"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.MeleeHitbox, Entities.Enemy>",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Screens\\GameScreen",
@@ -1089,16 +1086,6 @@
       "SourceObjectEvent": "CollisionOccurred"
     },
     {
-      "EventName": "PlayerVsMeleeWeaponCollided",
-      "SourceObject": "PlayerVsMeleeWeapon",
-      "SourceObjectEvent": "CollisionOccurred"
-    },
-    {
-      "EventName": "MeleeWeaponVsEnemyCollided",
-      "SourceObject": "MeleeWeaponVsEnemy",
-      "SourceObjectEvent": "CollisionOccurred"
-    },
-    {
       "EventName": "ProjectileVsEnemyCollided",
       "SourceObject": "ProjectileVsEnemy",
       "SourceObjectEvent": "CollisionOccurred"
@@ -1106,6 +1093,16 @@
     {
       "EventName": "ProjectileVsSolidCollisionCollided",
       "SourceObject": "ProjectileVsSolidCollision",
+      "SourceObjectEvent": "CollisionOccurred"
+    },
+    {
+      "EventName": "MeleeHitboxVsPlayerCollided",
+      "SourceObject": "MeleeHitboxVsPlayer",
+      "SourceObjectEvent": "CollisionOccurred"
+    },
+    {
+      "EventName": "MeleeHitboxVsEnemyCollided",
+      "SourceObject": "MeleeHitboxVsEnemy",
       "SourceObjectEvent": "CollisionOccurred"
     }
   ],

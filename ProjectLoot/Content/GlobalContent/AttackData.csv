@@ -1,4 +1,4 @@
 WeaponName (string),AttackName (string),"Name (string, required)",StartupTime (double),ActiveTime (double),RecoveryTime (double),HitboxSizeX (float),HitboxSizeY (float),HitboxOffsetX (float),HitboxOffsetY (float),Damage (float),ForwardMovementVelocity (float),KnockbackVelocity (float)
 DefaultSword,Slash,DefaultSwordSlash,0.05,0.1,0.1,25,30,0,0,20,150,400
-DefaultSword,Thrust,DefaultSwordThrust,0.1,0.1,0.15,50,10,0,0,30,100,600
-DefaultSword,Slam,DefaultSwordSlam,0.2,0.15,0.3,70,70,-35,0,60,-260,1000
+DefaultSword,Thrust,DefaultSwordThrust,0.1,0.1,0.15,50,10,25,0,30,100,600
+DefaultSword,Slam,DefaultSwordSlam,0.2,0.15,0.3,70,70,0,0,60,-260,1000

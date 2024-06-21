@@ -1,6 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Glue.StateInterpolation;
+using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
@@ -11,6 +12,7 @@ namespace ProjectLoot.Entities
 {
     public abstract partial class Gun : IGun
     {
+        public EffectsComponent Effects { get; private set; }
         public GunData CurrentGunData => GunDataCache.Obj;
         protected FrameCache<GunData> GunDataCache { get; } = new(() => GlobalContent.GunData[GunData.Pistol]);
         
@@ -46,6 +48,8 @@ namespace ProjectLoot.Entities
             ParentRotationChangesRotation           = true;
             MagazineBar.ProgressPercentage = 100f;
             MagazineBar.SubProgressPercentage = 0f;
+
+            Effects = new EffectsComponent();
         }
 
         private void CustomActivity()
@@ -54,7 +58,6 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy() { }
         private static void CustomLoadStaticContent(string contentManagerName) { }
-        public Team Team { get; set; }
         public SourceTag Source { get; set; } = SourceTag.Gun;
         
         // Implement IGun
@@ -65,11 +68,11 @@ namespace ProjectLoot.Entities
         {
             get
             {
-                var effects = new EffectBundle(~Team, Source);
+                var effects = new EffectBundle(~Effects.Team, Source);
                 
-                effects.AddEffect(new DamageEffect(~Team, Source, CurrentGunData.Damage));
-                effects.AddEffect(new KnockbackEffect(~Team, Source, 100, this.GetRotationZ()));
-                effects.AddEffect(new ShatterDamageEffect(~Team, Source, 3));
+                effects.AddEffect(new DamageEffect(~Effects.Team, Source, CurrentGunData.Damage));
+                effects.AddEffect(new KnockbackEffect(~Effects.Team, Source, 100, this.GetRotationZ()));
+                effects.AddEffect(new ShatterDamageEffect(~Effects.Team, Source, 3));
 
                 return Holder.ModifyTargetEffects(effects);
             }

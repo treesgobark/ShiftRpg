@@ -2,6 +2,7 @@ using ANLG.Utilities.FlatRedBall.States;
 using FlatRedBall.Input;
 using GumCoreShared.FlatRedBall.Embedded;
 using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
@@ -9,7 +10,7 @@ using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
 
-public partial class Player
+public partial class Player : IWeaponHolder
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public float LastMeleeRotation { get; set; }
@@ -27,7 +28,7 @@ public partial class Player
         
         Health = new HealthComponent(MaxHealth, HealthBar);
         Effects = new EffectsComponent { Team = Team.Player };
-        Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, this);
+        Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, this, this);
         
         InitializeControllers();
         InitializeHandlers();
@@ -64,4 +65,18 @@ public partial class Player
     private static void CustomLoadStaticContent(string contentManagerName)
     {
     }
+    
+    #region IWeaponHolder
+
+    IEffectsComponent IWeaponHolder.Effects => Effects;
+    
+    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
+    {
+        return effects;
+    }
+
+    public IEffectsComponent EffectsComponent => Effects;
+    
+    #endregion
+
 }

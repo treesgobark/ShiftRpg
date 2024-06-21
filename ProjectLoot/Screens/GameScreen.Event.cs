@@ -24,14 +24,9 @@ namespace ProjectLoot.Screens
             if (!projectile.IsActive) { return; }
             
             player.Effects.Handle(projectile.TargetHitEffects);
-            projectile.Destroy();
-        }
-        
-        void OnPlayerVsMeleeWeaponCollided (Player player, MeleeWeapon meleeWeapon)
-        {
-            if (!meleeWeapon.IsActive) { return; }
+            projectile.Holder.Effects.Handle(projectile.HolderHitEffects);
             
-            player.Effects.HandlerCollection.Handle(meleeWeapon.TargetHitEffects);
+            projectile.Destroy();
         }
         
         void OnProjectileVsEnemyCollided (Projectile projectile, Enemy enemy) 
@@ -39,19 +34,27 @@ namespace ProjectLoot.Screens
             if (!projectile.IsActive) { return; }
             
             enemy.Effects.Handle(projectile.TargetHitEffects);
-            projectile.Destroy();
-        }
-        
-        void OnMeleeWeaponVsEnemyCollided (MeleeWeapon meleeWeapon, Enemy enemy) 
-        {
-            if (!meleeWeapon.IsActive) { return; }
+            projectile.Holder.Effects.Handle(projectile.HolderHitEffects);
             
-            enemy.Effects.Handle(meleeWeapon.TargetHitEffects);
+            projectile.Destroy();
         }
         
         void OnProjectileVsSolidCollisionCollided (Projectile projectile, TileShapeCollection tileShapeCollection) 
         {
             projectile.Destroy();
         }
+        
+        void OnMeleeHitboxVsPlayerCollided (Entities.MeleeHitbox meleeHitbox, Entities.Player player) 
+        {
+            player.Effects.Handle(meleeHitbox.TargetHitEffects);
+            meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
+        }
+        
+        void OnMeleeHitboxVsEnemyCollided (Entities.MeleeHitbox meleeHitbox, Entities.Enemy enemy) 
+        {
+            enemy.Effects.Handle(meleeHitbox.TargetHitEffects);
+            meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
+        }
+
     }
 }

@@ -1,22 +1,23 @@
+using System.Diagnostics;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
-using FlatRedBall.Content.Polygon;
-using FlatRedBall.Debugging;
 using FlatRedBall.Input;
+using Microsoft.Xna.Framework;
+using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Factories;
 using ProjectLoot.InputDevices;
-using Point = FlatRedBall.Math.Geometry.Point;
+using Debugger = FlatRedBall.Debugging.Debugger;
 
 namespace ProjectLoot.Entities;
 
 public abstract partial class MeleeWeapon : IMeleeWeapon
 {
-    public AttackData CurrentAttackData { get; set; }
+    public EffectsComponent Effects { get; private set; }
+    
     public readonly CyclableList<string> AttackList = new(AttackData.OrderedList);
-    public PolygonSave PolygonSave { get; } = new();
-    public IMeleeWeaponInputDevice InputDevice { get; set; }
 
     /// <summary>
     /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -25,20 +26,12 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
     /// </summary>
     private void CustomInitialize()
     {
-        PolygonSave.Points =
-        [
-            new Point(0, 0),
-            new Point(0, 0),
-            new Point(0, 0),
-            new Point(0, 0),
-            new Point(0, 0),
-        ];
-        PolygonSave.MapShapeRelative(PolygonInstance);
         AttackList.CycleToPreviousItem();
         CurrentAttackData             = GlobalContent.AttackData[AttackList.CycleToNextItem()];
         ParentRotationChangesRotation = true;
         TargetHitEffects              = EffectBundle.Empty;
         HolderHitEffects              = EffectBundle.Empty;
+        Effects = new EffectsComponent { Source = SourceTag.Melee };
     }
 
     private void CustomActivity()
@@ -59,14 +52,12 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
 
     private static void CustomLoadStaticContent(string contentManagerName) { }
 
-    public Team Team { get; set; }
-    public SourceTag Source { get; set; } = SourceTag.Melee;
+    #region IWeapon
     
-    // Implement IMeleeWeapon
-
     public IWeaponHolder Holder { get; set; }
     public IEffectBundle TargetHitEffects { get; set; }
     public IEffectBundle HolderHitEffects { get; set; }
+    public IMeleeWeaponInputDevice InputDevice { get; set; }
 
     public void Equip(IMeleeWeaponInputDevice inputDevice)
     {
@@ -78,10 +69,50 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         InputDevice = ZeroMeleeWeaponInputDevice.Instance;
     }
     
-    public void ShowHitbox(bool isVisible)
-    {
-        PolygonInstance.Visible = isVisible;
-    }
-
+    #endregion
+    
+    #region IMeleeWeapon
+    
     public bool IsActive { get; set; } = false;
+    public AttackData CurrentAttackData { get; set; }
+
+    public MeleeHitbox SpawnHitbox()
+    {
+        var hitbox = MeleeHitboxFactory.CreateNew();
+        hitbox.RelativePosition = CurrentAttackData.HitboxOffset.ToVector3();
+        
+        float leftX   = CurrentAttackData.HitboxSizeX / -2;
+        float rightX  = CurrentAttackData.HitboxSizeX /  2;
+        float topY    = CurrentAttackData.HitboxSizeY /  2;
+        float bottomY = CurrentAttackData.HitboxSizeY / -2;
+        
+        hitbox.PolygonInstance.SetPoint(4, leftX, topY);
+        
+        hitbox.PolygonInstance.SetPoint(0, leftX, topY);
+        hitbox.PolygonInstance.SetPoint(1, rightX, topY);
+        hitbox.PolygonInstance.SetPoint(2, rightX, bottomY);
+        hitbox.PolygonInstance.SetPoint(3, leftX, bottomY);
+
+        hitbox.Holder = Holder;
+        hitbox.AttachTo(Parent ?? throw new UnreachableException("idk how this weapon's parent is null but here we are"));
+        
+        var holderEffects = new EffectBundle(Effects.Team, Effects.Source);
+        holderEffects.AddEffect(new KnockbackEffect(Effects.Team, Effects.Source, CurrentAttackData.ForwardMovementVelocity, Rotation.Zero, true));
+        Holder.Effects.Handle(holderEffects);
+        
+        hitbox.HolderHitEffects = holderEffects;
+        
+        var targetEffects = new EffectBundle(Effects.Team, Effects.Source);
+        targetEffects.AddEffect(new DamageEffect(~Effects.Team, Effects.Source, CurrentAttackData.Damage));
+        targetEffects.AddEffect(new KnockbackEffect(~Effects.Team, Effects.Source, CurrentAttackData.KnockbackVelocity, Rotation.FromRadians(RotationZ)));
+        targetEffects.AddEffect(new DamageOverTimeEffect(~Effects.Team, Effects.Source, 1, 2, 5, 1));
+        targetEffects.AddEffect(new ApplyShatterEffect(~Effects.Team, Effects.Source));
+        targetEffects.AddEffect(new WeaknessDamageEffect(~Effects.Team, Effects.Source, .2f));
+        
+        hitbox.TargetHitEffects = targetEffects;
+
+        return hitbox;
+    }
+    
+    #endregion
 }

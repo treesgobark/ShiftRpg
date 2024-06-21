@@ -159,6 +159,9 @@
       "Name": "Entities\\Gun"
     },
     {
+      "Name": "Entities\\MeleeHitbox"
+    },
+    {
       "Name": "Entities\\MeleeWeapon"
     },
     {

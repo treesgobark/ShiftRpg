@@ -4,15 +4,6 @@
   ],
   "Source": "GLUE",
   "Is2D": true,
-  "ReferencedFiles": [
-    {
-      "Name": "Entities/Enemy/TopDownValuesStatic.csv",
-      "IsSharedStatic": true,
-      "HasPublicProperty": true,
-      "CreatesDictionary": true,
-      "ProjectsToExcludeFrom": []
-    }
-  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -117,11 +108,6 @@
       "Name": "InputDevice",
       "Value": 1,
       "Type": "int"
-    },
-    {
-      "Name": "IsTopDown",
-      "Value": true,
-      "Type": "bool"
     }
   ],
   "NamedObjects": [
@@ -159,7 +145,8 @@
       "SourceFile": "Circle",
       "ExposedInDerived": true,
       "AttachToContainer": true,
-      "GenerateTimedEmit": true
+      "GenerateTimedEmit": true,
+      "IncludeInIClickable": false
     },
     {
       "InstanceName": "HealthBarRuntimeInstance",

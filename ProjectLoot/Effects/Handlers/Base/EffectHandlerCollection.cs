@@ -9,9 +9,10 @@ public class EffectHandlerCollection : IEffectHandlerCollection
 {
     private List<EffectLog> RecentEffects { get; } = [];
     private List<Type> HandlerOrder { get; } = [];
-    private Dictionary<Type, IEffectHandler> Handlers { get; } = new();
+    private Dictionary<Type, IEffectHandler> Handlers { get; } = [];
+    private Dictionary<Type, IPersistentEffectHandler> PersistentHandlers { get; } = [];
 
-    public void Add<T>(IEffectHandler<T> handler)
+    public void Add<T>(IEffectHandler<T> handler, int index = -1)
     {
         Type type = typeof(T);
         if (Handlers.ContainsKey(type))
@@ -19,8 +20,21 @@ public class EffectHandlerCollection : IEffectHandlerCollection
             throw new InvalidOperationException($"Handler already exists for {type.Name}");
         }
 
-        HandlerOrder.Add(type);
-        Handlers[type] = handler;
+        if (index >= 0)
+        {
+            HandlerOrder.Insert(index, type);
+            Handlers[type] = handler;
+        }
+        else
+        {
+            HandlerOrder.Add(type);
+            Handlers[type] = handler;
+        }
+        
+        if (handler is IPersistentEffectHandler pHandler)
+        {
+            PersistentHandlers[type] = pHandler;
+        }
     }
 
     public void Replace<T>(IEffectHandler<T> handler)
@@ -48,6 +62,17 @@ public class EffectHandlerCollection : IEffectHandlerCollection
         Handlers.Remove(type);
     }
 
+    public void Activity()
+    {
+        foreach (Type key in HandlerOrder)
+        {
+            if (PersistentHandlers.TryGetValue(key, out IPersistentEffectHandler? pHandler))
+            {
+                pHandler.Activity();
+            }
+        }
+    }
+
     public void Handle(IEffectBundle bundle)
     {
         if (RecentEffects.Any(t => t.EffectId == bundle.EffectId))
@@ -57,9 +82,9 @@ public class EffectHandlerCollection : IEffectHandlerCollection
         
         RecentEffects.Add(new EffectLog(bundle.EffectId, TimeManager.CurrentScreenTime));
         
-        foreach (var key in HandlerOrder)
+        foreach (Type key in HandlerOrder)
         {
-            var handler = Handlers[key];
+            IEffectHandler handler = Handlers[key];
             if (bundle.TryGetEffect(key, out object effect))
             {
                 handler.Handle(effect);

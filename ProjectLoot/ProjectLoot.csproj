@@ -42,13 +42,25 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonPressed</Name>
     </None>
+    <None Include="Content\Entities\DefaultEnemy\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="Content\Entities\DefaultMeleeEnemy\MeleeEnemy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MeleeEnemy</Name>
     </None>
+    <None Include="Content\Entities\DefaultMeleeEnemy\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="Content\Entities\DefaultRangedEnemy\RangedEnemy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RangedEnemy</Name>
+    </None>
+    <None Include="Content\Entities\DefaultRangedEnemy\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
     </None>
     <None Include="Content\Entities\Enemy\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -454,8 +466,10 @@
   <ItemGroup>
     <Compile Include="Components\EffectsComponent.cs" />
     <Compile Include="Components\HealthComponent.cs" />
+    <Compile Include="Components\HitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IEffectsComponent.cs" />
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
+    <Compile Include="Components\Interfaces\IHitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IShatterComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaknessComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaponsComponent.cs" />
@@ -495,9 +509,11 @@
     <Compile Include="Effects\Handlers\Base\EffectHandlerCollection.cs" />
     <Compile Include="Effects\Handlers\Base\IEffectHandlerCollection.cs" />
     <Compile Include="Effects\Handlers\DamageHandler.cs" />
+    <Compile Include="Effects\Handlers\HitstopHandler.cs" />
     <Compile Include="Effects\Handlers\KnockbackHandler.cs" />
     <Compile Include="Effects\Handlers\ShatterDamageHandler.cs" />
     <Compile Include="Effects\Handlers\WeaknessDamageHandler.cs" />
+    <Compile Include="Effects\HitstopEffect.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
     <Compile Include="Effects\ShatterDamageEffect.cs" />
     <Compile Include="Effects\SourceTag.cs" />

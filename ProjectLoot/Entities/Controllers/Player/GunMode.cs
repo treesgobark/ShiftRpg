@@ -46,8 +46,6 @@ public partial class Player
             {
                 Parent.RotationZ = angle.Value;
             }
-        
-            Parent.ForceUpdateDependenciesDeep();
         }
     }
 }

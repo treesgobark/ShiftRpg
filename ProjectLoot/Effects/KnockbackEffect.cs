@@ -5,8 +5,15 @@ using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Effects;
 
-public record class KnockbackEffect(Team AppliesTo, SourceTag Source, float Magnitude, Rotation Direction, bool RelativeDirection = false) : IEffect
+public record class KnockbackEffect(Team AppliesTo, SourceTag Source, float Magnitude,
+    Rotation Direction, KnockbackBehavior KnockbackBehavior, bool RelativeDirection = false) : IEffect
 {
     public Vector3 KnockbackVector => Vector2Extensions.FromAngleAndLength(Direction.NormalizedRadians, Magnitude).ToVec3();
     public Guid EffectId { get; } = Guid.NewGuid();
+}
+
+public enum KnockbackBehavior
+{
+    Replacement,
+    Additive,
 }

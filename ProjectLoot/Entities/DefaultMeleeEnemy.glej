@@ -12,6 +12,13 @@
       "IsSharedStatic": true,
       "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "CustomVariables": [
@@ -73,6 +80,16 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
+    },
+    {
+      "Name": "IsTopDown",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
     }
   ],
   "NamedObjects": [
@@ -99,6 +116,8 @@
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
+      "IncludeInICollidable": false,
+      "IncludeInIClickable": false,
       "DefinedByBase": true,
       "InstantiatedByBase": true
     },
@@ -129,7 +148,8 @@
       "SourceType": 2,
       "SourceFile": "Sprite",
       "AttachToContainer": true,
-      "GenerateTimedEmit": true
+      "GenerateTimedEmit": true,
+      "IncludeInIClickable": false
     },
     {
       "InstanceName": "CircleInstance",
@@ -166,6 +186,7 @@
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
+      "IncludeInIClickable": false,
       "DefinedByBase": true,
       "InstantiatedByBase": true
     }

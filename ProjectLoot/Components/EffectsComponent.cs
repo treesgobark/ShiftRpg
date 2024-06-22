@@ -23,4 +23,9 @@ public class EffectsComponent : IEffectsComponent
     {
         HandlerCollection.Handle(bundle);
     }
+
+    public void Activity()
+    {
+        HandlerCollection.Activity();
+    }
 }

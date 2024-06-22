@@ -9,3 +9,8 @@ public interface IEffectHandler<in T> : IEffectHandler
 {
     void Handle(T effect);
 }
+
+public interface IPersistentEffectHandler
+{
+    void Activity();
+}

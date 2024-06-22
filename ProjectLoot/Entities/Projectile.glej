@@ -74,7 +74,8 @@
       "SourceFile": "Circle",
       "ExposedInDerived": true,
       "AttachToContainer": true,
-      "GenerateTimedEmit": true
+      "GenerateTimedEmit": true,
+      "IncludeInIClickable": false
     }
   ],
   "Name": "Entities\\Projectile",

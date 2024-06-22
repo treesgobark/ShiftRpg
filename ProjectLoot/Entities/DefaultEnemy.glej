@@ -6,6 +6,15 @@
   "BaseEntity": "Entities\\Enemy",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/DefaultEnemy/TopDownValuesStatic.csv",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -65,6 +74,16 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
+    },
+    {
+      "Name": "IsTopDown",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
     }
   ],
   "NamedObjects": [

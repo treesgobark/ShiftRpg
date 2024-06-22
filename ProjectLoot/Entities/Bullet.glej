@@ -45,15 +45,15 @@
       ],
       "InstructionSaves": [
         {
-          "Type": "float",
-          "Member": "Radius",
-          "Value": 16.0,
-          "Time": 0.0
-        },
-        {
           "Type": "Color",
           "Member": "Color",
           "Value": "SlateGray",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
           "Time": 0.0
         }
       ],
@@ -62,6 +62,7 @@
       "ExposedInDerived": true,
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
+      "IncludeInIClickable": false,
       "DefinedByBase": true,
       "InstantiatedByBase": true
     }

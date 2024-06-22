@@ -18,6 +18,7 @@ public abstract class ZeroWeapon<T> : IWeapon<T>
     public Team Team { get; set; } = (Team)(-1);
     public SourceTag Source { get; set; } = (SourceTag)(-1);
 
+    public IEffectsComponent Effects { get; } = new EffectsComponent { Team = (Team)(-1) };
     public virtual T InputDevice { get; set; }
     
     public void Equip(T inputDevice) { }

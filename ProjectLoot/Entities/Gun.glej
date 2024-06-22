@@ -146,7 +146,9 @@
       "SourceFile": "Circle",
       "SetByDerived": true,
       "AttachToContainer": true,
-      "GenerateTimedEmit": true
+      "GenerateTimedEmit": true,
+      "IncludeInICollidable": false,
+      "IncludeInIClickable": false
     }
   ],
   "Name": "Entities\\Gun",

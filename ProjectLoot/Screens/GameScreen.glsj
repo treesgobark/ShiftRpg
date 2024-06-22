@@ -298,15 +298,15 @@
           "Time": 0.0
         },
         {
-          "Type": "string",
-          "Member": "Targets",
-          "Value": "Player1",
-          "Time": 0.0
-        },
-        {
           "Type": "bool",
           "Member": "SnapToPixel",
           "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "Targets",
+          "Value": "Player1",
           "Time": 0.0
         }
       ],
@@ -816,13 +816,13 @@
       "InstructionSaves": [
         {
           "Type": "bool",
-          "Member": "Visible",
+          "Member": "AdjustRepositionDirectionsOnAddAndRemove",
           "Value": false,
           "Time": 0.0
         },
         {
           "Type": "bool",
-          "Member": "AdjustRepositionDirectionsOnAddAndRemove",
+          "Member": "Visible",
           "Value": false,
           "Time": 0.0
         }
@@ -895,8 +895,13 @@
         },
         {
           "Name": "CollisionType",
-          "Value": 1,
+          "Value": 0,
           "Type": "int"
+        },
+        {
+          "Name": "IsAutoNameEnabled",
+          "Value": false,
+          "Type": "bool"
         }
       ],
       "InstructionSaves": [],
@@ -1088,6 +1093,11 @@
     {
       "EventName": "MeleeHitboxVsEnemyCollided",
       "SourceObject": "MeleeHitboxVsEnemy",
+      "SourceObjectEvent": "CollisionOccurred"
+    },
+    {
+      "EventName": "EnemyVsEnemyCollided",
+      "SourceObject": "EnemyVsEnemy",
       "SourceObjectEvent": "CollisionOccurred"
     }
   ],

@@ -101,7 +101,9 @@
       "CsvFilesUsingThis": [
         "Entities/Player/TopDownValuesStatic.csv",
         "Entities/Enemy/TopDownValuesStatic.csv",
-        "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv"
+        "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
+        "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv",
+        "Entities/DefaultEnemy/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true

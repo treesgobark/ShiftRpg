@@ -34,7 +34,7 @@ public class DamageHandler : EffectHandler<DamageEffect>
     
     protected virtual bool ValidateEffect(DamageEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
+        if (!effect.AppliesTo.Contains(Effects.Team)) { return false; }
         if (Health.IsInvulnerable) { return false; }
 
         return true;

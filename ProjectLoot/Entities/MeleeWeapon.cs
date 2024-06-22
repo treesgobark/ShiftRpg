@@ -4,6 +4,7 @@ using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
@@ -96,18 +97,21 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         hitbox.Holder = Holder;
         hitbox.AttachTo(Parent ?? throw new UnreachableException("idk how this weapon's parent is null but here we are"));
         
-        var holderEffects = new EffectBundle(Effects.Team, Effects.Source);
-        holderEffects.AddEffect(new KnockbackEffect(Effects.Team, Effects.Source, CurrentAttackData.ForwardMovementVelocity, Rotation.Zero, true));
-        Holder.Effects.Handle(holderEffects);
+        var holderHitEffects = new EffectBundle(Effects.Team, Effects.Source);
+        // holderHitEffects.AddEffect(new KnockbackEffect(Effects.Team, Effects.Source,
+        //     CurrentAttackData.ForwardMovementVelocity, Rotation.Zero, KnockbackBehavior.Additive, true));
+        // holderEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(500)));
         
-        hitbox.HolderHitEffects = holderEffects;
+        hitbox.HolderHitEffects = holderHitEffects;
         
         var targetEffects = new EffectBundle(Effects.Team, Effects.Source);
         targetEffects.AddEffect(new DamageEffect(~Effects.Team, Effects.Source, CurrentAttackData.Damage));
-        targetEffects.AddEffect(new KnockbackEffect(~Effects.Team, Effects.Source, CurrentAttackData.KnockbackVelocity, Rotation.FromRadians(RotationZ)));
+        targetEffects.AddEffect(new KnockbackEffect(~Effects.Team, Effects.Source, CurrentAttackData.KnockbackVelocity,
+            Rotation.FromRadians(RotationZ), KnockbackBehavior.Replacement));
         targetEffects.AddEffect(new DamageOverTimeEffect(~Effects.Team, Effects.Source, 1, 2, 5, 1));
         targetEffects.AddEffect(new ApplyShatterEffect(~Effects.Team, Effects.Source));
         targetEffects.AddEffect(new WeaknessDamageEffect(~Effects.Team, Effects.Source, .2f));
+        targetEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(100)));
         
         hitbox.TargetHitEffects = targetEffects;
 

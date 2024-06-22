@@ -1,4 +1,5 @@
 using FlatRedBall.Graphics;
+using ProjectLoot.Components.Interfaces;
 
 namespace ProjectLoot.Contracts;
 
@@ -9,7 +10,6 @@ public interface IWeaponCache<TWeapon, TInput> : IDestroyable
     public int Count { get; }
     public int MaxWeapons { get; }
     public bool IsActive { get; set; }
-    public TInput InputDevice { get; set; }
     
     public TWeapon CycleToNextWeapon();
     public TWeapon CycleToPreviousWeapon();

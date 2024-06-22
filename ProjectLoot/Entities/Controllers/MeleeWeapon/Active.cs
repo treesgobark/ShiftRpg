@@ -15,7 +15,6 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.IsActive = true;
             Parent.Holder.InputEnabled = false;
             Hitbox = Parent.SpawnHitbox();
         }
@@ -36,7 +35,6 @@ partial class MeleeWeapon
 
         public override void BeforeDeactivate()
         {
-            Parent.IsActive = false;
             Parent.Holder.InputEnabled = true;
             Hitbox.Destroy();
         }

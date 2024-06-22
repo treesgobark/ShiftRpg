@@ -42,6 +42,8 @@
       "SourceFile": "Circle",
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
+      "IncludeInICollidable": false,
+      "IncludeInIClickable": false,
       "DefinedByBase": true
     }
   ],

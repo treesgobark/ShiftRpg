@@ -44,7 +44,7 @@ namespace ProjectLoot.Entities
             proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects, Holder);
 
             var effects = new EffectBundle(Effects.Team, Source);
-            effects.AddEffect(new KnockbackEffect(Effects.Team, Source, 100, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn)));
+            effects.AddEffect(new KnockbackEffect(Effects.Team, Source, 50, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn), KnockbackBehavior.Additive));
             Holder.Effects.Handle(effects);
 
             MagazineRemaining--;

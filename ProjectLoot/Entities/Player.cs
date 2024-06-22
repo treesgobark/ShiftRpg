@@ -1,4 +1,5 @@
 using ANLG.Utilities.FlatRedBall.States;
+using FlatRedBall;
 using FlatRedBall.Input;
 using GumCoreShared.FlatRedBall.Embedded;
 using ProjectLoot.Components;
@@ -18,6 +19,7 @@ public partial class Player : IWeaponHolder
     public HealthComponent Health { get; private set; }
     public EffectsComponent Effects { get; private set; }
     public WeaponsComponent Weapons { get; private set; }
+    public HitstopComponent Hitstop { get; private set; }
 
     public StateMachine StateMachine { get; protected set; }
 
@@ -29,6 +31,7 @@ public partial class Player : IWeaponHolder
         Health = new HealthComponent(MaxHealth, HealthBar);
         Effects = new EffectsComponent { Team = Team.Player };
         Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, GameplayCenter, this);
+        Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         
         InitializeControllers();
         InitializeHandlers();
@@ -50,14 +53,18 @@ public partial class Player : IWeaponHolder
 
     private void InitializeHandlers()
     {
+        Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, this, PlayerSprite));
         Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this));
+        Effects.HandlerCollection.Add(new KnockbackHandler(Effects, this, Hitstop));
     }
 
     private void CustomActivity()
     {
-        // HandlePersistentEffects();
+        Effects.Activity();
         Weapons.Activity();
         StateMachine.DoCurrentStateActivity();
+        PlayerSprite.ForceUpdateDependenciesDeep();
+        PlayerSprite.AnimateSelf(TimeManager.SecondDifference);
     }
 
     private void CustomDestroy()
@@ -77,8 +84,6 @@ public partial class Player : IWeaponHolder
     {
         return effects;
     }
-
-    public IEffectsComponent EffectsComponent => Effects;
     
     #endregion
 

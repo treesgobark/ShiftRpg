@@ -13,7 +13,6 @@ public partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            // Parent.Owner.SetPlayerColor(Color.Yellow);
             Parent.Holder.InputEnabled = false;
         }
 

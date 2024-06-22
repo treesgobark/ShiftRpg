@@ -13,4 +13,9 @@ public static class TeamExtensions
     {
         return (subset & superset) == subset;
     }
+    
+    public static bool Contains(this Team superset, Team subset)
+    {
+        return (subset & superset) == subset;
+    }
 }

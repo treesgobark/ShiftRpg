@@ -1,22 +1,33 @@
 using System.Diagnostics;
 using ANLG.Utilities.FlatRedBall.StaticUtilities;
+using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects.Handlers;
 
 namespace ProjectLoot.Models;
 
-public class WeaponCache<TWeapon, TInput>(TWeapon defaultWeapon, TInput inputDevice) : IWeaponCache<TWeapon, TInput>
+public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
     where TWeapon : IWeapon<TInput>
 {
-    private bool _isActive;
-    protected const int MaximumWeaponCount = 3;
-    protected int CurrentIndex { get; set; } = 0;
-    protected TWeapon?[] WeaponArray { get; set; } = new TWeapon?[MaximumWeaponCount];
-    public TInput InputDevice { get; set; } = inputDevice;
+    private const int MaximumWeaponCount = 3;
+    
+    private TWeapon DefaultWeapon { get; }
+    private TInput InputDevice { get; set; }
 
-    public TWeapon CurrentWeapon => WeaponArray[CurrentIndex] ?? defaultWeapon;
-    public int Count { get; protected set; }
+    public WeaponCache(TWeapon defaultWeapon, TInput inputDevice)
+    {
+        DefaultWeapon = defaultWeapon;
+        InputDevice = inputDevice;
+    }
+    
+    private int CurrentIndex { get; set; } = 0;
+    private TWeapon?[] WeaponArray { get; set; } = new TWeapon?[MaximumWeaponCount];
+    public TWeapon CurrentWeapon => WeaponArray[CurrentIndex] ?? DefaultWeapon;
+    public int Count { get; private set; }
     public int MaxWeapons => MaximumWeaponCount;
 
+    private bool _isActive;
     public bool IsActive
     {
         get => _isActive;
@@ -46,7 +57,7 @@ public class WeaponCache<TWeapon, TInput>(TWeapon defaultWeapon, TInput inputDev
 
         if (Count == 0)
         {
-            return defaultWeapon;
+            return DefaultWeapon;
         }
         
         CurrentWeapon.Unequip();
@@ -124,7 +135,7 @@ public class WeaponCache<TWeapon, TInput>(TWeapon defaultWeapon, TInput inputDev
         WeaponArray[index] = weapon;
     }
 
-    public TWeapon GetWeaponAt(int index) => WeaponArray[index] ?? defaultWeapon;
+    public TWeapon GetWeaponAt(int index) => WeaponArray[index] ?? DefaultWeapon;
     public void Destroy()
     {
         foreach (TWeapon weapon in WeaponArray)

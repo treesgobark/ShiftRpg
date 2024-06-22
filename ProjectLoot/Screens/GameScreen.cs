@@ -13,7 +13,7 @@ namespace ProjectLoot.Screens;
 
 public partial class GameScreen
 {
-    protected bool GameOver { get; set; } = false;
+    protected bool GameOver { get; set; }
 
     void CustomInitialize()
     {
@@ -24,8 +24,15 @@ public partial class GameScreen
 
     void CustomActivity(bool firstTimeCalled)
     {
-        GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
-        GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(Player1.GameplayInputDevice.Attack);
+        var rangedEnemy = EnemyList.FirstOrDefault(e => e is DefaultRangedEnemy);
+        if (rangedEnemy is { EnemyInputDevice: not null })
+        {
+            GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(rangedEnemy.EnemyInputDevice.Movement, 4f);
+            GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(rangedEnemy.EnemyInputDevice.Attack);
+        }
+        
+        // GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
+        // GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(Player1.GameplayInputDevice.Attack);
 
         foreach (Enemy? enemy in EnemyList)
         {
@@ -64,11 +71,6 @@ public partial class GameScreen
     {
 
 
-    }
-
-    public Player? GetClosestPlayer(Vector3 position)
-    {
-        return PlayerList.MinBy(p => p.Position.DistanceSquared(position));
     }
 
     private void InitializePauseMenu()

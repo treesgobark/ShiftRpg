@@ -2,6 +2,7 @@ using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Glue.StateInterpolation;
 using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
@@ -71,8 +72,9 @@ namespace ProjectLoot.Entities
                 var effects = new EffectBundle(~Effects.Team, Source);
                 
                 effects.AddEffect(new DamageEffect(~Effects.Team, Source, CurrentGunData.Damage));
-                effects.AddEffect(new KnockbackEffect(~Effects.Team, Source, 100, this.GetRotationZ()));
+                effects.AddEffect(new KnockbackEffect(~Effects.Team, Source, 200, this.GetRotationZ(), KnockbackBehavior.Replacement));
                 effects.AddEffect(new ShatterDamageEffect(~Effects.Team, Source, 3));
+                effects.AddEffect(new HitstopEffect(~Effects.Team, Source, TimeSpan.FromMilliseconds(50)));
 
                 return Holder.ModifyTargetEffects(effects);
             }

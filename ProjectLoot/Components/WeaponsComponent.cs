@@ -14,10 +14,7 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
 {
     public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent, IWeaponHolder? holder = null)
     {
-        if (holder is null)
-        {
-            holder = ZeroWeaponHolder.Instance;
-        }
+        holder ??= ZeroWeaponHolder.Instance;
         
         DefaultGun gun = new()
         {
@@ -31,7 +28,7 @@ public class WeaponsComponent : IWeaponsComponent, IDestroyable
         GunCache = new WeaponCache<IGun, IGunInputDevice>(ZeroGun.Instance, new GunInputDevice(gameplayInputDevice));
         GunCache.Add(gun);
 
-        DefaultSword melee = new DefaultSword();
+        DefaultSword melee = new();
 
         melee.AttachTo(parent);
         melee.Effects.Team = team;

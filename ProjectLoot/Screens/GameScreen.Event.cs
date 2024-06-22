@@ -19,6 +19,25 @@ namespace ProjectLoot.Screens
             }
         }
         
+        void OnEnemyVsEnemyCollided (Entities.Enemy enemy, Entities.Enemy enemy2) 
+        {
+            switch (enemy, enemy2)
+            {
+                case (TargetDummy, not TargetDummy):
+                    enemy.CollideAgainstMove(enemy2, 1, 0);
+                    break;
+                case (not TargetDummy, TargetDummy):
+                    enemy.CollideAgainstMove(enemy2, 0, 1);
+                    break;
+                case (not TargetDummy, not TargetDummy):
+                    enemy.CollideAgainstMove(enemy2, 1, 1);
+                    break;
+                default:
+                    enemy.CollideAgainstMove(enemy2, 0, 0);
+                    break;
+            }
+        }
+        
         void OnPlayerVsProjectileCollided (Player player, Projectile projectile)
         {
             if (!projectile.IsActive) { return; }
@@ -46,6 +65,11 @@ namespace ProjectLoot.Screens
         
         void OnMeleeHitboxVsPlayerCollided (Entities.MeleeHitbox meleeHitbox, Entities.Player player) 
         {
+            // if (meleeHitbox.)
+            // {
+            //     
+            // }
+            
             player.Effects.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
         }
@@ -55,6 +79,5 @@ namespace ProjectLoot.Screens
             enemy.Effects.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
         }
-
     }
 }

@@ -7,6 +7,7 @@ namespace ProjectLoot.InputDevices;
 
 public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
 {
+    private bool _inputEnabled = true;
     protected Enemy Owner { get; }
     protected EntityTracker? EntityTracker { get; set; }
 
@@ -38,7 +39,19 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     protected override float GetDefault2DInputX() => EntityTracker?.X ?? 0;
     protected override float GetDefault2DInputY() => EntityTracker?.Y ?? 0;
     public I2DInput Movement => ((IInputDevice)this).Default2DInput;
-    public I2DInput Aim => EntityTracker is not null ? EntityTracker : Zero2DInput.Instance;
+    public I2DInput Aim
+    {
+        get
+        {
+            if (!InputEnabled)
+            {
+                return ConstantAim;
+            }
+            return EntityTracker is not null ? EntityTracker : Zero2DInput.Instance;
+        }
+    }
+    private Constant2DInput ConstantAim { get; set; }
+
     public IPressableInput Attack => TruePressableInput.Instance;
     public IPressableInput Reload => FalsePressableInput.Instance;
     public IPressableInput Dash => FalsePressableInput.Instance;
@@ -47,6 +60,19 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
     // public bool AimInMeleeRange => Aim.Magnitude < 1;
     public bool AimInMeleeRange => false;
+
+    public bool InputEnabled
+    {
+        get => _inputEnabled;
+        set
+        {
+            if ((_inputEnabled, value) is (true, false))
+            {
+                ConstantAim = new Constant2DInput(Aim);
+            }
+            _inputEnabled = value;
+        }
+    }
 }
 
 public class RangedEnemyInputDevice : EnemyInputDevice

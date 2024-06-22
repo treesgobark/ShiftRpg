@@ -18,6 +18,7 @@ namespace ProjectLoot.Entities
         protected FrameCache<GunData> GunDataCache { get; } = new(() => GlobalContent.GunData[GunData.Pistol]);
         
         private int _magazineRemaining;
+        private float _reloadProgress;
 
         public int MagazineRemaining
         {
@@ -33,6 +34,17 @@ namespace ProjectLoot.Entities
         public TimeSpan TimePerRound => TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
         public TimeSpan ReloadTime => TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
         public FiringType FiringType => CurrentGunData.IsSingleShot ? FiringType.Semiautomatic : FiringType.Automatic;
+
+        public float ReloadProgress
+        {
+            get => _reloadProgress;
+            set
+            {
+                _reloadProgress = value;
+                MagazineBar.ProgressPercentage = _reloadProgress * 100f;
+            }
+        }
+
         private int BarColor { get; set; }
 
         /// <summary>
@@ -103,8 +115,6 @@ namespace ProjectLoot.Entities
         {
             BarColor                           = MagazineBar.ForegroundGreen;
             MagazineBar.ForegroundGreen = 150;
-            
-            this.TweenAsync(p => MagazineBar.ProgressPercentage = p, 0, 100, (float)ReloadTime.TotalSeconds, InterpolationType.Linear, Easing.InOut);
         }
 
         public void FillMagazine()

@@ -1,6 +1,7 @@
 using FlatRedBall.Debugging;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.TileCollisions;
+using ProjectLoot.Effects;
 using ProjectLoot.Entities;
 
 namespace ProjectLoot.Screens
@@ -41,6 +42,7 @@ namespace ProjectLoot.Screens
         void OnPlayerVsProjectileCollided (Player player, Projectile projectile)
         {
             if (!projectile.IsActive) { return; }
+            if (!projectile.AppliesTo.Contains(player.Effects.Team)) { return; }
             
             player.Effects.Handle(projectile.TargetHitEffects);
             projectile.Holder.Effects.Handle(projectile.HolderHitEffects);
@@ -51,6 +53,7 @@ namespace ProjectLoot.Screens
         void OnProjectileVsEnemyCollided (Projectile projectile, Enemy enemy) 
         {
             if (!projectile.IsActive) { return; }
+            if (!projectile.AppliesTo.Contains(enemy.Effects.Team)) { return; }
             
             enemy.Effects.Handle(projectile.TargetHitEffects);
             projectile.Holder.Effects.Handle(projectile.HolderHitEffects);
@@ -63,12 +66,9 @@ namespace ProjectLoot.Screens
             projectile.Destroy();
         }
         
-        void OnMeleeHitboxVsPlayerCollided (Entities.MeleeHitbox meleeHitbox, Entities.Player player) 
+        void OnMeleeHitboxVsPlayerCollided (Entities.MeleeHitbox meleeHitbox, Entities.Player player)
         {
-            // if (meleeHitbox.)
-            // {
-            //     
-            // }
+            if (!meleeHitbox.AppliesTo.Contains(player.Effects.Team)) { return; }
             
             player.Effects.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
@@ -76,6 +76,8 @@ namespace ProjectLoot.Screens
         
         void OnMeleeHitboxVsEnemyCollided (Entities.MeleeHitbox meleeHitbox, Entities.Enemy enemy) 
         {
+            if (!meleeHitbox.AppliesTo.Contains(enemy.Effects.Team)) { return; }
+            
             enemy.Effects.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
         }

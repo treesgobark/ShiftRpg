@@ -12,10 +12,8 @@ namespace ProjectLoot.Components;
 
 public class WeaponsComponent : IWeaponsComponent, IDestroyable
 {
-    public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent, IWeaponHolder? holder = null)
+    public WeaponsComponent(IGameplayInputDevice gameplayInputDevice, Team team, PositionedObject parent, IWeaponHolder holder)
     {
-        holder ??= ZeroWeaponHolder.Instance;
-        
         DefaultGun gun = new()
         {
             RelativeX = 10

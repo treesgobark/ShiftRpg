@@ -16,7 +16,7 @@ public partial class Player
             Parent.Weapons.MeleeWeaponCache.IsActive = true;
         }
 
-        public override void CustomActivity()
+        protected override void AfterTimedStateActivity()
         {
             SetRotation();
         }

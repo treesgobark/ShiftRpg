@@ -10,6 +10,7 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 
 namespace ProjectLoot.Entities
 {
@@ -32,5 +33,6 @@ namespace ProjectLoot.Entities
         public IEffectBundle TargetHitEffects { get; set; }
         public IEffectBundle HolderHitEffects { get; set; }
         public IWeaponHolder Holder { get; set; }
+        public Team AppliesTo { get; set; }
     }
 }

@@ -96,11 +96,13 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
 
         hitbox.Holder = Holder;
         hitbox.AttachTo(Parent ?? throw new UnreachableException("idk how this weapon's parent is null but here we are"));
+
+        hitbox.AppliesTo = ~Effects.Team;
         
         var holderHitEffects = new EffectBundle(Effects.Team, Effects.Source);
         // holderHitEffects.AddEffect(new KnockbackEffect(Effects.Team, Effects.Source,
-        //     CurrentAttackData.ForwardMovementVelocity, Rotation.Zero, KnockbackBehavior.Additive, true));
-        // holderEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(500)));
+        //     CurrentAttackData.ForwardMovementVelocity, Rotation.FromRadians(RotationZ), KnockbackBehavior.Additive, true));
+        holderHitEffects.AddEffect(new HitstopEffect(Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(150)));
         
         hitbox.HolderHitEffects = holderHitEffects;
         
@@ -111,7 +113,7 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         targetEffects.AddEffect(new DamageOverTimeEffect(~Effects.Team, Effects.Source, 1, 2, 5, 1));
         targetEffects.AddEffect(new ApplyShatterEffect(~Effects.Team, Effects.Source));
         targetEffects.AddEffect(new WeaknessDamageEffect(~Effects.Team, Effects.Source, .2f));
-        targetEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(100)));
+        targetEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(150)));
         
         hitbox.TargetHitEffects = targetEffects;
 

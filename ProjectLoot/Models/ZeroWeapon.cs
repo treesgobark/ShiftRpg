@@ -37,6 +37,7 @@ public class ZeroGun : ZeroWeapon<IGunInputDevice>, IGun
     public TimeSpan TimePerRound => TimeSpan.Zero;
     public TimeSpan ReloadTime => TimeSpan.Zero;
     public FiringType FiringType { get; } = (FiringType)(-1);
+    public float ReloadProgress { get; set; }
 
     public void Fire() { }
     public void StartReload() { }
@@ -62,6 +63,8 @@ public class ZeroMeleeWeapon : ZeroWeapon<IMeleeWeaponInputDevice>, IMeleeWeapon
 public class ZeroWeaponHolder : IWeaponHolder
 {
     public static readonly ZeroWeaponHolder Instance = new();
+
+    public void SetInputEnabled(bool isEnabled) { }
 
     public IEffectBundle ModifyTargetEffects(IEffectBundle effects) => effects;
     public IEffectsComponent Effects { get; set; } = new EffectsComponent { Team = (Team)(-1) };

@@ -165,7 +165,7 @@
         {
           "Type": "bool",
           "Member": "Visible",
-          "Value": false,
+          "Value": true,
           "Time": 0.0
         },
         {

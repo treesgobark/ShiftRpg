@@ -1,11 +1,13 @@
 using ANLG.Utilities.FlatRedBall.States;
 using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities
 {
-    public partial class DefaultMeleeEnemy
+    public partial class DefaultMeleeEnemy : IWeaponHolder
     {
         public WeaponsComponent Weapons { get; private set; }
 
@@ -21,7 +23,7 @@ namespace ProjectLoot.Entities
             var eInput = new EnemyInputDevice(this);
             InitializeTopDownInput(eInput);
             EnemyInputDevice = eInput;
-            Weapons = new WeaponsComponent(eInput, Team.Enemy, this);
+            Weapons = new WeaponsComponent(eInput, Team.Enemy, this, this);
             InitializeControllers();
         }
 
@@ -47,5 +49,19 @@ namespace ProjectLoot.Entities
 
 
         }
+
+        #region IWeaponHolder
+        
+        IEffectsComponent IWeaponHolder.Effects => Effects;
+        
+        public void SetInputEnabled(bool isEnabled)
+        {
+            InputEnabled = isEnabled;
+            EnemyInputDevice.InputEnabled = isEnabled;
+        }
+
+        public IEffectBundle ModifyTargetEffects(IEffectBundle effects) => effects;
+
+        #endregion
     }
 }

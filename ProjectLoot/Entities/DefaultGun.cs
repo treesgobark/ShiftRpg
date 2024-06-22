@@ -41,7 +41,7 @@ namespace ProjectLoot.Entities
             if (dir == Vector3.Zero) return;
             
             var proj = BulletFactory.CreateNew(Position);
-            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects, Holder);
+            proj.InitializeProjectile(CurrentGunData.ProjectileRadius, dir * CurrentGunData.ProjectileSpeed, TargetHitEffects, HolderHitEffects, Holder, ~Effects.Team);
 
             var effects = new EffectBundle(Effects.Team, Source);
             effects.AddEffect(new KnockbackEffect(Effects.Team, Source, 50, Rotation.FromRadians(RotationZ + MathConstants.HalfTurn), KnockbackBehavior.Additive));

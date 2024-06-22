@@ -14,4 +14,5 @@ public interface IGameplayInputDevice
     IPressableInput PreviousWeapon { get; }
     
     bool AimInMeleeRange { get; }
+    bool InputEnabled { get; set; }
 }

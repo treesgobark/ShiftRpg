@@ -18,8 +18,11 @@ public partial class Gun
             Parent.StartReload();
             base.OnActivate();
         }
-    
-        public override void CustomActivity() { }
+
+        protected override void AfterTimedStateActivity()
+        {
+            Parent.ReloadProgress = (float)(TimeInState / Parent.ReloadTime.TotalSeconds);
+        }
     
         public override IState? EvaluateExitConditions()
         {

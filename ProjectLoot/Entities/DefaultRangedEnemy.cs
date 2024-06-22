@@ -11,7 +11,7 @@ using ProjectLoot.Screens;
 
 namespace ProjectLoot.Entities
 {
-    public partial class DefaultRangedEnemy
+    public partial class DefaultRangedEnemy : IWeaponHolder
     {
         private WeaponsComponent Weapons { get; set; }
         public HealthComponent Health { get; private set; }
@@ -45,7 +45,7 @@ namespace ProjectLoot.Entities
             Shatter = new ShatterComponent(HealthBarRuntimeInstance);
             Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
             Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            Weapons = new WeaponsComponent(EnemyInputDevice, Team.Enemy, this);
+            Weapons = new WeaponsComponent(EnemyInputDevice, Team.Enemy, this, this);
             
             Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
@@ -84,5 +84,19 @@ namespace ProjectLoot.Entities
         }
 
         private static void CustomLoadStaticContent(string contentManagerName) { }
+
+        #region IWeaponHolder
+        
+        IEffectsComponent IWeaponHolder.Effects => Effects;
+        
+        public void SetInputEnabled(bool isEnabled)
+        {
+            InputEnabled = isEnabled;
+            EnemyInputDevice.InputEnabled = isEnabled;
+        }
+
+        public IEffectBundle ModifyTargetEffects(IEffectBundle effects) => effects;
+
+        #endregion
     }
 }

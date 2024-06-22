@@ -12,13 +12,16 @@ namespace ProjectLoot.InputDevices;
 
 public class GameplayInputDevice : IGameplayInputDevice
 {
+    private bool _inputEnabled = true;
+    private readonly I2DInput _aim;
+
     public GameplayInputDevice(IInputDevice inputDevice, IPositionable position, float meleeAimThreshold)
     {
         switch (inputDevice)
         {
             case Xbox360GamePad gamePad:
                 Movement        = new Gated2DInput(gamePad.LeftStick, 8);
-                Aim             = gamePad.RightStick;
+                _aim            = gamePad.RightStick;
                 Attack          = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
                     .Or(gamePad.GetButton(Xbox360GamePad.Button.X));
                 Reload          = gamePad.GetButton(Xbox360GamePad.Button.B);
@@ -29,7 +32,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 break;
             case Keyboard keyboard:
                 Movement        = keyboard.GetWasdInput();
-                Aim             = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
+                _aim            = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
                 Attack          = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
                 Reload          = keyboard.GetKey(Keys.R);
                 Dash            = keyboard.GetKey(Keys.Space);
@@ -43,7 +46,20 @@ public class GameplayInputDevice : IGameplayInputDevice
     }
     
     public I2DInput Movement { get; }
-    public I2DInput Aim { get; }
+
+    public I2DInput Aim
+    {
+        get
+        {
+            if (!InputEnabled)
+            {
+                return ConstantAim;
+            }
+            return _aim;
+        }
+    }
+
+    private Constant2DInput ConstantAim { get; set; }
     public IPressableInput Attack { get; }
     public IPressableInput Reload { get; }
     public IPressableInput Dash { get; }
@@ -51,4 +67,18 @@ public class GameplayInputDevice : IGameplayInputDevice
     public IPressableInput NextWeapon { get; }
     public IPressableInput PreviousWeapon { get; }
     public bool AimInMeleeRange => Aim.Magnitude < 1;
+    
+
+    public bool InputEnabled
+    {
+        get => _inputEnabled;
+        set
+        {
+            if ((_inputEnabled, value) is (true, false))
+            {
+                ConstantAim = new Constant2DInput(Aim);
+            }
+            _inputEnabled = value;
+        }
+    }
 }

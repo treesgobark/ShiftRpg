@@ -889,6 +889,7 @@
     <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.Generated.cs">
       <DependentUpon>VirtualControllerDisplayRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputDevices\Constant2DInput.cs" />
     <Compile Include="InputDevices\EnemyInputDevice.cs" />
     <Compile Include="InputDevices\EntityTracker.cs" />
     <Compile Include="InputDevices\GameplayInputDevice.cs" />

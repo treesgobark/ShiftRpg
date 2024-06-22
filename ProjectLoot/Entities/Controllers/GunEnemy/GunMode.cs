@@ -16,7 +16,7 @@ public partial class DefaultRangedEnemy
             Parent.Weapons.GunCache.IsActive = true;
         }
 
-        public override void CustomActivity()
+        protected override void AfterTimedStateActivity()
         {
             SetRotation();
         }

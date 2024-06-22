@@ -15,13 +15,10 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Holder.InputEnabled = false;
             Hitbox = Parent.SpawnHitbox();
         }
 
-        public override void CustomActivity()
-        {
-        }
+        protected override void AfterTimedStateActivity() { }
 
         public override IState? EvaluateExitConditions()
         {
@@ -35,7 +32,6 @@ partial class MeleeWeapon
 
         public override void BeforeDeactivate()
         {
-            Parent.Holder.InputEnabled = true;
             Hitbox.Destroy();
         }
 

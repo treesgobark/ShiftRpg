@@ -18,7 +18,7 @@ partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate() { }
 
-        public override void CustomActivity() { }
+        protected override void AfterTimedStateActivity() { }
 
         public override IState? EvaluateExitConditions()
         {

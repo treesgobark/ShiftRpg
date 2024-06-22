@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 
 namespace ProjectLoot.Entities
 {
@@ -32,15 +33,17 @@ namespace ProjectLoot.Entities
         public IEffectBundle HolderHitEffects { get; set; }
         public IWeaponHolder Holder { get; set; }
         public bool IsActive { get; set; }
+        public Team AppliesTo { get; set; }
         
         public void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed, IEffectBundle targetHitEffects,
-            IEffectBundle holderHitEffects, IWeaponHolder holder)
+            IEffectBundle holderHitEffects, IWeaponHolder holder, Team appliesTo)
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileSpeed;
             TargetHitEffects      = targetHitEffects;
             HolderHitEffects      = holderHitEffects;
             Holder = holder;
+            AppliesTo = appliesTo;
         }
     }
 }

@@ -14,8 +14,8 @@ public partial class Gun
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate() { }
-    
-        public override void CustomActivity()
+        
+        protected override void AfterTimedStateActivity()
         {
             if (Parent.InputDevice.Fire.WasJustPressed || Parent is { FiringType: FiringType.Automatic, InputDevice.Fire.IsDown: true })
             {

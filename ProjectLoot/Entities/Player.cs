@@ -61,9 +61,12 @@ public partial class Player : IWeaponHolder
     private void CustomActivity()
     {
         Effects.Activity();
+        PlayerSprite.ForceUpdateDependenciesDeep();
+        
+        if (Hitstop.IsStopped) { return; }
+        
         Weapons.Activity();
         StateMachine.DoCurrentStateActivity();
-        PlayerSprite.ForceUpdateDependenciesDeep();
         PlayerSprite.AnimateSelf(TimeManager.SecondDifference);
     }
 
@@ -79,7 +82,13 @@ public partial class Player : IWeaponHolder
     #region IWeaponHolder
 
     IEffectsComponent IWeaponHolder.Effects => Effects;
-    
+
+    public void SetInputEnabled(bool isEnabled)
+    {
+        InputEnabled = isEnabled;
+        GameplayInputDevice.InputEnabled = isEnabled;
+    }
+
     public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
     {
         return effects;

@@ -13,10 +13,10 @@ public partial class MeleeWeapon
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Holder.InputEnabled = false;
+            Parent.Holder.SetInputEnabled(false);
         }
 
-        public override void CustomActivity()
+        protected override void AfterTimedStateActivity()
         {
         }
 
@@ -30,10 +30,7 @@ public partial class MeleeWeapon
             return null;
         }
 
-        public override void BeforeDeactivate()
-        {
-            Parent.Holder.InputEnabled = true;
-        }
+        public override void BeforeDeactivate() { }
 
         public override void Uninitialize() { }
     }

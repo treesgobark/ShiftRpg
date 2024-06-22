@@ -15,7 +15,7 @@ public partial class Gun
 
         protected override void AfterTimedStateActivate() { }
     
-        public override void CustomActivity()
+        protected override void AfterTimedStateActivity()
         {
             if (Parent.InputDevice.Reload.WasJustPressed)
             {

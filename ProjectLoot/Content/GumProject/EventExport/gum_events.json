@@ -532,6 +532,216 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2024-06-22T23:13:19.3569426Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator TopButton in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:10:42.2143509Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator RightButton in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:10:43.3463035Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator BottomButton in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:10:44.1757523Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator LeftButton in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:10:45.1987612Z"
+      },
+      {
+        "NewName": "VirtualControllerDisplay (Container).ButtonIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:10:57.6872989Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualControllerDisplay (Container).ButtonIndicator ButtonIndicatorInstance in VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:15:07.4533272Z"
+      },
+      {
+        "NewName": "VirtualController\\ButtonIndicator",
+        "OldName": "ButtonIndicator",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:15:28.6076864Z"
+      },
+      {
+        "NewName": "VirtualController\\VirtualControllerDisplay",
+        "OldName": "VirtualControllerDisplay",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:15:37.5132722Z"
+      },
+      {
+        "NewName": "VirtualController\\AttackIndicator",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:15:57.7400428Z"
+      },
+      {
+        "NewName": "VirtualController\\AttackIndicator (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:16:00.7803882Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController\\AttackIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:16:09.1445528Z"
+      },
+      {
+        "NewName": "VirtualController\\ButtonIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:16:10.6060829Z"
+      },
+      {
+        "NewName": "VirtualController\\AttackIndicator",
+        "OldName": "VirtualController\\ButtonIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:16:18.1057353Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/AttackIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:18:13.9845693Z"
+      },
+      {
+        "NewName": "VirtualController/ButtonIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:18:15.907343Z"
+      },
+      {
+        "NewName": "VirtualController/AttackIndicator",
+        "OldName": "VirtualController/ButtonIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:18:24.5504986Z"
+      },
+      {
+        "NewName": "VirtualController/AttackIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:20:00.062627Z"
+      },
+      {
+        "NewName": "VirtualController/GuardIndicator",
+        "OldName": "VirtualController/AttackIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:20:12.1983092Z"
+      },
+      {
+        "NewName": "VirtualController/GuardIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:21:09.4124136Z"
+      },
+      {
+        "NewName": "VirtualController/DashIndicator",
+        "OldName": "VirtualController/GuardIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:21:18.7099459Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).AttackIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:21:52.6902034Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).GuardIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:21:55.8037447Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).DashIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:21:58.7814818Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreenGum.VirtualController\\VirtualControllerDisplay VirtualControllerDisplayInstance in GameScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:24:09.5328145Z"
+      },
+      {
+        "NewName": "GameScreenGum.VirtualControllerDisplayInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:24:12.740254Z"
+      },
+      {
+        "NewName": "VirtualController/AttackIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:24:59.9126508Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/AttackIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:25:16.8453157Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay (Container).VirtualController/AttackIndicator AttackIndicatorInstance in VirtualController/VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:26:21.3129676Z"
+      },
+      {
+        "NewName": "VirtualController/AttackIndicator",
+        "OldName": "VirtualController/AttackIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:27:08.6337893Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).AttackIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:27:21.717462Z"
       }
     ]
   }

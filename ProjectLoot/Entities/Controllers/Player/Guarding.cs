@@ -7,6 +7,8 @@ public partial class Player
 {
     protected class Guarding : TimedState<Player>
     {
+        private string StoredMovementName { get; set; }
+        
         public Guarding(Player parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine)
         {
         }
@@ -21,6 +23,9 @@ public partial class Player
                 ModifierCategory.Multiplicative));
 
             Parent.GuardSprite.Visible = true;
+
+            StoredMovementName = Parent.CurrentMovementName;
+            Parent.CurrentMovement = TopDownValuesStatic[DataTypes.TopDownValues.Guarding];
         }
 
         public override IState? EvaluateExitConditions()
@@ -39,6 +44,8 @@ public partial class Player
             Parent.Health.DamageModifiers.Delete("guard");
 
             Parent.GuardSprite.Visible = false;
+
+            Parent.CurrentMovement = TopDownValuesStatic[StoredMovementName];
         }
 
         public override void Uninitialize() { }

@@ -86,10 +86,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>
     </None>
-    <None Include="Content\GumProject\Components\ButtonIndicator.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ButtonIndicator</Name>
-    </None>
     <None Include="Content\GumProject\Components\Controls\ButtonClose.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonClose</Name>
@@ -286,7 +282,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RoundedTrimRectangle</Name>
     </None>
-    <None Include="Content\GumProject\Components\VirtualControllerDisplay.gucx">
+    <None Include="Content\GumProject\Components\VirtualController\AttackIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AttackIndicator</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualController\ButtonIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ButtonIndicator</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualController\DashIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>DashIndicator</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualController\GuardIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GuardIndicator</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualController\VirtualControllerDisplay.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>VirtualControllerDisplay</Name>
     </None>
@@ -693,10 +705,7 @@
     <Compile Include="GumRuntimes\Behaviors\ITreeViewBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\ITreeViewItemBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IUserControlBehavior.Generated.cs" />
-    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.cs" />
-    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.Generated.cs">
-      <DependentUpon>ButtonIndicatorRuntime.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
@@ -919,8 +928,25 @@
       <DependentUpon>TestLevelGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.cs" />
-    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.Generated.cs">
+    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\VirtualController\AttackIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\AttackIndicatorRuntime.Generated.cs">
+      <DependentUpon>AttackIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\VirtualController\ButtonIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\ButtonIndicatorRuntime.Generated.cs">
+      <DependentUpon>ButtonIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\VirtualController\DashIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\DashIndicatorRuntime.Generated.cs">
+      <DependentUpon>DashIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\VirtualController\GuardIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\GuardIndicatorRuntime.Generated.cs">
+      <DependentUpon>GuardIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\VirtualController\VirtualControllerDisplayRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\VirtualControllerDisplayRuntime.Generated.cs">
       <DependentUpon>VirtualControllerDisplayRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="InputDevices\Constant2DInput.cs" />

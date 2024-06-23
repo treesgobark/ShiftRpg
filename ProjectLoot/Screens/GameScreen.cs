@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Entities;
 using ProjectLoot.GumRuntimes;
+using ProjectLoot.GumRuntimes.VirtualController;
 
 namespace ProjectLoot.Screens;
 
@@ -27,15 +28,8 @@ public partial class GameScreen
 
     void CustomActivity(bool firstTimeCalled)
     {
-        var rangedEnemy = EnemyList.FirstOrDefault(e => e is DefaultRangedEnemy);
-        if (rangedEnemy is { EnemyInputDevice: not null })
-        {
-            GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(rangedEnemy.EnemyInputDevice.Movement, 4f);
-            GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(rangedEnemy.EnemyInputDevice.Attack);
-        }
-        
-        // GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
-        // GumScreen.VirtualControllerDisplayInstance.BottomButton.SetPressedState(Player1.GameplayInputDevice.Attack);
+        // DisplayEnemyInputs();
+        DisplayPlayerInputs();
 
         foreach (Enemy? enemy in EnemyList)
         {
@@ -62,6 +56,50 @@ public partial class GameScreen
             GameOver = true;
             Pause();
         }
+    }
+
+    private void DisplayEnemyInputs()
+    {
+        var rangedEnemy = EnemyList.FirstOrDefault(e => e is DefaultRangedEnemy);
+        if (rangedEnemy is { EnemyInputDevice: not null })
+        {
+            GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(rangedEnemy.EnemyInputDevice.Movement, 4f);
+            
+            GumScreen.VirtualControllerDisplayInstance.AttackIndicatorInstance.CurrentIsPressedState =
+                rangedEnemy.EnemyInputDevice.Attack.IsDown
+                    ? AttackIndicatorRuntime.IsPressed.Pressed
+                    : AttackIndicatorRuntime.IsPressed.NotPressed;
+            
+            GumScreen.VirtualControllerDisplayInstance.GuardIndicatorInstance.CurrentIsPressedState =
+                rangedEnemy.EnemyInputDevice.Guard.IsDown
+                    ? GuardIndicatorRuntime.IsPressed.Pressed
+                    : GuardIndicatorRuntime.IsPressed.NotPressed;
+            
+            GumScreen.VirtualControllerDisplayInstance.DashIndicatorInstance.CurrentIsPressedState =
+                rangedEnemy.EnemyInputDevice.Dash.IsDown
+                    ? DashIndicatorRuntime.IsPressed.Pressed
+                    : DashIndicatorRuntime.IsPressed.NotPressed;
+        }
+    }
+
+    private void DisplayPlayerInputs()
+    {
+        GumScreen.VirtualControllerDisplayInstance.Input2DIndicatorInstance.SetPosition(Player1.GameplayInputDevice.Movement, 4f);
+        
+        GumScreen.VirtualControllerDisplayInstance.AttackIndicatorInstance.CurrentIsPressedState =
+            Player1.GameplayInputDevice.Attack.IsDown
+                ? AttackIndicatorRuntime.IsPressed.Pressed
+                : AttackIndicatorRuntime.IsPressed.NotPressed;
+        
+        GumScreen.VirtualControllerDisplayInstance.GuardIndicatorInstance.CurrentIsPressedState =
+            Player1.GameplayInputDevice.Guard.IsDown
+                ? GuardIndicatorRuntime.IsPressed.Pressed
+                : GuardIndicatorRuntime.IsPressed.NotPressed;
+        
+        GumScreen.VirtualControllerDisplayInstance.DashIndicatorInstance.CurrentIsPressedState =
+            Player1.GameplayInputDevice.Dash.IsDown
+                ? DashIndicatorRuntime.IsPressed.Pressed
+                : DashIndicatorRuntime.IsPressed.NotPressed;
     }
 
     void CustomDestroy()

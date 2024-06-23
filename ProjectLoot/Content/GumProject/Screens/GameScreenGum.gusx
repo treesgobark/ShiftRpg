@@ -104,12 +104,6 @@
       <Name>PauseStateState</Name>
       <SetsValue>false</SetsValue>
     </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>VirtualControllerDisplayInstance.Visible</Name>
-      <Value xsi:type="xsd:boolean">false</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
   </State>
   <Category>
     <Name>PauseState</Name>
@@ -183,21 +177,39 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>bool</Type>
-        <Name>VirtualControllerDisplayInstance.Visible</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
+        <Type>float</Type>
+        <Name>VirtualControllerDisplayInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>float</Type>
-        <Name>VirtualControllerDisplayInstance.X</Name>
-        <Value xsi:type="xsd:float">-208</Value>
+        <Type>HorizontalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.X Origin</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.X Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
         <Type>float</Type>
         <Name>VirtualControllerDisplayInstance.Y</Name>
-        <Value xsi:type="xsd:float">117</Value>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>VerticalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.Y Origin</Name>
+        <Value xsi:type="xsd:int">2</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.Y Units</Name>
+        <Value xsi:type="xsd:int">5</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -270,21 +282,39 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>bool</Type>
-        <Name>VirtualControllerDisplayInstance.Visible</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
         <Type>float</Type>
         <Name>VirtualControllerDisplayInstance.X</Name>
         <Value xsi:type="xsd:float">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>HorizontalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.X Origin</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.X Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>float</Type>
         <Name>VirtualControllerDisplayInstance.Y</Name>
         <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>VerticalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.Y Origin</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.Y Units</Name>
+        <Value xsi:type="xsd:int">1</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -357,15 +387,21 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>bool</Type>
-        <Name>VirtualControllerDisplayInstance.Visible</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
         <Type>float</Type>
         <Name>VirtualControllerDisplayInstance.X</Name>
         <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>HorizontalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.X Origin</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.X Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -374,11 +410,23 @@
         <Value xsi:type="xsd:float">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>VerticalAlignment</Type>
+        <Name>VirtualControllerDisplayInstance.Y Origin</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>PositionUnitType</Type>
+        <Name>VirtualControllerDisplayInstance.Y Units</Name>
+        <Value xsi:type="xsd:int">1</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
   </Category>
   <Instance>
     <Name>VirtualControllerDisplayInstance</Name>
-    <BaseType>VirtualControllerDisplay</BaseType>
+    <BaseType>VirtualController/VirtualControllerDisplay</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>

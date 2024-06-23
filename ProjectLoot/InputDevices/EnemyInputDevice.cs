@@ -52,7 +52,7 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     }
     private Constant2DInput ConstantAim { get; set; }
 
-    public IPressableInput Attack => TruePressableInput.Instance;
+    public virtual IPressableInput Attack => TruePressableInput.Instance;
     public IPressableInput Reload => FalsePressableInput.Instance;
     public IPressableInput Dash => FalsePressableInput.Instance;
     public IPressableInput Guard => FalsePressableInput.Instance;
@@ -118,4 +118,9 @@ public class RangedEnemyInputDevice : EnemyInputDevice
         }
         return base.GetDefault2DInputY() * direction;
     }
+
+    public override IPressableInput Attack =>
+        DistanceToEntity < MaxDistance
+            ? TruePressableInput.Instance
+            : FalsePressableInput.Instance;
 }

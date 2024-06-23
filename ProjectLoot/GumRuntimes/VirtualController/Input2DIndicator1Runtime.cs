@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProjectLoot.GumRuntimes.VirtualController
+namespace ProjectLoot.GumRuntimes
 {
-    public partial class VirtualControllerDisplayRuntime
+    public partial class Input2DIndicator1Runtime
     {
         partial void CustomInitialize () 
         {

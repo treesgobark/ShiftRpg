@@ -742,6 +742,167 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2024-06-23T03:27:21.717462Z"
+      },
+      {
+        "NewName": "VirtualController\\Input2DIndicator",
+        "OldName": "Input2DIndicator",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:41:51.5250886Z"
+      },
+      {
+        "NewName": "VirtualController\\Input2DIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:42:18.2281086Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController\\Input2DIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:42:22.937885Z"
+      },
+      {
+        "NewName": "VirtualController\\Input2DIndicator",
+        "OldName": "VirtualController\\Input2DIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:42:29.377159Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay (Container).VirtualController\\Input2DIndicator Input2DIndicatorInstance in VirtualController/VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:42:31.9696773Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).Input2DIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:42:33.4494224Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay (Container).VirtualController\\Input2DIndicator Input2DIndicatorInstance in VirtualController/VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:44:29.9554474Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).Input2DIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:44:38.5642104Z"
+      },
+      {
+        "NewName": "VirtualController/Input2DIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:48:01.0385641Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/Input2DIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:48:03.7726523Z"
+      },
+      {
+        "NewName": "VirtualController/Input2DIndicator",
+        "OldName": "VirtualController/Input2DIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:48:09.8026581Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay (Container).VirtualController/Input2DIndicator Input2DIndicatorInstance in VirtualController/VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:48:15.734975Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).Input2DIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:48:17.4540723Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay (Container).VirtualController/Input2DIndicator Input2DIndicatorInstance in VirtualController/VirtualControllerDisplay (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:48:47.2265259Z"
+      },
+      {
+        "NewName": "VirtualController/Input2DIndicator1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:49:51.9736835Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/Input2DIndicator",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:50:16.4959952Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-23T03:50:33.3080885Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "VirtualController/VirtualControllerDisplay",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-06-23T03:50:35.8180932Z"
+      },
+      {
+        "NewName": "VirtualController/Input2DIndicator",
+        "OldName": "VirtualController/Input2DIndicator1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:51:07.5914553Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay",
+        "OldName": "VirtualController/VirtualControllerDisplay1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-23T03:51:16.958644Z"
+      },
+      {
+        "NewName": "VirtualController/VirtualControllerDisplay (Container).Input2DIndicatorInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:52:05.8900658Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreenGum.VirtualController/VirtualControllerDisplay VirtualControllerDisplayInstance in GameScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-23T03:52:19.8175491Z"
+      },
+      {
+        "NewName": "GameScreenGum.VirtualControllerDisplayInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-23T03:52:21.8224479Z"
       }
     ]
   }

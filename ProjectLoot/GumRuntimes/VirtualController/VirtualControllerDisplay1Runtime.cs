@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ProjectLoot.GumRuntimes.VirtualController
 {
-    public partial class VirtualControllerDisplayRuntime
+    public partial class VirtualControllerDisplay1Runtime
     {
         partial void CustomInitialize () 
         {

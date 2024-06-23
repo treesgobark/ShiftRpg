@@ -217,7 +217,7 @@
   </State>
   <Instance>
     <Name>Input2DIndicatorInstance</Name>
-    <BaseType>Input2DIndicator</BaseType>
+    <BaseType>VirtualController/Input2DIndicator</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>

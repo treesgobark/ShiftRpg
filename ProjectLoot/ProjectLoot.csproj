@@ -250,10 +250,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBarPlayer</Name>
     </None>
-    <None Include="Content\GumProject\Components\Input2DIndicator.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Input2DIndicator</Name>
-    </None>
     <None Include="Content\GumProject\Components\MainMenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MainMenu</Name>
@@ -297,6 +293,10 @@
     <None Include="Content\GumProject\Components\VirtualController\GuardIndicator.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GuardIndicator</Name>
+    </None>
+    <None Include="Content\GumProject\Components\VirtualController\Input2DIndicator.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Input2DIndicator</Name>
     </None>
     <None Include="Content\GumProject\Components\VirtualController\VirtualControllerDisplay.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -878,10 +878,6 @@
     <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs">
       <DependentUpon>HealthBarRuntime.cs</DependentUpon>
     </Compile>
-    <Compile Include="GumRuntimes\Input2DIndicatorRuntime.cs" />
-    <Compile Include="GumRuntimes\Input2DIndicatorRuntime.Generated.cs">
-      <DependentUpon>Input2DIndicatorRuntime.cs</DependentUpon>
-    </Compile>
     <Compile Include="GumRuntimes\Input2DInidicatorRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
@@ -928,7 +924,6 @@
       <DependentUpon>TestLevelGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\VirtualControllerDisplayRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\VirtualController\AttackIndicatorRuntime.cs" />
     <Compile Include="GumRuntimes\VirtualController\AttackIndicatorRuntime.Generated.cs">
       <DependentUpon>AttackIndicatorRuntime.cs</DependentUpon>
@@ -944,6 +939,10 @@
     <Compile Include="GumRuntimes\VirtualController\GuardIndicatorRuntime.cs" />
     <Compile Include="GumRuntimes\VirtualController\GuardIndicatorRuntime.Generated.cs">
       <DependentUpon>GuardIndicatorRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\VirtualController\Input2DIndicatorRuntime.cs" />
+    <Compile Include="GumRuntimes\VirtualController\Input2DIndicatorRuntime.Generated.cs">
+      <DependentUpon>Input2DIndicatorRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\VirtualController\VirtualControllerDisplayRuntime.cs" />
     <Compile Include="GumRuntimes\VirtualController\VirtualControllerDisplayRuntime.Generated.cs">

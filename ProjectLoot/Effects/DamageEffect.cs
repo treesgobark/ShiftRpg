@@ -12,6 +12,4 @@ public record DamageEffect(
 {
     public DamageEffect(Team AppliesTo, SourceTag Source, float Value)
         : this(AppliesTo, Source, Value, new List<float>(), new List<float>()) { }
-
-    public Guid EffectId { get; } = Guid.NewGuid();
 }

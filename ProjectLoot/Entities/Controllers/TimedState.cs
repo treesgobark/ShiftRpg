@@ -7,12 +7,10 @@ public abstract class TimedState<T> : State<T>
 {
     protected TimedState(T parent, IReadonlyStateMachine stateMachine) : base(parent, stateMachine) { }
     
-    private double StartTime { get; set; }
     protected double TimeInState { get; set; }
     
     public override void OnActivate()
     {
-        StartTime = TimeManager.CurrentScreenTime;
         TimeInState = 0;
         AfterTimedStateActivate();
     }

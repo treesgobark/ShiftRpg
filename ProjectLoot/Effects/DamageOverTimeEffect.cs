@@ -10,7 +10,6 @@ public class DamageOverTimeEffect(
     double ticksPerSecond,
     int numberOfTicks,
     double activationDelay = -1)
-    : IPersistentEffect
 {
     public double DamagePerSecond => DamagePerTick * TicksPerSecond;
     public float RemainingDamage => DamagePerTick  * RemainingTicks;
@@ -20,7 +19,6 @@ public class DamageOverTimeEffect(
     public double SecondsPerTick => 1 / TicksPerSecond;
     public Team AppliesTo { get; } = appliesTo;
     public SourceTag Source { get; } = source;
-    public Guid EffectId { get; } = Guid.NewGuid();
     public double LastAppliedTime { get; set; } = TimeManager.CurrentScreenTime;
     public double TimeSinceLastApplication => TimeManager.CurrentScreenSecondsSince(LastAppliedTime);
 

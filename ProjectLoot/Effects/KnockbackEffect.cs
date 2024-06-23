@@ -36,7 +36,6 @@ public record KnockbackEffect(
     }
     
     public Vector3 KnockbackVector => Vector2Extensions.FromAngleAndLength(Direction.NormalizedRadians, Value).ToVec3();
-    public Guid EffectId { get; } = Guid.NewGuid();
 }
 
 public enum KnockbackBehavior

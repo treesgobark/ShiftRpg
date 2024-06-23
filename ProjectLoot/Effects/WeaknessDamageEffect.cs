@@ -8,7 +8,7 @@ public record WeaknessDamageEffect(
     SourceTag Source,
     float WeaknessDamage,
     ICollection<float> AdditiveIncreases,
-    ICollection<float> MultiplicativeIncreases) : IEffect
+    ICollection<float> MultiplicativeIncreases)
 {
     public WeaknessDamageEffect(Team AppliesTo, SourceTag Source, float WeaknessDamage)
         : this(AppliesTo, Source, WeaknessDamage, new List<float>(), new List<float>())

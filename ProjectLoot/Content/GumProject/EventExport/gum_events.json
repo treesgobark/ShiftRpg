@@ -378,6 +378,160 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2024-06-19T01:51:39.449443Z"
+      },
+      {
+        "NewName": "ProgressBarImproved",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-22T21:25:36.7763113Z"
+      },
+      {
+        "NewName": "ProgressBarImproved (Container).NineSliceInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:25:41.3892294Z"
+      },
+      {
+        "NewName": "ProgressBarImproved (Container).NineSliceInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:25:52.7271736Z"
+      },
+      {
+        "NewName": "RoundedTrimRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-22T21:26:57.7550026Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ProgressBarImproved (Container).NineSlice NineSliceInstance in ProgressBarImproved (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-22T21:27:02.3675993Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ProgressBarImproved (Container).NineSlice NineSliceInstance1 in ProgressBarImproved (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-22T21:27:04.2443012Z"
+      },
+      {
+        "NewName": "RoundedTrimRectangle (Container).Trim",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:27:10.7423276Z"
+      },
+      {
+        "NewName": "RoundedTrimRectangle (Container).Fill",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:27:10.7433293Z"
+      },
+      {
+        "NewName": "ProgressBarImproved (Container).RoundedTrimRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:27:51.9773474Z"
+      },
+      {
+        "NewName": "Gray",
+        "OldName": "White",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-22T21:32:57.707283Z"
+      },
+      {
+        "NewName": "ProgressBarImproved",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-22T21:53:08.1963293Z"
+      },
+      {
+        "NewName": "ProgressBarImproved (Container).RoundedTrimRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T21:53:09.824829Z"
+      },
+      {
+        "NewName": "HealthBarPlayer",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-22T22:00:00.714007Z"
+      },
+      {
+        "NewName": "HealthBarPlayer (Container).ProgressBarImprovedInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T22:02:10.9188677Z"
+      },
+      {
+        "NewName": "HealthBarPlayer (Container).RoundedTrimRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T22:04:23.1862491Z"
+      },
+      {
+        "NewName": "EncasedProgressBar",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-22T22:06:09.1972282Z"
+      },
+      {
+        "NewName": "EncasedProgressBar (Container).RoundedTrimRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T22:06:15.4622635Z"
+      },
+      {
+        "NewName": "EncasedProgressBar (Container).ProgressBarImprovedInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T22:06:15.4632626Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "HealthBarPlayer (Container).RoundedTrimRectangle RoundedTrimRectangleInstance in HealthBarPlayer (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-22T22:07:26.4236063Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "HealthBarPlayer (Container).ProgressBarImproved ProgressBarImprovedInstance in HealthBarPlayer (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-22T22:07:28.1978283Z"
+      },
+      {
+        "NewName": "HealthBarPlayer (Container).EncasedProgressBarInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T22:07:30.074054Z"
+      },
+      {
+        "NewName": "GameScreenGum.HealthBarPlayerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-22T23:13:19.3569426Z"
       }
     ]
   }

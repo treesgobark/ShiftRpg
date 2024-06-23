@@ -6,6 +6,7 @@ using FlatRedBall.Input;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
+using ProjectLoot.Components;
 using ProjectLoot.Entities;
 using ProjectLoot.GumRuntimes;
 
@@ -19,6 +20,8 @@ public partial class GameScreen
     {
         SpriteManager.OrderedSortType = SortType.ZSecondaryParentY;
         CameraControllingEntityInstance.CameraOffset = new Vector3(0, 0, 0);
+        GumScreen.HealthBarPlayerInstance.BindingContext = Player1.Health;
+        GumScreen.HealthBarPlayerInstance.SetBinding(nameof(HealthBarPlayerRuntime.ProgressPerCent), nameof(HealthComponent.HealthPercentage));
         InitializePauseMenu();
     }
 

@@ -12,12 +12,14 @@ public class DamageHandler : EffectHandler<DamageEffect>
     private IHealthComponent Health { get; }
     private IEffectsComponent Effects { get; }
     private IPositionable Position { get; }
+    private IWeaknessComponent? Weakness { get; }
 
-    public DamageHandler(IHealthComponent health, IEffectsComponent effects, IPositionable position)
+    public DamageHandler(IHealthComponent health, IEffectsComponent effects, IPositionable position, IWeaknessComponent? weakness = null)
     {
         Health = health;
         Effects = effects;
         Position = position;
+        Weakness = weakness;
     }
     
     public override void Handle(DamageEffect effect)
@@ -54,8 +56,13 @@ public class DamageHandler : EffectHandler<DamageEffect>
     
     protected virtual void ApplyDamage(DamageEffect effect, float finalDamage)
     {
-        Health.CurrentHealth  -= finalDamage;
-        Health.LastDamageTime =  TimeManager.CurrentScreenTime;
+        Health.CurrentHealth -= finalDamage;
+        Health.LastDamageTime = TimeManager.CurrentScreenTime;
+
+        if (Weakness is not null && effect.Source.Contains(SourceTag.Gun))
+        {
+            Weakness.CurrentWeaknessPercentage -= 2 * 100f * finalDamage / Health.MaxHealth;
+        }
     }
     
     protected virtual void CreateDamageNumber(DamageEffect effect, float finalDamage)

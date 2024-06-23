@@ -242,9 +242,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>VerticalLines</Name>
     </None>
+    <None Include="Content\GumProject\Components\EncasedProgressBar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>EncasedProgressBar</Name>
+    </None>
     <None Include="Content\GumProject\Components\HealthBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
+    </None>
+    <None Include="Content\GumProject\Components\HealthBarPlayer.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HealthBarPlayer</Name>
     </None>
     <None Include="Content\GumProject\Components\Input2DIndicator.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -269,6 +277,14 @@
     <None Include="Content\GumProject\Components\ProgressBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressBar</Name>
+    </None>
+    <None Include="Content\GumProject\Components\ProgressBarImproved.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ProgressBarImproved</Name>
+    </None>
+    <None Include="Content\GumProject\Components\RoundedTrimRectangle.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>RoundedTrimRectangle</Name>
     </None>
     <None Include="Content\GumProject\Components\VirtualControllerDisplay.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -834,11 +850,19 @@
     <Compile Include="GumRuntimes\Elements\VerticalLinesRuntime.Generated.cs">
       <DependentUpon>VerticalLinesRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\EncasedProgressBarRuntime.cs" />
+    <Compile Include="GumRuntimes\EncasedProgressBarRuntime.Generated.cs">
+      <DependentUpon>EncasedProgressBarRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\GameScreenGumRuntime.cs" />
     <Compile Include="GumRuntimes\GameScreenGumRuntime.Generated.cs">
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
+    <Compile Include="GumRuntimes\HealthBarPlayerRuntime.cs" />
+    <Compile Include="GumRuntimes\HealthBarPlayerRuntime.Generated.cs">
+      <DependentUpon>HealthBarPlayerRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\HealthBarRuntime.cs" />
     <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs">
       <DependentUpon>HealthBarRuntime.cs</DependentUpon>
@@ -870,11 +894,19 @@
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.Generated.cs">
       <DependentUpon>ProgressAndSubprogressBarRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\ProgressBarImprovedRuntime.cs" />
+    <Compile Include="GumRuntimes\ProgressBarImprovedRuntime.Generated.cs">
+      <DependentUpon>ProgressBarImprovedRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\ProgressBarRuntime.cs" />
     <Compile Include="GumRuntimes\ProgressBarRuntime.Generated.cs">
       <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.cs" />
+    <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.Generated.cs">
+      <DependentUpon>RoundedTrimRectangleRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.cs" />
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.Generated.cs">
       <DependentUpon>ShootingRangeGumRuntime.cs</DependentUpon>

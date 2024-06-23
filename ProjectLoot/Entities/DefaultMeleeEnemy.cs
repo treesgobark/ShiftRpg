@@ -3,13 +3,18 @@ using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities
 {
     public partial class DefaultMeleeEnemy : IWeaponHolder
     {
-        public WeaponsComponent Weapons { get; private set; }
+        private WeaponsComponent Weapons { get; set; }
+        public HealthComponent Health { get; private set; }
+        public ShatterComponent Shatter { get; private set; }
+        public WeaknessComponent Weakness { get; private set; }
+        public HitstopComponent Hitstop { get; private set; }
 
         public StateMachine StateMachine { get; protected set; }
         
@@ -20,11 +25,40 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            var eInput = new EnemyInputDevice(this);
-            InitializeTopDownInput(eInput);
-            EnemyInputDevice = eInput;
-            Weapons = new WeaponsComponent(eInput, Team.Enemy, this, this);
+            InitializeInputs();
+            InitializeComponents();
+            InitializeHandlers();
             InitializeControllers();
+        }
+
+        private void InitializeInputs()
+        {
+            EnemyInputDevice = new EnemyInputDevice(this);
+            InitializeTopDownInput(EnemyInputDevice);
+        }
+
+        private void InitializeComponents()
+        {
+            Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            Shatter = new ShatterComponent(HealthBarRuntimeInstance);
+            Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
+            Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+            Weapons = new WeaponsComponent(EnemyInputDevice, Team.Enemy, this, this);
+            
+            Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
+                effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
+                effect => 1 + Weakness.CurrentWeaknessPercentage * Weakness.DamageConversionRate,
+                ModifierCategory.Multiplicative));
+        }
+
+        private void InitializeHandlers()
+        {
+            Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, this, SpriteInstance), 0);
+            Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this, Weakness));
+            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
+            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
+            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));
+            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, this, Hitstop));
         }
 
         private void InitializeControllers()
@@ -33,10 +67,18 @@ namespace ProjectLoot.Entities
             StateMachine.Add(new MeleeMode(this, StateMachine));
             StateMachine.InitializeStartingState<MeleeMode>();
         }
+
         private void CustomActivity()
         {
+            if (Hitstop.IsStopped) { return; }
+            
             Weapons.Activity();
             StateMachine.DoCurrentStateActivity();
+            
+            if (Health.CurrentHealth <= 0)
+            {
+                Destroy();
+            }
         }
 
         private void CustomDestroy()
@@ -46,8 +88,6 @@ namespace ProjectLoot.Entities
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
-
-
         }
 
         #region IWeaponHolder

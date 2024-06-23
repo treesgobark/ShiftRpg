@@ -76,6 +76,11 @@ namespace ProjectLoot.Entities
             
             Weapons.Activity();
             StateMachine.DoCurrentStateActivity();
+            
+            if (Health.CurrentHealth <= 0)
+            {
+                Destroy();
+            }
         }
 
         private void CustomDestroy()

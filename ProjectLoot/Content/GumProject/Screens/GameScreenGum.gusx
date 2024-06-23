@@ -6,19 +6,19 @@
     <Variable>
       <Type>int</Type>
       <Name>ColoredRectangleInstance.Alpha</Name>
-      <Value xsi:type="xsd:int">50</Value>
+      <Value xsi:type="xsd:int">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>ColoredRectangleInstance.Blue</Name>
-      <Value xsi:type="xsd:int">62</Value>
+      <Value xsi:type="xsd:int">74</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>ColoredRectangleInstance.Green</Name>
-      <Value xsi:type="xsd:int">165</Value>
+      <Value xsi:type="xsd:int">78</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -36,7 +36,7 @@
     <Variable>
       <Type>int</Type>
       <Name>ColoredRectangleInstance.Red</Name>
-      <Value xsi:type="xsd:int">204</Value>
+      <Value xsi:type="xsd:int">66</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -49,6 +49,30 @@
       <Type>DimensionUnitType</Type>
       <Name>ColoredRectangleInstance.Width Units</Name>
       <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>HealthBarPlayerInstance.Height</Name>
+      <Value xsi:type="xsd:float">-254</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>HealthBarPlayerInstance.Width</Name>
+      <Value xsi:type="xsd:float">-320</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>HealthBarPlayerInstance.X</Name>
+      <Value xsi:type="xsd:float">-152</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>HealthBarPlayerInstance.Y</Name>
+      <Value xsi:type="xsd:float">-119</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -117,6 +141,36 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Height</Name>
+        <Value xsi:type="xsd:float">-254</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>HealthBarPlayerInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Width</Name>
+        <Value xsi:type="xsd:float">-320</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.X</Name>
+        <Value xsi:type="xsd:float">-152</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Y</Name>
+        <Value xsi:type="xsd:float">-119</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>OptionsInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
@@ -171,6 +225,36 @@
         <Type>bool</Type>
         <Name>ColoredRectangleInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Height</Name>
+        <Value xsi:type="xsd:float">-254</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>HealthBarPlayerInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Width</Name>
+        <Value xsi:type="xsd:float">-320</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.X</Name>
+        <Value xsi:type="xsd:float">-152</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Y</Name>
+        <Value xsi:type="xsd:float">-119</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -231,6 +315,36 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Height</Name>
+        <Value xsi:type="xsd:float">-254</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>HealthBarPlayerInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Width</Name>
+        <Value xsi:type="xsd:float">-320</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.X</Name>
+        <Value xsi:type="xsd:float">-152</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>HealthBarPlayerInstance.Y</Name>
+        <Value xsi:type="xsd:float">-119</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>OptionsInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
@@ -263,6 +377,16 @@
     </State>
   </Category>
   <Instance>
+    <Name>VirtualControllerDisplayInstance</Name>
+    <BaseType>VirtualControllerDisplay</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>HealthBarPlayerInstance</Name>
+    <BaseType>HealthBarPlayer</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
     <Name>ColoredRectangleInstance</Name>
     <BaseType>ColoredRectangle</BaseType>
     <DefinedByBase>false</DefinedByBase>
@@ -275,11 +399,6 @@
   <Instance>
     <Name>OptionsInstance</Name>
     <BaseType>Options</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
-    <Name>VirtualControllerDisplayInstance</Name>
-    <BaseType>VirtualControllerDisplay</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

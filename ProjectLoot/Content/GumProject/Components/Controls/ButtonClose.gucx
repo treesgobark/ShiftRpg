@@ -13,7 +13,7 @@
     <Variable>
       <Type>ColorCategory</Type>
       <Name>Background.ColorCategoryState</Name>
-      <Value xsi:type="xsd:string">Danger</Value>
+      <Value xsi:type="xsd:string">LightGray</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -126,7 +126,8 @@
     <Variable>
       <Type>ButtonCategory</Type>
       <Name>ButtonCategoryState</Name>
-      <SetsValue>false</SetsValue>
+      <Value xsi:type="xsd:string">Pushed</Value>
+      <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>bool</Type>
@@ -230,6 +231,12 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>FocusedIndicator.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
@@ -252,6 +259,12 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>FocusedIndicator.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
@@ -270,6 +283,12 @@
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">Warning</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -295,6 +314,12 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>FocusedIndicator.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
@@ -314,6 +339,12 @@
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">Warning</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -339,6 +370,12 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Disabled</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>bool</Type>
         <Name>FocusedIndicator.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
@@ -358,6 +395,12 @@
         <Type>ColorCategory</Type>
         <Name>Background.ColorCategoryState</Name>
         <Value xsi:type="xsd:string">DarkGray</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ButtonCategory</Type>
+        <Name>ButtonCategoryState</Name>
+        <Value xsi:type="xsd:string">Pushed</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>

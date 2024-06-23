@@ -25,6 +25,6 @@ public class WeaknessComponent : ViewModel, IWeaknessComponent
         }
     }
 
-    public float DepletionRatePerSecond { get; set; }
+    public float DepletionRatePerSecond { get; set; } = 10f;
     public float DamageConversionRate { get; set; } = .015f;
 }

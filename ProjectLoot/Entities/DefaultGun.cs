@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;
@@ -48,6 +49,8 @@ namespace ProjectLoot.Entities
             Holder.Effects.Handle(effects);
 
             MagazineRemaining--;
+
+            Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
         }
     }
 }

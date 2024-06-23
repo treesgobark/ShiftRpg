@@ -26,6 +26,11 @@
       <Name>HitMarker</Name>
       <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
     </None>
+    <None Include="..\BuiltXnbs\DesktopGL\Entities\DefaultGun\Saiga12SingleShot1mSide.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Saiga12SingleShot1mSide</Name>
+      <Link>Content\Entities\DefaultGun\Saiga12SingleShot1mSide.xnb</Link>
+    </None>
     <None Include="Content\Entities\AnalogStickDisplay\AnalogStick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnalogStick</Name>

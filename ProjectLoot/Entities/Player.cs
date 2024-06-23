@@ -71,6 +71,11 @@ public partial class Player : IWeaponHolder
         Weapons.Activity();
         StateMachine.DoCurrentStateActivity();
         PlayerSprite.AnimateSelf(TimeManager.SecondDifference);
+            
+        if (Health.CurrentHealth <= 0)
+        {
+            Destroy();
+        }
     }
 
     private void CustomDestroy()

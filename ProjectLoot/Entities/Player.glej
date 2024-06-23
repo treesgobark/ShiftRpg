@@ -395,50 +395,20 @@
       "InstructionSaves": [
         {
           "Type": "float",
-          "Member": "TextureScale",
-          "Value": 1.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "Texture2D",
-          "Member": "Texture",
-          "Value": "tileset",
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
-          "Member": "LeftTexturePixel",
-          "Value": 272.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
-          "Member": "RightTexturePixel",
-          "Value": 320.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
-          "Member": "TopTexturePixel",
-          "Value": 16.0,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
           "Member": "BottomTexturePixel",
           "Value": 64.0,
           "Time": 0.0
         },
         {
           "Type": "bool",
-          "Member": "Visible",
-          "Value": false,
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
           "Time": 0.0
         },
         {
-          "Type": "bool",
-          "Member": "IgnoresParentVisibility",
-          "Value": true,
+          "Type": "float",
+          "Member": "LeftTexturePixel",
+          "Value": 272.0,
           "Time": 0.0
         },
         {
@@ -450,6 +420,36 @@
         {
           "Type": "bool",
           "Member": "ParentRotationChangesRotation",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "RightTexturePixel",
+          "Value": 320.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "tileset",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TopTexturePixel",
+          "Value": 16.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
           "Value": false,
           "Time": 0.0
         }

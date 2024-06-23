@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>R:/Repositories/FRB/ProjectLoot/ProjectLoot/Content/Entities/DefaultGun/Saiga12SingleShot1mSide.wav</SourceFile>
+  <SourceTime>2024-06-23T11:23:57.9596849-04:00</SourceTime>
+  <DestFile>R:/Repositories/FRB/ProjectLoot/BuiltXnbs/DesktopGL/Entities/DefaultGun/Saiga12SingleShot1mSide.xnb</DestFile>
+  <DestTime>2024-06-23T11:24:16.1485743-04:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

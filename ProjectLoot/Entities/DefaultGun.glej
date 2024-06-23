@@ -6,6 +6,21 @@
   "BaseEntity": "Entities\\Gun",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/DefaultGun/Saiga12SingleShot1mSide.wav",
+      "Properties": [
+        {
+          "Name": "UseContentPipeline",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Audio.SoundEffect",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "Properties": [
     {
       "Name": "InputDevice",

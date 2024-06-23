@@ -41,6 +41,7 @@ public partial class Player : IWeaponHolder
         
         AimThresholdCircle.AttachTo(GameplayCenter);
         DirectionIndicator.AttachTo(GameplayCenter);
+        GuardSprite.AttachTo(GameplayCenter);
     }
 
     private void InitializeControllers()
@@ -49,6 +50,7 @@ public partial class Player : IWeaponHolder
         StateMachine.Add(new MeleeMode(this, StateMachine));
         StateMachine.Add(new GunMode(this, StateMachine));
         StateMachine.Add(new Dashing(this, StateMachine));
+        StateMachine.Add(new Guarding(this, StateMachine));
         StateMachine.InitializeStartingState<MeleeMode>();
     }
 

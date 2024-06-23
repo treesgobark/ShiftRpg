@@ -10,6 +10,8 @@ public interface IStatModifierCollection<T> where T : INumber<T>
     
     void Upsert(string id, StatModifier<T> modifier);
 
+    bool Delete(string id);
+
     void ModifyEffect(INumericalEffect<T> effect);
 }
 

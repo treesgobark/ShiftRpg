@@ -31,6 +31,11 @@ public class StatModifierCollection<T> : IStatModifierCollection<T> where T : IN
         _damageModifiers[id] = modifier;
     }
 
+    public bool Delete(string id)
+    {
+        return _damageModifiers.Remove(id);
+    }
+
     public void ModifyEffect(INumericalEffect<T> effect)
     {
         var modifiers = GetActiveModifiers(effect);

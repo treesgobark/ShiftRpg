@@ -28,6 +28,11 @@ public partial class Player
                 return StateMachine.Get<Dashing>();
             }
 
+            if (Parent.GameplayInputDevice.Guard.IsDown)
+            {
+                return StateMachine.Get<Guarding>();
+            }
+
             if (!Parent.GameplayInputDevice.AimInMeleeRange)
             {
                 return StateMachine.Get<GunMode>();

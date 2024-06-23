@@ -30,6 +30,11 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed)
+            {
+                return StateMachine.Get<Dashing>();
+            }
+            
             if (Parent.GameplayInputDevice.Guard.IsDown) { return null; }
 
             return Parent.GameplayInputDevice.AimInMeleeRange

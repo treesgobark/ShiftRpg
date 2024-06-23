@@ -551,6 +551,7 @@
     <Compile Include="Entities\Controllers\MeleeWeapon\Idle.cs" />
     <Compile Include="Entities\Controllers\MeleeWeapon\Recovery.cs" />
     <Compile Include="Entities\Controllers\MeleeWeapon\Startup.cs" />
+    <Compile Include="Entities\Controllers\Player\Dashing.cs" />
     <Compile Include="Entities\Controllers\Player\GunMode.cs" />
     <Compile Include="Entities\Controllers\Player\MeleeMode.cs" />
     <Compile Include="Entities\Controllers\TimedState.cs" />

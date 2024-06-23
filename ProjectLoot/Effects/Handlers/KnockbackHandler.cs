@@ -6,13 +6,11 @@ namespace ProjectLoot.Effects.Handlers;
 public class KnockbackHandler : EffectHandler<KnockbackEffect>
 {
     private IPositionable Position { get; }
-    private IEffectsComponent Effects { get; }
     private IHitstopComponent? Hitstop { get; }
 
-    public KnockbackHandler(IEffectsComponent effects, IPositionable position, IHitstopComponent? hitstop = null)
+    public KnockbackHandler(IEffectsComponent effects, IPositionable position, IHitstopComponent? hitstop = null) : base(effects)
     {
         Position = position;
-        Effects = effects;
         Hitstop = hitstop;
     }
     

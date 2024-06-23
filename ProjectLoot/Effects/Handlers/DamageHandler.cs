@@ -10,14 +10,13 @@ namespace ProjectLoot.Effects.Handlers;
 public class DamageHandler : EffectHandler<DamageEffect>
 {
     private IHealthComponent Health { get; }
-    private IEffectsComponent Effects { get; }
     private IPositionable Position { get; }
     private IWeaknessComponent? Weakness { get; }
 
-    public DamageHandler(IHealthComponent health, IEffectsComponent effects, IPositionable position, IWeaknessComponent? weakness = null)
+    public DamageHandler(IEffectsComponent effects, IHealthComponent health, IPositionable position,
+        IWeaknessComponent? weakness = null) : base(effects)
     {
         Health = health;
-        Effects = effects;
         Position = position;
         Weakness = weakness;
     }
@@ -37,7 +36,6 @@ public class DamageHandler : EffectHandler<DamageEffect>
     protected virtual bool ValidateEffect(DamageEffect effect)
     {
         if (!effect.AppliesTo.Contains(Effects.Team)) { return false; }
-        if (Health.IsInvulnerable) { return false; }
 
         return true;
     }

@@ -48,13 +48,14 @@ public partial class Player : IWeaponHolder
         StateMachine = new StateMachine();
         StateMachine.Add(new MeleeMode(this, StateMachine));
         StateMachine.Add(new GunMode(this, StateMachine));
+        StateMachine.Add(new Dashing(this, StateMachine));
         StateMachine.InitializeStartingState<MeleeMode>();
     }
 
     private void InitializeHandlers()
     {
         Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, this, PlayerSprite));
-        Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this));
+        Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, this));
         Effects.HandlerCollection.Add(new KnockbackHandler(Effects, this, Hitstop));
     }
 

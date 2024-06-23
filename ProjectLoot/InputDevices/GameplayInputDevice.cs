@@ -35,7 +35,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 _aim            = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
                 Attack          = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
                 Reload          = keyboard.GetKey(Keys.R);
-                Dash            = keyboard.GetKey(Keys.Space);
+                Dash            = InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton);
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);
                 NextWeapon      = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Up);
                 PreviousWeapon  = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Down);

@@ -5,13 +5,11 @@ namespace ProjectLoot.Effects.Handlers;
 
 public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
 {
-    private IEffectsComponent Effects { get; }
     private IShatterComponent Shatter { get; }
     private IHealthComponent Health { get; }
 
-    public ApplyShatterDamageHandler(IEffectsComponent effects, IShatterComponent shatter, IHealthComponent health)
+    public ApplyShatterDamageHandler(IEffectsComponent effects, IShatterComponent shatter, IHealthComponent health) : base(effects)
     {
-        Effects = effects;
         Shatter = shatter;
         Health = health;
     }
@@ -33,7 +31,6 @@ public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
     protected virtual bool ValidateEffect(ApplyShatterEffect effect)
     {
         if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
-        if (Health.IsInvulnerable) { return false; }
 
         return true;
     }

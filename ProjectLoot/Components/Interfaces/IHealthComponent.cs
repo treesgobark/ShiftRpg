@@ -9,10 +9,5 @@ public interface IHealthComponent
     float MaxHealth { get; set; }
     double LastDamageTime { get; set; }
     
-    float CurrentHealthPercentage => 100f * CurrentHealth / MaxHealth;
-    double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(LastDamageTime);
-    // bool IsInvulnerable => TimeSinceLastDamage < InvulnerabilityTimeAfterDamage;
-    bool IsInvulnerable => false;
-    
     IStatModifierCollection<float> DamageModifiers { get; }
 }

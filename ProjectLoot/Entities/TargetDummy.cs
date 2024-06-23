@@ -38,7 +38,7 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new DamageHandler(Health, Effects, this, Weakness));
+            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, this, Weakness));
             Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));

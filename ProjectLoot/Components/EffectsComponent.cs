@@ -18,6 +18,7 @@ public class EffectsComponent : IEffectsComponent
     }
     
     public SourceTag Source { get; set; }
+    public bool IsInvulnerable { get; set; }
 
     public void Handle(IEffectBundle bundle)
     {

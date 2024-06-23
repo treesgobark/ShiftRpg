@@ -9,14 +9,12 @@ namespace ProjectLoot.Effects.Handlers;
 
 public class HitstopHandler : EffectHandler<HitstopEffect>, IPersistentEffectHandler
 {
-    private IEffectsComponent Effects { get; }
     private IHitstopComponent Hitstop { get; }
     private IPositionable Position { get; }
     private Sprite? HandledSprite { get; }
 
-    public HitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, IPositionable position, Sprite? sprite = null)
+    public HitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, IPositionable position, Sprite? sprite = null) : base(effects)
     {
-        Effects = effects;
         Hitstop = hitstop;
         Position = position;
         HandledSprite = sprite;

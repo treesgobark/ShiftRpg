@@ -6,13 +6,11 @@ namespace ProjectLoot.Effects.Handlers;
 
 public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IPersistentEffectHandler
 {
-    private IEffectsComponent Effects { get; }
     private IHealthComponent Health { get; }
     private IWeaknessComponent Weakness { get; }
 
-    public WeaknessDamageHandler(IEffectsComponent effects, IHealthComponent health, IWeaknessComponent weakness)
+    public WeaknessDamageHandler(IEffectsComponent effects, IHealthComponent health, IWeaknessComponent weakness) : base(effects)
     {
-        Effects = effects;
         Health = health;
         Weakness = weakness;
     }
@@ -31,7 +29,6 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IPersi
     protected virtual bool ValidateEffect(WeaknessDamageEffect effect)
     {
         if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
-        if (Health.IsInvulnerable) { return false; }
 
         return true;
     }

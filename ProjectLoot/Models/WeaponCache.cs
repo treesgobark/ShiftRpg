@@ -1,9 +1,6 @@
 using System.Diagnostics;
 using ANLG.Utilities.FlatRedBall.StaticUtilities;
-using ProjectLoot.Components;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
-using ProjectLoot.Effects.Handlers;
 
 namespace ProjectLoot.Models;
 

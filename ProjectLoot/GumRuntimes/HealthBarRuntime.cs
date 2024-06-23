@@ -1,5 +1,3 @@
-using ProjectLoot.Components.Interfaces;
-
 namespace ProjectLoot.GumRuntimes
 {
     public partial class HealthBarRuntime

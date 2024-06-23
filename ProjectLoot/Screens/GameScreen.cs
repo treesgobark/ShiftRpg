@@ -1,9 +1,7 @@
-using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Graphics;
 using FlatRedBall.Gui;
 using FlatRedBall.Input;
-using FlatRedBall.Math.Geometry;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;

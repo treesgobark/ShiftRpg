@@ -1,10 +1,8 @@
 using System.Diagnostics;
-using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;

@@ -1,10 +1,6 @@
-using FlatRedBall;
 using GumCoreShared.FlatRedBall.Embedded;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
-using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
-using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;

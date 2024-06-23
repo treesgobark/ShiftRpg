@@ -1,13 +1,10 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
-using FlatRedBall.Glue.StateInterpolation;
 using ProjectLoot.Components;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.InputDevices;
-using StateInterpolationPlugin;
 
 namespace ProjectLoot.Entities
 {

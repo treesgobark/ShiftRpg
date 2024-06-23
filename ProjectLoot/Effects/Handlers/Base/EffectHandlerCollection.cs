@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using FlatRedBall;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Effects.Handlers;

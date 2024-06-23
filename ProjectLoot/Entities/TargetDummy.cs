@@ -1,5 +1,4 @@
 using FlatRedBall;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;

@@ -1,4 +1,3 @@
-using FlatRedBall;
 using Microsoft.Xna.Framework;
 
 namespace ProjectLoot.Components.Interfaces;

@@ -1,8 +1,5 @@
-using ANLG.Utilities.FlatRedBall.Extensions;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;
 using ProjectLoot.Contracts;
-using ProjectLoot.Effects;
 
 namespace ProjectLoot.Entities;
 

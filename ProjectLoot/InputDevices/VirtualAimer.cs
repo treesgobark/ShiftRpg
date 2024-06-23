@@ -2,7 +2,6 @@ using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
 using Microsoft.Xna.Framework;
-using ProjectLoot.Entities;
 
 namespace ProjectLoot.InputDevices;
 

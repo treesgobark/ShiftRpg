@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Effects;
 

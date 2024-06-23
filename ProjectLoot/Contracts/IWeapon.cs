@@ -1,6 +1,4 @@
 using FlatRedBall.Graphics;
-using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Effects;
 
 namespace ProjectLoot.Contracts;
 

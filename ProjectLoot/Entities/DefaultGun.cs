@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using ANLG.Utilities.FlatRedBall.Constants;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.States;

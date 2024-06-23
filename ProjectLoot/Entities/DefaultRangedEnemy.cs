@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using ANLG.Utilities.FlatRedBall.States;
-using FlatRedBall.Screens;
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
-using ProjectLoot.Screens;
 
 namespace ProjectLoot.Entities
 {

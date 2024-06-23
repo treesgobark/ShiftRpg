@@ -1,5 +1,4 @@
 using FlatRedBall;
-using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Effects;
 

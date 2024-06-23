@@ -1,6 +1,4 @@
-using FlatRedBall.Screens;
 using ProjectLoot.InputDevices;
-using ProjectLoot.Screens;
 
 namespace ProjectLoot.Entities
 {

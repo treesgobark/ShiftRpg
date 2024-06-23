@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;

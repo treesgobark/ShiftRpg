@@ -1,6 +1,5 @@
 using FlatRedBall.Math;
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Models;
 
 namespace ProjectLoot.Contracts;
 

@@ -8,7 +8,7 @@ namespace ProjectLoot.Components;
 public class EffectsComponent : IEffectsComponent
 {
     private Team? _team;
-    public IEffectHandlerCollection HandlerCollection { get; } = new EffectHandlerCollection();
+    public IEffectHandlerCollection HandlerCollection { get; set; } = new EffectHandlerCollection();
 
     public Team Team
     {
@@ -17,7 +17,6 @@ public class EffectsComponent : IEffectsComponent
     }
     
     public SourceTag Source { get; set; }
-    public bool IsInvulnerable { get; set; }
 
     public void Handle(IEffectBundle bundle)
     {

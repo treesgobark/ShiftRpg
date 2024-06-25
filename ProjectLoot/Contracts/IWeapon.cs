@@ -2,13 +2,11 @@ using FlatRedBall.Graphics;
 
 namespace ProjectLoot.Contracts;
 
-public interface IWeapon<TInput> : IDestroyable
+public interface IWeapon<TInput> : IDestroyable, IUpdateable
 {
     IWeaponHolder Holder { get; set; }
-    
-    TInput InputDevice { get; }
-    
-    void Equip(TInput inputDevice);
+    TInput InputDevice { get; set; }
+
+    void Equip();
     void Unequip();
-    void Activity();
 }

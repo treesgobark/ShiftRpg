@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.Extensions;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
 

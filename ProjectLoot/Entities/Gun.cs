@@ -30,7 +30,7 @@ namespace ProjectLoot.Entities
         public int MagazineSize => CurrentGunData.MagazineSize;
         public TimeSpan TimePerRound => TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
         public TimeSpan ReloadTime => TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
-        public FiringType FiringType => CurrentGunData.IsSingleShot ? FiringType.Semiautomatic : FiringType.Automatic;
+        public FiringType FiringType => CurrentGunData.IsSingleShot ? FiringType.SingleShot : FiringType.Automatic;
 
         public float ReloadProgress
         {
@@ -92,16 +92,14 @@ namespace ProjectLoot.Entities
         public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
         public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
 
-        public void Equip(IGunInputDevice inputDevice)
+        public void Equip()
         {
-            InputDevice            = inputDevice;
             CircleInstance.Visible = true;
             MagazineBar.Visible    = true;
         }
 
         public void Unequip()
         {
-            InputDevice            = ZeroGunInputDevice.Instance;
             CircleInstance.Visible = false;
             MagazineBar.Visible    = false;
         }

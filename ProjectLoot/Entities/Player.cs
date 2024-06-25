@@ -1,107 +1,96 @@
-using ANLG.Utilities.FlatRedBall.States;
+using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Input;
-using GumCoreShared.FlatRedBall.Embedded;
 using ProjectLoot.Components;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
 
-public partial class Player : IWeaponHolder
+public partial class Player
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public float LastMeleeRotation { get; set; }
     
-    public HealthComponent Health { get; private set; }
     public EffectsComponent Effects { get; private set; }
-    public WeaponsComponent Weapons { get; private set; }
+    public TransformComponent Transform { get; private set; }
+    public HealthComponent Health { get; private set; }
     public HitstopComponent Hitstop { get; private set; }
+    public HitstunComponent Hitstun { get; private set; }
+    public GunComponent Gun { get; private set; }
+    public MeleeWeaponComponent MeleeWeapon { get; private set; }
+    public SpriteComponent Sprite { get; private set; }
 
     public StateMachine StateMachine { get; protected set; }
 
     private void CustomInitialize()
     {
-        InitializeTopDownInput(InputManager.Keyboard);
-        GameplayInputDevice = new GameplayInputDevice(InputDevice, GameplayCenter, MeleeAimThreshold);
-        
-        Health = new HealthComponent(MaxHealth, HealthBar);
-        Effects = new EffectsComponent { Team = Team.Player };
-        Weapons = new WeaponsComponent(GameplayInputDevice, Team.Player, GameplayCenter, this);
-        Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-        
+        InitializeInputs();
+        InitializeComponents();
         InitializeControllers();
         InitializeHandlers();
-        PositionedObjectGueWrapper hudParent = gumAttachmentWrappers[0];
-        hudParent.ParentRotationChangesRotation = false;
-        HealthBar.Reset();
         
         AimThresholdCircle.AttachTo(GameplayCenter);
         DirectionIndicator.AttachTo(GameplayCenter);
         GuardSprite.AttachTo(GameplayCenter);
     }
 
+    private void InitializeInputs()
+    {
+        InitializeTopDownInput(InputManager.Keyboard);
+        GameplayInputDevice = new GameplayInputDevice(InputDevice, GameplayCenter, MeleeAimThreshold);
+    }
+
+    private void InitializeComponents()
+    {
+        Effects = new EffectsComponent { Team = Team.Player };
+        Transform = new TransformComponent(this);
+        Health = new HealthComponent(MaxHealth);
+        Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+        Hitstun = new HitstunComponent();
+        Gun = new GunComponent(new GunInputDevice(GameplayInputDevice));
+        MeleeWeapon = new MeleeWeaponComponent(new MeleeWeaponInputDevice(GameplayInputDevice));
+        Sprite = new SpriteComponent(PlayerSprite);
+    }
+
     private void InitializeControllers()
     {
         StateMachine = new StateMachine();
-        StateMachine.Add(new MeleeMode(this, StateMachine));
-        StateMachine.Add(new GunMode(this, StateMachine));
-        StateMachine.Add(new Dashing(this, StateMachine));
-        StateMachine.Add(new Guarding(this, StateMachine));
+        StateMachine.Add(new MeleeMode(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new GunMode(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Dashing(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Guarding(this, StateMachine, FrbTimeManager.Instance));
         StateMachine.InitializeStartingState<MeleeMode>();
     }
 
     private void InitializeHandlers()
     {
-        Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, this, PlayerSprite));
-        Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, this));
-        Effects.HandlerCollection.Add(new KnockbackHandler(Effects, this, Hitstop));
+        Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
+        Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this));
+        Effects.HandlerCollection.Add(new KnockbackHandler(Effects, Transform, Hitstop));
+        Effects.HandlerCollection.Add(new GunHandler(Gun, Hitstun, Hitstop));
+        Effects.HandlerCollection.Add(new MeleeWeaponHandler(MeleeWeapon, Hitstun, Hitstop));
     }
 
     private void CustomActivity()
     {
         Effects.Activity();
+        
         PlayerSprite.ForceUpdateDependenciesDeep();
-        
-        if (Hitstop.IsStopped) { return; }
-        
-        Weapons.Activity();
         StateMachine.DoCurrentStateActivity();
-        PlayerSprite.AnimateSelf(TimeManager.SecondDifference);
-            
-        if (Health.CurrentHealth <= 0)
-        {
-            Destroy();
-        }
     }
 
     private void CustomDestroy()
     {
-        Weapons.Destroy();
+        Gun.Cache.Destroy();
+        MeleeWeapon.Cache.Destroy();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName)
     {
     }
-    
-    #region IWeaponHolder
-
-    IEffectsComponent IWeaponHolder.Effects => Effects;
-
-    public void SetInputEnabled(bool isEnabled)
-    {
-        InputEnabled = isEnabled;
-        GameplayInputDevice.InputEnabled = isEnabled;
-    }
-
-    public IEffectBundle ModifyTargetEffects(IEffectBundle effects)
-    {
-        return effects;
-    }
-    
-    #endregion
-
 }

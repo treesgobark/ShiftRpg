@@ -262,35 +262,6 @@
       "IncludeInIClickable": false
     },
     {
-      "InstanceName": "HealthBar",
-      "SourceClassType": "ProjectLoot.GumRuntimes.HealthBarRuntime",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": false,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
-          "Member": "Y",
-          "Value": -30.0,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 3,
-      "SourceFile": "HealthBarRuntime",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
       "InstanceName": "PlayerSprite",
       "SourceClassType": "FlatRedBall.Sprite",
       "Properties": [

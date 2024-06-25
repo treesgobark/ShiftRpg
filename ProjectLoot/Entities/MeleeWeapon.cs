@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
@@ -58,14 +59,12 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
     public IEffectBundle HolderHitEffects { get; set; }
     public IMeleeWeaponInputDevice InputDevice { get; set; }
 
-    public void Equip(IMeleeWeaponInputDevice inputDevice)
+    public void Equip()
     {
-        InputDevice = inputDevice;
     }
 
     public void Unequip()
     {
-        InputDevice = ZeroMeleeWeaponInputDevice.Instance;
     }
     
     #endregion
@@ -108,7 +107,6 @@ public abstract partial class MeleeWeapon : IMeleeWeapon
         targetEffects.AddEffect(new DamageEffect(~Effects.Team, Effects.Source, CurrentAttackData.Damage));
         targetEffects.AddEffect(new KnockbackEffect(~Effects.Team, Effects.Source, CurrentAttackData.KnockbackVelocity,
             Rotation.FromRadians(RotationZ), KnockbackBehavior.Replacement));
-        targetEffects.AddEffect(new DamageOverTimeEffect(~Effects.Team, Effects.Source, 1, 2, 5, 1));
         targetEffects.AddEffect(new ApplyShatterEffect(~Effects.Team, Effects.Source));
         targetEffects.AddEffect(new WeaknessDamageEffect(~Effects.Team, Effects.Source, .2f));
         targetEffects.AddEffect(new HitstopEffect(~Effects.Team, Effects.Source, TimeSpan.FromMilliseconds(150)));

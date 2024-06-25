@@ -7,6 +7,7 @@ public interface IGun : IWeapon<IGunInputDevice>
     TimeSpan TimePerRound { get; }
     TimeSpan ReloadTime { get; }
     FiringType FiringType { get; }
+    
     float ReloadProgress { get; set; }
     
     void Fire();
@@ -16,6 +17,6 @@ public interface IGun : IWeapon<IGunInputDevice>
 
 public enum FiringType
 {
-    Semiautomatic,
+    SingleShot,
     Automatic,
 }

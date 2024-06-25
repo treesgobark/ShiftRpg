@@ -1,4 +1,5 @@
-using ANLG.Utilities.FlatRedBall.States;
+using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 
 namespace ProjectLoot.Entities;
 
@@ -32,10 +33,10 @@ public partial class DefaultSword
     private void InitializeControllers()
     {
         StateMachine = new StateMachine();
-        StateMachine.Add(new Idle(this, StateMachine));
-        StateMachine.Add(new Startup(this, StateMachine));
-        StateMachine.Add(new Active(this, StateMachine));
-        StateMachine.Add(new Recovery(this, StateMachine));
+        StateMachine.Add(new Idle(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Startup(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Active(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Recovery(this, StateMachine, FrbTimeManager.Instance));
         StateMachine.InitializeStartingState<Idle>();
     }
 }

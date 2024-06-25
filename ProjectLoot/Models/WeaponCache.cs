@@ -5,22 +5,20 @@ using ProjectLoot.Contracts;
 namespace ProjectLoot.Models;
 
 public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
-    where TWeapon : IWeapon<TInput>
+    where TWeapon : class, IWeapon<TInput>
 {
     private const int MaximumWeaponCount = 3;
     
-    private TWeapon DefaultWeapon { get; }
-    private TInput InputDevice { get; set; }
+    public TInput InputDevice { get; private set; }
 
-    public WeaponCache(TWeapon defaultWeapon, TInput inputDevice)
+    public WeaponCache(TInput inputDevice)
     {
-        DefaultWeapon = defaultWeapon;
         InputDevice = inputDevice;
     }
     
-    private int CurrentIndex { get; set; } = 0;
-    private TWeapon?[] WeaponArray { get; set; } = new TWeapon?[MaximumWeaponCount];
-    public TWeapon CurrentWeapon => WeaponArray[CurrentIndex] ?? DefaultWeapon;
+    private int CurrentIndex { get; set; }
+    private TWeapon?[] WeaponArray { get; } = new TWeapon?[MaximumWeaponCount];
+    public TWeapon? CurrentWeapon => WeaponArray[CurrentIndex];
     public int Count { get; private set; }
     public int MaxWeapons => MaximumWeaponCount;
 
@@ -33,19 +31,19 @@ public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
             _isActive = value;
             if (_isActive)
             {
-                CurrentWeapon.Equip(InputDevice);
+                CurrentWeapon?.Equip();
             }
             else
             {
-                CurrentWeapon.Unequip();
+                CurrentWeapon?.Unequip();
             }
         }
     }
 
-    public TWeapon CycleToNextWeapon() => CycleWeapon(true);
-    public TWeapon CycleToPreviousWeapon() => CycleWeapon(false);
+    public TWeapon? CycleToNextWeapon() => CycleWeapon(true);
+    public TWeapon? CycleToPreviousWeapon() => CycleWeapon(false);
 
-    private TWeapon CycleWeapon(bool isForward)
+    private TWeapon? CycleWeapon(bool isForward)
     {
         if (Count == 1)
         {
@@ -54,7 +52,7 @@ public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
 
         if (Count == 0)
         {
-            return DefaultWeapon;
+            return null;
         }
         
         CurrentWeapon.Unequip();
@@ -81,9 +79,9 @@ public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
             return;
         }
         
-        CurrentWeapon.Unequip();
+        CurrentWeapon?.Unequip();
         CurrentIndex = index;
-        CurrentWeapon.Equip(InputDevice);
+        CurrentWeapon?.Equip();
     }
 
     public TWeapon Add(TWeapon weapon)
@@ -97,12 +95,14 @@ public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
 
         for (var i = 0; i < MaxWeapons; i++)
         {
-            ref var item = ref WeaponArray[i];
+            ref TWeapon? item = ref WeaponArray[i];
             if (item is not null) continue;
             
             item = weapon;
             break;
         }
+
+        weapon.InputDevice = InputDevice;
 
         return weapon;
     }
@@ -132,12 +132,21 @@ public class WeaponCache<TWeapon, TInput> : IWeaponCache<TWeapon, TInput>
         WeaponArray[index] = weapon;
     }
 
-    public TWeapon GetWeaponAt(int index) => WeaponArray[index] ?? DefaultWeapon;
+    public TWeapon? GetWeaponAt(int index) => WeaponArray[index];
+    
     public void Destroy()
     {
-        foreach (TWeapon weapon in WeaponArray)
+        foreach (TWeapon? weapon in WeaponArray)
         {
             weapon?.Destroy();
+        }
+    }
+
+    public void Activity()
+    {
+        if (IsActive)
+        {
+            CurrentWeapon?.Activity();
         }
     }
 }

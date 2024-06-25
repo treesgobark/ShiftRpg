@@ -19,10 +19,7 @@ public class HitstopComponent : IHitstopComponent
     }
     
     public bool IsStopped { get; set; }
-    public Vector3 StoredVelocity { get; set; }
-    public Vector3 StoredAcceleration { get; set; }
-    public float StoredAnimationSpeed { get; set; }
-    public double HitstopEndTime { get; set; }
+    public TimeSpan RemainingHitstopTime { get; set; }
 
     public void Stop()
     {

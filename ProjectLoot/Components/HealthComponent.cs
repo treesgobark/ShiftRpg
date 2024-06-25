@@ -48,6 +48,6 @@ public class HealthComponent : ViewModel, IHealthComponent
         ? 100 * CurrentHealth / MaxHealth
         : 100;
 
-    public double LastDamageTime { get; set; }
+    public TimeSpan LastDamageTime { get; set; }
     public IStatModifierCollection<float> DamageModifiers { get; } = new StatModifierCollection<float>();
 }

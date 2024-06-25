@@ -1,4 +1,5 @@
-using ANLG.Utilities.FlatRedBall.States;
+using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
@@ -10,11 +11,14 @@ namespace ProjectLoot.Entities
 {
     public partial class DefaultRangedEnemy : IWeaponHolder
     {
-        private WeaponsComponent Weapons { get; set; }
+        public TransformComponent Transform { get; private set; }
         public HealthComponent Health { get; private set; }
         public ShatterComponent Shatter { get; private set; }
         public WeaknessComponent Weakness { get; private set; }
         public HitstopComponent Hitstop { get; private set; }
+        public GunComponent Gun { get; private set; }
+        public ISpriteComponent Sprite { get; private set; }
+        
         private StateMachine StateMachine { get; set; }
         
         /// <summary>
@@ -42,7 +46,7 @@ namespace ProjectLoot.Entities
             Shatter = new ShatterComponent(HealthBarRuntimeInstance);
             Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
             Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            Weapons = new WeaponsComponent(EnemyInputDevice, Team.Enemy, this, this);
+            Gun = new GunComponent(new GunInputDevice(EnemyInputDevice));
             
             Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
@@ -52,18 +56,18 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, this, SpriteInstance), 0);
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, this));
+            Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite), 0);
+            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance));
             Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));
-            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, this, Hitstop));
+            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, Transform, Hitstop));
         }
 
         private void InitializeControllers()
         {
             StateMachine = new StateMachine();
-            StateMachine.Add(new GunMode(this, StateMachine));
+            StateMachine.Add(new GunMode(this, StateMachine, FrbTimeManager.Instance));
             StateMachine.InitializeStartingState<GunMode>();
         }
 
@@ -71,7 +75,6 @@ namespace ProjectLoot.Entities
         {
             if (Hitstop.IsStopped) { return; }
             
-            Weapons.Activity();
             StateMachine.DoCurrentStateActivity();
             
             if (Health.CurrentHealth <= 0)
@@ -82,7 +85,7 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            Weapons.Destroy();
+            Gun.Cache.Destroy();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName) { }

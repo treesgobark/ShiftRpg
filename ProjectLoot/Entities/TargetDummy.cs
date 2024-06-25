@@ -1,3 +1,4 @@
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
@@ -11,6 +12,7 @@ namespace ProjectLoot.Entities
         public HealthComponent Health { get; private set; }
         public ShatterComponent Shatter { get; private set; }
         public WeaknessComponent Weakness { get; private set; }
+        public TransformComponent Transform { get; private set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -28,6 +30,7 @@ namespace ProjectLoot.Entities
             Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             Shatter = new ShatterComponent(HealthBarRuntimeInstance);
             Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
+            Transform = new TransformComponent(this);
             
             Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
@@ -37,7 +40,7 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, this, Weakness));
+            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
             Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));
@@ -66,6 +69,6 @@ namespace ProjectLoot.Entities
 
         }
         
-        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(Health.LastDamageTime);
+        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(Health.LastDamageTime.TotalSeconds);
     }
 }

@@ -1,6 +1,7 @@
-using ANLG.Utilities.FlatRedBall.Constants;
+using ANLG.Utilities.Core.Constants;
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
-using ANLG.Utilities.FlatRedBall.States;
+using ANLG.Utilities.Core.States;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
@@ -20,9 +21,9 @@ namespace ProjectLoot.Entities
         private void CustomInitialize()
         {
             StateMachine = new StateMachine();
-            StateMachine.Add(new Ready(this, StateMachine));
-            StateMachine.Add(new Recovery(this, StateMachine));
-            StateMachine.Add(new Reloading(this, StateMachine));
+            StateMachine.Add(new Ready(this, StateMachine, FrbTimeManager.Instance));
+            StateMachine.Add(new Recovery(this, StateMachine, FrbTimeManager.Instance));
+            StateMachine.Add(new Reloading(this, StateMachine, FrbTimeManager.Instance));
             StateMachine.InitializeStartingState<Ready>();
         }
 

@@ -18,3 +18,4 @@ Gun tropes
 - near future
 - high sci-fi
 - frontier
+Scrungo tribe scrungifies weapons and environment and le coleures colorify and geometryify shit

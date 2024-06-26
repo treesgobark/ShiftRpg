@@ -31,6 +31,13 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>float</Type>
+      <Name>Fill.Height</Name>
+      <Value xsi:type="xsd:float">-2</Value>
+      <ExposedAsName>FillHeight</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
       <Name>Fill.Parent</Name>
       <SetsValue>true</SetsValue>
@@ -58,7 +65,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Fill.Texture Left</Name>
-      <Value xsi:type="xsd:int">48</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -71,6 +78,13 @@
       <Type>int</Type>
       <Name>Fill.Texture Width</Name>
       <Value xsi:type="xsd:int">48</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Fill.Width</Name>
+      <Value xsi:type="xsd:float">-2</Value>
+      <ExposedAsName>FillWidth</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FlatRedBall;
 using FlatRedBall.Graphics;
 using FlatRedBall.Gui;
@@ -8,11 +9,17 @@ using ProjectLoot.Components;
 using ProjectLoot.Entities;
 using ProjectLoot.GumRuntimes;
 using ProjectLoot.GumRuntimes.VirtualController;
+using ProjectLoot.Models;
+using RenderingLibrary;
 
 namespace ProjectLoot.Screens;
 
 public partial class GameScreen
 {
+    private MagazineDisplay ShotgunDisplay { get; set; }
+    private MagazineDisplay PistolDisplay { get; set; }
+    private MagazineDisplay RifleDisplay { get; set; }
+    
     protected bool GameOver { get; set; }
 
     void CustomInitialize()
@@ -22,6 +29,31 @@ public partial class GameScreen
         GumScreen.HealthBarPlayerInstance.BindingContext = Player1.Health;
         GumScreen.HealthBarPlayerInstance.SetBinding(nameof(HealthBarPlayerRuntime.ProgressPerCent), nameof(HealthComponent.HealthPercentage));
         InitializePauseMenu();
+
+        ShotgunDisplay = new MagazineDisplay(ShotgunShellFactory, new Vector3(64, -64, 0), 5, 11);
+        PistolDisplay = new MagazineDisplay(PistolCartridgeFactory, new Vector3(64, -96, 0), 13, 9);
+        RifleDisplay = new MagazineDisplay(RifleCartridgeFactory, new Vector3(64, -32, 0), 30, 6);
+    }
+
+    private static ShotgunShellRuntime ShotgunShellFactory()
+    {
+        var cartridge = new ShotgunShellRuntime();
+        cartridge.AddToManagers();
+        return cartridge;
+    }
+
+    private static PistolCartridgeRuntime PistolCartridgeFactory()
+    {
+        var cartridge = new PistolCartridgeRuntime();
+        cartridge.AddToManagers();
+        return cartridge;
+    }
+
+    private static RifleCartridgeRuntime RifleCartridgeFactory()
+    {
+        var cartridge = new RifleCartridgeRuntime();
+        cartridge.AddToManagers();
+        return cartridge;
     }
 
     void CustomActivity(bool firstTimeCalled)
@@ -53,6 +85,28 @@ public partial class GameScreen
         {
             GameOver = true;
             Pause();
+        }
+
+        if (!IsPaused)
+        {
+            if (Player1.GameplayInputDevice.Attack.WasJustPressed)
+            {
+                // MagazineDisplay.CurrentCount--;
+                ShotgunDisplay.Fire();
+                PistolDisplay.Fire();
+                RifleDisplay.Fire();
+            }
+
+            if (Player1.GameplayInputDevice.Dash.WasJustPressed)
+            {
+                ShotgunDisplay.CurrentCount = int.MaxValue;
+                PistolDisplay.CurrentCount = int.MaxValue;
+                RifleDisplay.CurrentCount = int.MaxValue;
+            }
+            
+            ShotgunDisplay.Activity();
+            PistolDisplay.Activity();
+            RifleDisplay.Activity();
         }
     }
 
@@ -102,8 +156,9 @@ public partial class GameScreen
 
     void CustomDestroy()
     {
-
-
+        ShotgunDisplay.Destroy();
+        PistolDisplay.Destroy();
+        RifleDisplay.Destroy();
     }
 
     static void CustomLoadStaticContent(string contentManagerName)

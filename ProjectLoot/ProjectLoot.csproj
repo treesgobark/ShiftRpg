@@ -267,6 +267,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PauseMenu</Name>
     </None>
+    <None Include="Content\GumProject\Components\PistolCartridge.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PistolCartridge</Name>
+    </None>
     <None Include="Content\GumProject\Components\ProgressAndSubprogressBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressAndSubprogressBar</Name>
@@ -279,9 +283,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressBarImproved</Name>
     </None>
+    <None Include="Content\GumProject\Components\RifleCartridge.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>RifleCartridge</Name>
+    </None>
     <None Include="Content\GumProject\Components\RoundedTrimRectangle.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RoundedTrimRectangle</Name>
+    </None>
+    <None Include="Content\GumProject\Components\ShotgunShell.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShotgunShell</Name>
     </None>
     <None Include="Content\GumProject\Components\VirtualController\AttackIndicator.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -923,6 +935,11 @@
     <Compile Include="GumRuntimes\PauseMenuRuntime.Generated.cs">
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\PistolCartridge1Runtime.Generated.cs" />
+    <Compile Include="GumRuntimes\PistolCartridgeRuntime.cs" />
+    <Compile Include="GumRuntimes\PistolCartridgeRuntime.Generated.cs">
+      <DependentUpon>PistolCartridgeRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.cs" />
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.Generated.cs">
@@ -937,6 +954,10 @@
       <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\RifleCartridgeRuntime.cs" />
+    <Compile Include="GumRuntimes\RifleCartridgeRuntime.Generated.cs">
+      <DependentUpon>RifleCartridgeRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.cs" />
     <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.Generated.cs">
       <DependentUpon>RoundedTrimRectangleRuntime.cs</DependentUpon>
@@ -944,6 +965,11 @@
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.cs" />
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.Generated.cs">
       <DependentUpon>ShootingRangeGumRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\ShotgunShell1Runtime.Generated.cs" />
+    <Compile Include="GumRuntimes\ShotgunShellRuntime.cs" />
+    <Compile Include="GumRuntimes\ShotgunShellRuntime.Generated.cs">
+      <DependentUpon>ShotgunShellRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TestLevelGumRuntime.cs" />
@@ -999,6 +1025,7 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\MagazineDisplay.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />

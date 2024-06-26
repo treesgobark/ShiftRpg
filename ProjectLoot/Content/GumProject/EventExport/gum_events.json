@@ -903,6 +903,118 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2024-06-23T03:52:21.8224479Z"
+      },
+      {
+        "NewName": "ShotgunShell",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-25T16:56:42.4162751Z"
+      },
+      {
+        "NewName": "ShotgunShell (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-25T16:56:47.0070643Z"
+      },
+      {
+        "NewName": "Spend",
+        "OldName": "Rotation",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-06-25T17:11:50.6538809Z"
+      },
+      {
+        "NewName": "IsSpent",
+        "OldName": "Spend",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-06-25T17:11:56.6144102Z"
+      },
+      {
+        "NewName": "NotSpent",
+        "OldName": "Start",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-25T17:12:00.3118971Z"
+      },
+      {
+        "NewName": "Spent",
+        "OldName": "End",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-25T17:12:05.1896397Z"
+      },
+      {
+        "NewName": "Apex",
+        "OldName": "SpentApex",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-25T17:12:29.9354994Z"
+      },
+      {
+        "NewName": "Empty",
+        "OldName": "Gone",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-06-25T20:20:21.2803578Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Controls/ButtonStandard (Container).NineSlice Trim in Controls/ButtonStandard (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-25T20:28:30.443458Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Controls/ButtonStandard (Container).NineSlice Fill in Controls/ButtonStandard (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-25T20:28:31.4169181Z"
+      },
+      {
+        "NewName": "Controls/ButtonStandard (Container).RoundedTrimRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-06-25T20:28:33.8102714Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Controls/ButtonStandard (Container).NineSlice FocusedIndicator in Controls/ButtonStandard (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-06-25T20:32:53.6756836Z"
+      },
+      {
+        "NewName": "ShotgunShell1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-25T22:33:27.0701623Z"
+      },
+      {
+        "NewName": "PistolCartridge",
+        "OldName": "ShotgunShell1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-25T22:33:38.3262699Z"
+      },
+      {
+        "NewName": "PistolCartridge1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-06-25T22:34:27.2817236Z"
+      },
+      {
+        "NewName": "RifleCartridge",
+        "OldName": "PistolCartridge1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-06-25T22:34:40.7989169Z"
       }
     ]
   }

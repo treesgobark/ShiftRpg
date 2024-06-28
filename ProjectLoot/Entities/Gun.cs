@@ -1,121 +1,144 @@
+using ANLG.Utilities.Core.Constants;
+using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Factories;
 using ProjectLoot.InputDevices;
 
-namespace ProjectLoot.Entities
+namespace ProjectLoot.Entities;
+
+public partial class Gun
 {
-    public abstract partial class Gun : IGun
+    public StateMachine StateMachine { get; private set; }
+
+    public EffectsComponent Effects { get; private set; }
+
+    public IGunModel? GunModel { get; set; }
+
+    public SourceTag Source { get; set; } = SourceTag.Gun;
+
+    // Implement IGun
+
+    // public IWeaponHolder Holder { get; set; }
+
+    public IEffectBundle TargetHitEffects
     {
-        public EffectsComponent Effects { get; private set; }
-        public GunData CurrentGunData => GunDataCache.Obj;
-        protected FrameCache<GunData> GunDataCache { get; } = new(() => GlobalContent.GunData[GunData.Pistol]);
-        
-        private int _magazineRemaining;
-        private float _reloadProgress;
-
-        public int MagazineRemaining
+        get
         {
-            get => _magazineRemaining;
-            set
-            {
-                _magazineRemaining = value;
-                MagazineBar.ProgressPercentage = 100 * _magazineRemaining / (float)MagazineSize;
-            }
+            var effects = new EffectBundle(~Effects.Team, Source);
+
+            effects.AddEffect(new DamageEffect(~Effects.Team, Source, GunModel.GunData.Damage));
+            effects.AddEffect(new KnockbackEffect(~Effects.Team, Source, 200, this.GetRotationZ(),
+                                                  KnockbackBehavior.Replacement));
+            effects.AddEffect(new ShatterDamageEffect(~Effects.Team, Source, 3));
+            effects.AddEffect(new HitstopEffect(~Effects.Team, Source, TimeSpan.FromMilliseconds(50)));
+
+            // return Holder.ModifyTargetEffects(effects);
+            return effects;
+        }
+    }
+
+    public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
+    public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
+
+    /// <summary>
+    ///     Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
+    ///     This method is called when the Entity is added to managers. Entities which are instantiated but not
+    ///     added to managers will not have this method called.
+    /// </summary>
+    private void CustomInitialize()
+    {
+        ParentRotationChangesRotation = true;
+
+        InitializeComponent();
+
+        InitializeStates();
+    }
+
+    private void InitializeComponent()
+    {
+        Effects = new EffectsComponent();
+    }
+
+    private void InitializeStates()
+    {
+        StateMachine = new StateMachine();
+        StateMachine.Add(new Ready(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Recovery(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Reloading(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.InitializeStartingState<Ready>();
+    }
+
+    private void CustomActivity()
+    {
+        StateMachine.DoCurrentStateActivity();
+        SetSpriteFlip();
+    }
+
+    private void SetSpriteFlip()
+    {
+        Rotation rotation = Rotation.FromRadians(RotationZ);
+        if (rotation.CondensedDegrees is > -90 and < 90)
+        {
+            SpriteInstance.FlipVertical = false;
+        }
+        else
+        {
+            SpriteInstance.FlipVertical = true;
+        }
+    }
+
+    private void CustomDestroy()
+    {
+    }
+
+    private static void CustomLoadStaticContent(string contentManagerName)
+    {
+    }
+
+    public void Equip(IGunInputDevice input, IGunModel gunModel)
+    {
+        InputDevice                     = input;
+        SpriteInstance.CurrentChainName = gunModel.GunData.GunName;
+        SpriteInstance.Visible          = true;
+
+        GunModel     = gunModel;
+    }
+
+    public void Unequip()
+    {
+        InputDevice            = ZeroGunInputDevice.Instance;
+        SpriteInstance.Visible = false;
+    }
+
+    private void Fire()
+    {
+        var dir = Vector2ExtensionMethods.FromAngle(Parent.RotationZ).NormalizedOrZero().ToVector3();
+        if (dir == Vector3.Zero)
+        {
+            return;
         }
 
-        public int MagazineSize => CurrentGunData.MagazineSize;
-        public TimeSpan TimePerRound => TimeSpan.FromSeconds(CurrentGunData.SecondsPerRound);
-        public TimeSpan ReloadTime => TimeSpan.FromSeconds(CurrentGunData.ReloadTime);
-        public FiringType FiringType => CurrentGunData.IsSingleShot ? FiringType.SingleShot : FiringType.Automatic;
+        Bullet? proj = BulletFactory.CreateNew(Position);
+        // proj.InitializeProjectile(GunModel.GunData.ProjectileRadius, dir * GunModel.GunData.ProjectileSpeed, TargetHitEffects,
+        //                           HolderHitEffects, Holder, ~Effects.Team);
+        proj.InitializeProjectile(GunModel.GunData.ProjectileRadius, dir * GunModel.GunData.ProjectileSpeed, TargetHitEffects,
+                                  HolderHitEffects, ~Effects.Team);
 
-        public float ReloadProgress
-        {
-            get => _reloadProgress;
-            set
-            {
-                _reloadProgress = value;
-                MagazineBar.ProgressPercentage = _reloadProgress * 100f;
-            }
-        }
+        var effects = new EffectBundle(Effects.Team, Source);
+        effects.AddEffect(new KnockbackEffect(Effects.Team, Source, 50,
+                                              Rotation.FromRadians(RotationZ + MathConstants.HalfTurn),
+                                              KnockbackBehavior.Additive));
+        // Holder.Effects.Handle(effects);
 
-        private int BarColor { get; set; }
+        GunModel.CurrentRoundsInMagazine--;
 
-        /// <summary>
-        /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
-        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
-        /// added to managers will not have this method called.
-        /// </summary>
-        private void CustomInitialize()
-        {
-            MagazineRemaining = MagazineSize;
-            
-            var hudParent = gumAttachmentWrappers[0];
-            hudParent.ParentRotationChangesRotation = false;
-            ParentRotationChangesRotation           = true;
-            MagazineBar.ProgressPercentage = 100f;
-            MagazineBar.SubProgressPercentage = 0f;
-
-            Effects = new EffectsComponent();
-        }
-
-        private void CustomActivity()
-        {
-        }
-
-        private void CustomDestroy() { }
-        private static void CustomLoadStaticContent(string contentManagerName) { }
-        public SourceTag Source { get; set; } = SourceTag.Gun;
-        
-        // Implement IGun
-
-        public IWeaponHolder Holder { get; set; }
-
-        public IEffectBundle TargetHitEffects
-        {
-            get
-            {
-                var effects = new EffectBundle(~Effects.Team, Source);
-                
-                effects.AddEffect(new DamageEffect(~Effects.Team, Source, CurrentGunData.Damage));
-                effects.AddEffect(new KnockbackEffect(~Effects.Team, Source, 200, this.GetRotationZ(), KnockbackBehavior.Replacement));
-                effects.AddEffect(new ShatterDamageEffect(~Effects.Team, Source, 3));
-                effects.AddEffect(new HitstopEffect(~Effects.Team, Source, TimeSpan.FromMilliseconds(50)));
-
-                return Holder.ModifyTargetEffects(effects);
-            }
-        }
-
-        public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
-        public IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
-
-        public void Equip()
-        {
-            CircleInstance.Visible = true;
-            MagazineBar.Visible    = true;
-        }
-
-        public void Unequip()
-        {
-            CircleInstance.Visible = false;
-            MagazineBar.Visible    = false;
-        }
-
-        public abstract void Fire();
-        
-        public void StartReload()
-        {
-            BarColor                           = MagazineBar.ForegroundGreen;
-            MagazineBar.ForegroundGreen = 150;
-        }
-
-        public void FillMagazine()
-        {
-            MagazineRemaining                  = MagazineSize;
-            MagazineBar.ForegroundGreen = BarColor;
-        }
+        Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
     }
 }

@@ -1,18 +1,11 @@
+using ProjectLoot.DataTypes;
+
 namespace ProjectLoot.Contracts;
 
-public interface IGun : IWeapon<IGunInputDevice>
+public interface IGunModel
 {
-    int MagazineRemaining { get; }
-    int MagazineSize { get; }
-    TimeSpan TimePerRound { get; }
-    TimeSpan ReloadTime { get; }
-    FiringType FiringType { get; }
-    
-    float ReloadProgress { get; set; }
-    
-    void Fire();
-    void StartReload();
-    void FillMagazine();
+    GunData GunData { get; }
+    int CurrentRoundsInMagazine { get; set; }
 }
 
 public enum FiringType

@@ -11,13 +11,13 @@ namespace ProjectLoot.Entities
 {
     public partial class DefaultRangedEnemy : IWeaponHolder
     {
-        public TransformComponent Transform { get; private set; }
-        public HealthComponent Health { get; private set; }
-        public ShatterComponent Shatter { get; private set; }
-        public WeaknessComponent Weakness { get; private set; }
-        public HitstopComponent Hitstop { get; private set; }
-        public GunComponent Gun { get; private set; }
-        public ISpriteComponent Sprite { get; private set; }
+        public TransformComponent TransformComponent { get; private set; }
+        public HealthComponent HealthComponent { get; private set; }
+        public ShatterComponent ShatterComponent { get; private set; }
+        public WeaknessComponent WeaknessComponent { get; private set; }
+        public HitstopComponent HitstopComponent { get; private set; }
+        public GunComponent GunComponent { get; private set; }
+        public ISpriteComponent SpriteComponent { get; private set; }
         
         private StateMachine StateMachine { get; set; }
         
@@ -42,26 +42,26 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
-            Shatter = new ShatterComponent(HealthBarRuntimeInstance);
-            Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
-            Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            Gun = new GunComponent(new GunInputDevice(EnemyInputDevice));
+            HealthComponent = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            ShatterComponent = new ShatterComponent(HealthBarRuntimeInstance);
+            WeaknessComponent = new WeaknessComponent(HealthBarRuntimeInstance);
+            HitstopComponent = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+            GunComponent = new GunComponent();
             
-            Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
-                effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
-                effect => 1 + Weakness.CurrentWeaknessPercentage * Weakness.DamageConversionRate,
+            HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
+                effect => WeaknessComponent.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
+                effect => 1 + WeaknessComponent.CurrentWeaknessPercentage * WeaknessComponent.DamageConversionRate,
                 ModifierCategory.Multiplicative));
         }
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite), 0);
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance));
-            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
-            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
-            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));
-            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, Transform, Hitstop));
+            Effects.HandlerCollection.Add(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
+            Effects.HandlerCollection.Add(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance));
+            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
+            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
+            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
+            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
         }
 
         private void InitializeControllers()
@@ -73,11 +73,11 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
-            if (Hitstop.IsStopped) { return; }
+            if (HitstopComponent.IsStopped) { return; }
             
             StateMachine.DoCurrentStateActivity();
             
-            if (Health.CurrentHealth <= 0)
+            if (HealthComponent.CurrentHealth <= 0)
             {
                 Destroy();
             }
@@ -85,7 +85,7 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            Gun.Cache.Destroy();
+            
         }
 
         private static void CustomLoadStaticContent(string contentManagerName) { }

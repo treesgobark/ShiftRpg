@@ -59,7 +59,13 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     public IPressableInput QuickSwapWeapon => FalsePressableInput.Instance;
     public IPressableInput NextWeapon => FalsePressableInput.Instance;
     public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
+    public IPressableInput Interact => FalsePressableInput.Instance;
+    public IGunInputDevice GunInputDevice => ZeroGunInputDevice.Instance;
+    public IMeleeWeaponInputDevice MeleeWeaponInputDevice => ZeroMeleeWeaponInputDevice.Instance;
+
     // public bool AimInMeleeRange => Aim.Magnitude < 1;
+    public void BufferAttackPress() { }
+
     public bool AimInMeleeRange => false;
 
     public bool InputEnabled

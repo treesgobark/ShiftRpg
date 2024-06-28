@@ -32,7 +32,7 @@ public partial class Gun
                 return NextState;
             }
     
-            if (TimeInState > Parent.TimePerRound)
+            if (TimeInState > Parent.GunModel.GunData.TimePerRound)
             {
                 return StateMachine.Get<Ready>();
             }

@@ -71,6 +71,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
     </None>
+    <None Include="Content\Entities\Gun\GunAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GunAnimations</Name>
+    </None>
     <None Include="Content\Entities\Player\Character.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Character</Name>
@@ -82,6 +86,10 @@
     <None Include="Content\Entities\TargetDummy\DummySprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>DummySprite</Name>
+    </None>
+    <None Include="Content\Entities\WeaponDrop\WeaponDropPreview.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WeaponDropPreview</Name>
     </None>
     <None Include="Content\GlobalContent\AttackData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -573,10 +581,6 @@
     <Compile Include="Entities\DefaultEnemy.Generated.cs">
       <DependentUpon>DefaultEnemy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DefaultGun.cs" />
-    <Compile Include="Entities\DefaultGun.Generated.cs">
-      <DependentUpon>DefaultGun.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\DefaultRangedEnemy.GunMode.cs">
       <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
     </Compile>
@@ -651,6 +655,9 @@
     <Compile Include="Entities\Player.MeleeMode.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Player.Unarmed.cs">
+      <DependentUpon>Player.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Projectile.Generated.cs">
       <DependentUpon>Projectile.cs</DependentUpon>
@@ -659,16 +666,20 @@
     <Compile Include="Entities\TargetDummy.Generated.cs">
       <DependentUpon>TargetDummy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\WeaponDrop.cs" />
+    <Compile Include="Entities\WeaponDrop.Generated.cs">
+      <DependentUpon>WeaponDrop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factories\BulletFactory.Generated.cs" />
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
-    <Compile Include="Factories\DefaultGunFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
+    <Compile Include="Factories\WeaponDropFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
     <Compile Include="Forms\Components\MainMenuForms.Generated.cs" />
     <Compile Include="Forms\Components\OptionsForms.Generated.cs" />
@@ -1006,11 +1017,9 @@
     <Compile Include="Handlers\Base\EffectHandlerCollection.cs" />
     <Compile Include="Handlers\Base\IEffectHandlerCollection.cs" />
     <Compile Include="Handlers\DamageHandler.cs" />
-    <Compile Include="Handlers\GunHandler.cs" />
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
     <Compile Include="Handlers\KnockbackHandler.cs" />
-    <Compile Include="Handlers\MeleeWeaponHandler.cs" />
     <Compile Include="Handlers\ShatterDamageHandler.cs" />
     <Compile Include="Handlers\WeaknessDamageHandler.cs" />
     <Compile Include="InputDevices\Constant2DInput.cs" />
@@ -1025,6 +1034,7 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\GunModel.cs" />
     <Compile Include="Models\MagazineDisplay.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />

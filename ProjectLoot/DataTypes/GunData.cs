@@ -4,6 +4,6 @@ namespace ProjectLoot.DataTypes;
 
 public partial class GunData
 {
-    [IgnoreDataMember]
-    public double SecondsPerRound => 1 / RoundsPerSecond;
+    public TimeSpan TimePerRound => TimeSpan.FromSeconds(SecondsPerRound);
+    public TimeSpan ReloadTimeSpan => TimeSpan.FromSeconds(ReloadTime);
 }

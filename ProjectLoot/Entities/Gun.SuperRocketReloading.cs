@@ -13,14 +13,13 @@ public partial class Gun
         protected override void AfterTimedStateActivate()
         {
             Parent.Fire();
-            Parent.StartReload();
         }
     
         public override void CustomActivity() { }
     
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState > Parent.ReloadTime)
+            if (TimeInState > Parent.GunModel.GunData.ReloadTimeSpan)
             {
                 return StateMachine.Get<Ready>();
             }
@@ -30,7 +29,6 @@ public partial class Gun
     
         public override void BeforeDeactivate()
         {
-            Parent.FillMagazine();
         }
     }
 }

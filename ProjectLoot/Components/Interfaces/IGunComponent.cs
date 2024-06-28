@@ -1,8 +1,9 @@
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Components.Interfaces;
 
 public interface IGunComponent
 {
-    IWeaponCache<IGun, IGunInputDevice> Cache { get; }
+    CyclableList<IGunModel> Weapons { get; }
 }

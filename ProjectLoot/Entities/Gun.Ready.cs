@@ -11,45 +11,34 @@ public partial class Gun
     {
         public Ready(Gun parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
         
-        protected IState? NextState { get; set; }
-    
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate() { }
         
-        protected override void AfterTimedStateActivity()
-        {
-            if (Parent.InputDevice.Fire.WasJustPressed || Parent is { FiringType: FiringType.Automatic, InputDevice.Fire.IsDown: true })
-            {
-                FireBullet();
-                NextState = StateMachine.Get<Recovery>();
-            }
-    
-            if (Parent.InputDevice.Reload.WasJustPressed)
-            {
-                NextState = StateMachine.Get<Reloading>();
-            }
-        }
+        protected override void AfterTimedStateActivity() { }
     
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.MagazineRemaining <= 0)
+            if (Parent.GunModel is null)
+            {
+                return null;
+            }
+            
+            if (Parent.GunModel is { CurrentRoundsInMagazine: <= 0 } || Parent.InputDevice.Reload.WasJustPressed)
             {
                 return StateMachine.Get<Reloading>();
             }
             
-            if (NextState is not null)
+            if (Parent.InputDevice.Fire.IsDown)
             {
-                return NextState;
+                FireBullet();
+                return StateMachine.Get<Recovery>();
             }
     
             return null;
         }
     
-        public override void BeforeDeactivate()
-        {
-            NextState = null;
-        }
+        public override void BeforeDeactivate() { }
 
         public override void Uninitialize() { }
 

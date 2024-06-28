@@ -429,6 +429,29 @@
       "SourceFile": "Sprite",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "GunInstance",
+      "SourceClassType": "Entities\\Gun",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": 0.1,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 1,
+      "SourceFile": "Entities/Gun",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Player",

@@ -2,8 +2,8 @@ using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
 using ProjectLoot.Controllers;
-using ProjectLoot.Effects.Handlers;
-using ProjectLoot.Handlers;
+using ProjectLoot.Effects;
+using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
 
@@ -18,19 +18,21 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Gun.Cache.IsActive = true;
+            Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
         }
 
         protected override void AfterTimedStateActivity()
         {
             if (Parent.GameplayInputDevice.NextWeapon.WasJustPressed)
             {
-                Parent.Gun.Cache.CycleToNextWeapon();
+                Parent.Gun.Weapons.CycleToNextItem();
+                Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
             }
             
             if (Parent.GameplayInputDevice.PreviousWeapon.WasJustPressed)
             {
-                Parent.Gun.Cache.CycleToPreviousWeapon();
+                Parent.Gun.Weapons.CycleToPreviousItem();
+                Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
             }
             
             SetRotation();
@@ -48,9 +50,9 @@ public partial class Player
                 return StateMachine.Get<Guarding>();
             }
             
-            if (Parent.GameplayInputDevice.AimInMeleeRange)
+            if (Parent.GameplayInputDevice.AimInMeleeRange && Parent.MeleeWeapon.Cache.Count > 0)
             {
-                return StateMachine.Get<MeleeMode>();
+                return StateMachine.Get<MeleeWeaponMode>();
             }
         
             return null;
@@ -58,7 +60,7 @@ public partial class Player
 
         public override void BeforeDeactivate()
         {
-            Parent.Gun.Cache.IsActive = false;
+            Parent.GunInstance.Unequip();
         }
 
         public override void Uninitialize() { }

@@ -15,30 +15,23 @@ public partial class Gun
 
         protected override void AfterTimedStateActivate() { }
     
-        public override void OnActivate()
-        {
-            Parent.StartReload();
-            base.OnActivate();
-        }
-
-        protected override void AfterTimedStateActivity()
-        {
-            Parent.ReloadProgress = (float)(TimeInState / Parent.ReloadTime);
-        }
-    
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState > Parent.ReloadTime)
+            if (TimeInState > Parent.GunModel.GunData.ReloadTimeSpan)
             {
                 return StateMachine.Get<Ready>();
             }
     
             return null;
         }
+
+        protected override void AfterTimedStateActivity()
+        {
+        }
     
         public override void BeforeDeactivate()
         {
-            Parent.FillMagazine();
+            Parent.GunModel.CurrentRoundsInMagazine = Parent.GunModel.GunData.MagazineSize;
         }
 
         public override void Uninitialize() { }

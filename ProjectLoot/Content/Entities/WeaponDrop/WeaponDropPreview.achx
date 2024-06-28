@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>Pistol</Name>
+    <Frame>
+      <TextureName>../../tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>22</LeftCoordinate>
+      <RightCoordinate>41</RightCoordinate>
+      <TopCoordinate>381</TopCoordinate>
+      <BottomCoordinate>391</BottomCoordinate>
+      <RelativeY>24</RelativeY>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>Shotgun</Name>
+    <Frame>
+      <TextureName>../../tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>75</LeftCoordinate>
+      <RightCoordinate>117</RightCoordinate>
+      <TopCoordinate>381</TopCoordinate>
+      <BottomCoordinate>392</BottomCoordinate>
+      <RelativeY>24</RelativeY>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>Rifle</Name>
+    <Frame>
+      <TextureName>../../tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>152</LeftCoordinate>
+      <RightCoordinate>192</RightCoordinate>
+      <TopCoordinate>380</TopCoordinate>
+      <BottomCoordinate>392</BottomCoordinate>
+      <RelativeY>24</RelativeY>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <ProjectFile>..\..\..\projectloot.gluj</ProjectFile>
+</AnimationChainArraySave>

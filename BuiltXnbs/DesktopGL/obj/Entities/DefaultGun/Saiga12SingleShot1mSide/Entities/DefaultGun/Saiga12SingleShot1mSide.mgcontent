@@ -3,7 +3,7 @@
   <SourceFile>R:/Repositories/FRB/ProjectLoot/ProjectLoot/Content/Entities/DefaultGun/Saiga12SingleShot1mSide.wav</SourceFile>
   <SourceTime>2024-06-23T11:23:57.9596849-04:00</SourceTime>
   <DestFile>R:/Repositories/FRB/ProjectLoot/BuiltXnbs/DesktopGL/Entities/DefaultGun/Saiga12SingleShot1mSide.xnb</DestFile>
-  <DestTime>2024-06-23T11:24:16.1485743-04:00</DestTime>
+  <DestTime>2024-06-27T20:10:50.5898296-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

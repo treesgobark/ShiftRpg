@@ -3,8 +3,6 @@ using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ProjectLoot.Controllers;
 using ProjectLoot.DataTypes;
-using ProjectLoot.Effects.Handlers;
-using ProjectLoot.Handlers;
 
 namespace ProjectLoot.Entities;
 
@@ -37,10 +35,16 @@ public partial class Player
         public override IState? EvaluateExitConditions()
         {
             if (TimeInState < TimeSpan.FromSeconds(0.15f)) { return null; }
-            
-            return Parent.GameplayInputDevice.AimInMeleeRange
-                ? StateMachine.Get<MeleeMode>()
-                : StateMachine.Get<GunMode>();
+
+            return (Parent.MeleeWeapon.Cache.Count, Parent.Gun.Weapons.Count,
+                    Parent.GameplayInputDevice.AimInMeleeRange) switch
+            {
+                (> 0, 0, _)       => StateMachine.Get<MeleeWeaponMode>(),
+                (0, > 0, _)       => StateMachine.Get<GunMode>(),
+                (> 0, > 0, true)  => StateMachine.Get<MeleeWeaponMode>(),
+                (> 0, > 0, false) => StateMachine.Get<GunMode>(),
+                _                 => StateMachine.Get<Unarmed>()
+            };
         }
 
         public override void BeforeDeactivate()

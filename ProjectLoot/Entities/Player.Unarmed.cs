@@ -7,19 +7,16 @@ namespace ProjectLoot.Entities;
 
 public partial class Player
 {
-    protected class MeleeWeaponMode : ParentedTimedState<Player>
+    protected class Unarmed : ParentedTimedState<Player>
     {
-        public MeleeWeaponMode(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
+        public Unarmed(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
             : base(parent, stateMachine, timeManager)
         {
         }
 
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
-        {
-            Parent.MeleeWeapon.Cache.IsActive = true;
-        }
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity()
         {
@@ -48,18 +45,18 @@ public partial class Player
                 return StateMachine.Get<Guarding>();
             }
 
-            if (!Parent.GameplayInputDevice.AimInMeleeRange && Parent.Gun.Weapons.Count > 0)
+            return (Parent.MeleeWeapon.Cache.Count, Parent.Gun.Weapons.Count,
+                    Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                return StateMachine.Get<GunMode>();
-            }
-            
-            return null;
+                (> 0, 0, _)       => StateMachine.Get<MeleeWeaponMode>(),
+                (0, > 0, _)       => StateMachine.Get<GunMode>(),
+                (> 0, > 0, true)  => StateMachine.Get<MeleeWeaponMode>(),
+                (> 0, > 0, false) => StateMachine.Get<GunMode>(),
+                _                 => null
+            };
         }
 
-        public override void BeforeDeactivate()
-        {
-            Parent.MeleeWeapon.Cache.IsActive = false;
-        }
+        public override void BeforeDeactivate() { }
 
         public override void Uninitialize() { }
     

@@ -143,9 +143,6 @@
       "Name": "Entities\\DefaultEnemy"
     },
     {
-      "Name": "Entities\\DefaultGun"
-    },
-    {
       "Name": "Entities\\DefaultMeleeEnemy"
     },
     {
@@ -174,6 +171,9 @@
     },
     {
       "Name": "Entities\\TargetDummy"
+    },
+    {
+      "Name": "Entities\\WeaponDrop"
     }
   ],
   "Bookmarks": [],

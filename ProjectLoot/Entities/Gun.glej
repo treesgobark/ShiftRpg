@@ -4,6 +4,27 @@
   ],
   "Source": "GLUE",
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/Gun/GunAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/DefaultGun/Saiga12SingleShot1mSide.wav",
+      "Properties": [
+        {
+          "Name": "UseContentPipeline",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Audio.SoundEffect",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -48,73 +69,8 @@
   ],
   "NamedObjects": [
     {
-      "InstanceName": "MagazineBar",
-      "SourceClassType": "ProjectLoot.GumRuntimes.ProgressAndSubprogressBarRuntime",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "int",
-          "Member": "BackgroundBlue",
-          "Value": 75,
-          "Time": 0.0
-        },
-        {
-          "Type": "int",
-          "Member": "BackgroundGreen",
-          "Value": 25,
-          "Time": 0.0
-        },
-        {
-          "Type": "int",
-          "Member": "BackgroundRed",
-          "Value": 10,
-          "Time": 0.0
-        },
-        {
-          "Type": "int",
-          "Member": "ForegroundBlue",
-          "Value": 150,
-          "Time": 0.0
-        },
-        {
-          "Type": "int",
-          "Member": "ForegroundGreen",
-          "Value": 50,
-          "Time": 0.0
-        },
-        {
-          "Type": "int",
-          "Member": "ForegroundRed",
-          "Value": 20,
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "Visible",
-          "Value": false,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
-          "Member": "Y",
-          "Value": 15.0,
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 3,
-      "SourceFile": "ProgressBarRuntime",
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    },
-    {
-      "InstanceName": "CircleInstance",
-      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
@@ -125,8 +81,8 @@
       "InstructionSaves": [
         {
           "Type": "float",
-          "Member": "Radius",
-          "Value": 5.0,
+          "Member": "TextureScale",
+          "Value": 1.0,
           "Time": 0.0
         },
         {
@@ -136,22 +92,24 @@
           "Time": 0.0
         },
         {
-          "Type": "float",
-          "Member": "X",
-          "Value": 0.0,
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "GunAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "Pistol",
           "Time": 0.0
         }
       ],
       "SourceType": 2,
-      "SourceFile": "Circle",
-      "SetByDerived": true,
+      "SourceFile": "Sprite",
       "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "IncludeInICollidable": false,
-      "IncludeInIClickable": false
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\Gun",
-  "CustomClassesForExport": [],
-  "IsAbstract": true
+  "CustomClassesForExport": []
 }

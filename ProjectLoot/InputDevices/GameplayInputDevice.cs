@@ -27,6 +27,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 Dash = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
                 Guard = gamePad.GetButton(Xbox360GamePad.Button.LeftTrigger);
                 QuickSwapWeapon = gamePad.GetButton(Xbox360GamePad.Button.Y);
+                Interact = gamePad.GetButton(Xbox360GamePad.Button.A);
                 // NextWeapon      = ;
                 // PreviousWeapon  = ;
                 break;
@@ -40,10 +41,14 @@ public class GameplayInputDevice : IGameplayInputDevice
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);
                 NextWeapon = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Up);
                 PreviousWeapon = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Down);
+                Interact = keyboard.GetKey(Keys.E);
                 break;
             default:
                 throw new ArgumentException("Input device was something other than gamepad or keyboard");
         }
+
+        GunInputDevice = new GunInputDevice(this);
+        MeleeWeaponInputDevice = new MeleeWeaponInputDevice(this);
     }
 
     private Constant2DInput ConstantAim { get; set; }
@@ -66,6 +71,14 @@ public class GameplayInputDevice : IGameplayInputDevice
     public IPressableInput QuickSwapWeapon { get; }
     public IPressableInput NextWeapon { get; }
     public IPressableInput PreviousWeapon { get; }
+    public IPressableInput Interact { get; }
+    public IGunInputDevice GunInputDevice { get; }
+    public IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; }
+
+    public void BufferAttackPress()
+    {
+    }
+
     public bool AimInMeleeRange => Aim.Magnitude < 1;
 
 

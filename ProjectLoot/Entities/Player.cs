@@ -4,10 +4,11 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
+using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
-using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
+using ProjectLoot.Models;
 
 namespace ProjectLoot.Entities;
 
@@ -33,10 +34,7 @@ public partial class Player
         InitializeComponents();
         InitializeControllers();
         InitializeHandlers();
-        
-        AimThresholdCircle.AttachTo(GameplayCenter);
-        DirectionIndicator.AttachTo(GameplayCenter);
-        GuardSprite.AttachTo(GameplayCenter);
+        InitializeChildren();
     }
 
     private void InitializeInputs()
@@ -52,7 +50,7 @@ public partial class Player
         Health = new HealthComponent(MaxHealth);
         Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         Hitstun = new HitstunComponent();
-        Gun = new GunComponent(new GunInputDevice(GameplayInputDevice));
+        Gun = new GunComponent();
         MeleeWeapon = new MeleeWeaponComponent(new MeleeWeaponInputDevice(GameplayInputDevice));
         Sprite = new SpriteComponent(PlayerSprite);
     }
@@ -60,11 +58,12 @@ public partial class Player
     private void InitializeControllers()
     {
         StateMachine = new StateMachine();
-        StateMachine.Add(new MeleeMode(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new Unarmed(this, StateMachine, FrbTimeManager.Instance));
+        StateMachine.Add(new MeleeWeaponMode(this, StateMachine, FrbTimeManager.Instance));
         StateMachine.Add(new GunMode(this, StateMachine, FrbTimeManager.Instance));
         StateMachine.Add(new Dashing(this, StateMachine, FrbTimeManager.Instance));
         StateMachine.Add(new Guarding(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.InitializeStartingState<MeleeMode>();
+        StateMachine.InitializeStartingState<Unarmed>();
     }
 
     private void InitializeHandlers()
@@ -72,8 +71,15 @@ public partial class Player
         Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
         Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this));
         Effects.HandlerCollection.Add(new KnockbackHandler(Effects, Transform, Hitstop));
-        Effects.HandlerCollection.Add(new GunHandler(Gun, Hitstun, Hitstop));
-        Effects.HandlerCollection.Add(new MeleeWeaponHandler(MeleeWeapon, Hitstun, Hitstop));
+    }
+
+    private void InitializeChildren()
+    {
+        AimThresholdCircle.AttachTo(GameplayCenter);
+        DirectionIndicator.AttachTo(GameplayCenter);
+        GuardSprite.AttachTo(GameplayCenter);
+        GunInstance.AttachTo(GameplayCenter);
+        GunInstance.Effects.Team = Team.Player;
     }
 
     private void CustomActivity()
@@ -81,16 +87,24 @@ public partial class Player
         Effects.Activity();
         
         PlayerSprite.ForceUpdateDependenciesDeep();
+        
         StateMachine.DoCurrentStateActivity();
+        PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
     }
 
     private void CustomDestroy()
     {
-        Gun.Cache.Destroy();
         MeleeWeapon.Cache.Destroy();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName)
     {
+    }
+
+    public bool PickUpWeapon(GunData gun)
+    {
+        var gunModel = new GunModel(gun);
+        Gun.Weapons.Add(gunModel);
+        return true;
     }
 }

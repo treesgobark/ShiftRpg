@@ -153,6 +153,24 @@
       "GenerateTimedEmit": true
     },
     {
+      "InstanceName": "WeaponDropList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\WeaponDrop",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
       "InstanceName": "Map",
       "SourceClassType": "FlatRedBall.TileGraphics.LayeredTileMap",
       "Properties": [
@@ -579,6 +597,82 @@
       "InstructionSaves": [],
       "SourceType": 2,
       "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Player, Entities.Projectile>",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "PlayerVsWeaponDrop",
+      "SourceClassType": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Player, Entities.WeaponDrop>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutoNameEnabled",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionName",
+          "Value": "PlayerList",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondCollisionName",
+          "Value": "WeaponDropList",
+          "Type": "String"
+        },
+        {
+          "Name": "FirstSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "SecondSubCollisionSelectedItem",
+          "Value": "<Entire Object>",
+          "Type": "String"
+        },
+        {
+          "Name": "IsCollisionActive",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsAutomaticallyApplyPhysicsChecked",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "FirstCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SecondCollisionMass",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SoftCollisionCoefficient",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionElasticity",
+          "Value": 1.0,
+          "Type": "float"
+        },
+        {
+          "Name": "IsDealDamageChecked",
+          "Value": true,
+          "Type": "Object"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.Math.Collision.ListVsListRelationship<Entities.Player, Entities.WeaponDrop>",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     },
@@ -1098,6 +1192,11 @@
     {
       "EventName": "EnemyVsEnemyCollided",
       "SourceObject": "EnemyVsEnemy",
+      "SourceObjectEvent": "CollisionOccurred"
+    },
+    {
+      "EventName": "PlayerVsWeaponDropCollided",
+      "SourceObject": "PlayerVsWeaponDrop",
       "SourceObjectEvent": "CollisionOccurred"
     }
   ],

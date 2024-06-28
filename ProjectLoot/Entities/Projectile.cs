@@ -36,13 +36,13 @@ namespace ProjectLoot.Entities
         public Team AppliesTo { get; set; }
         
         public void InitializeProjectile(float projectileRadius, Vector3 projectileSpeed, IEffectBundle targetHitEffects,
-            IEffectBundle holderHitEffects, IWeaponHolder holder, Team appliesTo)
+            IEffectBundle holderHitEffects, Team appliesTo)
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileSpeed;
             TargetHitEffects      = targetHitEffects;
             HolderHitEffects      = holderHitEffects;
-            Holder = holder;
+            // Holder = holder;
             AppliesTo = appliesTo;
         }
     }

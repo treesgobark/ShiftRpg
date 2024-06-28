@@ -11,9 +11,9 @@ public class EffectHandlerCollection : IEffectHandlerCollection
     private Dictionary<Type, IEffectHandler> Handlers { get; } = [];
     private Dictionary<Type, IUpdateable> Updateables { get; } = [];
 
-    public void Add<T>(T handler) where T : class => Add(handler, HandlerOrder.Count);
+    public void Add<T>(IEffectHandler handler) where T : class => Add<T>(handler, HandlerOrder.Count);
 
-    public void Add<T>(T handler, int index) where T: class
+    public void Add<T>(IEffectHandler handler, int index) where T: class
     {
         Type type = typeof(T);
         
@@ -22,17 +22,12 @@ public class EffectHandlerCollection : IEffectHandlerCollection
             throw new InvalidOperationException($"Handler already exists for {type.Name}");
         }
 
-        if (handler is not IEffectHandler and not IUpdateable)
-        {
-            throw new ArgumentException("provided object is not a handler");
-        }
-
         HandlerOrder.Insert(index, type);
 
         UpsertHandlerToDictionaries(handler, type);
     }
 
-    public void Replace<T>(T handler) where T: class
+    public void Replace<T>(IEffectHandler handler) where T: class
     {
         Type type = typeof(T);
         if (!Handlers.ContainsKey(type))
@@ -46,7 +41,7 @@ public class EffectHandlerCollection : IEffectHandlerCollection
         UpsertHandlerToDictionaries(handler, type);
     }
 
-    public void Remove<T>(T handler) where T: class
+    public void Remove<T>(IEffectHandler handler) where T: class
     {
         Type type = typeof(T);
         if (!Handlers.ContainsKey(type))

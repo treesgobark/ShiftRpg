@@ -108,7 +108,7 @@ public partial class Gun
         SpriteInstance.CurrentChainName = gunModel.GunData.GunName;
         SpriteInstance.Visible          = true;
 
-        GunModel     = gunModel;
+        GunModel = gunModel;
     }
 
     public void Unequip()

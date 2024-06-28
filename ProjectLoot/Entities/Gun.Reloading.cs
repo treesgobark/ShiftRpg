@@ -1,6 +1,5 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
-using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 
 namespace ProjectLoot.Entities;
@@ -19,6 +18,7 @@ public partial class Gun
         {
             if (TimeInState > Parent.GunModel.GunData.ReloadTimeSpan)
             {
+                Parent.GunModel.CurrentRoundsInMagazine = Parent.GunModel.GunData.MagazineSize;
                 return StateMachine.Get<Ready>();
             }
     
@@ -31,7 +31,6 @@ public partial class Gun
     
         public override void BeforeDeactivate()
         {
-            Parent.GunModel.CurrentRoundsInMagazine = Parent.GunModel.GunData.MagazineSize;
         }
 
         public override void Uninitialize() { }

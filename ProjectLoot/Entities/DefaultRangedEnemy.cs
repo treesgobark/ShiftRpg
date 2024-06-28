@@ -42,11 +42,13 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            HealthComponent = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
-            ShatterComponent = new ShatterComponent(HealthBarRuntimeInstance);
-            WeaknessComponent = new WeaknessComponent(HealthBarRuntimeInstance);
-            HitstopComponent = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            GunComponent = new GunComponent();
+            TransformComponent = new TransformComponent(this);
+            HealthComponent    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            ShatterComponent   = new ShatterComponent(HealthBarRuntimeInstance);
+            WeaknessComponent  = new WeaknessComponent(HealthBarRuntimeInstance);
+            HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+            GunComponent       = new GunComponent();
+            SpriteComponent    = new SpriteComponent(SpriteInstance);
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => WeaknessComponent.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
@@ -56,12 +58,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance));
-            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
-            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
-            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
-            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
+            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
+            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance));
+            Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
+            Effects.HandlerCollection.Add<ApplyShatterDamageHandler>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
+            Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
+            Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
         }
 
         private void InitializeControllers()

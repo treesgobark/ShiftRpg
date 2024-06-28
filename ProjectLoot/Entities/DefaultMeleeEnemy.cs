@@ -58,12 +58,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance, this, WeaknessComponent));
-            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
-            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
-            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
-            Effects.HandlerCollection.Add(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
+            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
+            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance, this, WeaknessComponent));
+            Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
+            Effects.HandlerCollection.Add<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
+            Effects.HandlerCollection.Add<WeaknessDamageHandler>(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
+            Effects.HandlerCollection.Add<KnockbackHandler>(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
         }
 
         private void InitializeControllers()

@@ -2,6 +2,7 @@ using ANLG.Utilities.Core.NonStaticUtilities;
 using FlatRedBall.Graphics;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Factories;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -32,6 +33,7 @@ public class DamageHandler : EffectHandler<DamageEffect>, IUpdateable
         
         ApplyDamageModifiers(effect, ref finalDamage);
         ApplyDamage(effect, finalDamage);
+        CreateDamageNumber(finalDamage);
     }
     
     protected virtual bool ValidateEffect(DamageEffect effect)
@@ -70,5 +72,11 @@ public class DamageHandler : EffectHandler<DamageEffect>, IUpdateable
         {
             Destroyable?.Destroy();
         }
+    }
+    
+    protected virtual void CreateDamageNumber(float finalDamage)
+    {
+        DamageNumberFactory.CreateNew()
+                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position);
     }
 }

@@ -16,7 +16,7 @@ public partial class Player
 {
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public float LastMeleeRotation { get; set; }
-    
+
     public EffectsComponent Effects { get; private set; }
     public TransformComponent Transform { get; private set; }
     public HealthComponent Health { get; private set; }
@@ -45,14 +45,14 @@ public partial class Player
 
     private void InitializeComponents()
     {
-        Effects = new EffectsComponent { Team = Team.Player };
-        Transform = new TransformComponent(this);
-        Health = new HealthComponent(MaxHealth);
-        Hitstop = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-        Hitstun = new HitstunComponent();
-        Gun = new GunComponent();
+        Effects     = new EffectsComponent { Team = Team.Player };
+        Transform   = new TransformComponent(this);
+        Health      = new HealthComponent(MaxHealth);
+        Hitstop     = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+        Hitstun     = new HitstunComponent();
+        Gun         = new GunComponent();
         MeleeWeapon = new MeleeWeaponComponent(new MeleeWeaponInputDevice(GameplayInputDevice));
-        Sprite = new SpriteComponent(PlayerSprite);
+        Sprite      = new SpriteComponent(PlayerSprite);
     }
 
     private void InitializeControllers()
@@ -68,9 +68,9 @@ public partial class Player
 
     private void InitializeHandlers()
     {
-        Effects.HandlerCollection.Add(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
-        Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this));
-        Effects.HandlerCollection.Add(new KnockbackHandler(Effects, Transform, Hitstop));
+        Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
+        Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this));
+        Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, Transform, Hitstop));
     }
 
     private void InitializeChildren()
@@ -85,9 +85,9 @@ public partial class Player
     private void CustomActivity()
     {
         Effects.Activity();
-        
+
         PlayerSprite.ForceUpdateDependenciesDeep();
-        
+
         StateMachine.DoCurrentStateActivity();
         PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
     }

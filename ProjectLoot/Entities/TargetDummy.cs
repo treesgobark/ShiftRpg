@@ -40,10 +40,10 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
-            Effects.HandlerCollection.Add(new ShatterDamageHandler(Effects, Health, Shatter));
-            Effects.HandlerCollection.Add(new ApplyShatterDamageHandler(Effects, Shatter, Health));
-            Effects.HandlerCollection.Add(new WeaknessDamageHandler(Effects, Health, Weakness));
+            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
+            Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
+            Effects.HandlerCollection.Add<ApplyShatterDamageHandler>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
+            Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Health, Weakness));
         }
 
         private void CustomActivity()

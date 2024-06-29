@@ -41,9 +41,9 @@ namespace ProjectLoot.Screens
         void OnPlayerVsProjectileCollided (Player player, Projectile projectile)
         {
             if (!projectile.IsActive) { return; }
-            if (!projectile.AppliesTo.Contains(player.Effects.Team)) { return; }
+            if (!projectile.AppliesTo.Contains(player.EffectsComponent.Team)) { return; }
             
-            player.Effects.Handle(projectile.TargetHitEffects);
+            player.EffectsComponent.Handle(projectile.TargetHitEffects);
             // projectile.Holder.Effects.Handle(projectile.HolderHitEffects);
             
             projectile.Destroy();
@@ -67,9 +67,9 @@ namespace ProjectLoot.Screens
         
         void OnMeleeHitboxVsPlayerCollided (MeleeHitbox meleeHitbox, Player player)
         {
-            if (!meleeHitbox.AppliesTo.Contains(player.Effects.Team)) { return; }
+            if (!meleeHitbox.AppliesTo.Contains(player.EffectsComponent.Team)) { return; }
             
-            player.Effects.Handle(meleeHitbox.TargetHitEffects);
+            player.EffectsComponent.Handle(meleeHitbox.TargetHitEffects);
             // meleeHitbox.Holder.Effects.Handle(meleeHitbox.HolderHitEffects);
         }
         

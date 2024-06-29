@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using FlatRedBall;
 using FlatRedBall.Graphics;
 using Microsoft.Xna.Framework;
+using ProjectLoot.DataTypes;
+using ProjectLoot.ViewModels;
 using RenderingLibrary;
 using IUpdateable = ProjectLoot.Contracts.IUpdateable;
 
@@ -9,11 +12,14 @@ namespace ProjectLoot.Models;
 
 public class MagazineDisplay : IDestroyable, IUpdateable
 {
-    private int _currentCount;
-    private Vector3 _position;
-    private float _spacing;
+    private int            _currentCount;
+    private Vector3        _position;
+    private float          _spacing;
+    private IGunViewModel? _bindingContext;
+    private GunClass       _gunClass;
     private List<ICartridgeDisplay> CartridgeDisplays { get; } = [];
     private List<ICartridgeDisplay> SpentCartridgeDisplays { get; } = [];
+    private Func<ICartridgeDisplay> CartridgeDisplayFactory { get; }
 
     public MagazineDisplay(Func<ICartridgeDisplay> cartridgeDisplayFactory, Vector3 position, int capacity, float spacing, int currentCount = -1)
     {
@@ -22,6 +28,48 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         CurrentCount = currentCount >= 0 ? currentCount : capacity;
         Spacing = spacing;
         Position = position;
+    }
+
+    public IGunViewModel? BindingContext
+    {
+        get => _bindingContext;
+        set
+        {
+            if (_bindingContext is not null)
+            {
+                _bindingContext.PropertyChanged -= ReactToPropertyChanged;
+                _bindingContext.GunFired        -= Fire;
+            }
+
+            _bindingContext = value;
+            
+            if (_bindingContext is not null)
+            {
+                _bindingContext.PropertyChanged += ReactToPropertyChanged;
+                _bindingContext.GunFired        += Fire;
+            }
+        }
+    }
+
+    private void ReactToPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (sender is not IGunViewModel gunViewModel)
+        {
+            return;
+        }
+        
+        switch (e.PropertyName)
+        {
+            case "CurrentMagazineCount":
+                CurrentCount = gunViewModel.CurrentMagazineCount;
+                break;
+            case "MaximumMagazineCount":
+                Capacity = gunViewModel.MaximumMagazineCount;
+                break;
+            case "GunClass":
+                GunClass = gunViewModel.GunClass;
+                break;
+        }
     }
 
     public Vector3 Position
@@ -39,9 +87,9 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         get => CartridgeDisplays.Count;
         set
         {
-            if (value <= 0)
+            if (value < 0)
             {
-                throw new ArgumentException("Magazine must have at least one capacity");
+                throw new ArgumentException("Magazine capacity cannot be negative");
             }
             
             while (CartridgeDisplays.Count < value)
@@ -51,10 +99,12 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             
             while (CartridgeDisplays.Count > value)
             {
+                CartridgeDisplays[^1].Destroy();
                 CartridgeDisplays.RemoveAt(CartridgeDisplays.Count - 1);
             }
             
             RecalculateStates();
+            RecalculatePositions();
         }
     }
 
@@ -95,28 +145,61 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         }
     }
 
-    public Func<ICartridgeDisplay> CartridgeDisplayFactory { get; set; }
-
-    public void Fire()
+    public GunClass GunClass
     {
-        int count = CurrentCount;
-        
-        CurrentCount--;
-        
-        if (count == CurrentCount)
+        get => _gunClass;
+        set
         {
-            return;
+            if (_gunClass != value)
+            {
+                Spacing = value switch
+                {
+                    GunClass.Handgun => 9,
+                    GunClass.Rifle   => 6,
+                    GunClass.Shotgun => 11,
+                    _                => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+                };
+            }
+            
+            _gunClass = value;
+            foreach (ICartridgeDisplay cartridgeDisplay in CartridgeDisplays)
+            {
+                cartridgeDisplay.GunClass = GunClass;
+            }
+            
+            RecalculateStates();
         }
+    }
+
+    public void Fire(int numberOfCartridges = 1)
+    {
+        for (int i = 0; i < numberOfCartridges; i++)
+        {
+            int count = CurrentCount;
         
-        ICartridgeDisplay cart = CartridgeDisplayFactory();
+            CurrentCount--;
         
-        Vector3 pos = GetPosition(CurrentCount);
-        cart.XPosition = pos.X;
-        cart.YPosition = pos.Y;
-        cart.ZPosition = pos.Z;
-        Spend(cart, -64, -128, 256, 1440, 0.2f);
+            if (count == CurrentCount)
+            {
+                return;
+            }
         
-        SpentCartridgeDisplays.Add(cart);
+            ICartridgeDisplay cart = CartridgeDisplayFactory();
+        
+            Vector3 pos = GetPosition(CurrentCount);
+            cart.XPosition = pos.X;
+            cart.YPosition = pos.Y;
+            cart.ZPosition = pos.Z;
+            cart.GunClass  = GunClass;
+            Spend(cart, -64, -128, 256, 1440, 0.2f);
+        
+            SpentCartridgeDisplays.Add(cart);
+
+            if (BindingContext is not null)
+            {
+                BindingContext.CurrentMagazineCount = CurrentCount;
+            }
+        }
     }
 
     private void Spend(ICartridgeDisplay cartridgeDisplay, float xVelocity, float yVelocity, float gravity, float rotationSpeed, float randomizeTolerance = 0f)
@@ -126,12 +209,12 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         // RandomizeByTolerance(ref gravity, randomizeTolerance);
         RandomizeByTolerance(ref rotationSpeed, randomizeTolerance);
             
-        cartridgeDisplay.XVelocity = xVelocity;
-        cartridgeDisplay.YVelocity = yVelocity;
-        cartridgeDisplay.YAcceleration = gravity;
-        cartridgeDisplay.ZRotationVelocity = rotationSpeed;
+        cartridgeDisplay.XVelocity            = xVelocity;
+        cartridgeDisplay.YVelocity            = yVelocity;
+        cartridgeDisplay.YAcceleration        = gravity;
+        cartridgeDisplay.ZRotationVelocity    = rotationSpeed;
         cartridgeDisplay.DestructionCountdown = 2;
-        cartridgeDisplay.SetSpent();
+        cartridgeDisplay.SpentState           = SpentState.Spent;
     }
 
     private static void RandomizeByTolerance(ref float value, float tolerance)
@@ -157,13 +240,15 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         {
             ICartridgeDisplay cartridge = CartridgeDisplays[index];
             
+            cartridge.GunClass = GunClass;
+            
             if (CurrentCount > index)
             {
-                cartridge.SetFilled();
+                cartridge.SpentState = SpentState.NotSpent;
             }
             else
             {
-                cartridge.SetEmpty();
+                cartridge.SpentState = SpentState.Empty;
             }
         }
     }
@@ -213,9 +298,8 @@ public class MagazineDisplay : IDestroyable, IUpdateable
 
 public interface ICartridgeDisplay : IDestroyable
 {
-    void SetEmpty();
-    void SetFilled();
-    void SetSpent();
+    GunClass GunClass { get; set; }
+    SpentState SpentState { get; set; }
     
     float XPosition { get; set; }
     float YPosition { get; set; }
@@ -230,4 +314,11 @@ public interface ICartridgeDisplay : IDestroyable
     
     float ZRotationVelocity { get; set; }
     float DestructionCountdown { get; set; }
+}
+
+public enum SpentState
+{
+    NotSpent,
+    Empty,
+    Spent,
 }

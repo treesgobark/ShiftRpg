@@ -257,16 +257,6 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
-    <Name>PistolCartridge</Name>
-    <ElementType>Component</ElementType>
-    <LinkType>ReferenceOriginal</LinkType>
-  </ComponentReference>
-  <ComponentReference>
-    <Name>RifleCartridge</Name>
-    <ElementType>Component</ElementType>
-    <LinkType>ReferenceOriginal</LinkType>
-  </ComponentReference>
-  <ComponentReference>
     <Name>ProgressAndSubprogressBar</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
@@ -287,7 +277,7 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
-    <Name>ShotgunShell</Name>
+    <Name>CartridgeDisplay</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>

@@ -18,21 +18,19 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
+            Parent.GunComponent.Equip(Parent.GameplayInputDevice.GunInputDevice);
         }
 
         protected override void AfterTimedStateActivity()
         {
             if (Parent.GameplayInputDevice.NextWeapon.WasJustPressed)
             {
-                Parent.Gun.Weapons.CycleToNextItem();
-                Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
+                Parent.GunComponent.CycleToNextWeapon();
             }
             
             if (Parent.GameplayInputDevice.PreviousWeapon.WasJustPressed)
             {
-                Parent.Gun.Weapons.CycleToPreviousItem();
-                Parent.GunInstance.Equip(Parent.GameplayInputDevice.GunInputDevice, Parent.Gun.Weapons.CurrentItem);
+                Parent.GunComponent.CycleToPreviousWeapon();
             }
             
             SetRotation();
@@ -50,7 +48,7 @@ public partial class Player
                 return StateMachine.Get<Guarding>();
             }
             
-            if (Parent.GameplayInputDevice.AimInMeleeRange && Parent.MeleeWeapon.Cache.Count > 0)
+            if (Parent.GameplayInputDevice.AimInMeleeRange && !Parent.MeleeWeaponComponent.IsEmpty)
             {
                 return StateMachine.Get<MeleeWeaponMode>();
             }
@@ -60,7 +58,7 @@ public partial class Player
 
         public override void BeforeDeactivate()
         {
-            Parent.GunInstance.Unequip();
+            Parent.GunComponent.Unequip();
         }
 
         public override void Uninitialize() { }

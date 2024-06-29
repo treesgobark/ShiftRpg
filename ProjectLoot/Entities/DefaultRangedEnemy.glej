@@ -185,6 +185,29 @@
       "GenerateTimedEmit": true,
       "DefinedByBase": true,
       "InstantiatedByBase": true
+    },
+    {
+      "InstanceName": "GunSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\DefaultRangedEnemy",

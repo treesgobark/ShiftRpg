@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ComponentSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>ShotgunShell</Name>
+  <Name>CartridgeDisplay</Name>
   <BaseType>Container</BaseType>
   <State>
     <Name>Default</Name>
+    <Variable>
+      <Type>CartridgeType</Type>
+      <Name>CartridgeTypeState</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
     <Variable>
       <Type>float</Type>
       <Name>Height</Name>
@@ -106,12 +111,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>float</Type>
-      <Name>X</Name>
-      <Value xsi:type="xsd:float">89</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>HorizontalAlignment</Type>
       <Name>X Origin</Name>
       <Value xsi:type="xsd:int">1</Value>
@@ -121,12 +120,6 @@
       <Type>PositionUnitType</Type>
       <Name>X Units</Name>
       <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Y</Name>
-      <Value xsi:type="xsd:float">-22</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -176,6 +169,37 @@
         <Type>int</Type>
         <Name>SpriteInstance.Texture Left</Name>
         <Value xsi:type="xsd:int">128</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+  </Category>
+  <Category>
+    <Name>CartridgeType</Name>
+    <IsSetRecursively>false</IsSetRecursively>
+    <State>
+      <Name>Handgun</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>SpriteInstance.Texture Top</Name>
+        <Value xsi:type="xsd:int">496</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Rifle</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>SpriteInstance.Texture Top</Name>
+        <Value xsi:type="xsd:int">512</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Shotgun</Name>
+      <Variable>
+        <Type>int</Type>
+        <Name>SpriteInstance.Texture Top</Name>
+        <Value xsi:type="xsd:int">480</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

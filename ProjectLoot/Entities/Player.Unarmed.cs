@@ -20,16 +20,6 @@ public partial class Player
 
         protected override void AfterTimedStateActivity()
         {
-            if (Parent.GameplayInputDevice.NextWeapon.WasJustPressed)
-            {
-                Parent.MeleeWeapon.Cache.CycleToNextWeapon();
-            }
-            
-            if (Parent.GameplayInputDevice.PreviousWeapon.WasJustPressed)
-            {
-                Parent.MeleeWeapon.Cache.CycleToPreviousWeapon();
-            }
-
             SetRotation();
         }
     
@@ -45,14 +35,14 @@ public partial class Player
                 return StateMachine.Get<Guarding>();
             }
 
-            return (Parent.MeleeWeapon.Cache.Count, Parent.Gun.Weapons.Count,
+            return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (> 0, 0, _)       => StateMachine.Get<MeleeWeaponMode>(),
-                (0, > 0, _)       => StateMachine.Get<GunMode>(),
-                (> 0, > 0, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (> 0, > 0, false) => StateMachine.Get<GunMode>(),
-                _                 => null
+                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
+                (true, false, _)      => StateMachine.Get<GunMode>(),
+                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
+                (false, false, false) => StateMachine.Get<GunMode>(),
+                _                     => null,
             };
         }
 

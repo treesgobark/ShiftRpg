@@ -14,9 +14,7 @@ namespace ProjectLoot.Screens;
 
 public partial class GameScreen
 {
-    private MagazineDisplay ShotgunDisplay { get; set; }
-    private MagazineDisplay PistolDisplay  { get; set; }
-    private MagazineDisplay RifleDisplay   { get; set; }
+    private MagazineDisplay MagazineDisplay { get; set; }
 
     protected bool GameOver { get; set; }
 
@@ -24,33 +22,20 @@ public partial class GameScreen
     {
         SpriteManager.OrderedSortType                    = SortType.ZSecondaryParentY;
         CameraControllingEntityInstance.CameraOffset     = new Vector3(0, 0, 0);
-        GumScreen.HealthBarPlayerInstance.BindingContext = Player1.Health;
+        GumScreen.HealthBarPlayerInstance.BindingContext = Player1.HealthComponent;
         GumScreen.HealthBarPlayerInstance.SetBinding(nameof(HealthBarPlayerRuntime.ProgressPerCent),
                                                      nameof(HealthComponent.HealthPercentage));
         InitializePauseMenu();
 
-        ShotgunDisplay = new MagazineDisplay(ShotgunShellFactory,    new Vector3(64, -64, 0), 5,  11);
-        PistolDisplay  = new MagazineDisplay(PistolCartridgeFactory, new Vector3(64, -96, 0), 13, 9);
-        RifleDisplay   = new MagazineDisplay(RifleCartridgeFactory,  new Vector3(64, -32, 0), 30, 6);
+        MagazineDisplay = new MagazineDisplay(CartridgeDisplayFactory, new Vector3(16, -32, 0), 3, 11)
+        {
+            BindingContext = Player1.GunComponent
+        };
     }
 
-    private static ShotgunShellRuntime ShotgunShellFactory()
+    private static CartridgeDisplayRuntime CartridgeDisplayFactory()
     {
-        var cartridge = new ShotgunShellRuntime();
-        cartridge.AddToManagers();
-        return cartridge;
-    }
-
-    private static PistolCartridgeRuntime PistolCartridgeFactory()
-    {
-        var cartridge = new PistolCartridgeRuntime();
-        cartridge.AddToManagers();
-        return cartridge;
-    }
-
-    private static RifleCartridgeRuntime RifleCartridgeFactory()
-    {
-        var cartridge = new RifleCartridgeRuntime();
+        var cartridge = new CartridgeDisplayRuntime();
         cartridge.AddToManagers();
         return cartridge;
     }
@@ -59,8 +44,8 @@ public partial class GameScreen
     {
         // Debugger.CommandLineWrite(GuiManager.Cursor.WindowOver);
 
-        // DisplayEnemyInputs();
-        DisplayPlayerInputs();
+        DisplayEnemyInputs();
+        // DisplayPlayerInputs();
 
         foreach (Enemy? enemy in EnemyList) enemy?.EnemyInputDevice?.SetTarget(Player1);
 
@@ -87,24 +72,7 @@ public partial class GameScreen
 
         if (!IsPaused)
         {
-            if (Player1.GameplayInputDevice.Attack.WasJustPressed)
-            {
-                // MagazineDisplay.CurrentCount--;
-                ShotgunDisplay.Fire();
-                PistolDisplay.Fire();
-                RifleDisplay.Fire();
-            }
-
-            if (Player1.GameplayInputDevice.Dash.WasJustPressed)
-            {
-                ShotgunDisplay.CurrentCount = int.MaxValue;
-                PistolDisplay.CurrentCount  = int.MaxValue;
-                RifleDisplay.CurrentCount   = int.MaxValue;
-            }
-
-            ShotgunDisplay.Activity();
-            PistolDisplay.Activity();
-            RifleDisplay.Activity();
+            MagazineDisplay.Activity();
         }
     }
 
@@ -156,9 +124,7 @@ public partial class GameScreen
 
     private void CustomDestroy()
     {
-        ShotgunDisplay.Destroy();
-        PistolDisplay.Destroy();
-        RifleDisplay.Destroy();
+        MagazineDisplay.Destroy();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName)

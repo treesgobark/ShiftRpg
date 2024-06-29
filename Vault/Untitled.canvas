@@ -1,0 +1,32 @@
+{
+	"nodes":[
+		{"id":"a94fd3f16fc134ee","type":"text","text":"Player","x":-500,"y":-200,"width":250,"height":60,"color":"1"},
+		{"id":"daf04828113bee6c","type":"text","text":"Gun","x":-880,"y":110,"width":250,"height":60,"color":"1"},
+		{"id":"6f44a5d0cb7e943a","x":-780,"y":385,"width":250,"height":60,"type":"text","text":"Equip(GunRuntimeModel)"},
+		{"id":"2e2279ad707165f7","type":"text","text":"PickUpGun(GunData)","x":21,"y":140,"width":225,"height":60},
+		{"id":"657d1943a18a2a70","type":"text","text":"WeaponPickup","x":340,"y":-170,"width":250,"height":60,"color":"1"},
+		{"id":"bbefcee43f4e3ab8","type":"text","text":"GunData","x":340,"y":20,"width":250,"height":60},
+		{"id":"73473e4f3255442d","type":"text","text":"QuickAccessGuns : List\\<GunRuntimeModel\\>","x":-500,"y":240,"width":400,"height":60},
+		{"id":"1818f27dea044bd6","type":"text","text":"GunViewModel : ViewModel","x":-1220,"y":540,"width":295,"height":60},
+		{"id":"e015fbc6a2b7933e","type":"text","text":"CollisionRelationship\\<Player, WeaponPickup\\>","x":-140,"y":-320,"width":407,"height":60,"color":"1"},
+		{"id":"c1cea89593785678","x":-1175,"y":-10,"width":250,"height":60,"color":"1","type":"text","text":"GameScreen"},
+		{"id":"6565ca9696af3dd8","x":-1353,"y":270,"width":267,"height":60,"type":"text","text":"MagazineDisplay"},
+		{"id":"f29572a43490281a","x":-1197,"y":-350,"width":250,"height":60,"color":"1","type":"text","text":"FRB-Managed Types"}
+	],
+	"edges":[
+		{"id":"4e4a3867ac38bc73","fromNode":"a94fd3f16fc134ee","fromSide":"bottom","toNode":"daf04828113bee6c","toSide":"top","label":"has"},
+		{"id":"e324499a18a8bb13","fromNode":"a94fd3f16fc134ee","fromSide":"bottom","toNode":"73473e4f3255442d","toSide":"top","label":"has"},
+		{"id":"ca598d82a191d05d","fromNode":"daf04828113bee6c","fromSide":"bottom","toNode":"1818f27dea044bd6","toSide":"top","label":"has"},
+		{"id":"0af1c5dad720ca3d","fromNode":"a94fd3f16fc134ee","fromSide":"bottom","toNode":"2e2279ad707165f7","toSide":"top","label":"has"},
+		{"id":"352076f390a6bde3","fromNode":"657d1943a18a2a70","fromSide":"bottom","toNode":"bbefcee43f4e3ab8","toSide":"top","label":"has"},
+		{"id":"a7813e4b1d0c8fc4","fromNode":"2e2279ad707165f7","fromSide":"left","toNode":"73473e4f3255442d","toSide":"right","label":"adds to"},
+		{"id":"6b6a7aa4ad413c70","fromNode":"e015fbc6a2b7933e","fromSide":"bottom","toNode":"2e2279ad707165f7","toSide":"top","color":"2","label":"calls"},
+		{"id":"4a5630469b6fbb16","fromNode":"2e2279ad707165f7","fromSide":"right","toNode":"bbefcee43f4e3ab8","toSide":"left","color":"2","label":"using"},
+		{"id":"971b398151923ffd","fromNode":"daf04828113bee6c","fromSide":"bottom","toNode":"6f44a5d0cb7e943a","toSide":"top","label":"has"},
+		{"id":"1fc3e603fd808c45","fromNode":"a94fd3f16fc134ee","fromSide":"bottom","toNode":"6f44a5d0cb7e943a","toSide":"top","color":"2","label":"calls"},
+		{"id":"1a56ab0f5177fcfc","fromNode":"6f44a5d0cb7e943a","fromSide":"right","toNode":"73473e4f3255442d","toSide":"bottom","color":"2","label":"using"},
+		{"id":"be70ff7fac0a8801","fromNode":"6f44a5d0cb7e943a","fromSide":"bottom","toNode":"1818f27dea044bd6","toSide":"right","label":"mutates"},
+		{"id":"772440913dabecb1","fromNode":"c1cea89593785678","fromSide":"bottom","toNode":"6565ca9696af3dd8","toSide":"top"},
+		{"id":"d667cb00c7b5ef52","fromNode":"6565ca9696af3dd8","fromSide":"bottom","toNode":"1818f27dea044bd6","toSide":"left","label":"subscribes to"}
+	]
+}

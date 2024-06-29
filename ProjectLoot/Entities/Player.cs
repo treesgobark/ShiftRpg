@@ -17,14 +17,14 @@ public partial class Player
     public IGameplayInputDevice GameplayInputDevice { get; set; }
     public float LastMeleeRotation { get; set; }
 
-    public EffectsComponent Effects { get; private set; }
-    public TransformComponent Transform { get; private set; }
-    public HealthComponent Health { get; private set; }
-    public HitstopComponent Hitstop { get; private set; }
-    public HitstunComponent Hitstun { get; private set; }
-    public GunComponent Gun { get; private set; }
-    public MeleeWeaponComponent MeleeWeapon { get; private set; }
-    public SpriteComponent Sprite { get; private set; }
+    public EffectsComponent EffectsComponent { get; private set; }
+    public TransformComponent TransformComponent { get; private set; }
+    public HealthComponent HealthComponent { get; private set; }
+    public HitstopComponent HitstopComponent { get; private set; }
+    public HitstunComponent HitstunComponent { get; private set; }
+    public GunComponent GunComponent { get; private set; }
+    public MeleeWeaponComponent MeleeWeaponComponent { get; private set; }
+    public SpriteComponent PlayerSpriteComponent { get; private set; }
 
     public StateMachine StateMachine { get; protected set; }
 
@@ -45,14 +45,14 @@ public partial class Player
 
     private void InitializeComponents()
     {
-        Effects     = new EffectsComponent { Team = Team.Player };
-        Transform   = new TransformComponent(this);
-        Health      = new HealthComponent(MaxHealth);
-        Hitstop     = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-        Hitstun     = new HitstunComponent();
-        Gun         = new GunComponent();
-        MeleeWeapon = new MeleeWeaponComponent(new MeleeWeaponInputDevice(GameplayInputDevice));
-        Sprite      = new SpriteComponent(PlayerSprite);
+        EffectsComponent      = new EffectsComponent { Team = Team.Player };
+        TransformComponent    = new TransformComponent(this);
+        HealthComponent       = new HealthComponent(MaxHealth);
+        HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+        HitstunComponent      = new HitstunComponent();
+        GunComponent          = new GunComponent(GunSprite, Team.Player);
+        MeleeWeaponComponent  = new MeleeWeaponComponent();
+        PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
     }
 
     private void InitializeControllers()
@@ -68,9 +68,9 @@ public partial class Player
 
     private void InitializeHandlers()
     {
-        Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
-        Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this));
-        Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, Transform, Hitstop));
+        EffectsComponent.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(EffectsComponent, HitstopComponent, TransformComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
+        EffectsComponent.HandlerCollection.Add<DamageEffect>(new DamageHandler(EffectsComponent, HealthComponent, TransformComponent, FrbTimeManager.Instance, this));
+        EffectsComponent.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent, HitstopComponent));
     }
 
     private void InitializeChildren()
@@ -78,13 +78,13 @@ public partial class Player
         AimThresholdCircle.AttachTo(GameplayCenter);
         DirectionIndicator.AttachTo(GameplayCenter);
         GuardSprite.AttachTo(GameplayCenter);
-        GunInstance.AttachTo(GameplayCenter);
-        GunInstance.Effects.Team = Team.Player;
+        GunSprite.AttachTo(GameplayCenter);
     }
 
     private void CustomActivity()
     {
-        Effects.Activity();
+        EffectsComponent.Activity();
+        GunComponent.Activity();
 
         PlayerSprite.ForceUpdateDependenciesDeep();
 
@@ -92,19 +92,14 @@ public partial class Player
         PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
     }
 
-    private void CustomDestroy()
-    {
-        MeleeWeapon.Cache.Destroy();
-    }
+    private void CustomDestroy() { }
 
-    private static void CustomLoadStaticContent(string contentManagerName)
-    {
-    }
+    private static void CustomLoadStaticContent(string contentManagerName) { }
 
     public bool PickUpWeapon(GunData gun)
     {
         var gunModel = new GunModel(gun);
-        Gun.Weapons.Add(gunModel);
+        GunComponent.Add(gunModel);
         return true;
     }
 }

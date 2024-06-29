@@ -26,11 +26,6 @@
       <Name>HitMarker</Name>
       <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
     </None>
-    <None Include="..\BuiltXnbs\DesktopGL\Entities\DefaultGun\Saiga12SingleShot1mSide.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Saiga12SingleShot1mSide</Name>
-      <Link>Content\Entities\DefaultGun\Saiga12SingleShot1mSide.xnb</Link>
-    </None>
     <None Include="Content\Entities\AnalogStickDisplay\AnalogStick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnalogStick</Name>
@@ -71,10 +66,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
     </None>
-    <None Include="Content\Entities\Gun\GunAnimations.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GunAnimations</Name>
-    </None>
     <None Include="Content\Entities\Player\Character.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Character</Name>
@@ -98,6 +89,14 @@
     <None Include="Content\GlobalContent\GunData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MeleeWeaponData</Name>
+    </None>
+    <None Include="Content\GumProject\Components\CartridgeDisplay.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>CartridgeDisplay</Name>
     </None>
     <None Include="Content\GumProject\Components\Controls\ButtonClose.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -275,10 +274,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PauseMenu</Name>
     </None>
-    <None Include="Content\GumProject\Components\PistolCartridge.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PistolCartridge</Name>
-    </None>
     <None Include="Content\GumProject\Components\ProgressAndSubprogressBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressAndSubprogressBar</Name>
@@ -291,17 +286,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressBarImproved</Name>
     </None>
-    <None Include="Content\GumProject\Components\RifleCartridge.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>RifleCartridge</Name>
-    </None>
     <None Include="Content\GumProject\Components\RoundedTrimRectangle.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RoundedTrimRectangle</Name>
-    </None>
-    <None Include="Content\GumProject\Components\ShotgunShell.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ShotgunShell</Name>
     </None>
     <None Include="Content\GumProject\Components\VirtualController\AttackIndicator.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -491,6 +478,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>UISpriteSheet</Name>
     </None>
+    <None Include="Content\GunAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GunAnimations</Name>
+    </None>
     <None Include="Content\Screens\ShootingRange\ShootingRangeMap.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ShootingRangeMap</Name>
@@ -518,20 +509,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\EffectsComponent.cs" />
+    <Compile Include="Components\GunComponent.Ready.cs">
+      <DependentUpon>GunComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GunComponent.Recovery.cs">
+      <DependentUpon>GunComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GunComponent.Reloading.cs">
+      <DependentUpon>GunComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\GunComponent.cs" />
     <Compile Include="Components\HealthComponent.cs" />
     <Compile Include="Components\HitstopComponent.cs" />
     <Compile Include="Components\HitstunComponent.cs" />
     <Compile Include="Components\Interfaces\IEffectsComponent.cs" />
-    <Compile Include="Components\Interfaces\IGunComponent.cs" />
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstunComponent.cs" />
-    <Compile Include="Components\Interfaces\IMeleeWeaponComponent.cs" />
     <Compile Include="Components\Interfaces\IShatterComponent.cs" />
     <Compile Include="Components\Interfaces\ISpriteComponent.cs" />
     <Compile Include="Components\Interfaces\ITransformComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaknessComponent.cs" />
+    <Compile Include="Components\MeleeWeaponComponent.Active.cs">
+      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MeleeWeaponComponent.Idle.cs">
+      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MeleeWeaponComponent.Recovery.cs">
+      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MeleeWeaponComponent.Startup.cs">
+      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\MeleeWeaponComponent.cs" />
     <Compile Include="Components\ShatterComponent.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
@@ -539,8 +549,8 @@
     <Compile Include="Components\WeaknessComponent.cs" />
     <Compile Include="Contracts\IEffectBundle.cs" />
     <Compile Include="Contracts\IEffectHandler.cs" />
-    <Compile Include="Contracts\IGun.cs" />
-    <Compile Include="Contracts\IMeleeWeapon.cs" />
+    <Compile Include="Contracts\IGunModel.cs" />
+    <Compile Include="Contracts\IMeleeWeaponModel.cs" />
     <Compile Include="Contracts\INumericalEffect.cs" />
     <Compile Include="Contracts\IStatModifierCollection.cs" />
     <Compile Include="Contracts\IUpdateable.cs" />
@@ -556,6 +566,7 @@
     <Compile Include="DataTypes\GunData.Generated.cs">
       <DependentUpon>GunData.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataTypes\MeleeWeaponData.Generated.cs" />
     <Compile Include="DataTypes\PlatformerValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
@@ -595,49 +606,13 @@
     <Compile Include="Entities\DefaultRangedEnemy.Generated.cs">
       <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DefaultSword.cs" />
-    <Compile Include="Entities\DefaultSword.Generated.cs">
-      <DependentUpon>DefaultSword.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Enemy.Generated.cs">
       <DependentUpon>Enemy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Gun.cs" />
-    <Compile Include="Entities\Gun.Generated.cs">
-      <DependentUpon>Gun.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Gun.Ready.cs">
-      <DependentUpon>Gun.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Gun.Recovery.cs">
-      <DependentUpon>Gun.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Gun.Reloading.cs">
-      <DependentUpon>Gun.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Gun.SuperRocketReloading.cs">
-      <DependentUpon>Gun.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\MeleeHitbox.cs" />
     <Compile Include="Entities\MeleeHitbox.Generated.cs">
       <DependentUpon>MeleeHitbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MeleeWeapon.Active.cs">
-      <DependentUpon>MeleeWeapon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MeleeWeapon.cs" />
-    <Compile Include="Entities\MeleeWeapon.Generated.cs">
-      <DependentUpon>MeleeWeapon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MeleeWeapon.Idle.cs">
-      <DependentUpon>MeleeWeapon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MeleeWeapon.Recovery.cs">
-      <DependentUpon>MeleeWeapon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\MeleeWeapon.Startup.cs">
-      <DependentUpon>MeleeWeapon.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Player.Dashing.cs">
@@ -675,7 +650,6 @@
     <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
-    <Compile Include="Factories\DefaultSwordFactory.Generated.cs" />
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
@@ -756,6 +730,10 @@
     <Compile Include="GumRuntimes\Behaviors\ITreeViewItemBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IUserControlBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\ButtonIndicatorRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\CartridgeDisplayRuntime.cs" />
+    <Compile Include="GumRuntimes\CartridgeDisplayRuntime.Generated.cs">
+      <DependentUpon>CartridgeDisplayRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
@@ -946,11 +924,6 @@
     <Compile Include="GumRuntimes\PauseMenuRuntime.Generated.cs">
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
     </Compile>
-    <Compile Include="GumRuntimes\PistolCartridge1Runtime.Generated.cs" />
-    <Compile Include="GumRuntimes\PistolCartridgeRuntime.cs" />
-    <Compile Include="GumRuntimes\PistolCartridgeRuntime.Generated.cs">
-      <DependentUpon>PistolCartridgeRuntime.cs</DependentUpon>
-    </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.cs" />
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.Generated.cs">
@@ -965,10 +938,6 @@
       <DependentUpon>ProgressBarRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\RifleCartridgeRuntime.cs" />
-    <Compile Include="GumRuntimes\RifleCartridgeRuntime.Generated.cs">
-      <DependentUpon>RifleCartridgeRuntime.cs</DependentUpon>
-    </Compile>
     <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.cs" />
     <Compile Include="GumRuntimes\RoundedTrimRectangleRuntime.Generated.cs">
       <DependentUpon>RoundedTrimRectangleRuntime.cs</DependentUpon>
@@ -976,11 +945,6 @@
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.cs" />
     <Compile Include="GumRuntimes\ShootingRangeGumRuntime.Generated.cs">
       <DependentUpon>ShootingRangeGumRuntime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GumRuntimes\ShotgunShell1Runtime.Generated.cs" />
-    <Compile Include="GumRuntimes\ShotgunShellRuntime.cs" />
-    <Compile Include="GumRuntimes\ShotgunShellRuntime.Generated.cs">
-      <DependentUpon>ShotgunShellRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TestLevelGumRuntime.cs" />
@@ -1093,6 +1057,7 @@
     <Compile Include="TopDown\TopDownAiInput.Generated.cs" />
     <Compile Include="TopDown\TopDownAiTargetLogic.Generated.cs" />
     <Compile Include="TopDown\TopDownAnimationControllerGenerator.Generated.cs" />
+    <Compile Include="ViewModels\IGunViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />

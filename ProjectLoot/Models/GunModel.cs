@@ -1,9 +1,10 @@
+using FlatRedBall.Forms.MVVM;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 
 namespace ProjectLoot.Models;
 
-public class GunModel : IGunModel
+public class GunModel : ViewModel, IGunModel
 {
     public GunModel(GunData gunData)
     {
@@ -12,5 +13,7 @@ public class GunModel : IGunModel
     }
     
     public GunData GunData { get; }
-    public int CurrentRoundsInMagazine { get; set; }
+    public int CurrentRoundsInMagazine { get => Get<int>(); set => Set(value); }
+    public bool IsFull => CurrentRoundsInMagazine  == GunData.MagazineSize;
+    public bool IsEmpty => CurrentRoundsInMagazine == 0;
 }

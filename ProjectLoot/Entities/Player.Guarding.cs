@@ -22,7 +22,7 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.Health.DamageModifiers.Upsert("guard", new StatModifier<float>(
+            Parent.HealthComponent.DamageModifiers.Upsert("guard", new StatModifier<float>(
                                                      _ => true,
                                                      _ => 0.2f,
                                                      ModifierCategory.Multiplicative));
@@ -39,14 +39,14 @@ public partial class Player
 
             if (Parent.GameplayInputDevice.Guard.IsDown) return null;
 
-            return (Parent.MeleeWeapon.Cache.Count, Parent.Gun.Weapons.Count,
+            return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (> 0, 0, _)       => StateMachine.Get<MeleeWeaponMode>(),
-                (0, > 0, _)       => StateMachine.Get<GunMode>(),
-                (> 0, > 0, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (> 0, > 0, false) => StateMachine.Get<GunMode>(),
-                _                 => StateMachine.Get<Unarmed>()
+                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
+                (true, false, _)      => StateMachine.Get<GunMode>(),
+                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
+                (false, false, false) => StateMachine.Get<GunMode>(),
+                _                     => StateMachine.Get<Unarmed>()
             };
         }
 
@@ -56,7 +56,7 @@ public partial class Player
 
         public override void BeforeDeactivate()
         {
-            Parent.Health.DamageModifiers.Delete("guard");
+            Parent.HealthComponent.DamageModifiers.Delete("guard");
 
             Parent.GuardSprite.Visible = false;
 

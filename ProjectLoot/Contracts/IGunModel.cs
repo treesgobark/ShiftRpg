@@ -6,10 +6,6 @@ public interface IGunModel
 {
     GunData GunData { get; }
     int CurrentRoundsInMagazine { get; set; }
-}
-
-public enum FiringType
-{
-    SingleShot,
-    Automatic,
+    bool IsFull { get; }
+    bool IsEmpty { get; }
 }

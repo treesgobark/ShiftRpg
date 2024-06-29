@@ -70,6 +70,15 @@
       "SourceFile": "GlobalContent/GunData.ods",
       "BuildTool": "*.ods -> soffice.exe -> *.csv",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponData.csv",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "SourceFile": "GlobalContent/MeleeWeaponData.ods",
+      "BuildTool": "*.ods -> soffice.exe -> *.csv",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},
@@ -149,19 +158,10 @@
       "Name": "Entities\\DefaultRangedEnemy"
     },
     {
-      "Name": "Entities\\DefaultSword"
-    },
-    {
       "Name": "Entities\\Enemy"
     },
     {
-      "Name": "Entities\\Gun"
-    },
-    {
       "Name": "Entities\\MeleeHitbox"
-    },
-    {
-      "Name": "Entities\\MeleeWeapon"
     },
     {
       "Name": "Entities\\Player"

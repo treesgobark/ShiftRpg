@@ -3,13 +3,13 @@ using ANLG.Utilities.Core.States;
 using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 
-namespace ProjectLoot.Entities;
+namespace ProjectLoot.Components;
 
-public partial class Gun
+public partial class GunComponent
 {
-    protected class Recovery : ParentedTimedState<Gun>
+    protected class Recovery : ParentedTimedState<GunComponent>
     {
-        public Recovery(Gun parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
+        public Recovery(GunComponent parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
 
         private IState? NextState { get; set; }
         
@@ -32,7 +32,7 @@ public partial class Gun
                 return NextState;
             }
     
-            if (TimeInState > Parent.GunModel.GunData.TimePerRound)
+            if (TimeInState > Parent.CurrentGun.GunData.TimePerRound)
             {
                 return StateMachine.Get<Ready>();
             }

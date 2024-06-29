@@ -1,4 +1,4 @@
-"GunName (string, required)",Damage (int),DamagePerShot (float),DamagePerSecond (float),DamagePerMagazineCycle (float),DamagePerSecondWithReload (float),SecondsFiringPerMagazine (float),ProjectileSpeed (float),ProjectileRadius (float),MagazineSize (int),AmmoCostPerShot (int),ReloadTime (double),SecondsPerRound (double),RoundsPerSecond (double),ProjectileCount (int),ProjectileSpreadDegrees (float),ProjectileSpreadWidth (float),IsRandomSpread (bool),Accuracy (float),Handling (float),WeaknessRatio (float)
-Pistol,10,10,50,100,33.3333333333333,2,600,4,10,1,1,0.2,5,1,0,0,FALSE,1,1,0.5
-Rifle,5,5,50,100,28.5714285714286,2,800,3,20,1,1.5,0.1,10,1,0,0,FALSE,1,1,0.2
-Shotgun,4,20,40,100,25,2.5,400,2,5,1,1.5,0.5,2,5,15,0,TRUE,1,1,0.7
+"GunName (string, required)",Damage (int),DamagePerShot (float),DamagePerSecond (float),DamagePerMagazineCycle (float),DamagePerSecondWithReload (float),SecondsFiringPerMagazine (float),ProjectileSpeed (float),ProjectileRadius (float),MagazineSize (int),AmmoCostPerShot (int),ReloadTime (double),SecondsPerRound (double),RoundsPerSecond (double),ProjectileCount (int),ProjectileSpreadDegrees (float),ProjectileSpreadWidth (float),IsRandomSpread (bool),Accuracy (float),Handling (float),WeaknessRatio (float),FireSoundEffect (string)
+Pistol,10,10,50,100,33.3333333333333,2,600,4,10,1,1,0.2,5,1,0,0,FALSE,1,1,0.5,Pistol
+Rifle,5,5,50,100,28.5714285714286,2,800,3,20,1,1.5,0.1,10,1,0,0,FALSE,1,1,0.2,Rifle
+Shotgun,4,20,40,100,25,2.5,400,2,5,1,1.5,0.5,2,5,15,0,TRUE,1,1,0.7,Shotgun

@@ -47,7 +47,7 @@ namespace ProjectLoot.Entities
             ShatterComponent = new ShatterComponent(HealthBarRuntimeInstance);
             WeaknessComponent = new WeaknessComponent(HealthBarRuntimeInstance);
             HitstopComponent = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            MeleeWeaponComponent = new MeleeWeaponComponent(new MeleeWeaponInputDevice(EnemyInputDevice));
+            MeleeWeaponComponent = new MeleeWeaponComponent();
             SpriteComponent = new SpriteComponent(SpriteInstance);
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
@@ -87,7 +87,6 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            MeleeWeaponComponent.Cache.Destroy();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

@@ -2,13 +2,13 @@ using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ProjectLoot.Controllers;
 
-namespace ProjectLoot.Entities;
+namespace ProjectLoot.Components;
 
-public partial class Gun
+public partial class GunComponent
 {
-    protected class Reloading : ParentedTimedState<Gun>
+    protected class Reloading : ParentedTimedState<GunComponent>
     {
-        public Reloading(Gun parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
+        public Reloading(GunComponent parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
         
         public override void Initialize() { }
 
@@ -16,9 +16,10 @@ public partial class Gun
     
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState > Parent.GunModel.GunData.ReloadTimeSpan)
+            if (TimeInState > Parent.CurrentGun.GunData.ReloadTimeSpan)
             {
-                Parent.GunModel.CurrentRoundsInMagazine = Parent.GunModel.GunData.MagazineSize;
+                Parent.CurrentGun.CurrentRoundsInMagazine = Parent.CurrentGun.GunData.MagazineSize;
+                Parent.CurrentMagazineCount               = Parent.CurrentGun.GunData.MagazineSize;
                 return StateMachine.Get<Ready>();
             }
     

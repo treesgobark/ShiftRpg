@@ -36,14 +36,14 @@ public partial class Player
         {
             if (TimeInState < TimeSpan.FromSeconds(0.15f)) { return null; }
 
-            return (Parent.MeleeWeapon.Cache.Count, Parent.Gun.Weapons.Count,
+            return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (> 0, 0, _)       => StateMachine.Get<MeleeWeaponMode>(),
-                (0, > 0, _)       => StateMachine.Get<GunMode>(),
-                (> 0, > 0, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (> 0, > 0, false) => StateMachine.Get<GunMode>(),
-                _                 => StateMachine.Get<Unarmed>()
+                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
+                (true, false, _)      => StateMachine.Get<GunMode>(),
+                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
+                (false, false, false) => StateMachine.Get<GunMode>(),
+                _                     => StateMachine.Get<Unarmed>()
             };
         }
 

@@ -47,7 +47,7 @@ namespace ProjectLoot.Entities
             ShatterComponent   = new ShatterComponent(HealthBarRuntimeInstance);
             WeaknessComponent  = new WeaknessComponent(HealthBarRuntimeInstance);
             HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            GunComponent       = new GunComponent();
+            GunComponent       = new GunComponent(GunSprite, Team.Enemy);
             SpriteComponent    = new SpriteComponent(SpriteInstance);
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(

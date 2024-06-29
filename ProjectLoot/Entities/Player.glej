@@ -24,6 +24,12 @@
       "IsSharedStatic": true,
       "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GunAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "CustomVariables": [
@@ -431,8 +437,8 @@
       "GenerateTimedEmit": true
     },
     {
-      "InstanceName": "GunInstance",
-      "SourceClassType": "Entities\\Gun",
+      "InstanceName": "GunSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
@@ -443,13 +449,49 @@
       "InstructionSaves": [
         {
           "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "Pistol",
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "<NONE>",
+          "Time": 0.0
+        },
+        {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "GunAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
           "Member": "Z",
           "Value": 0.1,
           "Time": 0.0
         }
       ],
-      "SourceType": 1,
-      "SourceFile": "Entities/Gun",
+      "SourceType": 2,
+      "SourceFile": "Sprite",
       "AttachToContainer": true,
       "GenerateTimedEmit": true
     }

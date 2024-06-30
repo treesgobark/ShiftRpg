@@ -448,9 +448,9 @@
       ],
       "InstructionSaves": [
         {
-          "Type": "float",
-          "Member": "TextureScale",
-          "Value": 1.0,
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "GunAnimations",
           "Time": 0.0
         },
         {
@@ -460,21 +460,21 @@
           "Time": 0.0
         },
         {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
           "Type": "Texture2D",
           "Member": "Texture",
           "Value": "<NONE>",
           "Time": 0.0
         },
         {
-          "Type": "AnimationChainList",
-          "Member": "AnimationChains",
-          "Value": "GunAnimations",
-          "Time": 0.0
-        },
-        {
-          "Type": "bool",
-          "Member": "IgnoresParentVisibility",
-          "Value": true,
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
           "Time": 0.0
         },
         {

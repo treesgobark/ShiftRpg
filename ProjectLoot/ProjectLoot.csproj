@@ -509,20 +509,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\EffectsComponent.cs" />
-    <Compile Include="Components\GunComponent.Ready.cs">
-      <DependentUpon>GunComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\GunComponent.Recovery.cs">
-      <DependentUpon>GunComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\GunComponent.Reloading.cs">
-      <DependentUpon>GunComponent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\GunComponent.cs" />
     <Compile Include="Components\HealthComponent.cs" />
     <Compile Include="Components\HitstopComponent.cs" />
     <Compile Include="Components\HitstunComponent.cs" />
     <Compile Include="Components\Interfaces\IEffectsComponent.cs" />
+    <Compile Include="Components\Interfaces\IGunComponent.cs" />
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstunComponent.cs" />
@@ -998,8 +990,20 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
-    <Compile Include="Models\GunModel.cs" />
+    <Compile Include="Models\StandardGunModel.Reloading.cs">
+      <DependentUpon>StandardGunModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StandardGunModel.cs" />
+    <Compile Include="Models\StandardGunModel.NotEquipped.cs">
+      <DependentUpon>StandardGunModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StandardGunModel.Ready.cs">
+      <DependentUpon>StandardGunModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\MagazineDisplay.cs" />
+    <Compile Include="Models\StandardGunModel.Recovery.cs">
+      <DependentUpon>StandardGunModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
@@ -1068,7 +1072,7 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Content\Shader.fx">
@@ -1101,6 +1105,9 @@
       <Name>SkiaInGum</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\GunStates\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

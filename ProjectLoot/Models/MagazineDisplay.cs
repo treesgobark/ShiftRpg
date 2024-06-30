@@ -38,7 +38,7 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             if (_bindingContext is not null)
             {
                 _bindingContext.PropertyChanged -= ReactToPropertyChanged;
-                _bindingContext.GunFired        -= Fire;
+                _bindingContext.GunFired        -= EjectCartridge;
             }
 
             _bindingContext = value;
@@ -46,7 +46,7 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             if (_bindingContext is not null)
             {
                 _bindingContext.PropertyChanged += ReactToPropertyChanged;
-                _bindingContext.GunFired        += Fire;
+                _bindingContext.GunFired        += EjectCartridge;
             }
         }
     }
@@ -171,22 +171,13 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         }
     }
 
-    public void Fire(int numberOfCartridges = 1)
+    public void EjectCartridge(int numberOfCartridges = 1)
     {
         for (int i = 0; i < numberOfCartridges; i++)
         {
-            int count = CurrentCount;
-        
-            CurrentCount--;
-        
-            if (count == CurrentCount)
-            {
-                return;
-            }
-        
             ICartridgeDisplay cart = CartridgeDisplayFactory();
         
-            Vector3 pos = GetPosition(CurrentCount);
+            Vector3 pos = GetPosition(CurrentCount - i);
             cart.XPosition = pos.X;
             cart.YPosition = pos.Y;
             cart.ZPosition = pos.Z;

@@ -1,6 +1,7 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
 using ProjectLoot.InputDevices;
@@ -12,13 +13,13 @@ public partial class Player
     protected class GunMode : ParentedTimedState<Player>
     {
         public GunMode(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(parent, stateMachine, timeManager) { }
+            : base(stateMachine, timeManager, parent) { }
 
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.GunComponent.Equip(Parent.GameplayInputDevice.GunInputDevice);
+            Parent.GunComponent.Equip();
         }
 
         protected override void AfterTimedStateActivity()

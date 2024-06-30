@@ -1,15 +1,20 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
-using ProjectLoot.Contracts;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Controllers;
 
-namespace ProjectLoot.Components;
+namespace ProjectLoot.Models;
 
-public partial class GunComponent
+public partial class StandardGunModel
 {
-    protected class Recovery : ParentedTimedState<GunComponent>
+    private class Recovery : TimedState
     {
-        public Recovery(GunComponent parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
+        private StandardGunModel GunModel { get; }
+        
+        public Recovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, StandardGunModel gunModel) : base(stateMachine, timeManager)
+        {
+            GunModel  = gunModel;
+        }
 
         private IState? NextState { get; set; }
         
@@ -19,7 +24,7 @@ public partial class GunComponent
     
         protected override void AfterTimedStateActivity()
         {
-            if (Parent.InputDevice.Reload.WasJustPressed)
+            if (GunModel.GunComponent.GunInputDevice.Reload.WasJustPressed)
             {
                 NextState = StateMachine.Get<Reloading>();
             }
@@ -32,7 +37,7 @@ public partial class GunComponent
                 return NextState;
             }
     
-            if (TimeInState > Parent.CurrentGun.GunData.TimePerRound)
+            if (TimeInState > GunModel.GunData.TimePerRound)
             {
                 return StateMachine.Get<Ready>();
             }

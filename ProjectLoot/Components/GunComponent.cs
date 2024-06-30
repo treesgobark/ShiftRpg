@@ -1,8 +1,8 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Forms.MVVM;
+using Microsoft.Xna.Framework;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
@@ -11,83 +11,84 @@ using ProjectLoot.ViewModels;
 
 namespace ProjectLoot.Components;
 
-public partial class GunComponent : ViewModel, IGunViewModel
+public class GunComponent : ViewModel, IGunViewModel, IGunComponent
 {
-    private StateMachine StateMachine { get; }
-    private Sprite GunSprite { get; }
-    private Team Team { get; }
-    private IGunInputDevice InputDevice { get; set; } = ZeroGunInputDevice.Instance;
+    public Sprite GunSprite { get; }
+    public Vector3 GunPosition => GunSprite.Position;
+    public Rotation GunRotation => Rotation.FromRadians(GunSprite.RotationZ);
+    public Team Team { get; }
+    public IGunInputDevice GunInputDevice => InputDevice.GunInputDevice;
+    
+    private IGameplayInputDevice InputDevice { get; }
     private CyclableList<IGunModel> Guns { get; } = [];
     
-    public GunComponent(Sprite gunSprite, Team team)
+    public GunComponent(Sprite gunSprite, Team team, IGameplayInputDevice inputDevice)
     {
-        GunSprite = gunSprite;
-        Team      = team;
-        
-        StateMachine = new StateMachine();
-        StateMachine.Add(new Ready(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new Recovery(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new Reloading(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.InitializeStartingState<Ready>();
+        GunSprite   = gunSprite;
+        Team        = team;
+        InputDevice = inputDevice;
     }
 
-    public IGunModel? CurrentGun => Guns.CurrentItem;
     public bool IsEmpty => Guns.Count == 0;
     
     public void Add(IGunModel gunModel) => Guns.Add(gunModel);
 
     public void CycleToNextWeapon()
     {
-        IGunModel previousGun = CurrentGun;
-        Guns.CycleToNextItem();
-        
-        if (previousGun == CurrentGun)
+        if (!Guns.TryGetCurrentItem(out IGunModel gunModel))
         {
-            return;
+            throw new InvalidOperationException("No guns present. Cannot cycle.");
         }
 
-        MaximumMagazineCount       = CurrentGun.GunData.MagazineSize;
-        CurrentMagazineCount       = CurrentGun.CurrentRoundsInMagazine;
-        GunClass                   = CurrentGun.GunData.GunClass;
-        GunSprite.CurrentChainName = CurrentGun.GunData.GunName;
+        gunModel.IsEquipped = false;
+        IGunModel nextGun = Guns.CycleToNextItem();
+        nextGun.IsEquipped         = true;
+        GunSprite.CurrentChainName = nextGun.GunData.GunName;
     }
 
     public void CycleToPreviousWeapon()
     {
-        IGunModel previousGun = CurrentGun;
-        Guns.CycleToPreviousItem();
-        
-        if (previousGun == CurrentGun)
+        if (!Guns.TryGetCurrentItem(out IGunModel gunModel))
         {
-            return;
+            throw new InvalidOperationException("No guns present. Cannot cycle.");
         }
 
-        MaximumMagazineCount       = CurrentGun.GunData.MagazineSize;
-        CurrentMagazineCount       = CurrentGun.CurrentRoundsInMagazine;
-        GunClass                   = CurrentGun.GunData.GunClass;
-        GunSprite.CurrentChainName = CurrentGun.GunData.GunName;
+        gunModel.IsEquipped = false;
+        IGunModel nextGun = Guns.CycleToPreviousItem();
+        nextGun.IsEquipped         = true;
+        GunSprite.CurrentChainName = nextGun.GunData.GunName;
     }
 
-    public void Equip(IGunInputDevice input)
+    public void Equip()
     {
-        InputDevice                = input;
-        GunSprite.Visible          = true;
-        GunSprite.CurrentChainName = CurrentGun.GunData.GunName;
+        if (!Guns.TryGetCurrentItem(out IGunModel gunModel))
+        {
+            throw new InvalidOperationException("No guns present. Cannot equip.");
+        }
+
+        gunModel.IsEquipped = true;
         
-        MaximumMagazineCount       = CurrentGun.GunData.MagazineSize;
-        CurrentMagazineCount       = CurrentGun.CurrentRoundsInMagazine;
-        GunClass                   = CurrentGun.GunData.GunClass;
+        GunSprite.Visible          = true;
+        GunSprite.CurrentChainName = gunModel.GunData.GunName;
     }
 
     public void Unequip()
     {
-        InputDevice       = ZeroGunInputDevice.Instance;
+        if (Guns.TryGetCurrentItem(out IGunModel gunModel))
+        {
+            gunModel.IsEquipped = false;
+        }
+
         GunSprite.Visible = false;
     }
 
     public void Activity()
     {
-        StateMachine.DoCurrentStateActivity();
+        foreach (IGunModel gunModel in Guns)
+        {
+            gunModel.Activity();
+        }
+
         SetSpriteFlip();
     }
 
@@ -124,4 +125,10 @@ public partial class GunComponent : ViewModel, IGunViewModel
     }
 
     public event Action<int>? GunFired;
+
+    public void PublishGunFiredEvent(int ammoUsed)
+    {
+        GunFired?.Invoke(ammoUsed);
+        CurrentMagazineCount -= ammoUsed;
+    }
 }

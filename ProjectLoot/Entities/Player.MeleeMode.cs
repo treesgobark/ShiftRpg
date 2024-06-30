@@ -10,7 +10,7 @@ public partial class Player
     protected class MeleeWeaponMode : ParentedTimedState<Player>
     {
         public MeleeWeaponMode(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(parent, stateMachine, timeManager)
+            : base(stateMachine, timeManager, parent)
         {
         }
 

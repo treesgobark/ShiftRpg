@@ -6,11 +6,9 @@ namespace ProjectLoot.Controllers;
 public abstract class ParentedTimedState<T> : TimedState
 {
     protected T Parent { get; }
-    protected IReadonlyStateMachine StateMachine { get; }
 
-    protected ParentedTimedState(T parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(timeManager)
+    protected ParentedTimedState(IReadonlyStateMachine stateMachine, ITimeManager timeManager, T parent) : base(stateMachine, timeManager)
     {
         Parent = parent;
-        StateMachine = stateMachine;
     }
 }

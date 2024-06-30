@@ -10,7 +10,7 @@ public partial class DefaultMeleeEnemy
     protected class MeleeMode : ParentedTimedState<DefaultMeleeEnemy>
     {
         public MeleeMode(DefaultMeleeEnemy parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(parent, stateMachine, timeManager) { }
+            : base(stateMachine, timeManager, parent) { }
         
         public override void Initialize() { }
 

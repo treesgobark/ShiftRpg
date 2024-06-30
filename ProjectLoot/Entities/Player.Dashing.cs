@@ -13,7 +13,7 @@ public partial class Player
         private TopDownValues CachedValues { get; set; } = new();
 
         public Dashing(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(parent, stateMachine, timeManager)
+            : base(stateMachine, timeManager, parent)
         {
         }
         

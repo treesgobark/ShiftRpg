@@ -10,4 +10,5 @@ public interface IGunViewModel : INotifyPropertyChanged
     GunClass GunClass { get; set; }
 
     event Action<int>? GunFired;
+    void PublishGunFiredEvent(int ammoUsed);
 }

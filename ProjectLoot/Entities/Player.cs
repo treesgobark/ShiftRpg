@@ -50,7 +50,7 @@ public partial class Player
         HealthComponent       = new HealthComponent(MaxHealth);
         HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         HitstunComponent      = new HitstunComponent();
-        GunComponent          = new GunComponent(GunSprite, Team.Player);
+        GunComponent          = new GunComponent(GunSprite, Team.Player, GameplayInputDevice);
         MeleeWeaponComponent  = new MeleeWeaponComponent();
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
     }
@@ -98,7 +98,7 @@ public partial class Player
 
     public bool PickUpWeapon(GunData gun)
     {
-        var gunModel = new GunModel(gun);
+        var gunModel = new StandardGunModel(gun, GunComponent, GunComponent);
         GunComponent.Add(gunModel);
         return true;
     }

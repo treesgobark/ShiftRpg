@@ -56,7 +56,8 @@ namespace ProjectLoot.GumRuntimes
         public float ZRotationVelocity { get; set; }
         
         public float DestructionCountdown { get; set; }
-        
+        public bool IsVisible { get => Visible; set => Visible = value; }
+
         partial void CustomInitialize () 
         {
         }

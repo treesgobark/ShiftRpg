@@ -66,6 +66,8 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
             throw new InvalidOperationException("No guns present. Cannot equip.");
         }
 
+        IsEquipped = true;
+
         gunModel.IsEquipped = true;
         
         GunSprite.Visible          = true;
@@ -78,6 +80,8 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
         {
             gunModel.IsEquipped = false;
         }
+
+        IsEquipped = false;
 
         GunSprite.Visible = false;
     }
@@ -121,6 +125,12 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
     public GunClass GunClass
     {
         get => Get<GunClass>();
+        set => Set(value);
+    }
+
+    public bool IsEquipped
+    {
+        get => Get<bool>();
         set => Set(value);
     }
 

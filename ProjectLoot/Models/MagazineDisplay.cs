@@ -17,6 +17,7 @@ public class MagazineDisplay : IDestroyable, IUpdateable
     private float          _spacing;
     private IGunViewModel? _bindingContext;
     private GunClass       _gunClass;
+    private bool           _isVisible;
     private List<ICartridgeDisplay> CartridgeDisplays { get; } = [];
     private List<ICartridgeDisplay> SpentCartridgeDisplays { get; } = [];
     private Func<ICartridgeDisplay> CartridgeDisplayFactory { get; }
@@ -28,6 +29,8 @@ public class MagazineDisplay : IDestroyable, IUpdateable
         CurrentCount = currentCount >= 0 ? currentCount : capacity;
         Spacing = spacing;
         Position = position;
+        
+        UpdateVisiblity();
     }
 
     public IGunViewModel? BindingContext
@@ -69,6 +72,9 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             case "GunClass":
                 GunClass = gunViewModel.GunClass;
                 break;
+            case "IsEquipped":
+                IsVisible = gunViewModel.IsEquipped;
+                break;
         }
     }
 
@@ -105,6 +111,7 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             
             RecalculateStates();
             RecalculatePositions();
+            UpdateVisiblity();
         }
     }
 
@@ -168,6 +175,16 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             }
             
             RecalculateStates();
+        }
+    }
+
+    public bool IsVisible
+    {
+        get => _isVisible;
+        set
+        {
+            _isVisible = value;
+            UpdateVisiblity();
         }
     }
 
@@ -243,6 +260,16 @@ public class MagazineDisplay : IDestroyable, IUpdateable
             }
         }
     }
+
+    private void UpdateVisiblity()
+    {
+        for (var index = 0; index < CartridgeDisplays.Count; index++)
+        {
+            ICartridgeDisplay cartridge = CartridgeDisplays[index];
+
+            cartridge.IsVisible = IsVisible;
+        }
+    }
     
     private Vector3 GetPosition(int index)
     {
@@ -305,6 +332,8 @@ public interface ICartridgeDisplay : IDestroyable
     
     float ZRotationVelocity { get; set; }
     float DestructionCountdown { get; set; }
+    
+    bool IsVisible { get; set; }
 }
 
 public enum SpentState

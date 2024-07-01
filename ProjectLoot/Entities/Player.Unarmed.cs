@@ -38,11 +38,12 @@ public partial class Player
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
-                (true, false, _)      => StateMachine.Get<GunMode>(),
-                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (false, false, false) => StateMachine.Get<GunMode>(),
-                _                     => null,
+                (true, true, _)  => null,
+                (true, _, true) => null,
+                (_, true, true) => null,
+                (false, _, true) => StateMachine.Get<MeleeWeaponMode>(),
+                (_, false, false) => StateMachine.Get<GunMode>(),
+                _ => throw new InvalidOperationException("kek"),
             };
         }
 

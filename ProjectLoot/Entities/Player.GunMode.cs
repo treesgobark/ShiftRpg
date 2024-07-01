@@ -51,9 +51,11 @@ public partial class Player
                 return StateMachine.Get<Guarding>();
             }
             
-            if (Parent.GameplayInputDevice.AimInMeleeRange && !Parent.MeleeWeaponComponent.IsEmpty)
+            if (Parent.GameplayInputDevice.AimInMeleeRange)
             {
-                return StateMachine.Get<MeleeWeaponMode>();
+                return Parent.MeleeWeaponComponent.IsEmpty
+                    ? StateMachine.Get<Unarmed>()
+                    : StateMachine.Get<MeleeWeaponMode>();
             }
         
             return null;
@@ -75,6 +77,7 @@ public partial class Player
             if (angle is not null)
             {
                 Parent.RotationZ = angle.Value;
+                Parent.GameplayCenter.ForceUpdateDependenciesDeep();
             }
         }
     }

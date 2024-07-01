@@ -47,10 +47,12 @@ public partial class Player
             {
                 return StateMachine.Get<Guarding>();
             }
-
-            if (!Parent.GameplayInputDevice.AimInMeleeRange && !Parent.GunComponent.IsEmpty)
+            
+            if (!Parent.GameplayInputDevice.AimInMeleeRange)
             {
-                return StateMachine.Get<GunMode>();
+                return Parent.GunComponent.IsEmpty
+                    ? StateMachine.Get<Unarmed>()
+                    : StateMachine.Get<GunMode>();
             }
             
             return null;

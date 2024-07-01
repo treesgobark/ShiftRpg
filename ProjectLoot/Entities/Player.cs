@@ -88,34 +88,27 @@ public partial class Player
     private void CustomActivity()
     {
         EffectsComponent.Activity();
-        GunComponent.Activity();
 
         PlayerSprite.ForceUpdateDependenciesDeep();
 
         StateMachine.DoCurrentStateActivity();
+        GunComponent.Activity();
         PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
         UpdateReticlePosition();
     }
 
     private void UpdateReticlePosition()
     {
-        ReticleSprite.RelativePosition = new Vector2(InputManager.Mouse.WorldXAt(Z), InputManager.Mouse.WorldYAt(Z))
-                                        .Subtract(GameplayCenter.Position.XY())
-                                        .ToVec3(Z);
-
-        Vector2 fromGunToBulletOrigin = Vector2.UnitX
-                                               .AtLength(GunSprite.Width / 2f)
-                                               .AtAngle(GunSprite.RotationZ);
+        var     mousePos                  = new Vector2(InputManager.Mouse.WorldXAt(Z), InputManager.Mouse.WorldYAt(Z));
+        Vector2 fromGameplayCenterToMouse = GameplayCenter.Position.ToVector2().GetVectorTo(mousePos);
         
-        TargetLineSprite.RelativePosition = ReticleSprite.RelativePosition
-                                                         .Scale(0.5f, 0.5f)
-                                                         .Add(fromGunToBulletOrigin);
-        
-        float lineLength = ReticleSprite.RelativePosition.Length2D() - fromGunToBulletOrigin.Length();
-        TargetLineSprite.Width             = lineLength;
-        TargetLineSprite.RightTexturePixel = lineLength;
+        ReticleSprite.RelativeX = fromGameplayCenterToMouse.Length();
 
-        TargetLineSprite.RelativeRotationZ = ReticleSprite.RelativePosition.Angle() ?? 0;
+        var length = ReticleSprite.RelativeX - GunSprite.RelativeX - GunSprite.Width / 2f;
+        TargetLineSprite.Width             = length;
+        TargetLineSprite.RightTexturePixel = length;
+
+        TargetLineSprite.RelativeX = length / 2 + (GunSprite.RelativeX + GunSprite.Width / 2f);
     }
 
     private void CustomDestroy() { }

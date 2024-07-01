@@ -100,6 +100,11 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
 
     private void SetSpriteFlip()
     {
+        if (!GunSprite.Visible)
+        {
+            return;
+        }
+        
         Rotation rotation = Rotation.FromRadians(GunSprite.RotationZ);
         
         if (rotation.CondensedDegrees is > -90 and < 90)

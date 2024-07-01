@@ -29,9 +29,9 @@ public class VirtualAimer : I2DInput
         get
         {
             var mouseWorldPos = new Vector2(_mouse.WorldXAt(_position.Z), _mouse.WorldYAt(_position.Z));
-            var mouseToPlayer = mouseWorldPos - _position.PositionAsVec3().ToVector2();
-            var newMagnitude = mouseToPlayer.Length() / _aimThreshold;
-            var newM2P = mouseToPlayer.WithMagnitude(newMagnitude);
+            Vector2 mouseToPlayer = mouseWorldPos - _position.PositionAsVec3().ToVector2();
+            float newMagnitude = mouseToPlayer.Length() / _aimThreshold;
+            Vector2 newM2P = mouseToPlayer.AtLength(newMagnitude);
             return newM2P; 
         }
     }

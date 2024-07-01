@@ -69,26 +69,45 @@ partial class StandardGunModel
 
         private void Fire()
         {
-            var dir = GunModel.GunComponent.GunRotation.ToVector3();
+            for (int i = 1; i <= GunModel.GunData.ProjectileCount; i++)
+            {
+                Rotation coneSize          = Rotation.FromDegrees(GunModel.GunData.ProjectileSpreadDegrees);
+                float    accuracyValue     = AccuracyTransform(i / (float)(GunModel.GunData.ProjectileCount + 1));
+                Rotation aimDifferential   = coneSize * accuracyValue          - coneSize / 2;
+                Rotation finalAimDirection = GunModel.GunComponent.GunRotation + aimDifferential;
 
-            Projectile? proj = ProjectileFactory.CreateNew(GunModel.GunComponent.BulletOrigin);
-            
-            proj.InitializeProjectile(GunModel.GunData.ProjectileRadius,
-                                      dir * GunModel.GunData.ProjectileSpeed,
-                                      ~GunModel.GunComponent.Team,
-                                      GunModel.OnHitTargetEffects,
-                                      GunModel.OnHitHolderEffects,
-                                      GunModel.HolderEffects);
-            
-            GunModel.HolderEffects.Handle(GunModel.OnFireHolderEffects);
+                var aimVector = finalAimDirection.ToVector3();
 
+                Projectile? proj = ProjectileFactory.CreateNew(GunModel.GunComponent.BulletOrigin);
+            
+                proj.InitializeProjectile(GunModel.GunData.ProjectileRadius,
+                                          aimVector * GunModel.GunData.ProjectileSpeed,
+                                          ~GunModel.GunComponent.Team,
+                                          GunModel.OnHitTargetEffects,
+                                          GunModel.OnHitHolderEffects,
+                                          GunModel.HolderEffects);
+            }
+            
             int roundsSpent = Math.Clamp(GunModel.GunData.AmmoCostPerShot, 0,
                                          GunModel.CurrentRoundsInMagazine);
+            
+            GunModel.HolderEffects.Handle(GunModel.OnFireHolderEffects);
             GunModel.CurrentRoundsInMagazine -= roundsSpent;
             
             GunModel.GunViewModel.PublishGunFiredEvent(roundsSpent);
 
             GlobalContent.Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
+        }
+
+        private static float AccuracyTransform(float t)
+        {
+            return t switch
+            {
+                < 0    => 0,
+                > 1    => 1,
+                < 0.5f => MathF.Sqrt(0.25f - (t - 0.5f) * (t - 0.5f)),
+                _      => -MathF.Sqrt(0.25f - (t - 0.5f) * (t - 0.5f)) + 1
+            };
         }
     }
 }

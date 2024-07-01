@@ -403,6 +403,93 @@
           "SourceFile": "Entities\\WeaponDrop",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "WeaponDrop3",
+          "SourceClassType": "Entities\\WeaponDrop",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 238.39282,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -468.3393,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\WeaponDrop",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "WeaponDrop4",
+          "SourceClassType": "Entities\\WeaponDrop",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 521.3928,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -480.3393,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\WeaponDrop",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "WeaponDrop5",
+          "SourceClassType": "Entities\\WeaponDrop",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 384.89282,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -535.3393,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\WeaponDrop",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
         }
       ]
     }

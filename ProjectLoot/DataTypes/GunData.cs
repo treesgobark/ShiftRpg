@@ -5,8 +5,11 @@ namespace ProjectLoot.DataTypes;
 
 public partial class GunData
 {
+    [IgnoreDataMember]
     public TimeSpan TimePerRound => TimeSpan.FromSeconds(SecondsPerRound);
+    [IgnoreDataMember]
     public TimeSpan ReloadTimeSpan => TimeSpan.FromSeconds(ReloadTime);
+    [IgnoreDataMember]
     public GunClass GunClass => GunName switch
     {
         Pistol => GunClass.Handgun,

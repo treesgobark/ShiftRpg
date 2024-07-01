@@ -71,7 +71,7 @@ partial class StandardGunModel
         {
             var dir = GunModel.GunComponent.GunRotation.ToVector3();
 
-            Bullet? proj = BulletFactory.CreateNew(GunModel.GunComponent.GunPosition);
+            Projectile? proj = ProjectileFactory.CreateNew(GunModel.GunComponent.BulletOrigin);
             proj.InitializeProjectile(GunModel.GunData.ProjectileRadius,
                                       dir * GunModel.GunData.ProjectileSpeed, ~GunModel.GunComponent.Team);
 

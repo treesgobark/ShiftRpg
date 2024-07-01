@@ -70,9 +70,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Character</Name>
     </None>
+    <None Include="Content\Entities\Player\TargetLine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TargetLine</Name>
+    </None>
     <None Include="Content\Entities\Player\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
+    </None>
+    <None Include="Content\Entities\Projectile\ProjectileAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ProjectileAnimations</Name>
     </None>
     <None Include="Content\Entities\TargetDummy\DummySprite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -572,10 +580,6 @@
     <Compile Include="Effects\StatModifierCollection.cs" />
     <Compile Include="Effects\Team.cs" />
     <Compile Include="Effects\WeaknessDamageEffect.cs" />
-    <Compile Include="Entities\Bullet.cs" />
-    <Compile Include="Entities\Bullet.Generated.cs">
-      <DependentUpon>Bullet.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\DamageNumber.cs" />
     <Compile Include="Entities\DamageNumber.Generated.cs">
       <DependentUpon>DamageNumber.cs</DependentUpon>
@@ -637,13 +641,13 @@
     <Compile Include="Entities\WeaponDrop.Generated.cs">
       <DependentUpon>WeaponDrop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Factories\BulletFactory.Generated.cs" />
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
+    <Compile Include="Factories\ProjectileFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
     <Compile Include="Factories\WeaponDropFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />

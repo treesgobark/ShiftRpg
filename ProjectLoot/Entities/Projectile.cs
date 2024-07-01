@@ -1,10 +1,11 @@
+using ANLG.Utilities.FlatRedBall.Extensions;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 
 namespace ProjectLoot.Entities
 {
-    public abstract partial class Projectile
+    public partial class Projectile
     {
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -40,16 +41,18 @@ namespace ProjectLoot.Entities
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileVelocity;
+            RotationZ             = projectileVelocity.XY().Angle() ?? 0;
             TargetHitEffects      = targetHitEffects;
             HolderHitEffects      = holderHitEffects;
-            AppliesTo = appliesTo;
+            AppliesTo             = appliesTo;
         }
         
         public void InitializeProjectile(float projectileRadius, Vector3 projectileVelocity, Team appliesTo)
         {
             CircleInstance.Radius = projectileRadius;
             Velocity              = projectileVelocity;
-            AppliesTo = appliesTo;
+            RotationZ             = projectileVelocity.XY().Angle() ?? 0;
+            AppliesTo             = appliesTo;
         }
     }
 }

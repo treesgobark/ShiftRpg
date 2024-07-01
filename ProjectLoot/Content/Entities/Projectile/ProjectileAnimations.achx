@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>Handgun</Name>
+    <Frame>
+      <TextureName>../../tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>9</LeftCoordinate>
+      <RightCoordinate>26</RightCoordinate>
+      <TopCoordinate>422</TopCoordinate>
+      <BottomCoordinate>427</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <ProjectFile>..\..\..\projectloot.gluj</ProjectFile>
+</AnimationChainArraySave>

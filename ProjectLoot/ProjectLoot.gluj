@@ -143,9 +143,6 @@
   ],
   "EntityReferences": [
     {
-      "Name": "Entities\\Bullet"
-    },
-    {
       "Name": "Entities\\DamageNumber"
     },
     {

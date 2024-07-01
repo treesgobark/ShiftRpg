@@ -1,4 +1,5 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Forms.MVVM;
 using Microsoft.Xna.Framework;
@@ -14,7 +15,8 @@ namespace ProjectLoot.Components;
 public class GunComponent : ViewModel, IGunViewModel, IGunComponent
 {
     public Sprite GunSprite { get; }
-    public Vector3 GunPosition => GunSprite.Position;
+    public Vector3 BulletOrigin => GunSprite.Position + Vector2.UnitX.AtLength(GunSprite.Width / 2f).AtAngle(GunSprite.RotationZ).ToVector3();
+    // public Vector3 BulletOrigin => GunSprite.Position;
     public Rotation GunRotation => Rotation.FromRadians(GunSprite.RotationZ);
     public Team Team { get; }
     public IGunInputDevice GunInputDevice => InputDevice.GunInputDevice;
@@ -24,9 +26,9 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
     
     public GunComponent(Sprite gunSprite, Team team, IGameplayInputDevice inputDevice)
     {
-        GunSprite   = gunSprite;
-        Team        = team;
-        InputDevice = inputDevice;
+        GunSprite          = gunSprite;
+        Team               = team;
+        InputDevice        = inputDevice;
     }
 
     public bool IsEmpty => Guns.Count == 0;

@@ -1,7 +1,9 @@
 using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Input;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
@@ -79,6 +81,8 @@ public partial class Player
         DirectionIndicator.AttachTo(GameplayCenter);
         GuardSprite.AttachTo(GameplayCenter);
         GunSprite.AttachTo(GameplayCenter);
+        ReticleSprite.AttachTo(GameplayCenter);
+        TargetLineSprite.AttachTo(GameplayCenter);
     }
 
     private void CustomActivity()
@@ -90,6 +94,28 @@ public partial class Player
 
         StateMachine.DoCurrentStateActivity();
         PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
+        UpdateReticlePosition();
+    }
+
+    private void UpdateReticlePosition()
+    {
+        ReticleSprite.RelativePosition = new Vector2(InputManager.Mouse.WorldXAt(Z), InputManager.Mouse.WorldYAt(Z))
+                                        .Subtract(GameplayCenter.Position.XY())
+                                        .ToVec3(Z);
+
+        Vector2 fromGunToBulletOrigin = Vector2.UnitX
+                                               .AtLength(GunSprite.Width / 2f)
+                                               .AtAngle(GunSprite.RotationZ);
+        
+        TargetLineSprite.RelativePosition = ReticleSprite.RelativePosition
+                                                         .Scale(0.5f, 0.5f)
+                                                         .Add(fromGunToBulletOrigin);
+        
+        float lineLength = ReticleSprite.RelativePosition.Length2D() - fromGunToBulletOrigin.Length();
+        TargetLineSprite.Width             = lineLength;
+        TargetLineSprite.RightTexturePixel = lineLength;
+
+        TargetLineSprite.RelativeRotationZ = ReticleSprite.RelativePosition.Angle() ?? 0;
     }
 
     private void CustomDestroy() { }

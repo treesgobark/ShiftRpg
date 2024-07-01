@@ -30,6 +30,12 @@
       "IsSharedStatic": true,
       "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/Player/TargetLine.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "CustomVariables": [
@@ -258,6 +264,18 @@
           "Member": "X",
           "Value": 8.0,
           "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,
@@ -348,6 +366,12 @@
           "Type": "float",
           "Member": "Y",
           "Value": 12.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
           "Time": 0.0
         }
       ],
@@ -487,6 +511,166 @@
           "Type": "float",
           "Member": "Z",
           "Value": 0.1,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "ReticleSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "tileset",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "LeftTexturePixel",
+          "Value": 168.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TopTexturePixel",
+          "Value": 439.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "RightTexturePixel",
+          "Value": 185.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "BottomTexturePixel",
+          "Value": 456.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesRotation",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "TargetLineSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "TargetLine",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "LeftTexturePixel",
+          "Value": 0.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TopTexturePixel",
+          "Value": 0.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "RightTexturePixel",
+          "Value": 16.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "BottomTexturePixel",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "TextureAddressMode",
+          "Member": "TextureAddressMode",
+          "Value": 0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesRotation",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
           "Time": 0.0
         }
       ],

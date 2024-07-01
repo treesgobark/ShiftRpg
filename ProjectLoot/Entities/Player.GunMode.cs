@@ -20,6 +20,8 @@ public partial class Player
         protected override void AfterTimedStateActivate()
         {
             Parent.GunComponent.Equip();
+            Parent.TargetLineSprite.Visible = true;
+            Parent.ReticleSprite.Visible = true;
         }
 
         protected override void AfterTimedStateActivity()
@@ -60,6 +62,8 @@ public partial class Player
         public override void BeforeDeactivate()
         {
             Parent.GunComponent.Unequip();
+            Parent.TargetLineSprite.Visible = false;
+            Parent.ReticleSprite.Visible    = false;
         }
 
         public override void Uninitialize() { }

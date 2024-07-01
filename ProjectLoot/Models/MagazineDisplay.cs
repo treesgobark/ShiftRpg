@@ -190,7 +190,7 @@ public class MagazineDisplay : IDestroyable, IUpdateable
 
     public void EjectCartridge(int numberOfCartridges = 1)
     {
-        for (int i = 0; i < numberOfCartridges; i++)
+        for (int i = 1; i <= numberOfCartridges; i++)
         {
             ICartridgeDisplay cart = CartridgeDisplayFactory();
         

@@ -1,4 +1,5 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
@@ -8,6 +9,7 @@ namespace ProjectLoot.Entities
 {
     public partial class Projectile
     {
+        private TimeSpan DestructionCountdown { get; set; } = TimeSpan.FromSeconds(10);
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -20,6 +22,11 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
+            DestructionCountdown -= FrbTimeManager.Instance.GameTimeSinceLastFrame;
+            if (DestructionCountdown < TimeSpan.Zero)
+            {
+                Destroy();
+            }
         }
 
         private void CustomDestroy()

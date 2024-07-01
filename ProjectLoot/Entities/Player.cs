@@ -104,9 +104,11 @@ public partial class Player
         
         ReticleSprite.RelativeX = fromGameplayCenterToMouse.Length();
 
-        var length = ReticleSprite.RelativeX - GunSprite.RelativeX - GunSprite.Width / 2f;
+        var length = ReticleSprite.RelativeX - GunSprite.RelativeX - GunSprite.Width / 2f - ReticleSprite.Width / 2f;
         TargetLineSprite.Width             = length;
-        TargetLineSprite.RightTexturePixel = length;
+        TargetLineSprite.LeftTexturePixel  = -length / 2f;
+        TargetLineSprite.RightTexturePixel = length / 2f;
+        TargetLineSprite.FlipHorizontal    = true;
 
         TargetLineSprite.RelativeX = length / 2 + (GunSprite.RelativeX + GunSprite.Width / 2f);
     }

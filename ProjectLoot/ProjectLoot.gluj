@@ -79,6 +79,13 @@
       "SourceFile": "GlobalContent/MeleeWeaponData.ods",
       "BuildTool": "*.ods -> soffice.exe -> *.csv",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/GunSounds/Saiga12SingleShot1mSide.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},
@@ -111,8 +118,7 @@
         "Entities/Player/TopDownValuesStatic.csv",
         "Entities/Enemy/TopDownValuesStatic.csv",
         "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
-        "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv",
-        "Entities/DefaultEnemy/TopDownValuesStatic.csv"
+        "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true
@@ -144,9 +150,6 @@
   "EntityReferences": [
     {
       "Name": "Entities\\DamageNumber"
-    },
-    {
-      "Name": "Entities\\DefaultEnemy"
     },
     {
       "Name": "Entities\\DefaultMeleeEnemy"

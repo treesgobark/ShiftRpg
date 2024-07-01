@@ -1,3 +1,4 @@
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 
@@ -21,7 +22,7 @@ namespace ProjectLoot.Entities
         public TimeSpan Lifetime { get; set; }
         public IEffectBundle TargetHitEffects { get; set; }
         public IEffectBundle HolderHitEffects { get; set; }
-        public IWeaponHolder Holder { get; set; }
+        public IEffectsComponent HolderEffectsComponent { get; set; }
         public Team AppliesTo { get; set; }
     }
 }

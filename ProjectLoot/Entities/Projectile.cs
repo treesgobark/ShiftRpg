@@ -1,5 +1,6 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
 using Microsoft.Xna.Framework;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 
@@ -30,29 +31,23 @@ namespace ProjectLoot.Entities
         {
         }
 
-        public IEffectBundle TargetHitEffects { get; set; }
-        public IEffectBundle HolderHitEffects { get; set; }
-        public IWeaponHolder Holder { get; set; }
+        public IEffectBundle OnHitTargetEffects { get; set; }
+        public IEffectBundle OnHitHolderEffects { get; set; }
+        public IEffectsComponent HolderEffectsComponent { get; set; }
         public bool IsActive { get; set; }
         public Team AppliesTo { get; set; }
-        
-        public void InitializeProjectile(float projectileRadius, Vector3 projectileVelocity, IEffectBundle targetHitEffects,
-            IEffectBundle holderHitEffects, Team appliesTo)
+
+        public void InitializeProjectile(float             projectileRadius, Vector3 projectileVelocity, Team appliesTo,
+                                         IEffectBundle     targetHitEffects, IEffectBundle holderHitEffects,
+                                         IEffectsComponent holderEffects)
         {
-            CircleInstance.Radius = projectileRadius;
-            Velocity              = projectileVelocity;
-            RotationZ             = projectileVelocity.XY().Angle() ?? 0;
-            TargetHitEffects      = targetHitEffects;
-            HolderHitEffects      = holderHitEffects;
-            AppliesTo             = appliesTo;
-        }
-        
-        public void InitializeProjectile(float projectileRadius, Vector3 projectileVelocity, Team appliesTo)
-        {
-            CircleInstance.Radius = projectileRadius;
-            Velocity              = projectileVelocity;
-            RotationZ             = projectileVelocity.XY().Angle() ?? 0;
-            AppliesTo             = appliesTo;
+            CircleInstance.Radius  = projectileRadius;
+            Velocity               = projectileVelocity;
+            RotationZ              = projectileVelocity.XY().Angle() ?? 0;
+            OnHitTargetEffects     = targetHitEffects;
+            OnHitHolderEffects     = holderHitEffects;
+            AppliesTo              = appliesTo;
+            HolderEffectsComponent = holderEffects;
         }
     }
 }

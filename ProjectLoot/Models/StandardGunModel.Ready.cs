@@ -72,14 +72,15 @@ partial class StandardGunModel
             var dir = GunModel.GunComponent.GunRotation.ToVector3();
 
             Projectile? proj = ProjectileFactory.CreateNew(GunModel.GunComponent.BulletOrigin);
+            
             proj.InitializeProjectile(GunModel.GunData.ProjectileRadius,
-                                      dir * GunModel.GunData.ProjectileSpeed, ~GunModel.GunComponent.Team);
-
-            var effects = new EffectBundle(GunModel.GunComponent.Team, SourceTag.Gun);
-            effects.AddEffect(new KnockbackEffect(GunModel.GunComponent.Team, SourceTag.Gun, 50,
-                                                  GunModel.GunComponent.GunRotation + Rotation.HalfTurn,
-                                                  KnockbackBehavior.Additive));
-            // Holder.Effects.Handle(effects);
+                                      dir * GunModel.GunData.ProjectileSpeed,
+                                      ~GunModel.GunComponent.Team,
+                                      GunModel.OnHitTargetEffects,
+                                      GunModel.OnHitHolderEffects,
+                                      GunModel.HolderEffects);
+            
+            GunModel.HolderEffects.Handle(GunModel.OnFireHolderEffects);
 
             int roundsSpent = Math.Clamp(GunModel.GunData.AmmoCostPerShot, 0,
                                          GunModel.CurrentRoundsInMagazine);
@@ -87,7 +88,7 @@ partial class StandardGunModel
             
             GunModel.GunViewModel.PublishGunFiredEvent(roundsSpent);
 
-            // Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
+            GlobalContent.Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
         }
     }
 }

@@ -119,7 +119,7 @@ public partial class Player
 
     public bool PickUpWeapon(GunData gun)
     {
-        var gunModel = new StandardGunModel(gun, GunComponent, GunComponent);
+        var gunModel = new StandardGunModel(gun, GunComponent, GunComponent, EffectsComponent);
         GunComponent.Add(gunModel);
         return true;
     }

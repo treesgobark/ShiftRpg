@@ -26,6 +26,11 @@
       <Name>HitMarker</Name>
       <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
     </None>
+    <None Include="..\BuiltXnbs\DesktopGL\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Saiga12SingleShot1mSide</Name>
+      <Link>Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb</Link>
+    </None>
     <None Include="Content\Entities\AnalogStickDisplay\AnalogStick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnalogStick</Name>
@@ -41,10 +46,6 @@
     <None Include="Content\Entities\ButtonDisplay\ButtonPressed.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonPressed</Name>
-    </None>
-    <None Include="Content\Entities\DefaultEnemy\TopDownValuesStatic.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TopDownValuesStatic</Name>
     </None>
     <None Include="Content\Entities\DefaultMeleeEnemy\MeleeEnemy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -584,10 +585,6 @@
     <Compile Include="Entities\DamageNumber.Generated.cs">
       <DependentUpon>DamageNumber.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DefaultEnemy.cs" />
-    <Compile Include="Entities\DefaultEnemy.Generated.cs">
-      <DependentUpon>DefaultEnemy.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\DefaultRangedEnemy.GunMode.cs">
       <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
     </Compile>
@@ -642,7 +639,6 @@
       <DependentUpon>WeaponDrop.cs</DependentUpon>
     </Compile>
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
-    <Compile Include="Factories\DefaultEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />

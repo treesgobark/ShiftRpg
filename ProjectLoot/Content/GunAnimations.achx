@@ -8,11 +8,11 @@
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>14</LeftCoordinate>
+      <LeftCoordinate>7</LeftCoordinate>
       <RightCoordinate>41</RightCoordinate>
       <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>391</BottomCoordinate>
-      <RelativeX>8</RelativeX>
+      <RelativeX>4</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -27,11 +27,11 @@
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>70</LeftCoordinate>
+      <LeftCoordinate>57</LeftCoordinate>
       <RightCoordinate>117</RightCoordinate>
       <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>392</BottomCoordinate>
-      <RelativeX>8</RelativeX>
+      <RelativeX>4</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -46,11 +46,11 @@
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>139</LeftCoordinate>
+      <LeftCoordinate>130</LeftCoordinate>
       <RightCoordinate>192</RightCoordinate>
       <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>392</BottomCoordinate>
-      <RelativeX>8</RelativeX>
+      <RelativeX>4</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />

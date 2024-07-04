@@ -16,7 +16,7 @@ namespace ProjectLoot.Entities;
 
 public partial class Player
 {
-    public IGameplayInputDevice GameplayInputDevice { get; set; }
+    public GameplayInputDevice GameplayInputDevice { get; set; }
     public float LastMeleeRotation { get; set; }
 
     public EffectsComponent EffectsComponent { get; private set; }
@@ -55,6 +55,8 @@ public partial class Player
         GunComponent          = new GunComponent(GunSprite, Team.Player, GameplayInputDevice);
         MeleeWeaponComponent  = new MeleeWeaponComponent();
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
+        
+        GameplayInputDevice.ApplyHitstopGuardClauses(HitstopComponent);
     }
 
     private void InitializeControllers()

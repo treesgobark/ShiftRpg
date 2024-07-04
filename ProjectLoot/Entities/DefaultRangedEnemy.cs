@@ -3,9 +3,11 @@ using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
+using ProjectLoot.Models;
 
 namespace ProjectLoot.Entities
 {
@@ -50,6 +52,8 @@ namespace ProjectLoot.Entities
             GunComponent       = new GunComponent(GunSprite, Team.Enemy, EnemyInputDevice);
             SpriteComponent    = new SpriteComponent(SpriteInstance);
             
+            GunComponent.Add(new StandardGunModel(GlobalContent.GunData["Rifle"], GunComponent, GunComponent, Effects));
+            
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => WeaknessComponent.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
                 effect => 1 + WeaknessComponent.CurrentWeaknessPercentage * WeaknessComponent.DamageConversionRate,
@@ -77,6 +81,7 @@ namespace ProjectLoot.Entities
         {
             if (HitstopComponent.IsStopped) { return; }
             
+            GunComponent.Activity();
             StateMachine.DoCurrentStateActivity();
             
             if (HealthComponent.CurrentHealth <= 0)

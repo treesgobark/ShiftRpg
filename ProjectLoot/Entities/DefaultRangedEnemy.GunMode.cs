@@ -14,10 +14,23 @@ public partial class DefaultRangedEnemy
 
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate() { }
+        protected override void AfterTimedStateActivate()
+        {
+            Parent.GunComponent.Equip();
+        }
 
         protected override void AfterTimedStateActivity()
         {
+            if (Parent.EnemyInputDevice.NextWeapon.WasJustPressed)
+            {
+                Parent.GunComponent.CycleToNextWeapon();
+            }
+            
+            if (Parent.EnemyInputDevice.PreviousWeapon.WasJustPressed)
+            {
+                Parent.GunComponent.CycleToPreviousWeapon();
+            }
+            
             SetRotation();
         }
 
@@ -26,7 +39,10 @@ public partial class DefaultRangedEnemy
             return null;
         }
 
-        public override void BeforeDeactivate() { }
+        public override void BeforeDeactivate()
+        {
+            Parent.GunComponent.Unequip();
+        }
 
         public override void Uninitialize() { }
     

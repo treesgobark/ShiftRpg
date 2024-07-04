@@ -13,7 +13,8 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
 
     public EnemyInputDevice(Enemy owner)
     {
-        Owner = owner;
+        Owner          = owner;
+        GunInputDevice = new GunInputDevice(this);
     }
     
     public float DistanceToEntity => EntityTracker?.Distance2D ?? float.MaxValue;
@@ -60,7 +61,8 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     public IPressableInput NextWeapon => FalsePressableInput.Instance;
     public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
     public IPressableInput Interact => FalsePressableInput.Instance;
-    public IGunInputDevice GunInputDevice => ZeroGunInputDevice.Instance;
+    public IGunInputDevice GunInputDevice { get; set; }
+
     public IMeleeWeaponInputDevice MeleeWeaponInputDevice => ZeroMeleeWeaponInputDevice.Instance;
 
     // public bool AimInMeleeRange => Aim.Magnitude < 1;

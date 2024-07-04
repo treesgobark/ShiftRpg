@@ -3,6 +3,7 @@ using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
 using Microsoft.Xna.Framework.Input;
+using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using Keyboard = FlatRedBall.Input.Keyboard;
 using Mouse = FlatRedBall.Input.Mouse;
@@ -64,19 +65,41 @@ public class GameplayInputDevice : IGameplayInputDevice
         }
     }
 
-    public IPressableInput Attack { get; }
-    public IPressableInput Reload { get; }
-    public IPressableInput Dash { get; }
-    public IPressableInput Guard { get; }
+    public IPressableInput Attack { get; private set; }
+    public IPressableInput Reload { get; private set; }
+    public IPressableInput Dash { get; private set; }
+    public IPressableInput Guard { get; private set; }
     public IPressableInput QuickSwapWeapon { get; }
     public IPressableInput NextWeapon { get; }
     public IPressableInput PreviousWeapon { get; }
     public IPressableInput Interact { get; }
-    public IGunInputDevice GunInputDevice { get; }
-    public IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; }
+    public IGunInputDevice GunInputDevice { get; private set; }
+    public IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; private set; }
 
     public void BufferAttackPress()
     {
+    }
+
+    public void ApplyHitstopGuardClauses(IHitstopComponent hitstopComponent)
+    {
+        Attack = Attack.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
+                                                            () => !hitstopComponent.IsStopped,
+                                                            () => !hitstopComponent.IsStopped));
+        
+        Reload = Reload.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
+                                                            () => !hitstopComponent.IsStopped,
+                                                            () => !hitstopComponent.IsStopped));
+            
+        Dash = Dash.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
+                                                        () => !hitstopComponent.IsStopped,
+                                                        () => !hitstopComponent.IsStopped));
+            
+        Guard = Guard.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
+                                                          () => !hitstopComponent.IsStopped,
+                                                          () => !hitstopComponent.IsStopped));
+
+        GunInputDevice = new GunInputDevice(this);
+        MeleeWeaponInputDevice = new MeleeWeaponInputDevice(this);
     }
 
     public bool AimInMeleeRange => Aim.Magnitude < 1;

@@ -1,6 +1,7 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.DataTypes;
 
@@ -13,9 +14,7 @@ public partial class Player
         private TopDownValues CachedValues { get; set; } = new();
 
         public Dashing(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent)
-        {
-        }
+            : base(stateMachine, timeManager, parent) { }
         
         public override void Initialize() { }
 
@@ -51,6 +50,11 @@ public partial class Player
         {
             Parent.CurrentMovement.IsUsingCustomDeceleration = CachedValues.IsUsingCustomDeceleration;
             Parent.CurrentMovement.DecelerationTime = CachedValues.DecelerationTime;
+
+            if (Parent.Velocity.Length() > Parent.CurrentMovement.MaxSpeed)
+            {
+                Parent.Velocity = Parent.Velocity.AtLength(Parent.CurrentMovement.MaxSpeed);
+            }
         }
 
         public override void Uninitialize() { }

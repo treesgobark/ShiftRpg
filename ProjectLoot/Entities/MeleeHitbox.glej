@@ -52,38 +52,6 @@
       "Type": "int"
     }
   ],
-  "NamedObjects": [
-    {
-      "InstanceName": "PolygonInstance",
-      "SourceClassType": "FlatRedBall.Math.Geometry.Polygon",
-      "Properties": [
-        {
-          "Name": "AssociateWithFactory",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "InstructionSaves": [
-        {
-          "Type": "List<Vector2>",
-          "Member": "Points",
-          "Value": [
-            "-16, 16",
-            "16, 16",
-            "16, -16",
-            "-16, -16",
-            "-16, 16"
-          ],
-          "Time": 0.0
-        }
-      ],
-      "SourceType": 2,
-      "SourceFile": "Polygon",
-      "HasPublicProperty": true,
-      "AttachToContainer": true,
-      "GenerateTimedEmit": true
-    }
-  ],
   "Name": "Entities\\MeleeHitbox",
   "CustomClassesForExport": []
 }

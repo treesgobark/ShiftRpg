@@ -5,7 +5,6 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
-using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
@@ -52,8 +51,8 @@ public partial class Player
         HealthComponent       = new HealthComponent(MaxHealth);
         HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         HitstunComponent      = new HitstunComponent();
-        GunComponent          = new GunComponent(GunSprite, Team.Player, GameplayInputDevice);
-        MeleeWeaponComponent  = new MeleeWeaponComponent();
+        GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite);
+        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, GameplayCenter, MeleeWeaponSprite);
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
         
         GameplayInputDevice.ApplyHitstopGuardClauses(HitstopComponent);
@@ -82,6 +81,7 @@ public partial class Player
         AimThresholdCircle.AttachTo(GameplayCenter);
         DirectionIndicator.AttachTo(GameplayCenter);
         GuardSprite.AttachTo(GameplayCenter);
+        MeleeWeaponSprite.AttachTo(GameplayCenter);
         GunSprite.AttachTo(GameplayCenter);
         ReticleSprite.AttachTo(GameplayCenter);
         TargetLineSprite.AttachTo(GameplayCenter);
@@ -92,10 +92,16 @@ public partial class Player
         EffectsComponent.Activity();
 
         PlayerSprite.ForceUpdateDependenciesDeep();
-
+        
         StateMachine.DoCurrentStateActivity();
-        GunComponent.Activity();
-        PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
+        
+        if (!HitstopComponent.IsStopped)
+        {
+            GunComponent.Activity();
+            MeleeWeaponComponent.Activity();
+            PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
+        }
+        
         UpdateReticlePosition();
     }
 
@@ -123,6 +129,13 @@ public partial class Player
     {
         var gunModel = new StandardGunModel(gun, GunComponent, GunComponent, EffectsComponent);
         GunComponent.Add(gunModel);
+        return true;
+    }
+
+    public bool PickUpWeapon(MeleeWeaponData meleeWeapon)
+    {
+        var meleeWeaponModel = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+        MeleeWeaponComponent.Add(meleeWeaponModel);
         return true;
     }
 }

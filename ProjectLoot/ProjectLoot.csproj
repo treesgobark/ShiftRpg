@@ -31,6 +31,10 @@
       <Name>Saiga12SingleShot1mSide</Name>
       <Link>Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb</Link>
     </None>
+    <None Include="Content\DotAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>DotAnimations</Name>
+    </None>
     <None Include="Content\Entities\AnalogStickDisplay\AnalogStick.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnalogStick</Name>
@@ -47,17 +51,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonPressed</Name>
     </None>
-    <None Include="Content\Entities\DefaultMeleeEnemy\MeleeEnemy.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>MeleeEnemy</Name>
-    </None>
     <None Include="Content\Entities\DefaultMeleeEnemy\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
-    </None>
-    <None Include="Content\Entities\DefaultRangedEnemy\RangedEnemy.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>RangedEnemy</Name>
     </None>
     <None Include="Content\Entities\DefaultRangedEnemy\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -487,9 +483,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>UISpriteSheet</Name>
     </None>
-    <None Include="Content\GunAnimations.achx">
+    <None Include="content\weaponanimations.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GunAnimations</Name>
+      <Name>WeaponAnimations</Name>
     </None>
     <None Include="Content\Screens\ShootingRange\ShootingRangeMap.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -527,22 +523,11 @@
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstunComponent.cs" />
+    <Compile Include="Components\Interfaces\IMeleeWeaponComponent.cs" />
     <Compile Include="Components\Interfaces\IShatterComponent.cs" />
     <Compile Include="Components\Interfaces\ISpriteComponent.cs" />
     <Compile Include="Components\Interfaces\ITransformComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaknessComponent.cs" />
-    <Compile Include="Components\MeleeWeaponComponent.Active.cs">
-      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\MeleeWeaponComponent.Idle.cs">
-      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\MeleeWeaponComponent.Recovery.cs">
-      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\MeleeWeaponComponent.Startup.cs">
-      <DependentUpon>MeleeWeaponComponent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\MeleeWeaponComponent.cs" />
     <Compile Include="Components\ShatterComponent.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
@@ -972,6 +957,7 @@
     <Compile Include="Handlers\Base\EffectHandler.cs" />
     <Compile Include="Handlers\Base\EffectHandlerCollection.cs" />
     <Compile Include="Handlers\Base\IEffectHandlerCollection.cs" />
+    <Compile Include="Handlers\Bespoke\TargetDummyDamageHandler.cs" />
     <Compile Include="Handlers\DamageHandler.cs" />
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
@@ -990,6 +976,39 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\SwordModel.Active.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Idle.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.NotEquipped.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Recovery.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash1.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash1Recovery.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash2.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash2Recovery.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash3.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Slash3Recovery.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.Startup.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\StandardGunModel.Reloading.cs">
       <DependentUpon>StandardGunModel.cs</DependentUpon>
     </Compile>
@@ -1004,6 +1023,7 @@
     <Compile Include="Models\StandardGunModel.Recovery.cs">
       <DependentUpon>StandardGunModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\SwordModel.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
@@ -1105,9 +1125,6 @@
       <Name>SkiaInGum</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\GunStates\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

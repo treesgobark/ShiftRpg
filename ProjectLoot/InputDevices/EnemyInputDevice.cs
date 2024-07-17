@@ -129,6 +129,6 @@ public class RangedEnemyInputDevice : EnemyInputDevice
 
     public override IPressableInput Attack =>
         DistanceToEntity < MaxDistance
-            ? TruePressableInput.Instance
+            ? FalsePressableInput.Instance
             : FalsePressableInput.Instance;
 }

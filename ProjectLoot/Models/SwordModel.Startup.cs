@@ -1,20 +1,23 @@
 // using ANLG.Utilities.Core.NonStaticUtilities;
 // using ANLG.Utilities.Core.States;
-// using ProjectLoot.Controllers;
 //
-// namespace ProjectLoot.Components;
+// namespace ProjectLoot.Models;
 //
-// public partial class MeleeWeaponComponent
+// public partial class SwordModel
 // {
-//     protected class Startup : ParentedTimedState<MeleeWeaponComponent>
+//     protected class Startup : TimedState
 //     {
-//         public Startup(MeleeWeaponComponent parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager) : base(parent, stateMachine, timeManager) { }
+//         private SwordModel SwordModel { get; }
+//         
+//         public Startup(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel swordModel) : base(stateMachine, timeManager)
+//         {
+//             SwordModel = swordModel;
+//         }
 //         
 //         public override void Initialize() { }
 //
 //         protected override void AfterTimedStateActivate()
 //         {
-//             Parent.Holder.SetInputEnabled(false);
 //         }
 //
 //         protected override void AfterTimedStateActivity()
@@ -23,7 +26,7 @@
 //
 //         public override IState? EvaluateExitConditions()
 //         {
-//             if (TimeInState > Parent.CurrentAttackData.StartupTimeSpan)
+//             if (TimeInState > SwordModel.CurrentAttackData.StartupTimeSpan)
 //             {
 //                 return StateMachine.Get<Active>();
 //             }

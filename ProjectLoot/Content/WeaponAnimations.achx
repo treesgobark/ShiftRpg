@@ -6,13 +6,13 @@
   <AnimationChain>
     <Name>Pistol</Name>
     <Frame>
-      <TextureName>../../tileset.png</TextureName>
+      <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>22</LeftCoordinate>
+      <LeftCoordinate>7</LeftCoordinate>
       <RightCoordinate>41</RightCoordinate>
-      <TopCoordinate>381</TopCoordinate>
+      <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>391</BottomCoordinate>
-      <RelativeY>24</RelativeY>
+      <RelativeX>8</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -25,13 +25,13 @@
   <AnimationChain>
     <Name>Shotgun</Name>
     <Frame>
-      <TextureName>../../tileset.png</TextureName>
+      <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>75</LeftCoordinate>
+      <LeftCoordinate>57</LeftCoordinate>
       <RightCoordinate>117</RightCoordinate>
-      <TopCoordinate>381</TopCoordinate>
+      <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>392</BottomCoordinate>
-      <RelativeY>24</RelativeY>
+      <RelativeX>4</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -44,32 +44,13 @@
   <AnimationChain>
     <Name>Rifle</Name>
     <Frame>
-      <TextureName>../../tileset.png</TextureName>
+      <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>152</LeftCoordinate>
+      <LeftCoordinate>130</LeftCoordinate>
       <RightCoordinate>192</RightCoordinate>
-      <TopCoordinate>380</TopCoordinate>
+      <TopCoordinate>375</TopCoordinate>
       <BottomCoordinate>392</BottomCoordinate>
-      <RelativeY>24</RelativeY>
-      <ShapeCollectionSave>
-        <AxisAlignedRectangleSaves />
-        <AxisAlignedCubeSaves />
-        <PolygonSaves />
-        <CircleSaves />
-        <SphereSaves />
-      </ShapeCollectionSave>
-    </Frame>
-  </AnimationChain>
-  <AnimationChain>
-    <Name>Sword</Name>
-    <Frame>
-      <TextureName>../../tileset.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>212</LeftCoordinate>
-      <RightCoordinate>221</RightCoordinate>
-      <TopCoordinate>288</TopCoordinate>
-      <BottomCoordinate>320</BottomCoordinate>
-      <RelativeY>24</RelativeY>
+      <RelativeX>4</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -82,13 +63,32 @@
   <AnimationChain>
     <Name>Fists</Name>
     <Frame>
-      <TextureName>../../tileset.png</TextureName>
+      <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>168</LeftCoordinate>
       <RightCoordinate>184</RightCoordinate>
       <TopCoordinate>307</TopCoordinate>
-      <BottomCoordinate>318</BottomCoordinate>
-      <RelativeY>24</RelativeY>
+      <BottomCoordinate>322</BottomCoordinate>
+      <RelativeX>3</RelativeX>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>Sword</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>212</LeftCoordinate>
+      <RightCoordinate>221</RightCoordinate>
+      <TopCoordinate>288</TopCoordinate>
+      <BottomCoordinate>343</BottomCoordinate>
+      <RelativeX>6</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -101,13 +101,13 @@
   <AnimationChain>
     <Name>Dagger</Name>
     <Frame>
-      <TextureName>../../tileset.png</TextureName>
+      <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>197</LeftCoordinate>
       <RightCoordinate>203</RightCoordinate>
       <TopCoordinate>302</TopCoordinate>
-      <BottomCoordinate>320</BottomCoordinate>
-      <RelativeY>24</RelativeY>
+      <BottomCoordinate>333</BottomCoordinate>
+      <RelativeX>6</RelativeX>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -117,5 +117,5 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
-  <ProjectFile>..\..\..\projectloot.gluj</ProjectFile>
+  <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

@@ -44,8 +44,8 @@ public partial class GameScreen
     {
         // Debugger.CommandLineWrite(GuiManager.Cursor.WindowOver);
 
-        DisplayEnemyInputs();
-        // DisplayPlayerInputs();
+        // DisplayEnemyInputs();
+        DisplayPlayerInputs();
 
         foreach (Enemy? enemy in EnemyList) enemy?.EnemyInputDevice?.SetTarget(Player1);
 

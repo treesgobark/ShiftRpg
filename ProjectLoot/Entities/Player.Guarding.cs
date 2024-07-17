@@ -35,7 +35,7 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed) return StateMachine.Get<Dashing>();
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0) return StateMachine.Get<Dashing>();
 
             if (Parent.GameplayInputDevice.Guard.IsDown) return null;
 

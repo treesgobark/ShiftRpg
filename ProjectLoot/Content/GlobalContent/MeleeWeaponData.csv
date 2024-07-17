@@ -1,4 +1,4 @@
-"Name (string, required)",Damage (float)
-Fists,10
-Sword,25
-Dagger,20
+"Name (string, required)",Damage (float),Attack Speed (float)
+Fists,10,1
+Sword,25,1
+Dagger,20,1

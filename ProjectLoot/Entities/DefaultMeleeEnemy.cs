@@ -42,13 +42,13 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            TransformComponent = new TransformComponent(this);
-            HealthComponent = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
-            ShatterComponent = new ShatterComponent(HealthBarRuntimeInstance);
-            WeaknessComponent = new WeaknessComponent(HealthBarRuntimeInstance);
-            HitstopComponent = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            MeleeWeaponComponent = new MeleeWeaponComponent();
-            SpriteComponent = new SpriteComponent(SpriteInstance);
+            TransformComponent   = new TransformComponent(this);
+            HealthComponent      = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            ShatterComponent     = new ShatterComponent(HealthBarRuntimeInstance);
+            WeaknessComponent    = new WeaknessComponent(HealthBarRuntimeInstance);
+            HitstopComponent     = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+            MeleeWeaponComponent = new MeleeWeaponComponent(Team.Enemy, EnemyInputDevice, this, MeleeWeaponSprite);
+            SpriteComponent      = new SpriteComponent(SpriteInstance);
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => WeaknessComponent.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),

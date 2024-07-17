@@ -24,7 +24,7 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
     private IGameplayInputDevice InputDevice { get; }
     private CyclableList<IGunModel> Guns { get; } = [];
     
-    public GunComponent(Sprite gunSprite, Team team, IGameplayInputDevice inputDevice)
+    public GunComponent(Team team, IGameplayInputDevice inputDevice, Sprite gunSprite)
     {
         GunSprite          = gunSprite;
         Team               = team;

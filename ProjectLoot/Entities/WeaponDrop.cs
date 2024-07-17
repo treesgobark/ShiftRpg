@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
@@ -18,9 +19,9 @@ namespace ProjectLoot.Entities
     public partial class WeaponDrop
     {
         private TimeSpan LastTimePreviewed { get; set; }
-        private TimeSpan PreviewLingerTime { get; set; } = TimeSpan.FromMilliseconds(200);
+        private TimeSpan PreviewLingerTime { get; } = TimeSpan.FromMilliseconds(200);
         
-        public GunData ContainedGun { get; private set; }
+        public object ContainedWeapon { get; private set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -29,8 +30,22 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            ContainedGun = GlobalContent.GunData[GunData.OrderedList.ChooseRandom()];
-            PreviewSprite.CurrentChainName = ContainedGun.GunName;
+            if (Random.Shared.NextBool())
+            // if (true)
+            {
+                ContainedWeapon = GlobalContent.GunData[GunData.OrderedList.ChooseRandom()];
+            }
+            else
+            {
+                ContainedWeapon = GlobalContent.MeleeWeaponData[MeleeWeaponData.OrderedList.ChooseRandom()];
+            }
+            
+            PreviewSprite.CurrentChainName = ContainedWeapon switch
+            {
+                GunData gunData => gunData.GunName,
+                MeleeWeaponData meleeWeaponData => meleeWeaponData.Name,
+                _ => throw new UnreachableException("who the fuck put something else in here"),
+            };
         }
 
         private void CustomActivity()
@@ -39,20 +54,11 @@ namespace ProjectLoot.Entities
             {
                 PreviewSprite.Visible = false;
             }
-
         }
 
-        private void CustomDestroy()
-        {
+        private void CustomDestroy() { }
 
-
-        }
-
-        private static void CustomLoadStaticContent(string contentManagerName)
-        {
-
-
-        }
+        private static void CustomLoadStaticContent(string contentManagerName) { }
 
         public void ShowPreview()
         {

@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.TileCollisions;
+using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Entities;
 
@@ -87,7 +89,19 @@ namespace ProjectLoot.Screens
 
             if (player.GameplayInputDevice.Interact.WasJustPressed)
             {
-                bool wasPickedUp = player.PickUpWeapon(weaponDrop.ContainedGun);
+                bool wasPickedUp;
+                if (weaponDrop.ContainedWeapon is GunData gunData)
+                {
+                    wasPickedUp = player.PickUpWeapon(gunData);
+                }
+                else if (weaponDrop.ContainedWeapon is MeleeWeaponData meleeWeaponData)
+                {
+                    wasPickedUp = player.PickUpWeapon(meleeWeaponData);
+                }
+                else
+                {
+                    throw new InvalidOperationException("not sure how bad data got in here");
+                }
 
                 if (wasPickedUp)
                 {

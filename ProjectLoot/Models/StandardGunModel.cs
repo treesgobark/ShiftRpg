@@ -38,7 +38,7 @@ public partial class StandardGunModel : IGunModel
     {
         get
         {
-            var effects = new EffectBundle(GunComponent.Team, SourceTag.Gun);
+            var effects = new EffectBundle();
             effects.AddEffect(new KnockbackEffect(GunComponent.Team, SourceTag.Gun, 50,
                                                   GunComponent.GunRotation + Rotation.HalfTurn,
                                                   KnockbackBehavior.Additive));
@@ -46,15 +46,15 @@ public partial class StandardGunModel : IGunModel
         }
     }
 
-    private IEffectBundle OnHitHolderEffects => new EffectBundle(GunComponent.Team, SourceTag.Gun);
+    private IEffectBundle OnHitHolderEffects => new EffectBundle();
 
     private IEffectBundle OnHitTargetEffects
     {
         get
         {
-            var effects = new EffectBundle(~GunComponent.Team, SourceTag.Gun);
+            var effects = new EffectBundle();
             effects.AddEffect(new DamageEffect(~GunComponent.Team, SourceTag.Gun, GunData.Damage));
-            effects.AddEffect(new HitstopEffect(~GunComponent.Team, SourceTag.Gun, TimeSpan.FromMilliseconds(GunData.HitstopDurationMilliseconds)));
+            effects.AddEffect(new HitstopEffect(GunComponent.Team, SourceTag.Gun, TimeSpan.FromMilliseconds(GunData.HitstopDurationMilliseconds)));
             effects.AddEffect(new KnockbackEffect(~GunComponent.Team, SourceTag.Gun, GunData.KnockbackVelocity,
                                                   GunComponent.GunRotation, KnockbackBehavior.Replacement));
             return effects;

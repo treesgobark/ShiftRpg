@@ -25,7 +25,7 @@ public partial class Player
     
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed)
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
                 return StateMachine.Get<Dashing>();
             }
@@ -40,10 +40,9 @@ public partial class Player
             {
                 (true, true, _)  => null,
                 (true, _, true) => null,
-                (_, true, true) => null,
+                (_, true, false) => null,
                 (false, _, true) => StateMachine.Get<MeleeWeaponMode>(),
                 (_, false, false) => StateMachine.Get<GunMode>(),
-                _ => throw new InvalidOperationException("kek"),
             };
         }
 

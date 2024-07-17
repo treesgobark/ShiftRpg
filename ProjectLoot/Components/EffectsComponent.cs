@@ -23,6 +23,14 @@ public class EffectsComponent : IEffectsComponent
         HandlerCollection.Handle(bundle);
     }
 
+    public void Handle<T>(T effect)
+    {
+        EffectBundle bundle = new();
+        bundle.AddEffect(effect);
+        
+        HandlerCollection.Handle(bundle);
+    }
+
     public void Activity()
     {
         HandlerCollection.Activity();

@@ -82,7 +82,7 @@ public class EffectHandlerCollection : IEffectHandlerCollection
 
     public void Handle(IEffectBundle bundle)
     {
-        if (RecentEffects.Any(t => t.EffectId == bundle.EffectId))
+        if (!bundle.IgnoreUniqueness && RecentEffects.Any(t => t.EffectId == bundle.EffectId))
         {
             return;
         }

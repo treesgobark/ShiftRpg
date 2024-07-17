@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
@@ -18,7 +19,7 @@ public partial class Player
 
         protected override void AfterTimedStateActivate()
         {
-            Parent.MeleeWeaponComponent.Equip(Parent.GameplayInputDevice.MeleeWeaponInputDevice);
+            Parent.MeleeWeaponComponent.Equip();
         }
 
         protected override void AfterTimedStateActivity()
@@ -38,7 +39,7 @@ public partial class Player
     
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed)
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
                 return StateMachine.Get<Dashing>();
             }
@@ -83,6 +84,26 @@ public partial class Player
                 Parent.RotationZ         = angle.Value;
                 Parent.LastMeleeRotation = Parent.RotationZ;
             }
+
+            if (Parent.RotationZ is > 0 and <= MathF.PI)
+            {
+                Parent.MeleeWeaponSprite.RelativeZ = Parent.Z - 0.5f;
+            }
+            else
+            {
+                Parent.MeleeWeaponSprite.RelativeZ = Parent.Z + 0.5f;
+            }
+
+            Parent.PlayerSprite.CurrentChainName = Parent.RotationZ switch
+            {
+                > 0 and <= MathF.PI             / 2                => "WalkForwardRight",
+                > MathF.PI                      / 2 and < MathF.PI => "WalkForwardLeft",
+                >= MathF.PI and <= 3 * MathF.PI / 2                => "WalkLeft",
+                > 3 * MathF.PI       / 2 and <= 2 * MathF.PI or 0  => "WalkRight",
+                _                                                  => throw new UnreachableException("")
+            };
+
+            Parent.GameplayCenter.ForceUpdateDependenciesDeep();
         }
     }
 }

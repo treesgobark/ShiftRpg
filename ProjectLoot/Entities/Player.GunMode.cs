@@ -1,10 +1,8 @@
+using System.Diagnostics;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
-using ProjectLoot.Effects;
-using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities;
 
@@ -41,7 +39,7 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed)
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
                 return StateMachine.Get<Dashing>();
             }
@@ -73,12 +71,33 @@ public partial class Player
         private void SetRotation()
         {
             float? angle = Parent.GameplayInputDevice.Aim.GetAngle();
-            
-            if (angle is not null)
+
+            if (angle is null)
             {
-                Parent.RotationZ = angle.Value;
-                Parent.GameplayCenter.ForceUpdateDependenciesDeep();
+                return;
             }
+
+            Parent.RotationZ = angle.Value;
+
+            if (angle.Value is > 0 and < MathF.PI)
+            {
+                Parent.GunSprite.RelativeZ = Parent.Z - 0.5f;
+            }
+            else
+            {
+                Parent.GunSprite.RelativeZ = Parent.Z + 0.5f;
+            }
+
+            Parent.PlayerSprite.CurrentChainName = angle.Value switch
+            {
+                > 0 and <= MathF.PI             / 2                => "WalkForwardRight",
+                > MathF.PI                      / 2 and < MathF.PI => "WalkForwardLeft",
+                >= MathF.PI and <= 3 * MathF.PI / 2                => "WalkLeft",
+                > 3 * MathF.PI       / 2 and <= 2 * MathF.PI or 0  => "WalkRight",
+                _                                                  => throw new UnreachableException("")
+            };
+
+            Parent.GameplayCenter.ForceUpdateDependenciesDeep();
         }
     }
 }

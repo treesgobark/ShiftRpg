@@ -4,15 +4,14 @@
   <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
   <CoordinateType>Pixel</CoordinateType>
   <AnimationChain>
-    <Name>Pistol</Name>
+    <Name>RedIdle</Name>
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>7</LeftCoordinate>
-      <RightCoordinate>41</RightCoordinate>
-      <TopCoordinate>375</TopCoordinate>
-      <BottomCoordinate>391</BottomCoordinate>
-      <RelativeX>8</RelativeX>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>16</RightCoordinate>
+      <TopCoordinate>672</TopCoordinate>
+      <BottomCoordinate>688</BottomCoordinate>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -23,15 +22,14 @@
     </Frame>
   </AnimationChain>
   <AnimationChain>
-    <Name>Shotgun</Name>
+    <Name>BlueIdle</Name>
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>57</LeftCoordinate>
-      <RightCoordinate>117</RightCoordinate>
-      <TopCoordinate>375</TopCoordinate>
-      <BottomCoordinate>392</BottomCoordinate>
-      <RelativeX>4</RelativeX>
+      <LeftCoordinate>16</LeftCoordinate>
+      <RightCoordinate>32</RightCoordinate>
+      <TopCoordinate>672</TopCoordinate>
+      <BottomCoordinate>688</BottomCoordinate>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />
@@ -42,15 +40,14 @@
     </Frame>
   </AnimationChain>
   <AnimationChain>
-    <Name>Rifle</Name>
+    <Name>YellowIdle</Name>
     <Frame>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>130</LeftCoordinate>
-      <RightCoordinate>192</RightCoordinate>
-      <TopCoordinate>375</TopCoordinate>
-      <BottomCoordinate>392</BottomCoordinate>
-      <RelativeX>4</RelativeX>
+      <LeftCoordinate>32</LeftCoordinate>
+      <RightCoordinate>48</RightCoordinate>
+      <TopCoordinate>672</TopCoordinate>
+      <BottomCoordinate>688</BottomCoordinate>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />

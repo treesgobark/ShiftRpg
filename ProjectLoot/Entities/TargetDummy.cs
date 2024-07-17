@@ -4,6 +4,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers.Bespoke;
 
 namespace ProjectLoot.Entities
 {
@@ -40,7 +41,7 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
+            Effects.HandlerCollection.Add<DamageEffect>(new TargetDummyDamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
             Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.HandlerCollection.Add<ApplyShatterDamageHandler>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Health, Weakness));
@@ -68,7 +69,7 @@ namespace ProjectLoot.Entities
 
 
         }
-        
-        public double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(Health.LastDamageTime.TotalSeconds);
+
+        private double TimeSinceLastDamage => TimeManager.CurrentScreenSecondsSince(Health.LastDamageTime.TotalSeconds);
     }
 }

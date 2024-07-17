@@ -76,12 +76,20 @@
       "IsSharedStatic": true,
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
+      "CreatesDictionary": true,
       "SourceFile": "GlobalContent/MeleeWeaponData.ods",
       "BuildTool": "*.ods -> soffice.exe -> *.csv",
       "ProjectsToExcludeFrom": []
     },
     {
       "Name": "GlobalContent/GunSounds/Saiga12SingleShot1mSide.wav",
+      "Properties": [
+        {
+          "Name": "UseContentPipeline",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
       "IsSharedStatic": true,
       "DestroyOnUnload": false,
       "HasPublicProperty": true,

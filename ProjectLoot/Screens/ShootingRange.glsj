@@ -309,13 +309,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 169.18164,
+              "Value": 200.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -243.92139,
+              "Value": -424.0,
               "Time": 0.0
             }
           ],

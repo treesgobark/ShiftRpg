@@ -8,16 +8,22 @@
   "Is2D": true,
   "ReferencedFiles": [
     {
-      "Name": "Entities/DefaultMeleeEnemy/MeleeEnemy.png",
-      "IsSharedStatic": true,
-      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
-      "ProjectsToExcludeFrom": []
-    },
-    {
       "Name": "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
       "IsSharedStatic": true,
       "HasPublicProperty": true,
       "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "WeaponAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "DotAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
       "ProjectsToExcludeFrom": []
     }
   ],
@@ -133,9 +139,15 @@
       ],
       "InstructionSaves": [
         {
-          "Type": "Texture2D",
-          "Member": "Texture",
-          "Value": "MeleeEnemy",
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "DotAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "BlueIdle",
           "Time": 0.0
         },
         {
@@ -189,6 +201,47 @@
       "IncludeInIClickable": false,
       "DefinedByBase": true,
       "InstantiatedByBase": true
+    },
+    {
+      "InstanceName": "MeleeWeaponSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "WeaponAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "",
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": 0.1,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\DefaultMeleeEnemy",

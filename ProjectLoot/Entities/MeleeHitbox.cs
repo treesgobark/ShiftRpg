@@ -19,9 +19,8 @@ namespace ProjectLoot.Entities
 
         private static void CustomLoadStaticContent(string contentManagerName) { }
         
-        public TimeSpan Lifetime { get; set; }
-        public IEffectBundle TargetHitEffects { get; set; }
-        public IEffectBundle HolderHitEffects { get; set; }
+        public IEffectBundle TargetHitEffects { get; set; } = EffectBundle.Empty;
+        public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
         public IEffectsComponent HolderEffectsComponent { get; set; }
         public Team AppliesTo { get; set; }
     }

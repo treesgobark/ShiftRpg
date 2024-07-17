@@ -6,37 +6,26 @@ namespace ProjectLoot.Contracts;
 
 public interface IEffectBundle : IEnumerable<object>
 {
-    Team AppliesTo { get; }
-    SourceTag Source { get; }
     Guid EffectId { get; }
+    bool IgnoreUniqueness { get; }
 
     bool TryGetEffect(Type type, out object effect);
 }
 
 public class EffectBundle : IEffectBundle
 {
-    public static readonly EffectBundle Empty = new((Team)(-1), (SourceTag)(-1), Guid.Empty);
-    
-    public EffectBundle(Team appliesTo, SourceTag source, Guid effectId)
+    public static readonly EffectBundle Empty = new();
+
+    public Guid EffectId { get; } = Guid.NewGuid();
+    public bool IgnoreUniqueness { get; }
+
+    private readonly Dictionary<Type, object> Effects = new();
+
+    public EffectBundle(bool ignoreUniqueness = false)
     {
-        AppliesTo = appliesTo;
-        Source    = source;
-        EffectId  = effectId;
-    }
-    
-    public EffectBundle(Team appliesTo, SourceTag source)
-    {
-        AppliesTo = appliesTo;
-        Source    = source;
-        EffectId  = Guid.NewGuid();
+        IgnoreUniqueness = ignoreUniqueness;
     }
 
-    public Team AppliesTo { get; init; }
-    public SourceTag Source { get; init; }
-    public Guid EffectId { get; init; }
-    
-    protected readonly Dictionary<Type, object> Effects = new();
-    
     public void AddEffect<T>(T effect)
     {
         if (Effects.ContainsKey(typeof(T)))

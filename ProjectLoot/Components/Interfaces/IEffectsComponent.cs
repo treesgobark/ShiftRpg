@@ -11,4 +11,5 @@ public interface IEffectsComponent
     SourceTag Source { get; set; }
 
     void Handle(IEffectBundle bundle);
+    void Handle<T>(T effect);
 }

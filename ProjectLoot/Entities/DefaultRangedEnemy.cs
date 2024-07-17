@@ -1,3 +1,4 @@
+using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ProjectLoot.Components;
@@ -49,10 +50,10 @@ namespace ProjectLoot.Entities
             ShatterComponent   = new ShatterComponent(HealthBarRuntimeInstance);
             WeaknessComponent  = new WeaknessComponent(HealthBarRuntimeInstance);
             HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            GunComponent       = new GunComponent(GunSprite, Team.Enemy, EnemyInputDevice);
+            GunComponent       = new GunComponent(Team.Enemy, EnemyInputDevice, GunSprite);
             SpriteComponent    = new SpriteComponent(SpriteInstance);
             
-            GunComponent.Add(new StandardGunModel(GlobalContent.GunData["Rifle"], GunComponent, GunComponent, Effects));
+            GunComponent.Add(new StandardGunModel(GlobalContent.GunData[GunData.OrderedList.ChooseRandom()], GunComponent, GunComponent, Effects));
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => WeaknessComponent.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),

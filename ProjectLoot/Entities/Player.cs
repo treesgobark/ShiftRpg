@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
@@ -16,7 +17,8 @@ namespace ProjectLoot.Entities;
 public partial class Player
 {
     public GameplayInputDevice GameplayInputDevice { get; set; }
-    public float LastMeleeRotation { get; set; }
+    private float LastMeleeRotation { get; set; }
+    private double BobTimer { get; set; }
 
     public EffectsComponent EffectsComponent { get; private set; }
     public TransformComponent TransformComponent { get; private set; }
@@ -47,12 +49,12 @@ public partial class Player
     private void InitializeComponents()
     {
         EffectsComponent      = new EffectsComponent { Team = Team.Player };
-        TransformComponent    = new TransformComponent(this);
+        TransformComponent    = new TransformComponent(this, this);
         HealthComponent       = new HealthComponent(MaxHealth);
         HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         HitstunComponent      = new HitstunComponent();
-        GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite);
-        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, GameplayCenter, MeleeWeaponSprite);
+        GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite, GameplayCenter);
+        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite);
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
         
         GameplayInputDevice.ApplyHitstopGuardClauses(HitstopComponent);
@@ -71,9 +73,9 @@ public partial class Player
 
     private void InitializeHandlers()
     {
-        EffectsComponent.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(EffectsComponent, HitstopComponent, TransformComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
+        EffectsComponent.HandlerCollection.Add<HitstopEffect>(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, TransformComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
         EffectsComponent.HandlerCollection.Add<DamageEffect>(new DamageHandler(EffectsComponent, HealthComponent, TransformComponent, FrbTimeManager.Instance, this));
-        EffectsComponent.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent, HitstopComponent));
+        EffectsComponent.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent));
     }
 
     private void InitializeChildren()
@@ -85,6 +87,9 @@ public partial class Player
         GunSprite.AttachTo(GameplayCenter);
         ReticleSprite.AttachTo(GameplayCenter);
         TargetLineSprite.AttachTo(GameplayCenter);
+        
+        PlayerSprite.AttachTo(SpriteHolder);
+        EyesSprite.AttachTo(SpriteHolder);
     }
 
     private void CustomActivity()
@@ -99,10 +104,14 @@ public partial class Player
         {
             GunComponent.Activity();
             MeleeWeaponComponent.Activity();
-            PlayerSprite.AnimateSelf(TimeManager.CurrentScreenTime);
         }
         
         UpdateReticlePosition();
+
+        if (XVelocity != 0)
+        {
+            Debug.WriteLine($"Player@{TimeManager.CurrentFrame}:XVelocity:{XVelocity}:XAcceleration:{XAcceleration}:InputX:{MovementInput.X}:InputY:{MovementInput.Y}");
+        }
     }
 
     private void UpdateReticlePosition()
@@ -112,13 +121,15 @@ public partial class Player
         
         ReticleSprite.RelativeX = fromGameplayCenterToMouse.Length();
 
-        var length = ReticleSprite.RelativeX - GunSprite.RelativeX - GunSprite.Width / 2f - ReticleSprite.Width / 2f;
+        // var length = ReticleSprite.RelativeX - GunSprite.RelativeX - GunSprite.Width / 2f - ReticleSprite.Width / 2f;
+        var length = ReticleSprite.RelativeX - ReticleSprite.Width / 2f;
         TargetLineSprite.Width             = length;
         TargetLineSprite.LeftTexturePixel  = -length / 2f;
         TargetLineSprite.RightTexturePixel = length / 2f;
         TargetLineSprite.FlipHorizontal    = true;
 
-        TargetLineSprite.RelativeX = length / 2 + (GunSprite.RelativeX + GunSprite.Width / 2f);
+        // TargetLineSprite.RelativeX = length / 2 + (GunSprite.RelativeX + GunSprite.Width / 2f);
+        TargetLineSprite.RelativeX = length / 2;
     }
 
     private void CustomDestroy() { }
@@ -137,5 +148,11 @@ public partial class Player
         var meleeWeaponModel = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
         MeleeWeaponComponent.Add(meleeWeaponModel);
         return true;
+    }
+
+    private void HandleBobbing()
+    {
+        SpriteHolder.RelativeY =  1f * (float)Math.Sin(2f * BobTimer);
+        BobTimer               += FrbTimeManager.Instance.GameTimeSinceLastFrame.TotalSeconds;
     }
 }

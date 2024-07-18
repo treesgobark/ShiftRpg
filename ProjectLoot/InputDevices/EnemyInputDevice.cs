@@ -101,6 +101,8 @@ public class RangedEnemyInputDevice : EnemyInputDevice
 
     protected override float GetDefault2DInputX()
     {
+        return 0;
+        
         float direction = 0;
         if (DistanceToEntity < MinDistance)
         {
@@ -115,6 +117,8 @@ public class RangedEnemyInputDevice : EnemyInputDevice
 
     protected override float GetDefault2DInputY()
     {
+        return 0;
+        
         float direction = 0;
         if (DistanceToEntity < MinDistance)
         {

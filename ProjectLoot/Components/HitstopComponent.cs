@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.DataTypes;
 

@@ -42,12 +42,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            TransformComponent   = new TransformComponent(this);
+            TransformComponent   = new TransformComponent(this, this);
             HealthComponent      = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             ShatterComponent     = new ShatterComponent(HealthBarRuntimeInstance);
             WeaknessComponent    = new WeaknessComponent(HealthBarRuntimeInstance);
             HitstopComponent     = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            MeleeWeaponComponent = new MeleeWeaponComponent(Team.Enemy, EnemyInputDevice, this, MeleeWeaponSprite);
+            MeleeWeaponComponent = new MeleeWeaponComponent(Team.Enemy, EnemyInputDevice, this, this, MeleeWeaponSprite);
             SpriteComponent      = new SpriteComponent(SpriteInstance);
             
             HealthComponent.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
@@ -63,7 +63,7 @@ namespace ProjectLoot.Entities
             Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
             Effects.HandlerCollection.Add<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
             Effects.HandlerCollection.Add<WeaknessDamageHandler>(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
-            Effects.HandlerCollection.Add<KnockbackHandler>(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
+            Effects.HandlerCollection.Add<KnockbackHandler>(new KnockbackHandler(Effects, TransformComponent));
         }
 
         private void InitializeControllers()

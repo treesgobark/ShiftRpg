@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>Slash1</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>384</LeftCoordinate>
+      <RightCoordinate>432</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>432</LeftCoordinate>
+      <RightCoordinate>480</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>624</LeftCoordinate>
+      <RightCoordinate>672</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>Slash2</Name>
+    <Frame>
+      <FlipVertical>true</FlipVertical>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>384</LeftCoordinate>
+      <RightCoordinate>432</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <FlipVertical>true</FlipVertical>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>432</LeftCoordinate>
+      <RightCoordinate>480</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <FlipVertical>true</FlipVertical>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>624</LeftCoordinate>
+      <RightCoordinate>672</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>Slash3</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>384</LeftCoordinate>
+      <RightCoordinate>432</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>432</LeftCoordinate>
+      <RightCoordinate>480</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>480</LeftCoordinate>
+      <RightCoordinate>528</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>528</LeftCoordinate>
+      <RightCoordinate>576</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>576</LeftCoordinate>
+      <RightCoordinate>624</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>432</LeftCoordinate>
+      <RightCoordinate>480</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.142857149</FrameLength>
+      <LeftCoordinate>624</LeftCoordinate>
+      <RightCoordinate>672</RightCoordinate>
+      <TopCoordinate>304</TopCoordinate>
+      <BottomCoordinate>352</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <ProjectFile>..\projectloot.gluj</ProjectFile>
+</AnimationChainArraySave>

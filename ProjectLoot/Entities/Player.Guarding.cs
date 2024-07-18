@@ -1,5 +1,6 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
+using FlatRedBall.Input;
 using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 
@@ -52,6 +53,8 @@ public partial class Player
 
         protected override void AfterTimedStateActivity()
         {
+            SetRotation();
+            Parent.HandleBobbing();
         }
 
         public override void BeforeDeactivate()
@@ -63,8 +66,58 @@ public partial class Player
             Parent.CurrentMovement = TopDownValuesStatic[StoredMovementName];
         }
 
-        public override void Uninitialize()
+        public override void Uninitialize() { }
+    
+        private void SetRotation()
         {
+            float? angle = Parent.GameplayInputDevice.Aim.GetAngle();
+
+            if (angle is null)
+            {
+                return;
+            }
+
+            Rotation rotation = Rotation.FromRadians(angle.Value).Snap(8, true);
+
+            Parent.RotationZ = rotation.NormalizedRadians;
+            
+            Rotation parentRotation = Rotation.FromRadians(Parent.RotationZ);
+            int      sector         = parentRotation.GetSector(8, true);
+
+            switch (sector)
+            {
+                case 0:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesRight";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 4:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesLeft";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 5:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownLeft";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 6:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDown";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 7:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownRight";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                default:
+                    Parent.EyesSprite.Visible  = false;
+                    Parent.GunSprite.RelativeZ = Parent.PlayerSprite.Z - 0.1f;
+                    break;
+            }
+
+            Parent.GameplayCenter.ForceUpdateDependenciesDeep();
         }
     }
 }

@@ -1,5 +1,6 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using FlatRedBall;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
@@ -9,18 +10,24 @@ namespace ProjectLoot.Components;
 public class MeleeWeaponComponent : IMeleeWeaponComponent
 {
     private IGameplayInputDevice InputDevice { get; }
-    
-    public MeleeWeaponComponent(Team team, IGameplayInputDevice inputDevice, PositionedObject holder, Sprite meleeWeaponSprite)
+    private PositionedObject Holder { get; }
+    private PositionedObject Origin { get; }
+    private Sprite MeleeWeaponSprite { get; }
+    public Team Team { get; }
+
+    public Vector3 AttackOrigin => Origin.Position;
+    public Rotation AttackDirection => Rotation.FromRadians(Origin.RotationZ);
+    public Vector3 HolderVelocity => Holder.Velocity;
+
+    public MeleeWeaponComponent(Team team, IGameplayInputDevice inputDevice, PositionedObject holder, PositionedObject origin, Sprite meleeWeaponSprite)
     {
         Holder            = holder;
+        Origin            = origin;
         MeleeWeaponSprite = meleeWeaponSprite;
         Team              = team;
         InputDevice       = inputDevice;
     }
 
-    public PositionedObject Holder { get; }
-    private Sprite MeleeWeaponSprite { get; }
-    public Team Team { get; }
     public IMeleeWeaponInputDevice MeleeWeaponInputDevice => InputDevice.MeleeWeaponInputDevice;
     
     private CyclableList<IMeleeWeaponModel> MeleeWeapons { get; } = [];
@@ -71,7 +78,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
 
         meleeWeaponModel.IsEquipped = true;
         
-        MeleeWeaponSprite.Visible          = true;
+        // MeleeWeaponSprite.Visible          = true;
         MeleeWeaponSprite.CurrentChainName = meleeWeaponModel.MeleeWeaponData.Name;
     }
 
@@ -93,5 +100,10 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         {
             meleeWeapon.Activity();
         }
+    }
+    
+    public void AttachObjectToAttackOrigin(PositionedObject obj)
+    {
+        obj.AttachTo(Origin);
     }
 }

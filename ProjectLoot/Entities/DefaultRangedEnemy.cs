@@ -1,6 +1,8 @@
+using System.Diagnostics;
 using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using FlatRedBall;
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
@@ -45,12 +47,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            TransformComponent = new TransformComponent(this);
+            TransformComponent = new TransformComponent(this, this);
             HealthComponent    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             ShatterComponent   = new ShatterComponent(HealthBarRuntimeInstance);
             WeaknessComponent  = new WeaknessComponent(HealthBarRuntimeInstance);
             HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            GunComponent       = new GunComponent(Team.Enemy, EnemyInputDevice, GunSprite);
+            GunComponent       = new GunComponent(Team.Enemy, EnemyInputDevice, GunSprite, this);
             SpriteComponent    = new SpriteComponent(SpriteInstance);
             
             GunComponent.Add(new StandardGunModel(GlobalContent.GunData[GunData.OrderedList.ChooseRandom()], GunComponent, GunComponent, Effects));
@@ -68,7 +70,7 @@ namespace ProjectLoot.Entities
             Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
             Effects.HandlerCollection.Add<ApplyShatterDamageHandler>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
             Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
-            Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent, HitstopComponent));
+            Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent));
         }
 
         private void InitializeControllers()
@@ -88,6 +90,11 @@ namespace ProjectLoot.Entities
             if (HealthComponent.CurrentHealth <= 0)
             {
                 Destroy();
+            }
+
+            if (XVelocity != 0)
+            {
+                Debug.WriteLine($"_Enemy@{TimeManager.CurrentFrame}:XVelocity:{XVelocity}:XAcceleration:{XAcceleration}:InputX:{MovementInput.X}:InputY:{MovementInput.Y}");
             }
         }
 

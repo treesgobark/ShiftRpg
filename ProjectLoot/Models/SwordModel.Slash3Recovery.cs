@@ -1,11 +1,6 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
-using FlatRedBall.Math.Geometry;
-using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
-using ProjectLoot.Effects;
-using ProjectLoot.Entities;
-using ProjectLoot.Factories;
 
 namespace ProjectLoot.Models;
 

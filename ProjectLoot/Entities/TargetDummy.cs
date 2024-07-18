@@ -28,9 +28,9 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            Health = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
-            Shatter = new ShatterComponent(HealthBarRuntimeInstance);
-            Weakness = new WeaknessComponent(HealthBarRuntimeInstance);
+            Health    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            Shatter   = new ShatterComponent(HealthBarRuntimeInstance);
+            Weakness  = new WeaknessComponent(HealthBarRuntimeInstance);
             Transform = new TransformComponent(this);
             
             Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(

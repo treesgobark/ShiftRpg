@@ -5,6 +5,15 @@
   "Source": "GLUE",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "HitboxAnimations.achx",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -50,6 +59,55 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "IsManuallyUpdated",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "HitboxAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "Slash1",
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesRotation",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\MeleeHitbox",

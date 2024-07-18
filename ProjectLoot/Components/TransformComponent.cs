@@ -1,6 +1,7 @@
 using FlatRedBall;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.TopDown;
 
 namespace ProjectLoot.Components;
 
@@ -11,10 +12,12 @@ public class TransformComponent : ITransformComponent
     private int _stopCount;
 
     private PositionedObject PositionedObject { get; }
+    private ITopDownEntity? TopDownEntity { get; }
 
-    public TransformComponent(PositionedObject positionedObject)
+    public TransformComponent(PositionedObject positionedObject, ITopDownEntity? topDownEntity = null)
     {
-        PositionedObject = positionedObject;
+        PositionedObject   = positionedObject;
+        TopDownEntity = topDownEntity;
     }
 
     private int StopCount
@@ -69,6 +72,13 @@ public class TransformComponent : ITransformComponent
             }
         }
     }
+
+    public float CurrentSpeed => Velocity.Length();
+    public float MaxSpeed => TopDownEntity.MaxSpeed;
+
+    public float DecelerationAboveMaxSpeed => TopDownEntity.CurrentMovement.IsUsingCustomDeceleration
+        ? TopDownEntity.CurrentMovement.CustomDecelerationValue
+        : 0;
 
     private bool IsStopped => StopCount > 0;
     

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.TileCollisions;
 using ProjectLoot.DataTypes;

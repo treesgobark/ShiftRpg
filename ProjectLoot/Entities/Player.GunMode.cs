@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
@@ -35,6 +34,7 @@ public partial class Player
             }
             
             SetRotation();
+            Parent.HandleBobbing();
         }
 
         public override IState? EvaluateExitConditions()
@@ -78,24 +78,65 @@ public partial class Player
             }
 
             Parent.RotationZ = angle.Value;
+            
+            Rotation parentRotation = Rotation.FromRadians(Parent.RotationZ);
+            int      sector         = parentRotation.GetSector(8, true);
 
-            if (angle.Value is > 0 and < MathF.PI)
+            switch (sector)
             {
-                Parent.GunSprite.RelativeZ = Parent.Z - 0.5f;
-            }
-            else
-            {
-                Parent.GunSprite.RelativeZ = Parent.Z + 0.5f;
+                case 0:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesRight";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 4:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesLeft";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 5:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownLeft";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 6:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDown";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                case 7:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownRight";
+                    Parent.GunSprite.RelativeZ         = Parent.PlayerSprite.Z + 0.1f;
+                    break;
+                default:
+                    Parent.EyesSprite.Visible  = false;
+                    Parent.GunSprite.RelativeZ = Parent.PlayerSprite.Z - 0.1f;
+                    break;
             }
 
-            Parent.PlayerSprite.CurrentChainName = angle.Value switch
+            switch (Parent.XVelocity, Parent.YVelocity)
             {
-                > 0 and <= MathF.PI             / 2                => "WalkForwardRight",
-                > MathF.PI                      / 2 and < MathF.PI => "WalkForwardLeft",
-                >= MathF.PI and <= 3 * MathF.PI / 2                => "WalkLeft",
-                > 3 * MathF.PI       / 2 and <= 2 * MathF.PI or 0  => "WalkRight",
-                _                                                  => throw new UnreachableException("")
-            };
+                case (> 50, _):
+                    Parent.PlayerSprite.CurrentChainName = "MoveRight";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (< -50, _):
+                    Parent.PlayerSprite.CurrentChainName = "MoveLeft";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (_, > 50):
+                    Parent.PlayerSprite.CurrentChainName = "MoveUp";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (_, < -50):
+                    Parent.PlayerSprite.CurrentChainName = "MoveDown";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                default:
+                    Parent.PlayerSprite.CurrentChainName = "Idle";
+                    break;
+            }
 
             Parent.GameplayCenter.ForceUpdateDependenciesDeep();
         }

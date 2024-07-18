@@ -4,14 +4,14 @@ using ProjectLoot.Contracts;
 
 namespace ProjectLoot.Effects.Handlers;
 
-public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
+public class PlayerHitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
 {
     private IHitstopComponent Hitstop { get; }
     private ITransformComponent Transform { get; }
     private ITimeManager TimeManager { get; }
     private ISpriteComponent? Sprite { get; }
 
-    public HitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, ITransformComponent transform,
+    public PlayerHitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, ITransformComponent transform,
         ITimeManager timeManager, ISpriteComponent? sprite = null) : base(effects)
     {
         Hitstop = hitstop;
@@ -28,12 +28,12 @@ public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         
         if (Hitstop.IsStopped) { return; }
         
-        Transform.StopMotion();
+        // Transform.StopMotion();
         Sprite?.StopAnimation();
 
         Hitstop.IsStopped = true;
         
-        Hitstop.Stop();
+        // Hitstop.Stop();
     }
 
     public void Activity()
@@ -42,12 +42,12 @@ public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         
         if (Hitstop.IsStopped && Hitstop.RemainingHitstopTime <= TimeSpan.Zero)
         {
-            Transform.ResumeMotion();
+            // Transform.ResumeMotion();
             Sprite?.ResumeAnimation();
             
             Hitstop.IsStopped = false;
             
-            Hitstop.Resume();
+            // Hitstop.Resume();
         }
     }
 }

@@ -483,6 +483,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>UISpriteSheet</Name>
     </None>
+    <None Include="Content\HitboxAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HitboxAnimations</Name>
+    </None>
+    <None Include="Content\PlayerAnimations.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayerAnimations</Name>
+    </None>
     <None Include="content\weaponanimations.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WeaponAnimations</Name>
@@ -962,6 +970,7 @@
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
     <Compile Include="Handlers\KnockbackHandler.cs" />
+    <Compile Include="Handlers\PlayerHitstopHandler.cs" />
     <Compile Include="Handlers\ShatterDamageHandler.cs" />
     <Compile Include="Handlers\WeaknessDamageHandler.cs" />
     <Compile Include="InputDevices\Constant2DInput.cs" />

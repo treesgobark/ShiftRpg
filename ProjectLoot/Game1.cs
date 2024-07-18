@@ -24,6 +24,12 @@ namespace ProjectLoot
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
 #endif
+
+            IsFixedTimeStep                         = true;
+            graphics.SynchronizeWithVerticalRetrace = false;
+            TargetElapsedTime                       = TimeSpan.FromMilliseconds(1000f / 120f);
+            
+            graphics.ApplyChanges();
         }
 
         protected override void Initialize()

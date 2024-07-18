@@ -8,10 +8,10 @@
     <Frame>
       <TextureName>../../tileset.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>9</LeftCoordinate>
-      <RightCoordinate>26</RightCoordinate>
-      <TopCoordinate>422</TopCoordinate>
-      <BottomCoordinate>427</BottomCoordinate>
+      <LeftCoordinate>57</LeftCoordinate>
+      <RightCoordinate>74</RightCoordinate>
+      <TopCoordinate>710</TopCoordinate>
+      <BottomCoordinate>715</BottomCoordinate>
       <ShapeCollectionSave>
         <AxisAlignedRectangleSaves />
         <AxisAlignedCubeSaves />

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Input;
@@ -35,6 +34,7 @@ public partial class Player
             }
 
             SetRotation();
+            Parent.HandleBobbing();
         }
     
         public override IState? EvaluateExitConditions()
@@ -87,21 +87,65 @@ public partial class Player
 
             if (Parent.RotationZ is > 0 and <= MathF.PI)
             {
-                Parent.MeleeWeaponSprite.RelativeZ = Parent.Z - 0.5f;
+                Parent.MeleeWeaponSprite.RelativeZ = Parent.PlayerSprite.Z - 0.1f;
             }
             else
             {
-                Parent.MeleeWeaponSprite.RelativeZ = Parent.Z + 0.5f;
+                Parent.MeleeWeaponSprite.RelativeZ = Parent.PlayerSprite.Z + 0.1f;
+            }
+            
+            Rotation parentRotation = Rotation.FromRadians(Parent.RotationZ);
+            int      sector         = parentRotation.GetSector(8, true);
+
+            switch (sector)
+            {
+                case 0:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesRight";
+                    break;
+                case 4:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesLeft";
+                    break;
+                case 5:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownLeft";
+                    break;
+                case 6:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDown";
+                    break;
+                case 7:
+                    Parent.EyesSprite.Visible          = true;
+                    Parent.EyesSprite.CurrentChainName = "EyesDownRight";
+                    break;
+                default:
+                    Parent.EyesSprite.Visible = false;
+                    break;
             }
 
-            Parent.PlayerSprite.CurrentChainName = Parent.RotationZ switch
+            switch (Parent.XVelocity, Parent.YVelocity)
             {
-                > 0 and <= MathF.PI             / 2                => "WalkForwardRight",
-                > MathF.PI                      / 2 and < MathF.PI => "WalkForwardLeft",
-                >= MathF.PI and <= 3 * MathF.PI / 2                => "WalkLeft",
-                > 3 * MathF.PI       / 2 and <= 2 * MathF.PI or 0  => "WalkRight",
-                _                                                  => throw new UnreachableException("")
-            };
+                case (> 50, _):
+                    Parent.PlayerSprite.CurrentChainName = "MoveRight";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (< -50, _):
+                    Parent.PlayerSprite.CurrentChainName = "MoveLeft";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (_, > 50):
+                    Parent.PlayerSprite.CurrentChainName = "MoveUp";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                case (_, < -50):
+                    Parent.PlayerSprite.CurrentChainName = "MoveDown";
+                    Parent.PlayerSprite.AnimationSpeed   = 2f;
+                    break;
+                default:
+                    Parent.PlayerSprite.CurrentChainName = "Idle";
+                    break;
+            }
 
             Parent.GameplayCenter.ForceUpdateDependenciesDeep();
         }

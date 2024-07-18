@@ -5,7 +5,6 @@ using FlatRedBall.Graphics;
 using Microsoft.Xna.Framework;
 using ProjectLoot.DataTypes;
 using ProjectLoot.ViewModels;
-using RenderingLibrary;
 using IUpdateable = ProjectLoot.Contracts.IUpdateable;
 
 namespace ProjectLoot.Models;

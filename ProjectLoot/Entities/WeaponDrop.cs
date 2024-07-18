@@ -1,17 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
-using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
-using Microsoft.Xna.Framework;
 using ProjectLoot.DataTypes;
 
 namespace ProjectLoot.Entities

@@ -7,7 +7,6 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
-using ProjectLoot.InputDevices;
 using ProjectLoot.ViewModels;
 
 namespace ProjectLoot.Components;
@@ -15,7 +14,11 @@ namespace ProjectLoot.Components;
 public class GunComponent : ViewModel, IGunViewModel, IGunComponent
 {
     public Sprite GunSprite { get; }
-    public Vector3 BulletOrigin => GunSprite.Position + Vector2.UnitX.AtLength(GunSprite.Width / 2f).AtAngle(GunSprite.RotationZ).ToVector3();
+
+    private PositionedObject GameplayCenter { get; }
+
+    // public Vector3 BulletOrigin => GunSprite.Position + Vector2.UnitX.AtLength(GunSprite.Width / 2f).AtAngle(GunSprite.RotationZ).ToVector3();
+    public Vector3 BulletOrigin => GameplayCenter.Position + Vector2.UnitX.AtLength(4).AtAngle(GunSprite.RotationZ).ToVec3(GunSprite.Z);
     // public Vector3 BulletOrigin => GunSprite.Position;
     public Rotation GunRotation => Rotation.FromRadians(GunSprite.RotationZ);
     public Team Team { get; }
@@ -24,11 +27,12 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
     private IGameplayInputDevice InputDevice { get; }
     private CyclableList<IGunModel> Guns { get; } = [];
     
-    public GunComponent(Team team, IGameplayInputDevice inputDevice, Sprite gunSprite)
+    public GunComponent(Team team, IGameplayInputDevice inputDevice, Sprite gunSprite, PositionedObject gameplayCenter)
     {
-        GunSprite          = gunSprite;
-        Team               = team;
-        InputDevice        = inputDevice;
+        GunSprite           = gunSprite;
+        GameplayCenter = gameplayCenter;
+        Team                = team;
+        InputDevice         = inputDevice;
     }
 
     public bool IsEmpty => Guns.Count == 0;
@@ -72,7 +76,7 @@ public class GunComponent : ViewModel, IGunViewModel, IGunComponent
 
         gunModel.IsEquipped = true;
         
-        GunSprite.Visible          = true;
+        // GunSprite.Visible          = true;
         GunSprite.CurrentChainName = gunModel.GunData.GunName;
     }
 

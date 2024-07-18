@@ -1,6 +1,5 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
-using ProjectLoot.Controllers;
 
 namespace ProjectLoot.Models;
 

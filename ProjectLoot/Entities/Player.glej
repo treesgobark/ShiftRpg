@@ -36,6 +36,12 @@
       "IsSharedStatic": true,
       "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "PlayerAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
     }
   ],
   "CustomVariables": [
@@ -286,16 +292,49 @@
       "IncludeInIClickable": false
     },
     {
-      "InstanceName": "PlayerSprite",
-      "SourceClassType": "FlatRedBall.Sprite",
+      "InstanceName": "SpriteHolder",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
       "Properties": [
         {
           "Name": "AssociateWithFactory",
           "Value": true,
           "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
         },
         {
-          "Name": "IsManuallyUpdated",
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "IncludeInICollidable": false,
+      "IncludeInIClickable": false
+    },
+    {
+      "InstanceName": "PlayerSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
           "Value": true,
           "Type": "bool"
         }
@@ -304,13 +343,13 @@
         {
           "Type": "AnimationChainList",
           "Member": "AnimationChains",
-          "Value": "Character",
+          "Value": "PlayerAnimations",
           "Time": 0.0
         },
         {
           "Type": "string",
           "Member": "CurrentChainName",
-          "Value": "WalkRight",
+          "Value": "Idle",
           "Time": 0.0
         },
         {
@@ -324,14 +363,96 @@
           "Member": "TextureScale",
           "Value": 1.0,
           "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": 0.5,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,
       "SourceFile": "Sprite",
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
-      "IncludeInIClickable": false,
-      "CallActivity": false
+      "IncludeInIClickable": false
+    },
+    {
+      "InstanceName": "EyesSprite",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "PlayerAnimations",
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "EyesDown",
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesRotation",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ParentRotationChangesPosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": 0.6,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "IgnoresParentVisibility",
+          "Value": true,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     },
     {
       "InstanceName": "GameplayCenter",
@@ -371,7 +492,7 @@
         {
           "Type": "float",
           "Member": "Y",
-          "Value": 12.0,
+          "Value": 14.0,
           "Time": 0.0
         }
       ],
@@ -453,6 +574,12 @@
           "Member": "Visible",
           "Value": false,
           "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": 0.5,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,
@@ -505,6 +632,18 @@
           "Type": "float",
           "Member": "TextureScale",
           "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Z",
+          "Value": -0.5,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
           "Time": 0.0
         }
       ],

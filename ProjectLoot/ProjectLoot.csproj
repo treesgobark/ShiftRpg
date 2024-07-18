@@ -1009,6 +1009,12 @@
     <Compile Include="Models\SwordModel.Slash2Recovery.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\SwordModel.CircleSlash.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwordModel.CircleSlashRecovery.cs">
+      <DependentUpon>SwordModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SwordModel.Slash3.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>
     </Compile>

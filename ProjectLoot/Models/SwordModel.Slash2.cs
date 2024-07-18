@@ -14,14 +14,14 @@ public partial class SwordModel
     private class Slash2 : ParentedTimedState<SwordModel>
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(120);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(20);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }
         private Rotation AttackDirection { get; set; }
         private Rotation HitboxStartDirection => AttackDirection + Rotation.QuarterTurn;
 
-        private static int TotalSegments => 3;
+        private static int TotalSegments => 1;
         private int SegmentsHandled { get; set; }
         private int GoalSegmentsHandled => Math.Clamp((int)(NormalizedProgress * TotalSegments) + 1, 0, TotalSegments);
         

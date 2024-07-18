@@ -27,6 +27,8 @@ public partial class SwordModel : IMeleeWeaponModel
         StateMachine.Add(new Slash2Recovery(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new Slash3(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new Slash3Recovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new CircleSlash(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new CircleSlashRecovery(StateMachine, FrbTimeManager.Instance, this));
         
         StateMachine.InitializeStartingState<NotEquipped>();
     }

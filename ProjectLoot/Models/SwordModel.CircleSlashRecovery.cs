@@ -6,11 +6,11 @@ namespace ProjectLoot.Models;
 
 public partial class SwordModel
 {
-    private class Slash3Recovery : ParentedTimedState<SwordModel>
+    private class CircleSlashRecovery : ParentedTimedState<SwordModel>
     {
-        private static TimeSpan Duration => TimeSpan.FromMilliseconds(180);
+        private static TimeSpan Duration => TimeSpan.FromMilliseconds(120);
         
-        public Slash3Recovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
+        public CircleSlashRecovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
             : base(stateMachine, timeManager, parent) { }
         
         public override void Initialize() { }
@@ -19,16 +19,6 @@ public partial class SwordModel
 
         public override IState? EvaluateExitConditions()
         {
-            if (!Parent.IsEquipped)
-            {
-                return StateMachine.Get<NotEquipped>();
-            }
-
-            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
-            {
-                return StateMachine.Get<CircleSlash>();
-            }
-            
             if (TimeInState >= Duration)
             {
                 return StateMachine.Get<Idle>();

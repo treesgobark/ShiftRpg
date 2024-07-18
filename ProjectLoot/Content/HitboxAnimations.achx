@@ -105,6 +105,7 @@
   <AnimationChain>
     <Name>Slash3</Name>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>384</LeftCoordinate>
@@ -120,6 +121,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>432</LeftCoordinate>
@@ -135,6 +137,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>480</LeftCoordinate>
@@ -150,6 +153,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>528</LeftCoordinate>
@@ -165,6 +169,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>576</LeftCoordinate>
@@ -180,6 +185,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>432</LeftCoordinate>
@@ -195,6 +201,7 @@
       </ShapeCollectionSave>
     </Frame>
     <Frame>
+      <FlipVertical>true</FlipVertical>
       <TextureName>tileset.png</TextureName>
       <FrameLength>0.142857149</FrameLength>
       <LeftCoordinate>624</LeftCoordinate>

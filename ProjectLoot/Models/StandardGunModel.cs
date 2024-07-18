@@ -1,6 +1,7 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using Microsoft.Xna.Framework.Audio;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
@@ -27,8 +28,17 @@ public partial class StandardGunModel : IGunModel
         StateMachine.Add(new Recovery(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new Reloading(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.InitializeStartingState<NotEquipped>();
+
+        GunshotSound = gunData.GunName switch
+        {
+            GunData.Rifle   => GlobalContent.Saiga12SingleShot1mSide,
+            GunData.Shotgun => GlobalContent.ShotgunBlast,
+            GunData.Pistol  => GlobalContent.ThudShot,
+            _               => throw new ArgumentException($"Unrecognized gun name: {gunData.GunName}")
+        };
     }
 
+    public SoundEffect GunshotSound { get; }
     public GunData GunData { get; }
     private IGunComponent GunComponent { get; }
     private IGunViewModel GunViewModel { get; }
@@ -65,7 +75,7 @@ public partial class StandardGunModel : IGunModel
     public bool IsEquipped { get; set; } = false;
     public bool IsFull => CurrentRoundsInMagazine  == GunData.MagazineSize;
     public bool IsEmpty => CurrentRoundsInMagazine == 0;
-    
+
     public void Activity()
     {
         StateMachine.DoCurrentStateActivity();

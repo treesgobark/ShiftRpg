@@ -13,7 +13,7 @@ public partial class SwordModel
 {
     private class CircleSlash : ParentedTimedState<SwordModel>
     {
-        private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
+        private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
@@ -29,7 +29,7 @@ public partial class SwordModel
         
         public CircleSlash(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
             : base(stateMachine, timeManager, parent) { }
-        
+
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
@@ -73,6 +73,8 @@ public partial class SwordModel
                     KnockbackBehavior.Additive
                 )
             );
+
+            GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -103,7 +105,7 @@ public partial class SwordModel
                 {
                     EffectBundle targetHitEffects = new();
             
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 6));
+                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 12));
                     
                     targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee,
                                                                  HitstopDuration));
@@ -125,6 +127,16 @@ public partial class SwordModel
                     holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Melee, HitstopDuration));
             
                     Hitbox.HolderHitEffects = holderHitEffects;
+
+                    if (SegmentsHandled == TotalSegments - 2)
+                    {
+                        GlobalContent.BladeSwingD.Play(0.2f, 0, 0);
+                    }
+
+                    if (SegmentsHandled == TotalSegments - 1)
+                    {
+                        GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
+                    }
 
                     SegmentsHandled++;
                 }

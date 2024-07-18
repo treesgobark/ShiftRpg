@@ -94,6 +94,69 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingA.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingC.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingD.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingB.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingF.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BladeSwingG.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/SwordImpact.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/GunSounds/ThudShot.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/GunSounds/ShotgunBlast.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},

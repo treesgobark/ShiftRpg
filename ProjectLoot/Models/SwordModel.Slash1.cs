@@ -62,7 +62,7 @@ public partial class SwordModel
             Hitbox.SpriteInstance.CurrentChainName  = "Slash1";
             Hitbox.SpriteInstance.AnimationSpeed    = 0.99f / (float)Duration.TotalSeconds;
             Hitbox.SpriteInstance.RelativeRotationZ = AttackDirection.NormalizedRadians;
-            Hitbox.SpriteInstance.RelativeZ = 0.1f;
+            Hitbox.SpriteInstance.RelativeZ = 0.2f;
 
             // Parent.HolderEffects.Handle(
             //     new KnockbackEffect(
@@ -73,6 +73,8 @@ public partial class SwordModel
             //         KnockbackBehavior.Replacement
             //         )
             //     );
+
+            GlobalContent.BladeSwingA.Play(0.1f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -113,7 +115,7 @@ public partial class SwordModel
                 {
                     EffectBundle targetHitEffects = new();
             
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 4));
+                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 10));
                     
                     targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee,
                                                                  HitstopDuration));

@@ -73,6 +73,8 @@ public partial class SwordModel
             //         KnockbackBehavior.Replacement
             //     )
             // );
+
+            GlobalContent.BladeSwingC.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -113,7 +115,7 @@ public partial class SwordModel
                 {
                     EffectBundle targetHitEffects = new();
             
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 5));
+                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 10));
                     
                     targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee,
                                                                  HitstopDuration));

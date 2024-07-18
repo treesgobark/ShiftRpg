@@ -90,7 +90,7 @@ partial class StandardGunModel
             
             GunModel.GunViewModel.PublishGunFiredEvent(roundsSpent);
 
-            GlobalContent.Saiga12SingleShot1mSide.Play(0.1f, 0, 0);
+            GunModel.GunshotSound.Play(0.1f, 0, 0);
         }
 
         private static float AccuracyTransform(float t)

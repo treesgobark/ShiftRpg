@@ -95,9 +95,45 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>
     </None>
+    <None Include="Content\GlobalContent\GunSounds\ShotgunBlast.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShotgunBlast</Name>
+    </None>
+    <None Include="Content\GlobalContent\GunSounds\ThudShot.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ThudShot</Name>
+    </None>
     <None Include="Content\GlobalContent\MeleeWeaponData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MeleeWeaponData</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingA</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingB.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingB</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingC.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingC</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingD.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingD</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingF.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingF</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingG.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BladeSwingG</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\SwordImpact.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SwordImpact</Name>
     </None>
     <None Include="Content\GumProject\Components\CartridgeDisplay.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

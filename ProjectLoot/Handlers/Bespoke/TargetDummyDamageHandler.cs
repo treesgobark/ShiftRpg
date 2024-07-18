@@ -35,7 +35,7 @@ public class TargetDummyDamageHandler : EffectHandler<DamageEffect>, IUpdateable
         
         ApplyDamageModifiers(effect, ref finalDamage);
         ApplyDamage(effect, finalDamage);
-        CreateDamageNumber(finalDamage);
+        CreateDamageNumber(effect, finalDamage);
     }
     
     protected virtual bool ValidateEffect(DamageEffect effect)
@@ -72,9 +72,9 @@ public class TargetDummyDamageHandler : EffectHandler<DamageEffect>, IUpdateable
     {
     }
     
-    protected virtual void CreateDamageNumber(float finalDamage)
+    protected virtual void CreateDamageNumber(DamageEffect effect, float finalDamage)
     {
         DamageNumberFactory.CreateNew()
-                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position);
+                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position, effect.Source);
     }
 }

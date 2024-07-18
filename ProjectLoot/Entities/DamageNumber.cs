@@ -2,12 +2,16 @@ using ANLG.Utilities.Core.Constants;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using Microsoft.Xna.Framework;
+using ProjectLoot.Effects;
 using RenderingLibrary.Graphics;
 
 namespace ProjectLoot.Entities
 {
     public partial class DamageNumber
     {
+        private SourceTag Source { get; set; }
+        private bool HasPlayedSound { get; set; } = false;
+        
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -20,7 +24,6 @@ namespace ProjectLoot.Entities
             DamageNumberRuntimeInstance.TextInstance.FontScale = 0.75f;
             Velocity = 50f * Vector3.UnitX.RandomizeAngleBetween(MathConstants.EighthTurn, 3 * MathConstants.EighthTurn)
                 .RandomizeMagnitudeBetween(0.5f, 1f);
-            HitMarker.Play(0.1f, 0f, 0f);
         }
 
         private void CustomActivity()
@@ -29,6 +32,20 @@ namespace ProjectLoot.Entities
             if (DamageNumberRuntimeInstance.TextAlpha <= 0)
             {
                 Destroy();
+            }
+
+            if (!HasPlayedSound)
+            {
+                if (Source == SourceTag.Melee)
+                {
+                    GlobalContent.SwordImpact.Play(0.1f, 0f, 0f);
+                }
+                else if (Source == SourceTag.Gun)
+                {
+                    HitMarker.Play(0.1f, 0f, 0f);
+                }
+
+                HasPlayedSound = true;
             }
         }
 
@@ -44,11 +61,12 @@ namespace ProjectLoot.Entities
 
         }
 
-        public void SetStartingValues(string text, float fontScale, Vector3 position)
+        public void SetStartingValues(string text, float fontScale, Vector3 position, SourceTag source)
         {
             DamageNumberRuntimeInstance.Text                   = text;
             DamageNumberRuntimeInstance.TextInstanceFont_Scale = fontScale;
             Position                                           = position;
+            Source                                             = source;
         }
     }
 }

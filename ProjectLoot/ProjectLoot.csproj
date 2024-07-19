@@ -1052,6 +1052,12 @@
     <Compile Include="Models\FistsModel.NotEquipped.cs">
       <DependentUpon>FistsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\FistsModel.RightFinisher.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.RightFinisherRecovery.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\FistsModel.RightHook.cs">
       <DependentUpon>FistsModel.cs</DependentUpon>
     </Compile>

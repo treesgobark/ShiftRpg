@@ -28,6 +28,8 @@ public partial class FistsModel : IMeleeWeaponModel
         StateMachine.Add(new RightHookRecovery(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new LeftHook(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new LeftHookRecovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightFinisher(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightFinisherRecovery(StateMachine, FrbTimeManager.Instance, this));
         
         StateMachine.InitializeStartingState<NotEquipped>();
     }

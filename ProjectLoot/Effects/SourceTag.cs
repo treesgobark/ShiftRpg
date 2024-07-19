@@ -5,11 +5,17 @@ namespace ProjectLoot.Effects;
 [Flags]
 public enum SourceTag
 {
-    None     = 0x_0000_0000,
-    Gun      = 0x_0000_0001,
-    Melee    = 0x_0000_0002,
-    Shatter  = 0x_0000_0004,
-    All      = 0x_7FFF_FFFF,
+    None    = 0x_0000_0000,
+    Gun     = 0x_0000_0001,
+    Melee   = 0x_0000_0002,
+    Shatter = 0x_0000_0004,
+    Sword   = 0x_0000_000A, // 0x_0000_0008 + 0x_0000_0002
+    Fists   = 0x_0000_0012, // 0x_0000_0010 + 0x_0000_0002
+    Dagger  = 0x_0000_0022, // 0x_0000_0020 + 0x_0000_0002
+    Pistol  = 0x_0000_0041, // 0x_0000_0040 + 0x_0000_0001
+    Rifle   = 0x_0000_0081, // 0x_0000_0080 + 0x_0000_0001
+    Shotgun = 0x_0000_0101, // 0x_0000_0100 + 0x_0000_0001
+    All     = 0x_7FFF_FFFF,
 }
 
 public static class SourceTagExtensions

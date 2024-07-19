@@ -6,28 +6,28 @@ using ProjectLoot.DataTypes;
 
 namespace ProjectLoot.Models;
 
-public partial class SwordModel : IMeleeWeaponModel
+public partial class FistsModel : IMeleeWeaponModel
 {
     private StateMachine StateMachine { get; }
     
-    public SwordModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
+    public FistsModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects)
     {
         MeleeWeaponComponent = meleeWeaponComponent;
         HolderEffects        = holderEffects;
-        MeleeWeaponData = meleeWeaponData;
+        MeleeWeaponData      = meleeWeaponData;
 
         StateMachine = new StateMachine();
         StateMachine.Add(new NotEquipped(StateMachine, FrbTimeManager.Instance, this));
         StateMachine.Add(new Idle(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash1(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash1Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash2(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash2Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash3(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash3Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new CircleSlash(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new CircleSlashRecovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightJab(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightJabRecovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new LeftJab(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new LeftJabRecovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightHook(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new RightHookRecovery(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new LeftHook(StateMachine, FrbTimeManager.Instance, this));
+        StateMachine.Add(new LeftHookRecovery(StateMachine, FrbTimeManager.Instance, this));
         
         StateMachine.InitializeStartingState<NotEquipped>();
     }

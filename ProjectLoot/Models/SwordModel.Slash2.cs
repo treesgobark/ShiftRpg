@@ -115,15 +115,15 @@ public partial class SwordModel
                 {
                     EffectBundle targetHitEffects = new();
             
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 10));
+                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
                     
-                    targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee,
+                    targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
                                                                  HitstopDuration));
 
                     targetHitEffects.AddEffect(
                         new KnockbackEffect(
                             ~Parent.MeleeWeaponComponent.Team,
-                            SourceTag.Melee,
+                            SourceTag.Sword,
                             200,
                             AttackDirection,
                             KnockbackBehavior.Replacement
@@ -134,7 +134,7 @@ public partial class SwordModel
                     
                     EffectBundle holderHitEffects = new();
             
-                    holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Melee, HitstopDuration));
+                    holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
             
                     Hitbox.HolderHitEffects = holderHitEffects;
 

@@ -67,7 +67,7 @@ public partial class SwordModel
             // Parent.HolderEffects.Handle(
             //     new KnockbackEffect(
             //         Parent.MeleeWeaponComponent.Team,
-            //         SourceTag.Melee,
+            //         SourceTag.Sword,
             //         200,
             //         AttackDirection,
             //         KnockbackBehavior.Replacement
@@ -104,42 +104,39 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity()
         {
-            if (Hitbox != null)
+            Hitbox.SpriteInstance.AnimateSelf(0);
+            
+            Hitbox.RelativeRotationZ =
+                (HitboxStartDirection + Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
+
+            if (SegmentsHandled < GoalSegmentsHandled)
             {
-                Hitbox.SpriteInstance.AnimateSelf(0);
+                EffectBundle targetHitEffects = new();
+        
+                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
                 
-                Hitbox.RelativeRotationZ =
-                    (HitboxStartDirection + Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
+                targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
+                                                             HitstopDuration));
 
-                if (SegmentsHandled < GoalSegmentsHandled)
-                {
-                    EffectBundle targetHitEffects = new();
-            
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee, 10));
-                    
-                    targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Melee,
-                                                                 HitstopDuration));
+                targetHitEffects.AddEffect(
+                    new KnockbackEffect(
+                        ~Parent.MeleeWeaponComponent.Team,
+                        SourceTag.Sword,
+                        200,
+                        AttackDirection,
+                        KnockbackBehavior.Replacement
+                    )
+                );
+        
+                Hitbox.TargetHitEffects = targetHitEffects;
+                
+                EffectBundle holderHitEffects = new();
+        
+                holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
+        
+                Hitbox.HolderHitEffects = holderHitEffects;
 
-                    targetHitEffects.AddEffect(
-                        new KnockbackEffect(
-                            ~Parent.MeleeWeaponComponent.Team,
-                            SourceTag.Melee,
-                            200,
-                            AttackDirection,
-                            KnockbackBehavior.Replacement
-                        )
-                    );
-            
-                    Hitbox.TargetHitEffects = targetHitEffects;
-                    
-                    EffectBundle holderHitEffects = new();
-            
-                    holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Melee, HitstopDuration));
-            
-                    Hitbox.HolderHitEffects = holderHitEffects;
-
-                    SegmentsHandled++;
-                }
+                SegmentsHandled++;
             }
         }
 

@@ -36,13 +36,17 @@ namespace ProjectLoot.Entities
 
             if (!HasPlayedSound)
             {
-                if (Source == SourceTag.Melee)
+                switch (Source)
                 {
-                    GlobalContent.SwordImpact.Play(0.1f, 0f, 0f);
-                }
-                else if (Source == SourceTag.Gun)
-                {
-                    HitMarker.Play(0.1f, 0f, 0f);
+                    case SourceTag.Sword:
+                        GlobalContent.SwordImpact.Play(0.1f, 0f, 0f);
+                        break;
+                    case SourceTag.Gun:
+                        HitMarker.Play(0.1f, 0f, 0f);
+                        break;
+                    case SourceTag.Fists:
+                        GlobalContent.FistHitA.Play(0.1f, 0f, 0f);
+                        break;
                 }
 
                 HasPlayedSound = true;

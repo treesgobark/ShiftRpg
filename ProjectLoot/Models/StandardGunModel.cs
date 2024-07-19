@@ -67,6 +67,7 @@ public partial class StandardGunModel : IGunModel
             effects.AddEffect(new HitstopEffect(GunComponent.Team, SourceTag.Gun, TimeSpan.FromMilliseconds(GunData.HitstopDurationMilliseconds)));
             effects.AddEffect(new KnockbackEffect(~GunComponent.Team, SourceTag.Gun, GunData.KnockbackVelocity,
                                                   GunComponent.GunRotation, KnockbackBehavior.Replacement));
+            // effects.AddEffect(new ShatterDamageEffect(~GunComponent.Team, SourceTag.Gun, GunData.Damage));
             return effects;
         }
     }

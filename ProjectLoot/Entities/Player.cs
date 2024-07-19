@@ -6,6 +6,7 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
+using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
@@ -54,7 +55,7 @@ public partial class Player
         HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         HitstunComponent      = new HitstunComponent();
         GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite, GameplayCenter);
-        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite);
+        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite, PlayerSprite);
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
         
         GameplayInputDevice.ApplyHitstopGuardClauses(HitstopComponent);
@@ -145,8 +146,23 @@ public partial class Player
 
     public bool PickUpWeapon(MeleeWeaponData meleeWeapon)
     {
-        var meleeWeaponModel = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
-        MeleeWeaponComponent.Add(meleeWeaponModel);
+        IMeleeWeaponModel model;
+
+        switch (meleeWeapon)
+        {
+            case { Name: MeleeWeaponData.Fists }:
+                model = new FistsModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                break;
+            case { Name: MeleeWeaponData.Sword }:
+            case { Name: MeleeWeaponData.Dagger }:
+                model = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                break;
+            default:
+                throw new ArgumentException($"Unrecognized weapon type: {meleeWeapon.Name}");
+        }
+        
+        MeleeWeaponComponent.Add(model);
+        
         return true;
     }
 

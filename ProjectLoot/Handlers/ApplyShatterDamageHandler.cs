@@ -21,9 +21,7 @@ public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
         
          if (Shatter.CurrentShatterDamage > 0)
          {
-             var bundle = new EffectBundle();
-             bundle.AddEffect(new DamageEffect(effect.AppliesTo, SourceTag.Shatter, Shatter.CurrentShatterDamage));
-             Effects.Handle(bundle);
+             Effects.Handle(new DamageEffect(effect.AppliesTo, SourceTag.Shatter, Shatter.CurrentShatterDamage));
              Shatter.SetShatterDamage(0f, Health);
          }
     }

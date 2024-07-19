@@ -157,6 +157,27 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Fists/FistHitA.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Fists/SwingA.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Fists/SwingB.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},

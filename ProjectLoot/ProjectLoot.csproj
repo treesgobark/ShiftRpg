@@ -107,6 +107,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MeleeWeaponData</Name>
     </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\FistHitA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>FistHitA</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\SwingA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SwingA</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\SwingB.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SwingB</Name>
+    </None>
     <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingA.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BladeSwingA</Name>
@@ -1021,6 +1033,37 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\FistsModel.cs" />
+    <Compile Include="Models\FistsModel.Idle.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.LeftHook.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.LeftHookRecovery.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.LeftJab.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.LeftJabRecovery.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.NotEquipped.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.RightHook.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.RightHookRecovery.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.RightJab.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FistsModel.RightJabRecovery.cs">
+      <DependentUpon>FistsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SwordModel.Active.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>
     </Compile>

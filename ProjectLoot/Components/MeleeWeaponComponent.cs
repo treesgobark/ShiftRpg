@@ -13,17 +13,21 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
     private PositionedObject Holder { get; }
     private PositionedObject Origin { get; }
     private Sprite MeleeWeaponSprite { get; }
+    private Sprite HolderSprite { get; }
     public Team Team { get; }
 
     public Vector3 AttackOrigin => Origin.Position;
+    public Vector3 HolderSpritePosition => HolderSprite.Position;
     public Rotation AttackDirection => Rotation.FromRadians(Origin.RotationZ);
     public Vector3 HolderVelocity => Holder.Velocity;
 
-    public MeleeWeaponComponent(Team team, IGameplayInputDevice inputDevice, PositionedObject holder, PositionedObject origin, Sprite meleeWeaponSprite)
+    public MeleeWeaponComponent(Team team, IGameplayInputDevice inputDevice, PositionedObject holder,
+                                PositionedObject origin, Sprite meleeWeaponSprite, Sprite holderSprite)
     {
         Holder            = holder;
         Origin            = origin;
         MeleeWeaponSprite = meleeWeaponSprite;
+        HolderSprite = holderSprite;
         Team              = team;
         InputDevice       = inputDevice;
     }

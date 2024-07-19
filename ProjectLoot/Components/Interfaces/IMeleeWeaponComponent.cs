@@ -10,7 +10,7 @@ public interface IMeleeWeaponComponent
 {
     Team Team { get; }
     IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; }
-
+    Vector3 HolderSpritePosition { get; }
     Rotation AttackDirection { get; }
 
     void AttachObjectToAttackOrigin(PositionedObject obj);

@@ -271,5 +271,23 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>ThreeEighthsSlash</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.333333343</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>336</RightCoordinate>
+      <TopCoordinate>288</TopCoordinate>
+      <BottomCoordinate>336</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
   <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

@@ -19,9 +19,9 @@ public partial class SwordModel
 
         private MeleeHitbox? Hitbox { get; set; }
         private Rotation AttackDirection { get; set; }
-        private Rotation HitboxStartDirection => AttackDirection - Rotation.QuarterTurn;
+        private Rotation HitboxStartDirection => AttackDirection + Rotation.QuarterTurn;
 
-        private static int TotalSegments => 3;
+        private static int TotalSegments => 2;
         private int SegmentsHandled { get; set; }
         private int GoalSegmentsHandled => Math.Clamp((int)(NormalizedProgress * TotalSegments) + 1, 0, TotalSegments);
         
@@ -59,10 +59,10 @@ public partial class SwordModel
             hitboxShape.AttachTo(Hitbox);
             Hitbox.Collision.Add(hitboxShape);
 
-            Hitbox.SpriteInstance.CurrentChainName  = "Slash3";
-            Hitbox.SpriteInstance.AnimationSpeed    = 0.99f / (float)Duration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeRotationZ = AttackDirection.NormalizedRadians;
-            Hitbox.SpriteInstance.RelativeZ         = 0.1f;
+            Hitbox.SpriteInstance.CurrentChainName = "ThreeEighthsSlash";
+            Hitbox.SpriteInstance.AnimationSpeed   = 0.99f / (float)Duration.TotalSeconds;
+            Hitbox.SpriteInstance.RelativeZ        = 0.2f;
+            Hitbox.SpriteInstance.FlipVertical     = true;
             
             Parent.HolderEffects.Handle(
                 new KnockbackEffect(
@@ -74,7 +74,8 @@ public partial class SwordModel
                 )
             );
 
-            GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
+            GlobalContent.BladeSwingD.Play(0.2f, 0, 0);
+            GlobalContent.WhooshA.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -94,52 +95,49 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity()
         {
-            if (Hitbox != null)
+            Hitbox.RelativeRotationZ =
+                (HitboxStartDirection - (Rotation.FullTurn + Rotation.HalfTurn) * NormalizedProgress).NormalizedRadians;
+
+            if (SegmentsHandled < GoalSegmentsHandled)
             {
-                Hitbox.SpriteInstance.AnimateSelf(0);
+                EffectBundle targetHitEffects = new();
+        
+                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 12));
+                
+                targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
+                                                             HitstopDuration));
 
-                Hitbox.RelativeRotationZ =
-                    (HitboxStartDirection + (Rotation.FullTurn + Rotation.HalfTurn) * NormalizedProgress).NormalizedRadians;
+                targetHitEffects.AddEffect(
+                    new KnockbackEffect(
+                        ~Parent.MeleeWeaponComponent.Team,
+                        SourceTag.Sword,
+                        200 + 100 * NormalizedProgress,
+                        AttackDirection,
+                        KnockbackBehavior.Replacement
+                        )
+                    );
+        
+                Hitbox.TargetHitEffects = targetHitEffects;
+                
+                EffectBundle holderHitEffects = new();
+        
+                holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
+        
+                Hitbox.HolderHitEffects = holderHitEffects;
 
-                if (SegmentsHandled < GoalSegmentsHandled)
+                if (SegmentsHandled == TotalSegments - 2)
                 {
-                    EffectBundle targetHitEffects = new();
-            
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 12));
-                    
-                    targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
-                                                                 HitstopDuration));
-
-                    targetHitEffects.AddEffect(
-                        new KnockbackEffect(
-                            ~Parent.MeleeWeaponComponent.Team,
-                            SourceTag.Sword,
-                            200 + 100 * NormalizedProgress,
-                            AttackDirection,
-                            KnockbackBehavior.Replacement
-                            )
-                        );
-            
-                    Hitbox.TargetHitEffects = targetHitEffects;
-                    
-                    EffectBundle holderHitEffects = new();
-            
-                    holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
-            
-                    Hitbox.HolderHitEffects = holderHitEffects;
-
-                    if (SegmentsHandled == TotalSegments - 2)
-                    {
-                        GlobalContent.BladeSwingD.Play(0.2f, 0, 0);
-                    }
-
-                    if (SegmentsHandled == TotalSegments - 1)
-                    {
-                        GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
-                    }
-
-                    SegmentsHandled++;
+                    // GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
+                    GlobalContent.WhooshB.Play(0.2f, 0, 0);
                 }
+
+                if (SegmentsHandled == TotalSegments - 1)
+                {
+                    GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
+                    GlobalContent.WhooshC.Play(0.2f, 0, 0);
+                }
+
+                SegmentsHandled++;
             }
         }
 

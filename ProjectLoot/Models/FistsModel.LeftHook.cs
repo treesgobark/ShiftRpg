@@ -154,13 +154,9 @@ partial class FistsModel
         {
             Hitbox.SpriteInstance.CurrentChainName              = "Hook";
             Hitbox.SpriteInstance.AnimationSpeed                = 0.99f / (float)SwingDuration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeRotationZ             = AttackDirection.NormalizedRadians;
             Hitbox.SpriteInstance.RelativeX                     = ForwardOffset;
             Hitbox.SpriteInstance.RelativeY                     = PerpendicularOffset;
             Hitbox.SpriteInstance.RelativeRotationZ             = -Rotation.QuarterTurn.NormalizedRadians;
-            Hitbox.SpriteInstance.UseAnimationRelativePosition  = false;
-            Hitbox.SpriteInstance.UseAnimationTextureFlip       = false;
-            Hitbox.SpriteInstance.ParentRotationChangesRotation = true;
             Hitbox.SpriteInstance.FlipVertical                  = true;
 
             Hitbox.SpriteInstance.RelativeZ = Parent.MeleeWeaponComponent.HolderSpritePosition.Z + ZOffset;

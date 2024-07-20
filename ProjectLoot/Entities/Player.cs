@@ -43,7 +43,7 @@ public partial class Player
 
     private void InitializeInputs()
     {
-        InitializeTopDownInput(InputManager.Keyboard);
+        // InitializeTopDownInput(InputManager.Keyboard);
         GameplayInputDevice = new GameplayInputDevice(InputDevice, GameplayCenter, MeleeAimThreshold);
     }
 

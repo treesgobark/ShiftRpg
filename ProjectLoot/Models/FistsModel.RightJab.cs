@@ -156,11 +156,8 @@ partial class FistsModel
         {
             Hitbox.SpriteInstance.CurrentChainName             = "Jab";
             Hitbox.SpriteInstance.AnimationSpeed               = 0.99f / (float)SwingDuration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeRotationZ            = AttackDirection.NormalizedRadians;
             Hitbox.SpriteInstance.RelativeX                    = InitialDistance;
             Hitbox.SpriteInstance.RelativeY                    = PerpendicularOffset;
-            Hitbox.SpriteInstance.UseAnimationRelativePosition = false;
-            Hitbox.SpriteInstance.UseAnimationTextureFlip      = false;
 
             Hitbox.SpriteInstance.RelativeZ = Parent.MeleeWeaponComponent.HolderSpritePosition.Z + ZOffset;
         }

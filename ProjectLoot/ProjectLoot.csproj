@@ -147,6 +147,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SwordImpact</Name>
     </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\WhooshA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WhooshA</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\WhooshB.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WhooshB</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\WhooshC.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WhooshC</Name>
+    </None>
     <None Include="Content\GumProject\Components\CartridgeDisplay.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>CartridgeDisplay</Name>

@@ -50,8 +50,8 @@ public partial class SwordModel
             
             Circle hitboxShape = new()
             {
-                Radius    = 6,
-                RelativeX = 18,
+                Radius    = 8,
+                RelativeX = 16,
                 Visible   = false,
                 IgnoresParentVisibility = true,
             };
@@ -59,10 +59,9 @@ public partial class SwordModel
             hitboxShape.AttachTo(Hitbox);
             Hitbox.Collision.Add(hitboxShape);
 
-            Hitbox.SpriteInstance.CurrentChainName  = "Slash1";
+            Hitbox.SpriteInstance.CurrentChainName  = "ThreeEighthsSlash";
             Hitbox.SpriteInstance.AnimationSpeed    = 0.99f / (float)Duration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeRotationZ = AttackDirection.NormalizedRadians;
-            Hitbox.SpriteInstance.RelativeZ = 0.2f;
+            Hitbox.SpriteInstance.RelativeZ         = 0.2f;
 
             // Parent.HolderEffects.Handle(
             //     new KnockbackEffect(
@@ -75,6 +74,7 @@ public partial class SwordModel
             //     );
 
             GlobalContent.BladeSwingA.Play(0.1f, 0, 0);
+            GlobalContent.WhooshA.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -104,8 +104,6 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity()
         {
-            Hitbox.SpriteInstance.AnimateSelf(0);
-            
             Hitbox.RelativeRotationZ =
                 (HitboxStartDirection + Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
 

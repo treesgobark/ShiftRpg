@@ -59,10 +59,10 @@ public partial class SwordModel
             hitboxShape.AttachTo(Hitbox);
             Hitbox.Collision.Add(hitboxShape);
 
-            Hitbox.SpriteInstance.CurrentChainName  = "Slash2";
-            Hitbox.SpriteInstance.AnimationSpeed    = 0.99f / (float)Duration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeRotationZ = AttackDirection.NormalizedRadians;
-            Hitbox.SpriteInstance.RelativeZ         = 0.1f;
+            Hitbox.SpriteInstance.CurrentChainName = "ThreeEighthsSlash";
+            Hitbox.SpriteInstance.AnimationSpeed   = 0.99f / (float)Duration.TotalSeconds;
+            Hitbox.SpriteInstance.RelativeZ        = 0.2f;
+            Hitbox.SpriteInstance.FlipVertical     = true;
             
             // Parent.HolderEffects.Handle(
             //     new KnockbackEffect(
@@ -75,6 +75,7 @@ public partial class SwordModel
             // );
 
             GlobalContent.BladeSwingB.Play(0.2f, 0, 0);
+            GlobalContent.WhooshA.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -104,42 +105,39 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity()
         {
-            if (Hitbox != null)
+            Hitbox.SpriteInstance.AnimateSelf(0);
+
+            Hitbox.RelativeRotationZ =
+                (HitboxStartDirection - Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
+
+            if (SegmentsHandled < GoalSegmentsHandled)
             {
-                Hitbox.SpriteInstance.AnimateSelf(0);
+                EffectBundle targetHitEffects = new();
+        
+                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
+                
+                targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
+                                                             HitstopDuration));
 
-                Hitbox.RelativeRotationZ =
-                    (HitboxStartDirection - Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
+                targetHitEffects.AddEffect(
+                    new KnockbackEffect(
+                        ~Parent.MeleeWeaponComponent.Team,
+                        SourceTag.Sword,
+                        200,
+                        AttackDirection,
+                        KnockbackBehavior.Replacement
+                    )
+                );
+        
+                Hitbox.TargetHitEffects = targetHitEffects;
+                
+                EffectBundle holderHitEffects = new();
+        
+                holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
+        
+                Hitbox.HolderHitEffects = holderHitEffects;
 
-                if (SegmentsHandled < GoalSegmentsHandled)
-                {
-                    EffectBundle targetHitEffects = new();
-            
-                    targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
-                    
-                    targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
-                                                                 HitstopDuration));
-
-                    targetHitEffects.AddEffect(
-                        new KnockbackEffect(
-                            ~Parent.MeleeWeaponComponent.Team,
-                            SourceTag.Sword,
-                            200,
-                            AttackDirection,
-                            KnockbackBehavior.Replacement
-                        )
-                    );
-            
-                    Hitbox.TargetHitEffects = targetHitEffects;
-                    
-                    EffectBundle holderHitEffects = new();
-            
-                    holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
-            
-                    Hitbox.HolderHitEffects = holderHitEffects;
-
-                    SegmentsHandled++;
-                }
+                SegmentsHandled++;
             }
         }
 

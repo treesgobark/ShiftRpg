@@ -24,11 +24,13 @@ public class GameplayInputDevice : IGameplayInputDevice
                 _aim = gamePad.RightStick;
                 Attack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
                     .Or(gamePad.GetButton(Xbox360GamePad.Button.X));
-                Reload = gamePad.GetButton(Xbox360GamePad.Button.B);
-                Dash = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
-                Guard = gamePad.GetButton(Xbox360GamePad.Button.LeftTrigger);
+                Reload          = gamePad.GetButton(Xbox360GamePad.Button.B);
+                Dash            = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
+                Guard           = gamePad.GetButton(Xbox360GamePad.Button.LeftTrigger);
                 QuickSwapWeapon = gamePad.GetButton(Xbox360GamePad.Button.Y);
-                Interact = gamePad.GetButton(Xbox360GamePad.Button.A);
+                NextWeapon      = gamePad.GetButton(Xbox360GamePad.Button.RightTrigger);
+                PreviousWeapon  = FalsePressableInput.Instance;
+                Interact        = gamePad.GetButton(Xbox360GamePad.Button.A);
                 // NextWeapon      = ;
                 // PreviousWeapon  = ;
                 break;

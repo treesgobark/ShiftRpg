@@ -70,11 +70,6 @@
           "Name": "AssociateWithFactory",
           "Value": true,
           "Type": "bool"
-        },
-        {
-          "Name": "IsManuallyUpdated",
-          "Value": true,
-          "Type": "bool"
         }
       ],
       "InstructionSaves": [
@@ -93,13 +88,31 @@
         {
           "Type": "bool",
           "Member": "ParentRotationChangesRotation",
-          "Value": false,
+          "Value": true,
           "Time": 0.0
         },
         {
           "Type": "float",
           "Member": "TextureScale",
           "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "UseAnimationRelativePosition",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "UseAnimationTextureFlip",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Animate",
+          "Value": false,
           "Time": 0.0
         }
       ],

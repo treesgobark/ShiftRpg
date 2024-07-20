@@ -21,6 +21,11 @@ public partial class StandardGunModel
     
         public override IState? EvaluateExitConditions()
         {
+            if (!GunModel.IsEquipped)
+            {
+                return StateMachine.Get<NotEquipped>();
+            }
+            
             if (TimeInState > GunModel.GunData.ReloadTimeSpan)
             {
                 GunModel.CurrentRoundsInMagazine           = GunModel.GunData.MagazineSize;

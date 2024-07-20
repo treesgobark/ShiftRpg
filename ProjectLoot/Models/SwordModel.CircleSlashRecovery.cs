@@ -8,7 +8,7 @@ public partial class SwordModel
 {
     private class CircleSlashRecovery : ParentedTimedState<SwordModel>
     {
-        private static TimeSpan Duration => TimeSpan.FromMilliseconds(120);
+        private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         
         public CircleSlashRecovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
             : base(stateMachine, timeManager, parent) { }

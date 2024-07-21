@@ -1064,43 +1064,19 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
-    <Compile Include="Models\FistsModel.cs" />
-    <Compile Include="Models\FistsModel.Idle.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.LeftHook.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.LeftHookRecovery.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.LeftJab.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.LeftJabRecovery.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.NotEquipped.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightFinisher.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightFinisherRecovery.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightHook.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightHookRecovery.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightJab.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FistsModel.RightJabRecovery.cs">
-      <DependentUpon>FistsModel.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\FistsModel\FistsModel.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.Idle.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHook.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHookRecovery.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightLeftJab.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightLeftJabRecovery.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightFinisher.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightFinisherRecovery.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightHook.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightHookRecovery.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightJab.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.NotEquipped.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.LightRightJabRecovery.cs" />
     <Compile Include="Models\SwordModel.Active.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>
     </Compile>

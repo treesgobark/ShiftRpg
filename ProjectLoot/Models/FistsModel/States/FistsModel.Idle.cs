@@ -26,7 +26,7 @@ partial class FistsModel
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                return States.Get<RightJab>();
+                return States.Get<LightRightJab>();
             }
 
             return null;

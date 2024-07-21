@@ -11,27 +11,26 @@ namespace ProjectLoot.Models;
 
 partial class FistsModel
 {
-    private class RightHook : ParentedTimedState<FistsModel>
+    private class LightLeftJab : ParentedTimedState<FistsModel>
     {
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
         private static float HitboxRadius => 10;
-        private static float PerpendicularOffset => 8;
-        private static float ForwardOffset => 6;
+        private static float PerpendicularOffset => 4;
+        private static float TravelDistance => 8;
+        private static float InitialDistance => 4;
         private static float Damage => 8;
-        
+        private float ZOffset { get; set; }
 
         private MeleeHitbox? Hitbox { get; set; }
         private Circle? Circle { get; set; }
         private Rotation AttackDirection { get; set; }
-        private Rotation HitboxStartDirection => AttackDirection - Rotation.QuarterTurn;
-        private float ZOffset { get; set; }
         
         private IState? NextState { get; set; }
         
-        public RightHook(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+        public LightLeftJab(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
             : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
@@ -48,16 +47,16 @@ partial class FistsModel
             AddHitboxCollision();
             ConfigureHitboxSprite();
 
-            GlobalContent.SwingA.Play(0.1f, 0, 0);
+            GlobalContent.SwingB.Play(0.1f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                NextState = States.Get<LeftHook>();
+                NextState = States.Get<LightRightHook>();
             }
-            
+
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
@@ -70,7 +69,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<RightHookRecovery>();
+                return States.Get<LightLeftJabRecovery>();
             }
 
             return null;
@@ -78,8 +77,8 @@ partial class FistsModel
 
         protected override void AfterTimedStateActivity()
         {
-            Hitbox.RelativeRotationZ =
-                (HitboxStartDirection + Rotation.EighthTurn * NormalizedSwingProgress).NormalizedRadians;
+            Hitbox.SpriteInstance.RelativeX = InitialDistance + NormalizedSwingProgress * TravelDistance;
+            Circle.RelativeX                = InitialDistance + NormalizedSwingProgress * TravelDistance;
         }
 
         public override void BeforeDeactivate()
@@ -92,7 +91,7 @@ partial class FistsModel
         private void CalculateZOffset()
         {
             int sector = AttackDirection.GetSector(8, true);
-            ZOffset = sector switch { 6 or 7 or 0 => 0.2f, 1 or 2 or 3 or 4 or 5 => -0.2f, _ => ZOffset };
+            ZOffset = sector switch { 6 or 5 or 4 or 3 => 0.2f, 2 or 1 or 0 or 7 => -0.2f, _ => ZOffset };
         }
         
         private void CreateHitbox()
@@ -121,7 +120,7 @@ partial class FistsModel
                     ~Parent.MeleeWeaponComponent.Team,
                     SourceTag.Fists,
                     150,
-                    AttackDirection + Rotation.EighthTurn / 2,
+                    AttackDirection,
                     KnockbackBehavior.Replacement
                 )
             );
@@ -142,7 +141,7 @@ partial class FistsModel
                 Radius                  = HitboxRadius,
                 Visible                 = false,
                 IgnoresParentVisibility = true,
-                RelativeX               = ForwardOffset,
+                RelativeX               = InitialDistance,
                 RelativeY               = PerpendicularOffset,
             };
 
@@ -152,11 +151,10 @@ partial class FistsModel
 
         private void ConfigureHitboxSprite()
         {
-            Hitbox.SpriteInstance.CurrentChainName              = "Hook";
-            Hitbox.SpriteInstance.AnimationSpeed                = 0.99f / (float)SwingDuration.TotalSeconds;
-            Hitbox.SpriteInstance.RelativeX                     = ForwardOffset;
-            Hitbox.SpriteInstance.RelativeY                     = PerpendicularOffset;
-            Hitbox.SpriteInstance.RelativeRotationZ             = Rotation.QuarterTurn.NormalizedRadians;
+            Hitbox.SpriteInstance.CurrentChainName             = "Jab";
+            Hitbox.SpriteInstance.AnimationSpeed               = 0.99f / (float)SwingDuration.TotalSeconds;
+            Hitbox.SpriteInstance.RelativeX                    = InitialDistance;
+            Hitbox.SpriteInstance.RelativeY                    = PerpendicularOffset;
 
             Hitbox.SpriteInstance.RelativeZ = Parent.MeleeWeaponComponent.HolderSpritePosition.Z + ZOffset;
         }

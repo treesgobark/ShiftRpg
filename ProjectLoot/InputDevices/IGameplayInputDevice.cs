@@ -6,7 +6,8 @@ public interface IGameplayInputDevice
 {
     I2DInput Movement { get; }
     I2DInput Aim { get; }
-    IPressableInput Attack { get; }
+    IPressableInput LightAttack { get; }
+    IPressableInput HeavyAttack { get; }
     IPressableInput Reload { get; }
     IPressableInput Dash { get; }
     IPressableInput QuickSwapWeapon { get; }

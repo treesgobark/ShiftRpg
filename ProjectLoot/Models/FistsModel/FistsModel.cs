@@ -20,16 +20,16 @@ public partial class FistsModel : IMeleeWeaponModel
         States = new StateMachine();
         States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
         States.Add(new Idle(States, FrbTimeManager.Instance, this));
-        States.Add(new RightJab(States, FrbTimeManager.Instance, this));
-        States.Add(new RightJabRecovery(States, FrbTimeManager.Instance, this));
-        States.Add(new LeftJab(States, FrbTimeManager.Instance, this));
-        States.Add(new LeftJabRecovery(States, FrbTimeManager.Instance, this));
-        States.Add(new RightHook(States, FrbTimeManager.Instance, this));
-        States.Add(new RightHookRecovery(States, FrbTimeManager.Instance, this));
-        States.Add(new LeftHook(States, FrbTimeManager.Instance, this));
-        States.Add(new LeftHookRecovery(States, FrbTimeManager.Instance, this));
-        States.Add(new RightFinisher(States, FrbTimeManager.Instance, this));
-        States.Add(new RightFinisherRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightJab(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightJabRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LightLeftJab(States, FrbTimeManager.Instance, this));
+        States.Add(new LightLeftJabRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightHook(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightHookRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LightLeftHook(States, FrbTimeManager.Instance, this));
+        States.Add(new LightLeftHookRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightFinisher(States, FrbTimeManager.Instance, this));
+        States.Add(new LightRightFinisherRecovery(States, FrbTimeManager.Instance, this));
         
         States.InitializeStartingState<NotEquipped>();
     }

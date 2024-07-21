@@ -5,7 +5,7 @@ namespace ProjectLoot.InputDevices;
 
 public class MeleeWeaponInputDevice(IGameplayInputDevice gameplayInputDevice) : IMeleeWeaponInputDevice
 {
-    public IPressableInput Attack { get; set; } = gameplayInputDevice.Attack;
+    public IPressableInput Attack { get; set; } = gameplayInputDevice.LightAttack;
 }
 
 public class ZeroMeleeWeaponInputDevice : IMeleeWeaponInputDevice

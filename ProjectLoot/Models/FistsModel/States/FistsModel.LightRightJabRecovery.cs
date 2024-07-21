@@ -6,11 +6,11 @@ namespace ProjectLoot.Models;
 
 partial class FistsModel
 {
-    private class RightFinisherRecovery : ParentedTimedState<FistsModel>
+    private class LightRightJabRecovery : ParentedTimedState<FistsModel>
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
 
-        public RightFinisherRecovery(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+        public LightRightJabRecovery(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
             : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
@@ -22,6 +22,11 @@ partial class FistsModel
             if (!Parent.IsEquipped)
             {
                 return States.Get<NotEquipped>();
+            }
+
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
+            {
+                return States.Get<LightLeftJab>();
             }
             
             if (TimeInState >= Duration)

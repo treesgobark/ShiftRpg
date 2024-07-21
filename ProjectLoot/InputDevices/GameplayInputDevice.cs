@@ -22,8 +22,10 @@ public class GameplayInputDevice : IGameplayInputDevice
             case Xbox360GamePad gamePad:
                 Movement = new Gated2DInput(gamePad.LeftStick, 8);
                 _aim = gamePad.RightStick;
-                Attack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
+                LightAttack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
                     .Or(gamePad.GetButton(Xbox360GamePad.Button.X));
+                HeavyAttack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
+                                     .Or(gamePad.GetButton(Xbox360GamePad.Button.Y));
                 Reload          = gamePad.GetButton(Xbox360GamePad.Button.B);
                 Dash            = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
                 QuickSwapWeapon = gamePad.GetButton(Xbox360GamePad.Button.Y);
@@ -36,7 +38,8 @@ public class GameplayInputDevice : IGameplayInputDevice
             case Keyboard keyboard:
                 Movement        = keyboard.GetWasdInput();
                 _aim            = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
-                Attack          = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
+                LightAttack     = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
+                LightAttack     = InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton);
                 Reload          = keyboard.GetKey(Keys.R);
                 Dash            = keyboard.GetKey(Keys.Space);
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);
@@ -65,7 +68,8 @@ public class GameplayInputDevice : IGameplayInputDevice
         }
     }
 
-    public IPressableInput Attack { get; private set; }
+    public IPressableInput LightAttack { get; private set; }
+    public IPressableInput HeavyAttack { get; private set; }
     public IPressableInput Reload { get; private set; }
     public IPressableInput Dash { get; private set; }
     public IPressableInput QuickSwapWeapon { get; }

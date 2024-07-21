@@ -93,7 +93,7 @@ public partial class GameScreen
                 rangedEnemy.EnemyInputDevice.Movement, 4f);
 
             GumScreen.VirtualControllerDisplayInstance.AttackIndicatorInstance.CurrentIsPressedState =
-                rangedEnemy.EnemyInputDevice.Attack.IsDown
+                rangedEnemy.EnemyInputDevice.LightAttack.IsDown
                     ? AttackIndicatorRuntime.IsPressed.Pressed
                     : AttackIndicatorRuntime.IsPressed.NotPressed;
 
@@ -115,7 +115,7 @@ public partial class GameScreen
             Player1.GameplayInputDevice.Movement, 4f);
 
         GumScreen.VirtualControllerDisplayInstance.AttackIndicatorInstance.CurrentIsPressedState =
-            Player1.GameplayInputDevice.Attack.IsDown
+            Player1.GameplayInputDevice.LightAttack.IsDown
                 ? AttackIndicatorRuntime.IsPressed.Pressed
                 : AttackIndicatorRuntime.IsPressed.NotPressed;
 

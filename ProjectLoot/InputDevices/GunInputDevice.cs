@@ -12,7 +12,7 @@ public class GunInputDevice : IGunInputDevice
         GameplayInputDevice = gameplayInputDevice;
     }
 
-    public IPressableInput Fire => GameplayInputDevice.Attack;
+    public IPressableInput Fire => GameplayInputDevice.LightAttack;
     public IPressableInput Reload => GameplayInputDevice.Reload;
 }
 

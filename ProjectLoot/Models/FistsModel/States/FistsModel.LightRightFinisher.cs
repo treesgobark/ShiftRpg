@@ -6,22 +6,24 @@ using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
 using ProjectLoot.Entities;
 using ProjectLoot.Factories;
+using ToolsUtilitiesStandard.Helpers;
+using MathHelper = Microsoft.Xna.Framework.MathHelper;
 
 namespace ProjectLoot.Models;
 
 partial class FistsModel
 {
-    private class RightJab : ParentedTimedState<FistsModel>
+    private class LightRightFinisher : ParentedTimedState<FistsModel>
     {
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
-        private static float HitboxRadius => 10;
+        private static float HitboxRadius => 12;
         private static float PerpendicularOffset => -4;
-        private static float TravelDistance => 8;
-        private static float InitialDistance => 4;
-        private static float Damage => 8;
+        private static float TravelDistance => 24;
+        private static float InitialDistance => -4;
+        private static float Damage => 12;
 
         private MeleeHitbox? Hitbox { get; set; }
         private Circle? Circle { get; set; }
@@ -30,7 +32,7 @@ partial class FistsModel
         
         private IState? NextState { get; set; }
         
-        public RightJab(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+        public LightRightFinisher(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
             : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
@@ -52,11 +54,6 @@ partial class FistsModel
 
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
-            {
-                NextState = States.Get<LeftJab>();
-            }
-            
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
@@ -69,7 +66,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<RightJabRecovery>();
+                return States.Get<LightRightFinisherRecovery>();
             }
 
             return null;
@@ -77,8 +74,8 @@ partial class FistsModel
 
         protected override void AfterTimedStateActivity()
         {
-            Hitbox.SpriteInstance.RelativeX = InitialDistance + NormalizedSwingProgress * TravelDistance;
-            Circle.RelativeX                = InitialDistance + NormalizedSwingProgress * TravelDistance;
+            Hitbox.SpriteInstance.RelativeX = InitialDistance + MathHelper.SmoothStep(0, 1, NormalizedSwingProgress) * TravelDistance;
+            Circle.RelativeX                = InitialDistance + MathF.Pow(NormalizedSwingProgress, 4) * TravelDistance;
         }
 
         public override void BeforeDeactivate()
@@ -119,7 +116,7 @@ partial class FistsModel
                 new KnockbackEffect(
                     ~Parent.MeleeWeaponComponent.Team,
                     SourceTag.Fists,
-                    150,
+                    400,
                     AttackDirection,
                     KnockbackBehavior.Replacement
                 )
@@ -154,7 +151,7 @@ partial class FistsModel
 
         private void ConfigureHitboxSprite()
         {
-            Hitbox.SpriteInstance.CurrentChainName             = "Jab";
+            Hitbox.SpriteInstance.CurrentChainName             = "Finisher";
             Hitbox.SpriteInstance.AnimationSpeed               = 0.99f / (float)SwingDuration.TotalSeconds;
             Hitbox.SpriteInstance.RelativeX                    = InitialDistance;
             Hitbox.SpriteInstance.RelativeY                    = PerpendicularOffset;

@@ -30,8 +30,8 @@ partial class FistsModel
         
         private IState? NextState { get; set; }
         
-        public LeftJab(IReadonlyStateMachine stateMachine, ITimeManager timeManager, FistsModel weaponModel)
-            : base(stateMachine, timeManager, weaponModel) { }
+        public LeftJab(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
 
@@ -54,14 +54,14 @@ partial class FistsModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                NextState = StateMachine.Get<RightHook>();
+                NextState = States.Get<RightHook>();
             }
 
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return StateMachine.Get<NotEquipped>();
+                    return States.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -69,7 +69,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return StateMachine.Get<LeftJabRecovery>();
+                return States.Get<LeftJabRecovery>();
             }
 
             return null;

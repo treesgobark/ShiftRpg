@@ -9,8 +9,8 @@ public partial class Player
 {
     protected class MeleeWeaponMode : ParentedTimedState<Player>
     {
-        public MeleeWeaponMode(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent)
+        public MeleeWeaponMode(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
+            : base(states, timeManager, parent)
         {
         }
 
@@ -41,19 +41,19 @@ public partial class Player
         {
             if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
-                return StateMachine.Get<Dashing>();
+                return States.Get<Dashing>();
             }
 
             if (Parent.GameplayInputDevice.Guard.IsDown)
             {
-                return StateMachine.Get<Guarding>();
+                return States.Get<Guarding>();
             }
             
             if (!Parent.GameplayInputDevice.AimInMeleeRange)
             {
                 return Parent.GunComponent.IsEmpty
-                    ? StateMachine.Get<Unarmed>()
-                    : StateMachine.Get<GunMode>();
+                    ? States.Get<Unarmed>()
+                    : States.Get<GunMode>();
             }
             
             return null;

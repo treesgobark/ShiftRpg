@@ -27,8 +27,8 @@ public partial class SwordModel
         
         private IState? NextState { get; set; }
         
-        public Slash2(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
-            : base(stateMachine, timeManager, parent) { }
+        public Slash2(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
+            : base(states, timeManager, parent) { }
         
         public override void Initialize() { }
 
@@ -82,14 +82,14 @@ public partial class SwordModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                NextState = StateMachine.Get<Slash3>();
+                NextState = States.Get<Slash3>();
             }
 
             if (TimeInState >= Duration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return StateMachine.Get<NotEquipped>();
+                    return States.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -97,7 +97,7 @@ public partial class SwordModel
                     return NextState;
                 }
                 
-                return StateMachine.Get<Slash2Recovery>();
+                return States.Get<Slash2Recovery>();
             }
 
             return null;

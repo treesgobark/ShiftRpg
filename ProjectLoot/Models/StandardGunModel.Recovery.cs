@@ -9,7 +9,7 @@ public partial class StandardGunModel
     {
         private StandardGunModel GunModel { get; }
         
-        public Recovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, StandardGunModel gunModel) : base(stateMachine, timeManager)
+        public Recovery(IReadonlyStateMachine states, ITimeManager timeManager, StandardGunModel gunModel) : base(states, timeManager)
         {
             GunModel  = gunModel;
         }
@@ -24,7 +24,7 @@ public partial class StandardGunModel
         {
             if (GunModel.GunComponent.GunInputDevice.Reload.WasJustPressed)
             {
-                NextState = StateMachine.Get<Reloading>();
+                NextState = States.Get<Reloading>();
             }
         }
     
@@ -37,7 +37,7 @@ public partial class StandardGunModel
     
             if (TimeInState > GunModel.GunData.TimePerRound)
             {
-                return StateMachine.Get<Ready>();
+                return States.Get<Ready>();
             }
     
             return null;

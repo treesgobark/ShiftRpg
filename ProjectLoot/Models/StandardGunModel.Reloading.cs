@@ -9,8 +9,8 @@ public partial class StandardGunModel
     {
         private StandardGunModel GunModel { get; }
 
-        public Reloading(IReadonlyStateMachine stateMachine, ITimeManager  timeManager, StandardGunModel gunModel)
-            : base(stateMachine, timeManager)
+        public Reloading(IReadonlyStateMachine states, ITimeManager  timeManager, StandardGunModel gunModel)
+            : base(states, timeManager)
         {
             GunModel  = gunModel;
         }
@@ -23,14 +23,14 @@ public partial class StandardGunModel
         {
             if (!GunModel.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
             
             if (TimeInState > GunModel.GunData.ReloadTimeSpan)
             {
                 GunModel.CurrentRoundsInMagazine           = GunModel.GunData.MagazineSize;
                 GunModel.GunViewModel.CurrentMagazineCount = GunModel.GunData.MagazineSize;
-                return StateMachine.Get<Ready>();
+                return States.Get<Ready>();
             }
     
             return null;

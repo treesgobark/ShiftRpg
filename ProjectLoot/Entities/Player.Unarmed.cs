@@ -9,8 +9,8 @@ public partial class Player
 {
     protected class Unarmed : ParentedTimedState<Player>
     {
-        public Unarmed(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent)
+        public Unarmed(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
+            : base(states, timeManager, parent)
         {
         }
 
@@ -28,12 +28,12 @@ public partial class Player
         {
             if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
-                return StateMachine.Get<Dashing>();
+                return States.Get<Dashing>();
             }
 
             if (Parent.GameplayInputDevice.Guard.IsDown)
             {
-                return StateMachine.Get<Guarding>();
+                return States.Get<Guarding>();
             }
 
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
@@ -42,8 +42,8 @@ public partial class Player
                 (true, true, _)  => null,
                 (true, _, true) => null,
                 (_, true, false) => null,
-                (false, _, true) => StateMachine.Get<MeleeWeaponMode>(),
-                (_, false, false) => StateMachine.Get<GunMode>(),
+                (false, _, true) => States.Get<MeleeWeaponMode>(),
+                (_, false, false) => States.Get<GunMode>(),
             };
         }
 

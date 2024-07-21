@@ -11,7 +11,7 @@
 //         private SwordModel SwordModel { get; }
 //         private IMeleeWeaponComponent MeleeWeaponComponent { get; }
 //
-//         public Recovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel swordModel, IMeleeWeaponComponent meleeWeaponComponent) : base(stateMachine, timeManager)
+//         public Recovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel, IMeleeWeaponComponent meleeWeaponComponent) : base(states, timeManager)
 //         {
 //             SwordModel                = swordModel;
 //             MeleeWeaponComponent = meleeWeaponComponent;
@@ -27,7 +27,7 @@
 //         {
 //             if (TimeInState > SwordModel.CurrentAttackData.RecoveryTimeSpan)
 //             {
-//                 return StateMachine.Get<Idle>();
+//                 return States.Get<Idle>();
 //             }
 //
 //             return null;

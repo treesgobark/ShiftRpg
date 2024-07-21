@@ -9,7 +9,7 @@
 //     {
 //         private SwordModel SwordModel { get; }
 //         
-//         public Startup(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel swordModel) : base(stateMachine, timeManager)
+//         public Startup(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel) : base(states, timeManager)
 //         {
 //             SwordModel = swordModel;
 //         }
@@ -28,7 +28,7 @@
 //         {
 //             if (TimeInState > SwordModel.CurrentAttackData.StartupTimeSpan)
 //             {
-//                 return StateMachine.Get<Active>();
+//                 return States.Get<Active>();
 //             }
 //
 //             return null;

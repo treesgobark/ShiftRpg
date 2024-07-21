@@ -10,8 +10,8 @@ public partial class SwordModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         
-        public CircleSlashRecovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
-            : base(stateMachine, timeManager, parent) { }
+        public CircleSlashRecovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
+            : base(states, timeManager, parent) { }
         
         public override void Initialize() { }
 
@@ -21,7 +21,7 @@ public partial class SwordModel
         {
             if (TimeInState >= Duration)
             {
-                return StateMachine.Get<Idle>();
+                return States.Get<Idle>();
             }
 
             return null;

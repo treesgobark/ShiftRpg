@@ -24,7 +24,7 @@ namespace ProjectLoot.Entities
         public GunComponent GunComponent { get; private set; }
         public ISpriteComponent SpriteComponent { get; private set; }
         
-        private StateMachine StateMachine { get; set; }
+        private StateMachine States { get; set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -75,9 +75,9 @@ namespace ProjectLoot.Entities
 
         private void InitializeControllers()
         {
-            StateMachine = new StateMachine();
-            StateMachine.Add(new GunMode(this, StateMachine, FrbTimeManager.Instance));
-            StateMachine.InitializeStartingState<GunMode>();
+            States = new StateMachine();
+            States.Add(new GunMode(this, States, FrbTimeManager.Instance));
+            States.InitializeStartingState<GunMode>();
         }
 
         private void CustomActivity()
@@ -85,7 +85,7 @@ namespace ProjectLoot.Entities
             if (HitstopComponent.IsStopped) { return; }
             
             GunComponent.Activity();
-            StateMachine.DoCurrentStateActivity();
+            States.DoCurrentStateActivity();
             
             if (HealthComponent.CurrentHealth <= 0)
             {

@@ -27,8 +27,8 @@ public partial class SwordModel
         
         private IState? NextState { get; set; }
         
-        public CircleSlash(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
-            : base(stateMachine, timeManager, parent) { }
+        public CircleSlash(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
+            : base(states, timeManager, parent) { }
 
         public override void Initialize() { }
 
@@ -84,10 +84,10 @@ public partial class SwordModel
             {
                 if (!Parent.IsEquipped)
                 {
-                    return StateMachine.Get<NotEquipped>();
+                    return States.Get<NotEquipped>();
                 }
 
-                return StateMachine.Get<CircleSlashRecovery>();
+                return States.Get<CircleSlashRecovery>();
             }
 
             return null;

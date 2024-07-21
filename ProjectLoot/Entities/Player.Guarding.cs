@@ -10,8 +10,8 @@ public partial class Player
 {
     protected class Guarding : ParentedTimedState<Player>
     {
-        public Guarding(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent)
+        public Guarding(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
+            : base(states, timeManager, parent)
         {
         }
 
@@ -36,18 +36,18 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0) return StateMachine.Get<Dashing>();
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0) return States.Get<Dashing>();
 
             if (Parent.GameplayInputDevice.Guard.IsDown) return null;
 
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
-                (true, false, _)      => StateMachine.Get<GunMode>(),
-                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (false, false, false) => StateMachine.Get<GunMode>(),
-                _                     => StateMachine.Get<Unarmed>()
+                (false, true, _)      => States.Get<MeleeWeaponMode>(),
+                (true, false, _)      => States.Get<GunMode>(),
+                (false, false, true)  => States.Get<MeleeWeaponMode>(),
+                (false, false, false) => States.Get<GunMode>(),
+                _                     => States.Get<Unarmed>()
             };
         }
 

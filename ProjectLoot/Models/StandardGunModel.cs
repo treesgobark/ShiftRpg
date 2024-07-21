@@ -12,7 +12,7 @@ namespace ProjectLoot.Models;
 
 public partial class StandardGunModel : IGunModel
 {
-    private StateMachine StateMachine { get; } = new();
+    private StateMachine States { get; } = new();
 
     public StandardGunModel(GunData           gunData, IGunComponent gunComponent, IGunViewModel gunViewModel,
                             IEffectsComponent holderEffects)
@@ -23,11 +23,11 @@ public partial class StandardGunModel : IGunModel
         HolderEffects           = holderEffects;
         CurrentRoundsInMagazine = gunData.MagazineSize;
 
-        StateMachine.Add(new NotEquipped(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Ready(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Reloading(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.InitializeStartingState<NotEquipped>();
+        States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
+        States.Add(new Ready(States, FrbTimeManager.Instance, this));
+        States.Add(new Recovery(States, FrbTimeManager.Instance, this));
+        States.Add(new Reloading(States, FrbTimeManager.Instance, this));
+        States.InitializeStartingState<NotEquipped>();
 
         GunshotSound = gunData.GunName switch
         {
@@ -79,6 +79,6 @@ public partial class StandardGunModel : IGunModel
 
     public void Activity()
     {
-        StateMachine.DoCurrentStateActivity();
+        States.DoCurrentStateActivity();
     }
 }

@@ -8,7 +8,7 @@ namespace ProjectLoot.Models;
 
 public partial class SwordModel : IMeleeWeaponModel
 {
-    private StateMachine StateMachine { get; }
+    private StateMachine States { get; }
     
     public SwordModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects)
@@ -17,19 +17,19 @@ public partial class SwordModel : IMeleeWeaponModel
         HolderEffects        = holderEffects;
         MeleeWeaponData = meleeWeaponData;
 
-        StateMachine = new StateMachine();
-        StateMachine.Add(new NotEquipped(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Idle(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash1(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash1Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash2(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash2Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash3(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Slash3Recovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new CircleSlash(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new CircleSlashRecovery(StateMachine, FrbTimeManager.Instance, this));
+        States = new StateMachine();
+        States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
+        States.Add(new Idle(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash1(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash1Recovery(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash2(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash2Recovery(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash3(States, FrbTimeManager.Instance, this));
+        States.Add(new Slash3Recovery(States, FrbTimeManager.Instance, this));
+        States.Add(new CircleSlash(States, FrbTimeManager.Instance, this));
+        States.Add(new CircleSlashRecovery(States, FrbTimeManager.Instance, this));
         
-        StateMachine.InitializeStartingState<NotEquipped>();
+        States.InitializeStartingState<NotEquipped>();
     }
     
     public MeleeWeaponData MeleeWeaponData { get; set; }
@@ -41,6 +41,6 @@ public partial class SwordModel : IMeleeWeaponModel
     
     public void Activity()
     {
-        StateMachine.DoCurrentStateActivity();
+        States.DoCurrentStateActivity();
     }
 }

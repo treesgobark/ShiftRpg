@@ -13,8 +13,8 @@ public partial class Player
     {
         private TopDownValues CachedValues { get; set; } = new();
 
-        public Dashing(Player parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent) { }
+        public Dashing(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
+            : base(states, timeManager, parent) { }
         
         public override void Initialize() { }
 
@@ -38,11 +38,11 @@ public partial class Player
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (false, true, _)      => StateMachine.Get<MeleeWeaponMode>(),
-                (true, false, _)      => StateMachine.Get<GunMode>(),
-                (false, false, true)  => StateMachine.Get<MeleeWeaponMode>(),
-                (false, false, false) => StateMachine.Get<GunMode>(),
-                _                     => StateMachine.Get<Unarmed>()
+                (false, true, _)      => States.Get<MeleeWeaponMode>(),
+                (true, false, _)      => States.Get<GunMode>(),
+                (false, false, true)  => States.Get<MeleeWeaponMode>(),
+                (false, false, false) => States.Get<GunMode>(),
+                _                     => States.Get<Unarmed>()
             };
         }
 

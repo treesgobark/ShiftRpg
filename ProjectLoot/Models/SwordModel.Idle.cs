@@ -8,8 +8,8 @@ partial class SwordModel
 {
     private class Idle : ParentedTimedState<SwordModel>
     {
-        public Idle(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel swordModel)
-            : base(stateMachine, timeManager, swordModel) { }
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel)
+            : base(states, timeManager, swordModel) { }
         
         public override void Initialize() { }
 
@@ -21,12 +21,12 @@ partial class SwordModel
         {
             if (!Parent.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
             
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                return StateMachine.Get<Slash1>();
+                return States.Get<Slash1>();
             }
 
             return null;

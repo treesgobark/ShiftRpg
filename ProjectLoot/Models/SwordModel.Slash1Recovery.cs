@@ -10,8 +10,8 @@ public partial class SwordModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
 
-        public Slash1Recovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel parent)
-            : base(stateMachine, timeManager, parent) { }
+        public Slash1Recovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
+            : base(states, timeManager, parent) { }
         
         public override void Initialize() { }
 
@@ -21,17 +21,17 @@ public partial class SwordModel
         {
             if (!Parent.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                return StateMachine.Get<Slash2>();
+                return States.Get<Slash2>();
             }
             
             if (TimeInState >= Duration)
             {
-                return StateMachine.Get<Idle>();
+                return States.Get<Idle>();
             }
 
             return null;

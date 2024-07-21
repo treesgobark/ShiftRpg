@@ -8,8 +8,8 @@ partial class FistsModel
 {
     private class Idle : ParentedTimedState<FistsModel>
     {
-        public Idle(IReadonlyStateMachine stateMachine, ITimeManager timeManager, FistsModel weaponModel)
-            : base(stateMachine, timeManager, weaponModel) { }
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
 
@@ -21,12 +21,12 @@ partial class FistsModel
         {
             if (!Parent.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                return StateMachine.Get<RightJab>();
+                return States.Get<RightJab>();
             }
 
             return null;

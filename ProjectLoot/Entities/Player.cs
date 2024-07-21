@@ -30,7 +30,7 @@ public partial class Player
     public MeleeWeaponComponent MeleeWeaponComponent { get; private set; }
     public SpriteComponent PlayerSpriteComponent { get; private set; }
 
-    public StateMachine StateMachine { get; protected set; }
+    public StateMachine States { get; protected set; }
 
     private void CustomInitialize()
     {
@@ -63,13 +63,13 @@ public partial class Player
 
     private void InitializeControllers()
     {
-        StateMachine = new StateMachine();
-        StateMachine.Add(new Unarmed(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new MeleeWeaponMode(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new GunMode(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new Dashing(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.Add(new Guarding(this, StateMachine, FrbTimeManager.Instance));
-        StateMachine.InitializeStartingState<Unarmed>();
+        States = new StateMachine();
+        States.Add(new Unarmed(this, States, FrbTimeManager.Instance));
+        States.Add(new MeleeWeaponMode(this, States, FrbTimeManager.Instance));
+        States.Add(new GunMode(this, States, FrbTimeManager.Instance));
+        States.Add(new Dashing(this, States, FrbTimeManager.Instance));
+        States.Add(new Guarding(this, States, FrbTimeManager.Instance));
+        States.InitializeStartingState<Unarmed>();
     }
 
     private void InitializeHandlers()
@@ -99,7 +99,7 @@ public partial class Player
 
         PlayerSprite.ForceUpdateDependenciesDeep();
         
-        StateMachine.DoCurrentStateActivity();
+        States.DoCurrentStateActivity();
         
         if (!HitstopComponent.IsStopped)
         {

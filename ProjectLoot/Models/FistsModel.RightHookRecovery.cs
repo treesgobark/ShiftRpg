@@ -10,8 +10,8 @@ partial class FistsModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
 
-        public RightHookRecovery(IReadonlyStateMachine stateMachine, ITimeManager timeManager, FistsModel weaponModel)
-            : base(stateMachine, timeManager, weaponModel) { }
+        public RightHookRecovery(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
 
@@ -21,17 +21,17 @@ partial class FistsModel
         {
             if (!Parent.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             {
-                return StateMachine.Get<LeftHook>();
+                return States.Get<LeftHook>();
             }
             
             if (TimeInState >= Duration)
             {
-                return StateMachine.Get<Idle>();
+                return States.Get<Idle>();
             }
 
             return null;

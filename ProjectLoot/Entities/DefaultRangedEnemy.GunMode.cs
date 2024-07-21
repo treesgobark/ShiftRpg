@@ -9,8 +9,8 @@ public partial class DefaultRangedEnemy
 {
     protected class GunMode : ParentedTimedState<DefaultRangedEnemy>
     {
-        public GunMode(DefaultRangedEnemy parent, IReadonlyStateMachine stateMachine, ITimeManager timeManager)
-            : base(stateMachine, timeManager, parent) { }
+        public GunMode(DefaultRangedEnemy parent, IReadonlyStateMachine states, ITimeManager timeManager)
+            : base(states, timeManager, parent) { }
 
         public override void Initialize() { }
 

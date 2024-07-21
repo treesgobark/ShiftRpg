@@ -8,8 +8,8 @@ partial class FistsModel
 {
     private class NotEquipped : ParentedTimedState<FistsModel>
     {
-        public NotEquipped(IReadonlyStateMachine stateMachine, ITimeManager timeManager, FistsModel weaponModel)
-            : base(stateMachine, timeManager, weaponModel) { }
+        public NotEquipped(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
 
@@ -21,7 +21,7 @@ partial class FistsModel
         {
             if (Parent.IsEquipped)
             {
-                return StateMachine.Get<Idle>();
+                return States.Get<Idle>();
             }
 
             return null;

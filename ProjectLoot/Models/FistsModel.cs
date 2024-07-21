@@ -8,7 +8,7 @@ namespace ProjectLoot.Models;
 
 public partial class FistsModel : IMeleeWeaponModel
 {
-    private StateMachine StateMachine { get; }
+    private StateMachine States { get; }
     
     public FistsModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects)
@@ -17,21 +17,21 @@ public partial class FistsModel : IMeleeWeaponModel
         HolderEffects        = holderEffects;
         MeleeWeaponData      = meleeWeaponData;
 
-        StateMachine = new StateMachine();
-        StateMachine.Add(new NotEquipped(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new Idle(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightJab(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightJabRecovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new LeftJab(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new LeftJabRecovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightHook(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightHookRecovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new LeftHook(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new LeftHookRecovery(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightFinisher(StateMachine, FrbTimeManager.Instance, this));
-        StateMachine.Add(new RightFinisherRecovery(StateMachine, FrbTimeManager.Instance, this));
+        States = new StateMachine();
+        States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
+        States.Add(new Idle(States, FrbTimeManager.Instance, this));
+        States.Add(new RightJab(States, FrbTimeManager.Instance, this));
+        States.Add(new RightJabRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LeftJab(States, FrbTimeManager.Instance, this));
+        States.Add(new LeftJabRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new RightHook(States, FrbTimeManager.Instance, this));
+        States.Add(new RightHookRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new LeftHook(States, FrbTimeManager.Instance, this));
+        States.Add(new LeftHookRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new RightFinisher(States, FrbTimeManager.Instance, this));
+        States.Add(new RightFinisherRecovery(States, FrbTimeManager.Instance, this));
         
-        StateMachine.InitializeStartingState<NotEquipped>();
+        States.InitializeStartingState<NotEquipped>();
     }
     
     public MeleeWeaponData MeleeWeaponData { get; set; }
@@ -43,6 +43,6 @@ public partial class FistsModel : IMeleeWeaponModel
     
     public void Activity()
     {
-        StateMachine.DoCurrentStateActivity();
+        States.DoCurrentStateActivity();
     }
 }

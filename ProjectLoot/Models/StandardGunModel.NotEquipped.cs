@@ -9,8 +9,8 @@ partial class StandardGunModel
     {
         private StandardGunModel GunModel { get; }
 
-        public NotEquipped(IReadonlyStateMachine stateMachine, ITimeManager timeManager, StandardGunModel gunModel)
-            : base(stateMachine, timeManager)
+        public NotEquipped(IReadonlyStateMachine states, ITimeManager timeManager, StandardGunModel gunModel)
+            : base(states, timeManager)
         {
             GunModel = gunModel;
         }
@@ -23,7 +23,7 @@ partial class StandardGunModel
         {
             if (GunModel.IsEquipped)
             {
-                return StateMachine.Get<Ready>();
+                return States.Get<Ready>();
             }
         
             return null;

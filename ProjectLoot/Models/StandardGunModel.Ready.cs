@@ -12,8 +12,8 @@ partial class StandardGunModel
     {
         private StandardGunModel GunModel { get; }
 
-        public Ready(IReadonlyStateMachine stateMachine, ITimeManager timeManager, StandardGunModel gunModel)
-            : base(stateMachine, timeManager)
+        public Ready(IReadonlyStateMachine states, ITimeManager timeManager, StandardGunModel gunModel)
+            : base(states, timeManager)
         {
             GunModel  = gunModel;
         }
@@ -30,20 +30,20 @@ partial class StandardGunModel
         {
             if (!GunModel.IsEquipped)
             {
-                return StateMachine.Get<NotEquipped>();
+                return States.Get<NotEquipped>();
             }
 
             if (GunModel.CurrentRoundsInMagazine <= 0
                 || GunModel.GunComponent.GunInputDevice.Reload.WasJustPressed && !GunModel.IsFull)
             {
-                return StateMachine.Get<Reloading>();
+                return States.Get<Reloading>();
             }
 
             if (GunModel.GunData.IsSingleShot     && GunModel.GunComponent.GunInputDevice.Fire.WasJustPressed
                 || !GunModel.GunData.IsSingleShot && GunModel.GunComponent.GunInputDevice.Fire.IsDown)
             {
                 Fire();
-                return StateMachine.Get<Recovery>();
+                return States.Get<Recovery>();
             }
 
             return null;

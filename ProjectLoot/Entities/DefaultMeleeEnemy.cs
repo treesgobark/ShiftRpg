@@ -19,7 +19,7 @@ namespace ProjectLoot.Entities
         public MeleeWeaponComponent MeleeWeaponComponent { get; private set; }
         public SpriteComponent SpriteComponent { get; private set; }
 
-        public StateMachine StateMachine { get; protected set; }
+        public StateMachine States { get; protected set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -68,16 +68,16 @@ namespace ProjectLoot.Entities
 
         private void InitializeControllers()
         {
-            StateMachine = new StateMachine();
-            StateMachine.Add(new MeleeMode(this, StateMachine, FrbTimeManager.Instance));
-            StateMachine.InitializeStartingState<MeleeMode>();
+            States = new StateMachine();
+            States.Add(new MeleeMode(this, States, FrbTimeManager.Instance));
+            States.InitializeStartingState<MeleeMode>();
         }
 
         private void CustomActivity()
         {
             if (HitstopComponent.IsStopped) { return; }
             
-            StateMachine.DoCurrentStateActivity();
+            States.DoCurrentStateActivity();
             
             if (HealthComponent.CurrentHealth <= 0)
             {

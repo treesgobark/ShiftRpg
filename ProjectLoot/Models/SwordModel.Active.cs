@@ -18,8 +18,8 @@
 //         private SwordModel SwordModel { get; }
 //         private IMeleeWeaponComponent MeleeWeaponComponent { get; }
 //
-//         public Active(IReadonlyStateMachine stateMachine, ITimeManager timeManager, SwordModel swordModel, IMeleeWeaponComponent meleeWeaponComponent)
-//             : base(stateMachine, timeManager)
+//         public Active(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel, IMeleeWeaponComponent meleeWeaponComponent)
+//             : base(states, timeManager)
 //         {
 //             SwordModel                = swordModel;
 //             MeleeWeaponComponent = meleeWeaponComponent;
@@ -40,7 +40,7 @@
 //         {
 //             if (TimeInState > SwordModel.CurrentAttackData.ActiveTimeSpan)
 //             {
-//                 return StateMachine.Get<Recovery>();
+//                 return States.Get<Recovery>();
 //             }
 //
 //             return null;

@@ -32,8 +32,8 @@ partial class FistsModel
         
         private IState? NextState { get; set; }
         
-        public RightFinisher(IReadonlyStateMachine stateMachine, ITimeManager timeManager, FistsModel weaponModel)
-            : base(stateMachine, timeManager, weaponModel) { }
+        public RightFinisher(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(states, timeManager, weaponModel) { }
         
         public override void Initialize() { }
 
@@ -58,7 +58,7 @@ partial class FistsModel
             {
                 if (!Parent.IsEquipped)
                 {
-                    return StateMachine.Get<NotEquipped>();
+                    return States.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -66,7 +66,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return StateMachine.Get<RightFinisherRecovery>();
+                return States.Get<RightFinisherRecovery>();
             }
 
             return null;

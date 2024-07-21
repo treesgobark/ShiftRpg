@@ -10,6 +10,7 @@ namespace ProjectLoot.Entities
     public partial class DamageNumber
     {
         private SourceTag Source { get; set; }
+        private Team Team { get; set; }
         private bool HasPlayedSound { get; set; } = false;
         
         /// <summary>
@@ -29,6 +30,14 @@ namespace ProjectLoot.Entities
         private void CustomActivity()
         {
             DamageNumberRuntimeInstance.TextAlpha -= (int)(400f * TimeManager.SecondDifference);
+
+            if (Team == Team.Player)
+            {
+                DamageNumberRuntimeInstance.TextRed = 234;
+                DamageNumberRuntimeInstance.TextGreen = 234;
+                DamageNumberRuntimeInstance.TextBlue = 80;
+            }
+            
             if (DamageNumberRuntimeInstance.TextAlpha <= 0)
             {
                 Destroy();
@@ -65,12 +74,13 @@ namespace ProjectLoot.Entities
 
         }
 
-        public void SetStartingValues(string text, float fontScale, Vector3 position, SourceTag source)
+        public void SetStartingValues(string text, float fontScale, Vector3 position, SourceTag source, Team team)
         {
             DamageNumberRuntimeInstance.Text                   = text;
             DamageNumberRuntimeInstance.TextInstanceFont_Scale = fontScale;
             Position                                           = position;
             Source                                             = source;
+            Team                                               = team;
         }
     }
 }

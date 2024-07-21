@@ -16,13 +16,13 @@ namespace ProjectLoot.Entities
 {
     public partial class DefaultRangedEnemy : IWeaponHolder
     {
-        public TransformComponent TransformComponent { get; private set; }
-        public HealthComponent HealthComponent { get; private set; }
-        public ShatterComponent ShatterComponent { get; private set; }
-        public WeaknessComponent WeaknessComponent { get; private set; }
-        public HitstopComponent HitstopComponent { get; private set; }
-        public GunComponent GunComponent { get; private set; }
-        public ISpriteComponent SpriteComponent { get; private set; }
+        private TransformComponent TransformComponent { get; set; }
+        private HealthComponent HealthComponent { get; set; }
+        private ShatterComponent ShatterComponent { get; set; }
+        private WeaknessComponent WeaknessComponent { get; set; }
+        private HitstopComponent HitstopComponent { get; set; }
+        private GunComponent GunComponent { get; set; }
+        private ISpriteComponent SpriteComponent { get; set; }
         
         private StateMachine States { get; set; }
         

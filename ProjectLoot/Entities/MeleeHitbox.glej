@@ -74,15 +74,15 @@
       ],
       "InstructionSaves": [
         {
-          "Type": "AnimationChainList",
-          "Member": "AnimationChains",
-          "Value": "HitboxAnimations",
+          "Type": "bool",
+          "Member": "Animate",
+          "Value": false,
           "Time": 0.0
         },
         {
           "Type": "string",
           "Member": "CurrentChainName",
-          "Value": "Slash1",
+          "Value": "",
           "Time": 0.0
         },
         {
@@ -110,9 +110,9 @@
           "Time": 0.0
         },
         {
-          "Type": "bool",
-          "Member": "Animate",
-          "Value": false,
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "HitboxAnimations",
           "Time": 0.0
         }
       ],

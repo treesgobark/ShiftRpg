@@ -231,7 +231,8 @@
         "Entities/Player/TopDownValuesStatic.csv",
         "Entities/Enemy/TopDownValuesStatic.csv",
         "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
-        "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv"
+        "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv",
+        "Entities/Dot/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true
@@ -269,6 +270,9 @@
     },
     {
       "Name": "Entities\\DefaultRangedEnemy"
+    },
+    {
+      "Name": "Entities\\Dot"
     },
     {
       "Name": "Entities\\Enemy"

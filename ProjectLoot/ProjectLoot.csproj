@@ -59,6 +59,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
     </None>
+    <None Include="Content\Entities\Dot\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="Content\Entities\Enemy\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
@@ -652,6 +656,16 @@
     <Compile Include="Entities\DefaultRangedEnemy.Generated.cs">
       <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Dot.Attacking.cs">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Dot.cs" />
+    <Compile Include="Entities\Dot.Generated.cs">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Dot.Idle.cs">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Enemy.Generated.cs">
       <DependentUpon>Enemy.cs</DependentUpon>
@@ -694,6 +708,7 @@
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
+    <Compile Include="Factories\DotFactory.Generated.cs" />
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\ProjectileFactory.Generated.cs" />

@@ -40,6 +40,42 @@
     </Frame>
   </AnimationChain>
   <AnimationChain>
+    <Name>BlueSquares</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>53</LeftCoordinate>
+      <RightCoordinate>75</RightCoordinate>
+      <TopCoordinate>677</TopCoordinate>
+      <BottomCoordinate>699</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>BlueSquaresSmear</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>85</LeftCoordinate>
+      <RightCoordinate>107</RightCoordinate>
+      <TopCoordinate>677</TopCoordinate>
+      <BottomCoordinate>699</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
     <Name>YellowIdle</Name>
     <Frame>
       <TextureName>tileset.png</TextureName>

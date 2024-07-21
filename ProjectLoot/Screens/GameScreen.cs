@@ -47,7 +47,15 @@ public partial class GameScreen
         // DisplayEnemyInputs();
         DisplayPlayerInputs();
 
-        foreach (Enemy? enemy in EnemyList) enemy?.EnemyInputDevice?.SetTarget(Player1);
+        foreach (Enemy? enemy in EnemyList)
+        {
+            enemy?.EnemyInputDevice?.SetTarget(Player1);
+
+            if (enemy is Dot dot)
+            {
+                dot.Target = Player1;
+            }
+        }
 
         // foreach(AxisAlignedRectangle? rect in SolidCollision.Rectangles)
         // {

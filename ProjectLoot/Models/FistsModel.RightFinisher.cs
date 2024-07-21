@@ -116,7 +116,7 @@ partial class FistsModel
                 new KnockbackEffect(
                     ~Parent.MeleeWeaponComponent.Team,
                     SourceTag.Fists,
-                    300,
+                    400,
                     AttackDirection,
                     KnockbackBehavior.Replacement
                 )

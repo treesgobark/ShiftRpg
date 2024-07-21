@@ -75,6 +75,6 @@ public class TargetDummyDamageHandler : EffectHandler<DamageEffect>, IUpdateable
     protected virtual void CreateDamageNumber(DamageEffect effect, float finalDamage)
     {
         DamageNumberFactory.CreateNew()
-                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position, effect.Source);
+                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position, effect.Source, Effects.Team);
     }
 }

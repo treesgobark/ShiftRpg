@@ -296,8 +296,8 @@
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "DefaultRangedEnemy1",
-          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "InstanceName": "Dot1",
+          "SourceClassType": "Entities\\Dot",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -309,24 +309,24 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 256.0,
+              "Value": 216.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -608.0,
+              "Value": -440.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "SourceFile": "Entities\\Dot",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "DefaultRangedEnemy2",
-          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "InstanceName": "Dot2",
+          "SourceClassType": "Entities\\Dot",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -338,24 +338,24 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 176.0,
+              "Value": 272.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -424.0,
+              "Value": -512.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "SourceFile": "Entities\\Dot",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "DefaultRangedEnemy3",
-          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "InstanceName": "Dot3",
+          "SourceClassType": "Entities\\Dot",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -367,7 +367,7 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 192.0,
+              "Value": 368.0,
               "Time": 0.0
             },
             {
@@ -378,13 +378,13 @@
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "SourceFile": "Entities\\Dot",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "DefaultRangedEnemy4",
-          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "InstanceName": "Dot4",
+          "SourceClassType": "Entities\\Dot",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -396,24 +396,24 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 312.0,
+              "Value": 456.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -520.0,
+              "Value": -528.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "SourceFile": "Entities\\Dot",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "DefaultRangedEnemy5",
-          "SourceClassType": "Entities\\DefaultRangedEnemy",
+          "InstanceName": "Dot5",
+          "SourceClassType": "Entities\\Dot",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -425,18 +425,76 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 464.0,
+              "Value": 197.10483,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -568.0,
+              "Value": -499.8542,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\DefaultRangedEnemy",
+          "SourceFile": "Entities\\Dot",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Dot6",
+          "SourceClassType": "Entities\\Dot",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 300.30484,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -586.2542,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Dot",
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "Dot7",
+          "SourceClassType": "Entities\\Dot",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 448.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -592.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Dot",
           "AttachToContainer": true,
           "GenerateTimedEmit": true
         }

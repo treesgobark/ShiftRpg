@@ -80,6 +80,12 @@
           "Time": 0.0
         },
         {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "HitboxAnimations",
+          "Time": 0.0
+        },
+        {
           "Type": "string",
           "Member": "CurrentChainName",
           "Value": "",
@@ -107,12 +113,6 @@
           "Type": "bool",
           "Member": "UseAnimationTextureFlip",
           "Value": false,
-          "Time": 0.0
-        },
-        {
-          "Type": "AnimationChainList",
-          "Member": "AnimationChains",
-          "Value": "HitboxAnimations",
           "Time": 0.0
         }
       ],

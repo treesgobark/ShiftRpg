@@ -95,6 +95,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AttackData</Name>
     </None>
+    <None Include="Content\GlobalContent\EnemySounds\GravelHitBigA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GravelHitBigA</Name>
+    </None>
     <None Include="Content\GlobalContent\GunData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>

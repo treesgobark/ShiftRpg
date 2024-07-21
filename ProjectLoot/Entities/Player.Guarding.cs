@@ -36,9 +36,7 @@ public partial class Player
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0) return States.Get<Dashing>();
-
-            if (Parent.GameplayInputDevice.Guard.IsDown) return null;
+            if (Parent.GameplayInputDevice.Dash.IsDown) return null;
 
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch

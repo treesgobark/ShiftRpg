@@ -111,7 +111,7 @@ public partial class SwordModel
                     new KnockbackEffect(
                         ~Parent.MeleeWeaponComponent.Team,
                         SourceTag.Sword,
-                        200 + 100 * NormalizedProgress,
+                        200 + 300 * NormalizedProgress,
                         AttackDirection,
                         KnockbackBehavior.Replacement
                         )

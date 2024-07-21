@@ -26,7 +26,6 @@ public class GameplayInputDevice : IGameplayInputDevice
                     .Or(gamePad.GetButton(Xbox360GamePad.Button.X));
                 Reload          = gamePad.GetButton(Xbox360GamePad.Button.B);
                 Dash            = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
-                Guard           = gamePad.GetButton(Xbox360GamePad.Button.LeftTrigger);
                 QuickSwapWeapon = gamePad.GetButton(Xbox360GamePad.Button.Y);
                 NextWeapon      = gamePad.GetButton(Xbox360GamePad.Button.RightTrigger);
                 PreviousWeapon  = FalsePressableInput.Instance;
@@ -35,16 +34,15 @@ public class GameplayInputDevice : IGameplayInputDevice
                 // PreviousWeapon  = ;
                 break;
             case Keyboard keyboard:
-                Movement = keyboard.GetWasdInput();
-                _aim = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
-                Attack = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
-                Reload = keyboard.GetKey(Keys.R);
-                Dash = InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton);
-                Guard = keyboard.GetKey(Keys.LeftShift);
+                Movement        = keyboard.GetWasdInput();
+                _aim            = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
+                Attack          = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
+                Reload          = keyboard.GetKey(Keys.R);
+                Dash            = keyboard.GetKey(Keys.Space);
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);
-                NextWeapon = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Up);
-                PreviousWeapon = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Down);
-                Interact = keyboard.GetKey(Keys.E);
+                NextWeapon      = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Up);
+                PreviousWeapon  = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Down);
+                Interact        = keyboard.GetKey(Keys.E);
                 break;
             default:
                 throw new ArgumentException("Input device was something other than gamepad or keyboard");
@@ -70,7 +68,6 @@ public class GameplayInputDevice : IGameplayInputDevice
     public IPressableInput Attack { get; private set; }
     public IPressableInput Reload { get; private set; }
     public IPressableInput Dash { get; private set; }
-    public IPressableInput Guard { get; private set; }
     public IPressableInput QuickSwapWeapon { get; }
     public IPressableInput NextWeapon { get; }
     public IPressableInput PreviousWeapon { get; }
@@ -80,28 +77,6 @@ public class GameplayInputDevice : IGameplayInputDevice
 
     public void BufferAttackPress()
     {
-    }
-
-    public void ApplyHitstopGuardClauses(IHitstopComponent hitstopComponent)
-    {
-        Attack = Attack.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
-                                                            () => !hitstopComponent.IsStopped,
-                                                            () => !hitstopComponent.IsStopped));
-        
-        Reload = Reload.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
-                                                            () => !hitstopComponent.IsStopped,
-                                                            () => !hitstopComponent.IsStopped));
-            
-        Dash = Dash.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
-                                                        () => !hitstopComponent.IsStopped,
-                                                        () => !hitstopComponent.IsStopped));
-            
-        Guard = Guard.And(new DelegateBasedPressableInput(() => !hitstopComponent.IsStopped,
-                                                          () => !hitstopComponent.IsStopped,
-                                                          () => !hitstopComponent.IsStopped));
-
-        GunInputDevice = new GunInputDevice(this);
-        MeleeWeaponInputDevice = new MeleeWeaponInputDevice(this);
     }
 
     public bool AimInMeleeRange => Aim.Magnitude < 1;

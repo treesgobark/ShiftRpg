@@ -119,11 +119,6 @@ public partial class GameScreen
                 ? AttackIndicatorRuntime.IsPressed.Pressed
                 : AttackIndicatorRuntime.IsPressed.NotPressed;
 
-        GumScreen.VirtualControllerDisplayInstance.GuardIndicatorInstance.CurrentIsPressedState =
-            Player1.GameplayInputDevice.Guard.IsDown
-                ? GuardIndicatorRuntime.IsPressed.Pressed
-                : GuardIndicatorRuntime.IsPressed.NotPressed;
-
         GumScreen.VirtualControllerDisplayInstance.DashIndicatorInstance.CurrentIsPressedState =
             Player1.GameplayInputDevice.Dash.IsDown
                 ? DashIndicatorRuntime.IsPressed.Pressed

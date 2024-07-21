@@ -57,8 +57,6 @@ public partial class Player
         GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite, GameplayCenter);
         MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite, PlayerSprite);
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
-        
-        GameplayInputDevice.ApplyHitstopGuardClauses(HitstopComponent);
     }
 
     private void InitializeControllers()
@@ -133,7 +131,10 @@ public partial class Player
         TargetLineSprite.RelativeX = length / 2;
     }
 
-    private void CustomDestroy() { }
+    private void CustomDestroy()
+    {
+        States.Uninitialize();
+    }
 
     private static void CustomLoadStaticContent(string contentManagerName) { }
 

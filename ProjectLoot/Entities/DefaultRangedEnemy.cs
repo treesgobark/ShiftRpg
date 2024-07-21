@@ -100,7 +100,7 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            
+            States.Uninitialize();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName) { }

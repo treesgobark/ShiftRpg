@@ -44,7 +44,7 @@ public partial class Player
                 return States.Get<Dashing>();
             }
 
-            if (Parent.GameplayInputDevice.Guard.IsDown)
+            if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude == 0)
             {
                 return States.Get<Guarding>();
             }

@@ -1,4 +1,5 @@
 using ANLG.Utilities.Core.Constants;
+using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using Microsoft.Xna.Framework;
@@ -11,7 +12,7 @@ namespace ProjectLoot.Entities
     {
         private SourceTag Source { get; set; }
         private Team Team { get; set; }
-        private bool HasPlayedSound { get; set; } = false;
+        private bool HasPlayedSound { get; set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -45,16 +46,18 @@ namespace ProjectLoot.Entities
 
             if (!HasPlayedSound)
             {
+                float pitch = Random.Shared.NextSingle(-0.2f, 0.2f);
+                
                 switch (Source)
                 {
                     case SourceTag.Sword:
-                        GlobalContent.SwordImpact.Play(0.1f, 0f, 0f);
+                        GlobalContent.SwordImpact.Play(0.1f, pitch, 0f);
                         break;
                     case SourceTag.Gun:
-                        HitMarker.Play(0.1f, 0f, 0f);
+                        HitMarker.Play(0.1f, pitch, 0f);
                         break;
                     case SourceTag.Fists:
-                        GlobalContent.FistHitA.Play(0.1f, 0f, 0f);
+                        GlobalContent.FistHitA.Play(0.1f, pitch, 0f);
                         break;
                 }
 

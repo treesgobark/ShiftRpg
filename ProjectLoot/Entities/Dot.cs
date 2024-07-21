@@ -81,8 +81,8 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-
-
+            GlobalContent.GravelHitBigA.Play(0.5f, Random.Shared.NextSingle(-0.2f, 0.2f), 0);
+            States.Uninitialize();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

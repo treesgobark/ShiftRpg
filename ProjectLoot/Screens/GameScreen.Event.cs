@@ -69,6 +69,7 @@ namespace ProjectLoot.Screens
         void OnMeleeHitboxVsPlayerCollided(MeleeHitbox meleeHitbox, Player player)
         {
             if (!meleeHitbox.AppliesTo.Contains(player.EffectsComponent.Team)) { return; }
+            if (!meleeHitbox.IsActive) { return; }
             
             player.EffectsComponent.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.HolderEffectsComponent.Handle(meleeHitbox.HolderHitEffects);
@@ -77,6 +78,7 @@ namespace ProjectLoot.Screens
         void OnMeleeHitboxVsEnemyCollided(MeleeHitbox meleeHitbox, Enemy enemy) 
         {
             if (!meleeHitbox.AppliesTo.Contains(enemy.Effects.Team)) { return; }
+            if (!meleeHitbox.IsActive) { return; }
             
             enemy.Effects.Handle(meleeHitbox.TargetHitEffects);
             meleeHitbox.HolderEffectsComponent.Handle(meleeHitbox.HolderHitEffects);

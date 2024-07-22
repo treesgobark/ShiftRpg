@@ -24,7 +24,7 @@ partial class FistsModel
                 return States.Get<NotEquipped>();
             }
 
-            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
                 return States.Get<LightRightHook>();
             }

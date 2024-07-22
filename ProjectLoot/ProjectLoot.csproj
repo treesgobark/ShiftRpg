@@ -1065,6 +1065,7 @@
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Models\FistsModel\FistsModel.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.HeavyRightJab.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.Idle.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHook.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHookRecovery.cs" />

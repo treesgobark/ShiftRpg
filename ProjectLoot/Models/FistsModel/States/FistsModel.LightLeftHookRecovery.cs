@@ -24,9 +24,14 @@ partial class FistsModel
                 return States.Get<NotEquipped>();
             }
 
-            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
                 return States.Get<LightRightFinisher>();
+            }
+
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                return States.Get<HeavyRightJab>();
             }
             
             if (TimeInState >= Duration)

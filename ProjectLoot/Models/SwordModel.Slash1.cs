@@ -79,7 +79,7 @@ public partial class SwordModel
 
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
+            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
                 NextState = States.Get<Slash2>();
             }

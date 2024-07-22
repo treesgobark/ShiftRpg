@@ -30,6 +30,7 @@ public partial class FistsModel : IMeleeWeaponModel
         States.Add(new LightLeftHookRecovery(States, FrbTimeManager.Instance, this));
         States.Add(new LightRightFinisher(States, FrbTimeManager.Instance, this));
         States.Add(new LightRightFinisherRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new HeavyRightJab(States, FrbTimeManager.Instance, this));
         
         States.InitializeStartingState<NotEquipped>();
     }

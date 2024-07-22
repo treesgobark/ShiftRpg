@@ -4,5 +4,6 @@ namespace ProjectLoot.Contracts;
 
 public interface IMeleeWeaponInputDevice
 {
-    IPressableInput Attack { get; set; }
+    IPressableInput LightAttack { get; set; }
+    IPressableInput HeavyAttack { get; set; }
 }

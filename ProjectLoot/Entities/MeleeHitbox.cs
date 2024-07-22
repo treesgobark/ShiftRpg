@@ -18,7 +18,8 @@ namespace ProjectLoot.Entities
         private void CustomDestroy() { }
 
         private static void CustomLoadStaticContent(string contentManagerName) { }
-        
+
+        public bool IsActive { get; set; } = true;
         public IEffectBundle TargetHitEffects { get; set; } = EffectBundle.Empty;
         public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
         public IEffectsComponent HolderEffectsComponent { get; set; }

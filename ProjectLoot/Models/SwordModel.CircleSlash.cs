@@ -1,3 +1,4 @@
+using ANLG.Utilities.Core.Extensions;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using FlatRedBall.Math.Geometry;
@@ -14,7 +15,7 @@ public partial class SwordModel
     private class CircleSlash : ParentedTimedState<SwordModel>
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }
@@ -22,8 +23,11 @@ public partial class SwordModel
         private Rotation HitboxStartDirection => AttackDirection + Rotation.QuarterTurn;
 
         private static int TotalSegments => 2;
+        private static int TotalWhooshes => 3;
         private int SegmentsHandled { get; set; }
+        private int WhooshesHandled { get; set; }
         private int GoalSegmentsHandled => Math.Clamp((int)(NormalizedProgress * TotalSegments) + 1, 0, TotalSegments);
+        private int GoalWhooshesHandled => Math.Clamp((int)(NormalizedProgress * TotalWhooshes) + 1, 0, TotalWhooshes);
         
         private IState? NextState { get; set; }
         
@@ -35,6 +39,7 @@ public partial class SwordModel
         protected override void AfterTimedStateActivate()
         {
             SegmentsHandled = 0;
+            WhooshesHandled = 0;
 
             NextState = null;
 
@@ -73,9 +78,6 @@ public partial class SwordModel
                     KnockbackBehavior.Additive
                 )
             );
-
-            GlobalContent.BladeSwingD.Play(0.2f, 0, 0);
-            GlobalContent.WhooshA.Play(0.2f, 0, 0);
         }
 
         public override IState? EvaluateExitConditions()
@@ -124,20 +126,19 @@ public partial class SwordModel
                 holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
         
                 Hitbox.HolderHitEffects = holderHitEffects;
-
-                if (SegmentsHandled == TotalSegments - 2)
-                {
-                    // GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
-                    GlobalContent.WhooshB.Play(0.2f, 0, 0);
-                }
-
-                if (SegmentsHandled == TotalSegments - 1)
-                {
-                    GlobalContent.BladeSwingF.Play(0.2f, 0, 0);
-                    GlobalContent.WhooshC.Play(0.2f, 0, 0);
-                }
+                
+                float pitch = Random.Shared.NextSingle(-0.1f, 0.1f);
+                GlobalContent.BladeSwingF.Play(0.15f, pitch, 0);
 
                 SegmentsHandled++;
+            }
+
+            if (WhooshesHandled < GoalWhooshesHandled)
+            {
+                float pitch = Random.Shared.NextSingle(-0.1f, 0.1f);
+                GlobalContent.WhooshB.Play(0.2f, pitch, 0);
+
+                WhooshesHandled++;
             }
         }
 

@@ -39,7 +39,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 Movement        = keyboard.GetWasdInput();
                 _aim            = new VirtualAimer(InputManager.Mouse, position, meleeAimThreshold);
                 LightAttack     = InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton);
-                LightAttack     = InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton);
+                HeavyAttack     = InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton);
                 Reload          = keyboard.GetKey(Keys.R);
                 Dash            = keyboard.GetKey(Keys.Space);
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);

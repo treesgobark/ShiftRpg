@@ -1,6 +1,8 @@
+using ProjectLoot.Effects.Base;
+
 namespace ProjectLoot.Effects;
 
-public class HitstunEffect
+public class HitstunEffect : IEffect
 {
     public Team AppliesTo { get; }
     public SourceTag Source { get; }

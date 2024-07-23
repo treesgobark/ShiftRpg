@@ -8,6 +8,7 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;

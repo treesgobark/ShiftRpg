@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Numerics;
-using ProjectLoot.Effects;
 
-namespace ProjectLoot.Contracts;
+namespace ProjectLoot.Effects.Base;
 
 public interface INumericalEffect<T> where T : INumber<T>
 {

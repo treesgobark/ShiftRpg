@@ -4,6 +4,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.InputDevices;
 

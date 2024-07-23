@@ -4,6 +4,7 @@ using FlatRedBall.Math.Geometry;
 using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 using ProjectLoot.Entities;
 using ProjectLoot.Factories;
 

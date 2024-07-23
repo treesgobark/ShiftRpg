@@ -1,4 +1,5 @@
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -13,7 +14,7 @@ public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
         Shatter = shatter;
     }
 
-    protected override void Handle(ShatterDamageEffect effect)
+    protected override void HandleInternal(ShatterDamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

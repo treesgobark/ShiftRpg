@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using FlatRedBall;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers.Base;
 
 public class EffectHandlerCollection : IEffectHandlerCollection
 {
@@ -92,7 +93,7 @@ public class EffectHandlerCollection : IEffectHandlerCollection
         foreach (Type key in HandlerOrder)
         {
             IEffectHandler handler = Handlers[key];
-            if (bundle.TryGetEffect(key, out object effect))
+            if (bundle.TryGetEffect(key, out IEffect effect))
             {
                 handler.Handle(effect);
             }

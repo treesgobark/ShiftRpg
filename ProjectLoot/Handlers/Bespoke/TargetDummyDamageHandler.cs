@@ -5,6 +5,7 @@ using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.Factories;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Handlers.Bespoke;
 
@@ -26,7 +27,7 @@ public class TargetDummyDamageHandler : EffectHandler<DamageEffect>, IUpdateable
         Weakness = weakness;
     }
 
-    protected override void Handle(DamageEffect effect)
+    protected override void HandleInternal(DamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

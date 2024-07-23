@@ -6,6 +6,7 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 using ProjectLoot.ViewModels;
 
 namespace ProjectLoot.Models;

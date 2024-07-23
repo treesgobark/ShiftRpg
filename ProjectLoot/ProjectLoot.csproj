@@ -609,11 +609,8 @@
     <Compile Include="Components\SpriteComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Components\WeaknessComponent.cs" />
-    <Compile Include="Contracts\IEffectBundle.cs" />
-    <Compile Include="Contracts\IEffectHandler.cs" />
     <Compile Include="Contracts\IGunModel.cs" />
     <Compile Include="Contracts\IMeleeWeaponModel.cs" />
-    <Compile Include="Contracts\INumericalEffect.cs" />
     <Compile Include="Contracts\IStatModifierCollection.cs" />
     <Compile Include="Contracts\IUpdateable.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
@@ -633,6 +630,10 @@
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="DataTypes\TopDownValues.Generated.cs" />
     <Compile Include="Effects\ApplyShatterEffect.cs" />
+    <Compile Include="Effects\Base\IEffect.cs" />
+    <Compile Include="Effects\Base\IEffectBundle.cs" />
+    <Compile Include="Effects\Base\IEffectHandler.cs" />
+    <Compile Include="Effects\Base\INumericalEffect.cs" />
     <Compile Include="Effects\DamageEffect.cs" />
     <Compile Include="Effects\HitstopEffect.cs" />
     <Compile Include="Effects\HitstunEffect.cs" />
@@ -668,6 +669,9 @@
       <DependentUpon>Dot.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Dot.Idle.cs">
+      <DependentUpon>Dot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Dot.Windup.cs">
       <DependentUpon>Dot.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Enemy.cs" />

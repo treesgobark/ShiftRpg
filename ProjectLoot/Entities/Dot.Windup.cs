@@ -7,16 +7,12 @@ namespace ProjectLoot.Entities;
 
 public partial class Dot
 {
-    private class Idle : ParentedTimedState<Dot>
+    private class Windup : ParentedTimedState<Dot>
     {
-        private Rotation RotationPerSecond => Rotation.EighthTurn;
-        private TimeSpan Duration => TimeSpan.FromMilliseconds(1500);
-        private TimeSpan RandomDuration =>
-            Duration + Duration * MathHelper.Lerp(-DurationTolerance, DurationTolerance, RandomizedTValue);
-        private float DurationTolerance => 0.3f;
-        private float RandomizedTValue { get; set; }
+        private static Rotation RotationPerSecond => Rotation.FullTurn;
+        private static TimeSpan Duration => TimeSpan.FromMilliseconds(1000);
         
-        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(states, timeManager, parent)
+        public Windup(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(states, timeManager, parent)
         {
         }
 
@@ -26,14 +22,13 @@ public partial class Dot
 
         protected override void AfterTimedStateActivate()
         {
-            RandomizedTValue = Random.Shared.NextSingle();
         }
 
         public override IState? EvaluateExitConditions()
         {
-            if (TimeInState >= RandomDuration)
+            if (TimeInState >= Duration)
             {
-                return States.Get<Windup>();
+                return States.Get<Attacking>();
             }
             
             return null;

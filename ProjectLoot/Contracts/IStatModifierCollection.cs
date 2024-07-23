@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Numerics;
+using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Contracts;
 

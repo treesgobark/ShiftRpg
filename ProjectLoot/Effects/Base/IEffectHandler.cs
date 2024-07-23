@@ -1,8 +1,8 @@
-namespace ProjectLoot.Contracts;
+namespace ProjectLoot.Effects.Base;
 
 public interface IEffectHandler
 {
-    void Handle(object effect);
+    void Handle(IEffect effect);
     
     bool IsActive { get; set; }
 }

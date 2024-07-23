@@ -15,10 +15,10 @@ using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers;
 using ProjectLoot.Models;
 
 namespace ProjectLoot.Entities
@@ -30,7 +30,8 @@ namespace ProjectLoot.Entities
         private TransformComponent TransformComponent { get; set; }
         private HealthComponent HealthComponent { get; set; }
         private HitstopComponent HitstopComponent { get; set; }
-        private ISpriteComponent SpriteComponent { get; set; }
+        private SpriteComponent SpriteComponent { get; set; }
+        private PoiseComponent PoiseComponent { get; set; }
         
         public PositionedObject Target { get; set; }
         
@@ -52,6 +53,7 @@ namespace ProjectLoot.Entities
             HealthComponent    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
             SpriteComponent    = new SpriteComponent(SatelliteSprite);
+            PoiseComponent     = new PoiseComponent();
         }
 
         private void InitializeHandlers()
@@ -59,12 +61,14 @@ namespace ProjectLoot.Entities
             Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
             Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance));
             Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent));
+            Effects.HandlerCollection.Add<PoiseDamageEffect>(new PoiseDamageHandler(Effects,     PoiseComponent));
         }
 
         private void InitializeStates()
         {
             States = new StateMachine();
             States.Add(new Idle(States, FrbTimeManager.Instance, this));
+            States.Add(new Windup(States, FrbTimeManager.Instance, this));
             States.Add(new Attacking(States, FrbTimeManager.Instance, this));
             States.InitializeStartingState<Idle>();
         }

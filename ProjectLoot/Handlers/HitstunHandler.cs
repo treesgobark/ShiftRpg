@@ -1,6 +1,7 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -17,10 +18,8 @@ public class HitstunHandler : EffectHandler<HitstunEffect>, IUpdateable
         TimeManager = timeManager;
     }
 
-    protected override void Handle(HitstunEffect effect)
+    protected override void HandleInternal(HitstunEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return; }
-
         Hitstun.RemainingHitstunDuration = effect.Duration;
         
         Hitstun.IsStunned = true;

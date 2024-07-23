@@ -1,7 +1,9 @@
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Components;
 
@@ -23,7 +25,7 @@ public class EffectsComponent : IEffectsComponent
         HandlerCollection.Handle(bundle);
     }
 
-    public void Handle<T>(T effect)
+    public void Handle<T>(T effect) where T : IEffect
     {
         EffectBundle bundle = new();
         bundle.AddEffect(effect);

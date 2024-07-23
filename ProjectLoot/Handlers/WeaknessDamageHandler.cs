@@ -1,6 +1,7 @@
 using FlatRedBall;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -15,7 +16,7 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IUpdat
         Weakness = weakness;
     }
 
-    protected override void Handle(WeaknessDamageEffect effect)
+    protected override void HandleInternal(WeaknessDamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

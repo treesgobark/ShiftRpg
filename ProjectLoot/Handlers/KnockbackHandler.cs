@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -12,10 +13,8 @@ public class KnockbackHandler : EffectHandler<KnockbackEffect>
         Transform = transform;
     }
 
-    protected override void Handle(KnockbackEffect effect)
+    protected override void HandleInternal(KnockbackEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return; }
-
         switch (effect)
         {
             case { KnockbackBehavior: KnockbackBehavior.Additive }:

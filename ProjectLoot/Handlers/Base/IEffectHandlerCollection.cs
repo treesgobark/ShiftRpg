@@ -1,6 +1,7 @@
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers.Base;
 
 public interface IReadOnlyEffectHandlerCollection
 {

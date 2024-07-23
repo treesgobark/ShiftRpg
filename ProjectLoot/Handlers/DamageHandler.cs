@@ -3,6 +3,7 @@ using FlatRedBall.Graphics;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Factories;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -24,23 +25,13 @@ public class DamageHandler : EffectHandler<DamageEffect>, IUpdateable
         Weakness = weakness;
     }
 
-    protected override void Handle(DamageEffect effect)
+    protected override void HandleInternal(DamageEffect effect)
     {
-        bool valid = ValidateEffect(effect);
-        if (!valid) { return; }
-        
         float finalDamage = effect.Value;
         
         ApplyDamageModifiers(effect, ref finalDamage);
         ApplyDamage(effect, finalDamage);
         CreateDamageNumber(effect, finalDamage);
-    }
-    
-    protected virtual bool ValidateEffect(DamageEffect effect)
-    {
-        if (!effect.AppliesTo.Contains(Effects.Team)) { return false; }
-
-        return true;
     }
 
     private void ApplyDamageModifiers(DamageEffect damageEffect, ref float finalDamage)

@@ -1,7 +1,9 @@
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
+using ProjectLoot.Effects.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers.Base;
 
 public abstract class EffectHandler<T> : IEffectHandler
 {
@@ -12,11 +14,13 @@ public abstract class EffectHandler<T> : IEffectHandler
         Effects = effects;
     }
     
-    public void Handle(object effect)
+    public void Handle(IEffect effect)
     {
+        if (!effect.AppliesTo.Contains(Effects.Team)) { return; }
+        
         if (effect is T castedEffect)
         {
-            Handle(castedEffect);
+            HandleInternal(castedEffect);
         }
         else
         {
@@ -26,5 +30,5 @@ public abstract class EffectHandler<T> : IEffectHandler
 
     public bool IsActive { get; set; }
 
-    protected abstract void Handle(T effect);
+    protected abstract void HandleInternal(T effect);
 }

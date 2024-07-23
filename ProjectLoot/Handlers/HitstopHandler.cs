@@ -1,6 +1,7 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -20,10 +21,8 @@ public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         Sprite = sprite;
     }
 
-    protected override void Handle(HitstopEffect effect)
+    protected override void HandleInternal(HitstopEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return; }
-
         Hitstop.RemainingHitstopTime = effect.Duration;
         
         if (Hitstop.IsStopped) { return; }

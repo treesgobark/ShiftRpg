@@ -37,10 +37,18 @@ Overcoming solo limitations:
 
 Types:
 - Swords
+	- three thrusts with forward momentum
+	- three stage charge skill that spins around more times for how long you charge it
 - Hammers
+	- Large circular AOE that pushes all enemies back
+	- three small AOEs moving you forward
+	- "directional" earthquake move that hits multiple times
 - Shields
 - Greatswords
 - Thrusting Swords
 - Battleaxes
 - Daggers
 - Polearms
+- Fists
+	- muda muda
+	- three stage charge windup that makes you move forward a punch and do damage in a line (slayer super)

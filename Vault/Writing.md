@@ -1,0 +1,16 @@
+Echoplasm
+- Absorbing the souls of fallen allied warriors allows you to mimic their fighting styles with your ghostly spirit energy
+	- This unlocks the weapons, but not the magic techniques that are associated with those weapons. Those must be claimed from fallen *enemy* warriors.
+- To claim these souls you have to beat them in a boss fight
+- You're the echo of a fallen hero who failed his mission
+- The fallen warrior bosses are enemies that the hero defeated during his journey and they really do not like you
+	- Or they're warriors with the same purpose who want their will to be carried on through you
+- Echoes are fundamentally different from the people that they're created from, they are not those people's ghosts
+- Tutorial knight needs you to kill him to become an echo to help you
+- Shrugging off your identity as an echo of someone who failed and embracing a new identity that can succeed
+	- The hero was a great hero and everything, how could you compare as just an echo (insecurity)
+- The final bossman is upset at ruling his kingdom of ashes after killing nearly everyone to get what he wanted
+	- Put him out of his misery by removing him from both the mortal and ethereal plane
+	- Final bossman holds a grudge against the hero for not stopping him/denying him his worthy death
+- Home area
+	- echo could decay over time when away from home base, multiple paths from a central location, each leading up to a dungeon/boss that must be completed before time runs out

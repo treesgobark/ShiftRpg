@@ -14,3 +14,5 @@ Echoplasm
 	- Final bossman holds a grudge against the hero for not stopping him/denying him his worthy death
 - Home area
 	- echo could decay over time when away from home base, multiple paths from a central location, each leading up to a dungeon/boss that must be completed before time runs out
+- Tuning fork save point
+- Traded speech for magic

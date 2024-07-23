@@ -41,6 +41,12 @@ public partial class Dot
 
         protected override void AfterTimedStateActivity()
         {
+            if (Parent.PoiseComponent.IsAboveThreshold)
+            {
+                Parent.PoiseComponent.CurrentPoiseDamage = 0;
+                TimeInState                              = TimeSpan.Zero;
+            }
+            
             Parent.SatelliteSprite.CurrentChainName  =  "BlueSquares";
             Parent.SatelliteSprite.FlipHorizontal    =  false;
             Parent.SatelliteSprite.RelativeRotationZ += (float)TimeManager.GameTimeSinceLastFrame.TotalSeconds

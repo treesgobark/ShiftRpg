@@ -14,7 +14,7 @@ namespace ProjectLoot.Models;
 
 partial class FistsModel
 {
-    private partial class HeavyRightJab : ParentedTimedState<FistsModel>
+    private class HeavyRightJab : ParentedTimedState<FistsModel>
     {
         private static TimeSpan MinStartupDuration => TimeSpan.FromMilliseconds(180);
         private static TimeSpan MaxStartupDuration => TimeSpan.FromMilliseconds(480);
@@ -46,12 +46,15 @@ partial class FistsModel
         private static float InitialDistance => 4;
         private static float MinDamage => 16;
         private static float MaxDamage => 32;
+        private static float MinPoiseDamage => 10;
+        private static float MaxPoiseDamage => 30;
         private static float MinKnockbackVelocity => 200;
         private static float MaxKnockbackVelocity => 500;
         private static TimeSpan MinHitstopDuration => TimeSpan.FromMilliseconds(100);
         private static TimeSpan MaxHitstopDuration => TimeSpan.FromMilliseconds(250);
         
         private float Damage => MathHelper.Lerp(MinDamage,                       MaxDamage,            ChargeProgress);
+        private float PoiseDamage => MathHelper.Lerp(MinPoiseDamage,             MaxPoiseDamage,       ChargeProgress);
         private float KnockbackVelocity => MathHelper.Lerp(MinKnockbackVelocity, MaxKnockbackVelocity, ChargeProgress);
         private TimeSpan HitstopDuration => MathUtilities.Lerp(MinHitstopDuration, MaxHitstopDuration, ChargeProgress);
 
@@ -191,6 +194,8 @@ partial class FistsModel
                     KnockbackBehavior.Replacement
                 )
             );
+                
+            targetHitEffects.AddEffect(new PoiseDamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, PoiseDamage));
             
             // targetHitEffects.AddEffect(new WeaknessDamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists, 1));
             // targetHitEffects.AddEffect(new ApplyShatterEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists));

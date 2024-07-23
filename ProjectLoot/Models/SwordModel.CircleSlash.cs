@@ -119,6 +119,8 @@ public partial class SwordModel
                         KnockbackBehavior.Replacement
                         )
                     );
+                
+                targetHitEffects.AddEffect(new PoiseDamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
         
                 Hitbox.TargetHitEffects = targetHitEffects;
                 

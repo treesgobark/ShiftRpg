@@ -26,6 +26,13 @@ public partial class Dot
 
         public override IState? EvaluateExitConditions()
         {
+            if (Parent.PoiseComponent.IsAboveThreshold)
+            {
+                Parent.PoiseComponent.CurrentPoiseDamage = 0;
+                
+                return States.Get<Idle>();
+            }
+            
             if (TimeInState >= Duration)
             {
                 return States.Get<Attacking>();

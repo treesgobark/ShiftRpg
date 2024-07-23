@@ -53,7 +53,7 @@ namespace ProjectLoot.Entities
             HealthComponent    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
             SpriteComponent    = new SpriteComponent(SatelliteSprite);
-            PoiseComponent     = new PoiseComponent();
+            PoiseComponent     = new PoiseComponent { PoiseThreshold = PoiseThreshold };
         }
 
         private void InitializeHandlers()

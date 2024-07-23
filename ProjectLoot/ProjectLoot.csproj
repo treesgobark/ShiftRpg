@@ -600,11 +600,13 @@
     <Compile Include="Components\Interfaces\IHitstopComponent.cs" />
     <Compile Include="Components\Interfaces\IHitstunComponent.cs" />
     <Compile Include="Components\Interfaces\IMeleeWeaponComponent.cs" />
+    <Compile Include="Components\Interfaces\IPoiseComponent.cs" />
     <Compile Include="Components\Interfaces\IShatterComponent.cs" />
     <Compile Include="Components\Interfaces\ISpriteComponent.cs" />
     <Compile Include="Components\Interfaces\ITransformComponent.cs" />
     <Compile Include="Components\Interfaces\IWeaknessComponent.cs" />
     <Compile Include="Components\MeleeWeaponComponent.cs" />
+    <Compile Include="Components\PoiseComponent.cs" />
     <Compile Include="Components\ShatterComponent.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
@@ -638,6 +640,7 @@
     <Compile Include="Effects\HitstopEffect.cs" />
     <Compile Include="Effects\HitstunEffect.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
+    <Compile Include="Effects\PoiseDamageEffect.cs" />
     <Compile Include="Effects\ShatterDamageEffect.cs" />
     <Compile Include="Effects\SourceTag.cs" />
     <Compile Include="Effects\StatModifierCollection.cs" />
@@ -1054,6 +1057,7 @@
     <Compile Include="Handlers\HitstunHandler.cs" />
     <Compile Include="Handlers\KnockbackHandler.cs" />
     <Compile Include="Handlers\PlayerHitstopHandler.cs" />
+    <Compile Include="Handlers\PoiseDamageHandler.cs" />
     <Compile Include="Handlers\ShatterDamageHandler.cs" />
     <Compile Include="Handlers\WeaknessDamageHandler.cs" />
     <Compile Include="InputDevices\Constant2DInput.cs" />

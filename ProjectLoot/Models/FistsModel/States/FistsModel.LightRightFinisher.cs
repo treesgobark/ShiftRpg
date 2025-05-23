@@ -18,13 +18,13 @@ partial class FistsModel
     {
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(500);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
         private static float HitboxRadius => 12;
         private static float PerpendicularOffset => -4;
         private static float TravelDistance => 24;
         private static float InitialDistance => -4;
-        private static float Damage => 12;
+        private static float Damage => 25;
 
         private MeleeHitbox? Hitbox { get; set; }
         private Circle? Circle { get; set; }
@@ -117,7 +117,7 @@ partial class FistsModel
                 new KnockbackEffect(
                     ~Parent.MeleeWeaponComponent.Team,
                     SourceTag.Fists,
-                    400,
+                    1000,
                     AttackDirection,
                     KnockbackBehavior.Replacement
                 )

@@ -338,19 +338,18 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 272.0,
+              "Value": 242.33333,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -512.0,
+              "Value": -493.66666,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
           "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
@@ -367,19 +366,18 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 368.0,
+              "Value": 288.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -536.0,
+              "Value": -464.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
           "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
@@ -396,7 +394,7 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 456.0,
+              "Value": 296.0,
               "Time": 0.0
             },
             {
@@ -408,94 +406,6 @@
           ],
           "SourceType": 1,
           "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Dot5",
-          "SourceClassType": "Entities\\Dot",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 197.10483,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -499.8542,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Dot6",
-          "SourceClassType": "Entities\\Dot",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 300.30484,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -586.2542,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Dot7",
-          "SourceClassType": "Entities\\Dot",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 448.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -592.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Dot",
-          "AttachToContainer": true,
           "GenerateTimedEmit": true
         }
       ]

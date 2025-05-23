@@ -43,4 +43,9 @@ public partial class SwordModel : IMeleeWeaponModel
     {
         States.DoCurrentStateActivity();
     }
+    
+    public void EvaluateExitConditions()
+    {
+        States.EvaluateExitConditions();
+    }
 }

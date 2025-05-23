@@ -17,6 +17,7 @@ public partial class SwordModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
+        private static TimeSpan FinalHitstopDuration => TimeSpan.FromMilliseconds(500);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }
@@ -29,6 +30,7 @@ public partial class SwordModel
         private int WhooshesHandled { get; set; }
         private int GoalSegmentsHandled => Math.Clamp((int)(NormalizedProgress * TotalSegments) + 1, 0, TotalSegments);
         private int GoalWhooshesHandled => Math.Clamp((int)(NormalizedProgress * TotalWhooshes) + 1, 0, TotalWhooshes);
+        private bool IsFinalSegment => SegmentsHandled >= TotalSegments - 1;
         
         private IState? NextState { get; set; }
         
@@ -105,16 +107,16 @@ public partial class SwordModel
             {
                 EffectBundle targetHitEffects = new();
         
-                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 12));
+                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, IsFinalSegment ? 25 : 12));
                 
                 targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
-                                                             HitstopDuration));
+                                                             IsFinalSegment ? FinalHitstopDuration : HitstopDuration));
 
                 targetHitEffects.AddEffect(
                     new KnockbackEffect(
                         ~Parent.MeleeWeaponComponent.Team,
                         SourceTag.Sword,
-                        200 + 300 * NormalizedProgress,
+                        200 + 1000 * NormalizedProgress,
                         AttackDirection,
                         KnockbackBehavior.Replacement
                         )
@@ -126,7 +128,7 @@ public partial class SwordModel
                 
                 EffectBundle holderHitEffects = new();
         
-                holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
+                holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Sword, IsFinalSegment ? FinalHitstopDuration : HitstopDuration));
         
                 Hitbox.HolderHitEffects = holderHitEffects;
                 

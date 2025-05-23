@@ -1,7 +1,9 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
+using FlatRedBall.Screens;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Handlers.Base;
+using ProjectLoot.Screens;
 
 namespace ProjectLoot.Effects.Handlers;
 
@@ -31,6 +33,8 @@ public class PlayerHitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         Sprite?.StopAnimation();
 
         Hitstop.IsStopped = true;
+        var screen = (GameScreen)ScreenManager.CurrentScreen;
+        screen.ShakeCamera(effect.Duration, 3);
         
         // Hitstop.Stop();
     }

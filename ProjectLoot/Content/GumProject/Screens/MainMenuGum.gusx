@@ -105,7 +105,6 @@
   </State>
   <Category>
     <Name>Screen</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Main</Name>
       <Variable>

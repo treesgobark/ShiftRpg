@@ -102,6 +102,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -144,7 +145,6 @@
   </State>
   <Category>
     <Name>IsSpent</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>NotSpent</Name>
       <Variable>
@@ -175,7 +175,6 @@
   </Category>
   <Category>
     <Name>CartridgeType</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Handgun</Name>
       <Variable>

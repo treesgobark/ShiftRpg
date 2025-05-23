@@ -1,5 +1,6 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using FlatRedBall;
+using FlatRedBall.Debugging;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
@@ -54,6 +55,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         
         nextMeleeWeapon.IsEquipped         = true;
         MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.MeleeWeaponData.Name;
+        Debugger.CommandLineWrite($"swapped to {nextMeleeWeapon.MeleeWeaponData.Name}");
     }
 
     public void CycleToPreviousWeapon()
@@ -103,6 +105,14 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         foreach (IMeleeWeaponModel meleeWeapon in MeleeWeapons)
         {
             meleeWeapon.Activity();
+        }
+    }
+
+    public void DoMinimumStateActivity()
+    {
+        foreach (IMeleeWeaponModel meleeWeapon in MeleeWeapons)
+        {
+            meleeWeapon.EvaluateExitConditions();
         }
     }
     

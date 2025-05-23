@@ -14,6 +14,7 @@ namespace ProjectLoot.Entities
         public ShatterComponent Shatter { get; private set; }
         public WeaknessComponent Weakness { get; private set; }
         public TransformComponent Transform { get; private set; }
+        public HitstopComponent Hitstop { get; private set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -32,6 +33,7 @@ namespace ProjectLoot.Entities
             Shatter   = new ShatterComponent(HealthBarRuntimeInstance);
             Weakness  = new WeaknessComponent(HealthBarRuntimeInstance);
             Transform = new TransformComponent(this);
+            Hitstop   = new HitstopComponent();
             
             Health.DamageModifiers.Upsert("weakness_damage_bonus", new StatModifier<float>(
                 effect => Weakness.CurrentWeaknessPercentage > 0 && effect.Source.Contains(SourceTag.Gun),
@@ -45,6 +47,7 @@ namespace ProjectLoot.Entities
             Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.HandlerCollection.Add<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Health, Weakness));
+            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
         }
 
         private void CustomActivity()

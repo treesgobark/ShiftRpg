@@ -18,7 +18,7 @@ public partial class Dot
     private class Attacking : ParentedTimedState<Dot>
     {
         private Rotation RotationPerSecond => 3 * Rotation.FullTurn;
-        private float AttackVelocity => 400;
+        private float AttackVelocity => 800;
         private Vector3 ToTargetDirection => Parent.Position.GetVectorTo(Parent.Target.Position)
                                                    .Scale(z: 0)
                                                    .GetNormalized();

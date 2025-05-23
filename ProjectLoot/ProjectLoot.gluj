@@ -208,7 +208,9 @@
       "ProjectsToExcludeFrom": []
     }
   ],
-  "GlobalContentSettingsSave": {},
+  "GlobalContentSettingsSave": {
+    "GenerateLoadGlobalContentCode": true
+  },
   "SyncedProjects": [],
   "StartUpScreen": "Screens\\ShootingRange",
   "ResolutionPresets": [],

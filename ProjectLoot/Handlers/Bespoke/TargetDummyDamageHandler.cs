@@ -1,11 +1,13 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using FlatRedBall.Graphics;
+using FlatRedBall.Screens;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Handlers;
 using ProjectLoot.Factories;
 using ProjectLoot.Handlers.Base;
+using ProjectLoot.Screens;
 
 namespace ProjectLoot.Handlers.Bespoke;
 
@@ -76,6 +78,6 @@ public class TargetDummyDamageHandler : EffectHandler<DamageEffect>, IUpdateable
     protected virtual void CreateDamageNumber(DamageEffect effect, float finalDamage)
     {
         DamageNumberFactory.CreateNew()
-                           .SetStartingValues(finalDamage.ToString(), 1, Transform.Position, effect.Source, Effects.Team);
+                           .SetStartingValues(finalDamage, 1, Transform.Position, effect.Source, Effects.Team);
     }
 }

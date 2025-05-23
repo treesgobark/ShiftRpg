@@ -119,7 +119,6 @@
   </State>
   <Category>
     <Name>PauseState</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Play</Name>
       <Variable>

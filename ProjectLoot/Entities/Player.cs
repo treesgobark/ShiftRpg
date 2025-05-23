@@ -99,7 +99,11 @@ public partial class Player
         
         States.DoCurrentStateActivity();
         
-        if (!HitstopComponent.IsStopped)
+        if (HitstopComponent.IsStopped)
+        {
+            MeleeWeaponComponent.DoMinimumStateActivity();
+        }
+        else
         {
             GunComponent.Activity();
             MeleeWeaponComponent.Activity();

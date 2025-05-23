@@ -46,4 +46,9 @@ public partial class FistsModel : IMeleeWeaponModel
     {
         States.DoCurrentStateActivity();
     }
+    
+    public void EvaluateExitConditions()
+    {
+        States.EvaluateExitConditions();
+    }
 }

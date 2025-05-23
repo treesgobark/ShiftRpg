@@ -7,4 +7,6 @@ public interface IMeleeWeaponModel : IUpdateable
     MeleeWeaponData MeleeWeaponData { get; }
     
     bool IsEquipped { get; set; }
+
+    void EvaluateExitConditions();
 }

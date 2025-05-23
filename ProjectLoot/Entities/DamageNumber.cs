@@ -13,6 +13,7 @@ namespace ProjectLoot.Entities
         private SourceTag Source { get; set; }
         private Team Team { get; set; }
         private bool HasPlayedSound { get; set; }
+        private float Damage { get; set; }
         
         /// <summary>
         /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
@@ -51,12 +52,22 @@ namespace ProjectLoot.Entities
                 switch (Source)
                 {
                     case SourceTag.Sword:
+                        if (Damage >= 25)
+                        {
+                            GlobalContent.ShotgunBlast.Play(0.3f, pitch, 0f);
+                        }
+
                         GlobalContent.SwordImpact.Play(0.1f, pitch, 0f);
                         break;
                     case SourceTag.Gun:
                         HitMarker.Play(0.1f, pitch, 0f);
                         break;
                     case SourceTag.Fists:
+                        if (Damage >= 25)
+                        {
+                            GlobalContent.ThudShot.Play(0.25f, pitch - 0.8f, 0f);
+                        }
+
                         GlobalContent.FistHitA.Play(0.1f, pitch, 0f);
                         break;
                 }
@@ -77,9 +88,10 @@ namespace ProjectLoot.Entities
 
         }
 
-        public void SetStartingValues(string text, float fontScale, Vector3 position, SourceTag source, Team team)
+        public void SetStartingValues(float damage, float fontScale, Vector3 position, SourceTag source, Team team)
         {
-            DamageNumberRuntimeInstance.Text                   = text;
+            Damage                                             = damage;
+            DamageNumberRuntimeInstance.Text                   = damage.ToString();
             DamageNumberRuntimeInstance.TextInstanceFont_Scale = fontScale;
             Position                                           = position;
             Source                                             = source;

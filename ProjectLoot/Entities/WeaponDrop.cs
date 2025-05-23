@@ -19,8 +19,8 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            // if (Random.Shared.NextBool())
-            if (false)
+            if (Random.Shared.NextBool())
+            // if (false)
             {
                 ContainedWeapon = GlobalContent.GunData[GunData.OrderedList.ChooseRandom()];
             }

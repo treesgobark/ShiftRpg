@@ -21,6 +21,16 @@
     <None Remove="**\*.glsj" />
     <None Remove="**\*.glej" />
     <None Remove="**\*.gluj" />
+    <None Include="..\BuiltXnbs\DesktopGL\Content\Entities\DamageNumber\HitMarker.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HitMarker</Name>
+      <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
+    </None>
+    <None Include="..\BuiltXnbs\DesktopGL\Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Saiga12SingleShot1mSide</Name>
+      <Link>Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb</Link>
+    </None>
     <None Include="..\BuiltXnbs\DesktopGL\Entities\DamageNumber\HitMarker.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HitMarker</Name>
@@ -739,6 +749,7 @@
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GlueControl\CommandReceiver.Generated.cs" />
+    <Compile Include="GlueControl\CommandReplayLogic.Generated.cs" />
     <Compile Include="GlueControl\Dtos.Generated.cs" />
     <Compile Include="GlueControl\Editing\CameraLogic.Generated.cs" />
     <Compile Include="GlueControl\Editing\CopyPasteManager.Generated.cs" />
@@ -800,7 +811,6 @@
     <Compile Include="GumRuntimes\Behaviors\ITreeViewBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\ITreeViewItemBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IUserControlBehavior.Generated.cs" />
-    <Compile Include="GumRuntimes\ButtonIndicatorRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CartridgeDisplayRuntime.cs" />
     <Compile Include="GumRuntimes\CartridgeDisplayRuntime.Generated.cs">
       <DependentUpon>CartridgeDisplayRuntime.cs</DependentUpon>
@@ -977,7 +987,6 @@
     <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs">
       <DependentUpon>HealthBarRuntime.cs</DependentUpon>
     </Compile>
-    <Compile Include="GumRuntimes\Input2DInidicatorRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
@@ -1208,7 +1217,6 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
-    <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Content\Shader.fx">

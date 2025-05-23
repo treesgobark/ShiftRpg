@@ -27,6 +27,30 @@
       ],
       "Name": "DefaultLayer",
       "Category": "Layer"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ShakeRadius",
+      "DefaultValue": 2.0,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ShakeDurationMilliseconds",
+      "DefaultValue": 200.0,
+      "SetByDerived": true
     }
   ],
   "NamedObjects": [
@@ -226,7 +250,7 @@
         },
         {
           "Name": "CollisionType",
-          "Value": 1,
+          "Value": 2,
           "Type": "int"
         },
         {
@@ -256,7 +280,7 @@
         },
         {
           "Name": "CollisionElasticity",
-          "Value": 1.0,
+          "Value": 0.7,
           "Type": "float"
         },
         {

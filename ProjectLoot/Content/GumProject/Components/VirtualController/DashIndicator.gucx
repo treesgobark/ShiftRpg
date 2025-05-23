@@ -122,6 +122,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -182,7 +183,6 @@
   </State>
   <Category>
     <Name>IsPressed</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Pressed</Name>
       <Variable>

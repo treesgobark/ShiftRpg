@@ -1,4 +1,4 @@
-namespace ProjectLoot.GumRuntimes
+namespace ProjectLoot.GumRuntimes.VirtualController
 {
     public partial class ButtonIndicatorRuntime
     {

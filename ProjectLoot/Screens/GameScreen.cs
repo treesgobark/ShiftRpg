@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using FlatRedBall;
 using FlatRedBall.Graphics;
 using FlatRedBall.Gui;
@@ -16,6 +18,8 @@ public partial class GameScreen
 {
     private MagazineDisplay MagazineDisplay { get; set; }
 
+    private CancellationTokenSource _cancellationTokenSource = new();
+
     protected bool GameOver { get; set; }
 
     private void CustomInitialize()
@@ -31,6 +35,15 @@ public partial class GameScreen
         {
             BindingContext = Player1.GunComponent
         };
+    }
+
+    public void ShakeCamera(TimeSpan duration, float shakeRadius)
+    {
+        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource = new CancellationTokenSource();
+        CameraControllingEntityInstance.ShakeScreen(shakeRadius,
+                                                    (float)duration.TotalSeconds,
+                                                    _cancellationTokenSource.Token);
     }
 
     private static CartridgeDisplayRuntime CartridgeDisplayFactory()

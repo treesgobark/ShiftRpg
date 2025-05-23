@@ -5,7 +5,7 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
-using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 
 namespace ProjectLoot.Entities
@@ -59,12 +59,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
-            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance, this, WeaknessComponent));
-            Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
-            Effects.HandlerCollection.Add<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
-            Effects.HandlerCollection.Add<WeaknessDamageHandler>(new WeaknessDamageHandler(Effects, HealthComponent, WeaknessComponent));
-            Effects.HandlerCollection.Add<KnockbackHandler>(new KnockbackHandler(Effects, TransformComponent));
+            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent));
+            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, HealthComponent, FrbTimeManager.Instance));
+            Effects.AddHandler<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
+            Effects.AddHandler<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
+            Effects.AddHandler<WeaknessDamageHandler>(new WeaknessDamageHandler(Effects, WeaknessComponent));
+            Effects.AddHandler<KnockbackHandler>(new KnockbackHandler(Effects, TransformComponent));
         }
 
         private void InitializeControllers()

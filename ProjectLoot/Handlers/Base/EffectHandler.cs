@@ -7,16 +7,16 @@ namespace ProjectLoot.Handlers.Base;
 
 public abstract class EffectHandler<T> : IEffectHandler
 {
-    protected IEffectsComponent Effects { get; }
+    private readonly IEffectsComponent _effects;
 
     public EffectHandler(IEffectsComponent effects)
     {
-        Effects = effects;
+        _effects = effects;
     }
     
     public void Handle(IEffect effect)
     {
-        if (!effect.AppliesTo.Contains(Effects.Team)) { return; }
+        if (!effect.AppliesTo.Contains(_effects.Team)) { return; }
         
         if (effect is T castedEffect)
         {
@@ -26,6 +26,21 @@ public abstract class EffectHandler<T> : IEffectHandler
         {
             throw new ArgumentException("Invalid effect type", nameof(effect));
         }
+    }
+
+    public bool CanHandle(IEffect effect)
+    {
+        if (!effect.AppliesTo.Contains(_effects.Team))
+        {
+            return false;
+        }
+
+        if (effect is not T)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public bool IsActive { get; set; }

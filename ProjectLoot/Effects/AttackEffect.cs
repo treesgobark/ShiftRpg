@@ -3,12 +3,12 @@ using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Effects;
 
-public class DamageEffect : INumericalEffect<float>, IEffect
+public class AttackEffect : INumericalEffect<float>, IEffect
 {
-    public DamageEffect(Team appliesTo, SourceTag source, float value)
+    public AttackEffect(Team appliesTo, SourceTag source, float value)
         : this(appliesTo, source, value, [], []) { }
 
-    public DamageEffect(Team        appliesTo,
+    public AttackEffect(Team        appliesTo,
                         SourceTag   source,
                         float       value,
                         List<float> additiveIncreases,

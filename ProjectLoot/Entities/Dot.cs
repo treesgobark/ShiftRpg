@@ -9,6 +9,7 @@ using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
+using FlatRedBall.Debugging;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
@@ -17,7 +18,6 @@ using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
-using ProjectLoot.Effects.Handlers;
 using ProjectLoot.Handlers;
 using ProjectLoot.Models;
 
@@ -27,11 +27,11 @@ namespace ProjectLoot.Entities
     {
         private StateMachine States { get; set; }
         
-        private TransformComponent TransformComponent { get; set; }
-        private HealthComponent HealthComponent { get; set; }
-        private HitstopComponent HitstopComponent { get; set; }
-        private SpriteComponent SpriteComponent { get; set; }
-        private PoiseComponent PoiseComponent { get; set; }
+        private TransformComponent Transform { get; set; }
+        private HealthComponent Health { get; set; }
+        private HitstopComponent Hitstop { get; set; }
+        private SpriteComponent Sprite { get; set; }
+        private PoiseComponent Poise { get; set; }
         
         public PositionedObject Target { get; set; }
         
@@ -49,19 +49,21 @@ namespace ProjectLoot.Entities
 
         private void InitializeComponents()
         {
-            TransformComponent = new TransformComponent(this, this);
-            HealthComponent    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
-            HitstopComponent   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            SpriteComponent    = new SpriteComponent(SatelliteSprite);
-            PoiseComponent     = new PoiseComponent { PoiseThreshold = PoiseThreshold };
+            Transform = new TransformComponent(this, this);
+            Health    = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
+            Hitstop   = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
+            Sprite    = new SpriteComponent(SatelliteSprite);
+            Poise     = new PoiseComponent { PoiseThreshold = PoiseThreshold };
         }
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent), 0);
-            Effects.HandlerCollection.Add<DamageEffect>(new DamageHandler(Effects, HealthComponent, TransformComponent, FrbTimeManager.Instance));
-            Effects.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent));
-            Effects.HandlerCollection.Add<PoiseDamageEffect>(new PoiseDamageHandler(Effects,     PoiseComponent));
+            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, Sprite));
+            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance, this));
+            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Health, Transform));
+            Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, Transform));
+            Effects.AddHandler<PoiseDamageEffect>(new PoiseDamageHandler(Effects, Poise));
         }
 
         private void InitializeStates()
@@ -75,11 +77,15 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
-            States.DoCurrentStateActivity();
-            
-            if (HealthComponent.CurrentHealth <= 0)
+            if (States.IsInitialized)
             {
-                Destroy();
+                States.DoCurrentStateActivity();
+            }
+            
+            if (Health.CurrentHealth <= 0)
+            {
+                Debugger.Log($"_Dot@{TimeManager.CurrentFrame}:Health:{Health.CurrentHealth}");
+                // Destroy();
             }
         }
 

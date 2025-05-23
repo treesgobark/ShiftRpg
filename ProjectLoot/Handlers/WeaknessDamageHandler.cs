@@ -1,19 +1,20 @@
 using FlatRedBall;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IUpdateable
 {
-    private IHealthComponent Health { get; }
-    private IWeaknessComponent Weakness { get; }
+    private readonly IEffectsComponent _effects;
+    private readonly IWeaknessComponent _weakness;
 
-    public WeaknessDamageHandler(IEffectsComponent effects, IHealthComponent health, IWeaknessComponent weakness) : base(effects)
+    public WeaknessDamageHandler(IEffectsComponent effects, IWeaknessComponent weakness) : base(effects)
     {
-        Health = health;
-        Weakness = weakness;
+        _effects  = effects;
+        _weakness = weakness;
     }
 
     protected override void HandleInternal(WeaknessDamageEffect effect)
@@ -29,7 +30,7 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IUpdat
     
     protected virtual bool ValidateEffect(WeaknessDamageEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
+        if (!_effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
 
         return true;
     }
@@ -46,14 +47,14 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IUpdat
     
     protected virtual void ApplyDamage(WeaknessDamageEffect effect, float finalDamage)
     {
-        Weakness.CurrentWeaknessPercentage += finalDamage * 100f;
+        _weakness.CurrentWeaknessPercentage += finalDamage * 100f;
     }
 
     public void Activity()
     {
-        if (Weakness.CurrentWeaknessPercentage > 0)
+        if (_weakness.CurrentWeaknessPercentage > 0)
         {
-            Weakness.CurrentWeaknessPercentage -= TimeManager.SecondDifference * Weakness.DepletionRatePerSecond;
+            _weakness.CurrentWeaknessPercentage -= TimeManager.SecondDifference * _weakness.DepletionRatePerSecond;
         }
     }
 }

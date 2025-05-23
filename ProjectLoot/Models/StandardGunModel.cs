@@ -64,7 +64,7 @@ public partial class StandardGunModel : IGunModel
         get
         {
             var effects = new EffectBundle();
-            effects.AddEffect(new DamageEffect(~GunComponent.Team, SourceTag.Gun, GunData.Damage));
+            effects.AddEffect(new AttackEffect(~GunComponent.Team, SourceTag.Gun, GunData.Damage));
             effects.AddEffect(new HitstopEffect(GunComponent.Team, SourceTag.Gun, TimeSpan.FromMilliseconds(GunData.HitstopDurationMilliseconds)));
             effects.AddEffect(new KnockbackEffect(~GunComponent.Team, SourceTag.Gun, GunData.KnockbackVelocity,
                                                   GunComponent.GunRotation, KnockbackBehavior.Replacement));

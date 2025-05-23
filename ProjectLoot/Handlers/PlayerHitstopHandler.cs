@@ -2,37 +2,36 @@ using ANLG.Utilities.Core.NonStaticUtilities;
 using FlatRedBall.Screens;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 using ProjectLoot.Screens;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class PlayerHitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
 {
-    private IHitstopComponent Hitstop { get; }
-    private ITransformComponent Transform { get; }
-    private ITimeManager TimeManager { get; }
-    private ISpriteComponent? Sprite { get; }
+    private readonly IHitstopComponent _hitstop;
+    private readonly ITimeManager _timeManager;
+    private readonly ISpriteComponent? _sprite;
 
-    public PlayerHitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, ITransformComponent transform,
+    public PlayerHitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop,
         ITimeManager timeManager, ISpriteComponent? sprite = null) : base(effects)
     {
-        Hitstop = hitstop;
-        Transform = transform;
-        TimeManager = timeManager;
-        Sprite = sprite;
+        _hitstop = hitstop;
+        _timeManager = timeManager;
+        _sprite = sprite;
     }
 
     protected override void HandleInternal(HitstopEffect effect)
     {
-        Hitstop.RemainingHitstopTime = effect.Duration;
+        _hitstop.RemainingHitstopTime = effect.Duration;
         
-        if (Hitstop.IsStopped) { return; }
+        if (_hitstop.IsStopped) { return; }
         
         // Transform.StopMotion();
-        Sprite?.StopAnimation();
+        _sprite?.StopAnimation();
 
-        Hitstop.IsStopped = true;
+        _hitstop.IsStopped = true;
         var screen = (GameScreen)ScreenManager.CurrentScreen;
         screen.ShakeCamera(effect.Duration, 3);
         
@@ -41,14 +40,14 @@ public class PlayerHitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
 
     public void Activity()
     {
-        Hitstop.RemainingHitstopTime -= TimeManager.GameTimeSinceLastFrame;
+        _hitstop.RemainingHitstopTime -= _timeManager.GameTimeSinceLastFrame;
         
-        if (Hitstop.IsStopped && Hitstop.RemainingHitstopTime <= TimeSpan.Zero)
+        if (_hitstop.IsStopped && _hitstop.RemainingHitstopTime <= TimeSpan.Zero)
         {
             // Transform.ResumeMotion();
-            Sprite?.ResumeAnimation();
+            _sprite?.ResumeAnimation();
             
-            Hitstop.IsStopped = false;
+            _hitstop.IsStopped = false;
             
             // Hitstop.Resume();
         }

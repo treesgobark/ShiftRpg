@@ -3,8 +3,7 @@ using FlatRedBall;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
-using ProjectLoot.Effects.Handlers;
-using ProjectLoot.Handlers.Bespoke;
+using ProjectLoot.Handlers;
 
 namespace ProjectLoot.Entities
 {
@@ -43,11 +42,13 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.HandlerCollection.Add<DamageEffect>(new TargetDummyDamageHandler(Effects, Health, Transform, FrbTimeManager.Instance, this, Weakness));
-            Effects.HandlerCollection.Add<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
-            Effects.HandlerCollection.Add<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
-            Effects.HandlerCollection.Add<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Health, Weakness));
-            Effects.HandlerCollection.Add<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
+            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Health, Transform));
+            Effects.AddHandler<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
+            Effects.AddHandler<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
+            Effects.AddHandler<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Weakness));
+            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
         }
 
         private void CustomActivity()

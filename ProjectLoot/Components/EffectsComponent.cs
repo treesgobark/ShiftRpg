@@ -2,7 +2,6 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
-using ProjectLoot.Effects.Handlers;
 using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Components;
@@ -10,7 +9,7 @@ namespace ProjectLoot.Components;
 public class EffectsComponent : IEffectsComponent
 {
     private Team? _team;
-    public IEffectHandlerCollection HandlerCollection { get; set; } = new EffectHandlerCollection();
+    private readonly IEffectHandlerCollection _handlerCollection = new ListEffectHandlerCollection();
 
     public Team Team
     {
@@ -22,7 +21,7 @@ public class EffectsComponent : IEffectsComponent
 
     public void Handle(IEffectBundle bundle)
     {
-        HandlerCollection.Handle(bundle);
+        _handlerCollection.Handle(bundle);
     }
 
     public void Handle<T>(T effect) where T : IEffect
@@ -30,11 +29,16 @@ public class EffectsComponent : IEffectsComponent
         EffectBundle bundle = new();
         bundle.AddEffect(effect);
         
-        HandlerCollection.Handle(bundle);
+        _handlerCollection.Handle(bundle);
+    }
+
+    public void AddHandler<T>(IEffectHandler handler) where T : class
+    {
+        _handlerCollection.Add<T>(handler);
     }
 
     public void Activity()
     {
-        HandlerCollection.Activity();
+        _handlerCollection.Activity();
     }
 }

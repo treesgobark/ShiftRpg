@@ -9,7 +9,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
-using ProjectLoot.Effects.Handlers;
+using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
 
@@ -72,9 +72,11 @@ public partial class Player
 
     private void InitializeHandlers()
     {
-        EffectsComponent.HandlerCollection.Add<HitstopEffect>(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, TransformComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
-        EffectsComponent.HandlerCollection.Add<DamageEffect>(new DamageHandler(EffectsComponent, HealthComponent, TransformComponent, FrbTimeManager.Instance, this));
-        EffectsComponent.HandlerCollection.Add<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent));
+        EffectsComponent.AddHandler<HitstopEffect>(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
+        EffectsComponent.AddHandler<AttackEffect>(new AttackHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance));
+        EffectsComponent.AddHandler<HealthReductionEffect>(new HealthReductionHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance, this));
+        EffectsComponent.AddHandler<HealthReductionEffect>(new DamageNumberHandler(EffectsComponent, HealthComponent, TransformComponent));
+        EffectsComponent.AddHandler<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent));
     }
 
     private void InitializeChildren()

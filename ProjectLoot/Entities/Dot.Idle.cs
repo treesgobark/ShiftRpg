@@ -41,9 +41,9 @@ public partial class Dot
 
         protected override void AfterTimedStateActivity()
         {
-            if (Parent.PoiseComponent.IsAboveThreshold)
+            if (Parent.Poise.IsAboveThreshold)
             {
-                Parent.PoiseComponent.CurrentPoiseDamage = 0;
+                Parent.Poise.CurrentPoiseDamage = 0;
                 TimeInState                              = TimeSpan.Zero;
             }
             

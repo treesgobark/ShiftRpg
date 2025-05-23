@@ -646,7 +646,8 @@
     <Compile Include="Effects\Base\IEffectBundle.cs" />
     <Compile Include="Effects\Base\IEffectHandler.cs" />
     <Compile Include="Effects\Base\INumericalEffect.cs" />
-    <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\AttackEffect.cs" />
+    <Compile Include="Effects\HealthReductionEffect.cs" />
     <Compile Include="Effects\HitstopEffect.cs" />
     <Compile Include="Effects\HitstunEffect.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
@@ -1058,10 +1059,12 @@
     </Compile>
     <Compile Include="Handlers\ApplyShatterDamageHandler.cs" />
     <Compile Include="Handlers\Base\EffectHandler.cs" />
-    <Compile Include="Handlers\Base\EffectHandlerCollection.cs" />
+    <Compile Include="Handlers\Base\DictionaryEffectHandlerCollection.cs" />
     <Compile Include="Handlers\Base\IEffectHandlerCollection.cs" />
-    <Compile Include="Handlers\Bespoke\TargetDummyDamageHandler.cs" />
-    <Compile Include="Handlers\DamageHandler.cs" />
+    <Compile Include="Handlers\AttackHandler.cs" />
+    <Compile Include="Handlers\Base\ListEffectHandlerCollection.cs" />
+    <Compile Include="Handlers\DamageNumberHandler.cs" />
+    <Compile Include="Handlers\HealthReductionHandler.cs" />
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
     <Compile Include="Handlers\KnockbackHandler.cs" />
@@ -1249,6 +1252,9 @@
       <Name>SkiaInGum</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Handlers\Bespoke\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

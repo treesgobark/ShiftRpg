@@ -112,7 +112,7 @@ public partial class SwordModel
             {
                 EffectBundle targetHitEffects = new();
         
-                targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
+                targetHitEffects.AddEffect(new AttackEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
                 
                 targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword,
                                                              HitstopDuration));

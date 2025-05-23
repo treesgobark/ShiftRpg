@@ -1,26 +1,28 @@
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
 {
-    private IShatterComponent Shatter { get; }
-    private IHealthComponent Health { get; }
+    private readonly IEffectsComponent _effects;
+    private readonly IShatterComponent _shatter;
+    private readonly IHealthComponent _health;
 
     public ApplyShatterDamageHandler(IEffectsComponent effects, IShatterComponent shatter, IHealthComponent health) : base(effects)
     {
-        Shatter = shatter;
-        Health = health;
+        _effects = effects;
+        _shatter = shatter;
+        _health  = health;
     }
 
     protected override void HandleInternal(ApplyShatterEffect effect)
     {
-         if (Shatter.CurrentShatterDamage > 0)
+         if (_shatter.CurrentShatterDamage > 0)
          {
-             Effects.Handle(new DamageEffect(effect.AppliesTo, SourceTag.Shatter, Shatter.CurrentShatterDamage));
-             Shatter.SetShatterDamage(0f, Health);
+             _effects.Handle(new AttackEffect(effect.AppliesTo, SourceTag.Shatter, _shatter.CurrentShatterDamage));
+             _shatter.SetShatterDamage(0f, _health);
          }
     }
 }

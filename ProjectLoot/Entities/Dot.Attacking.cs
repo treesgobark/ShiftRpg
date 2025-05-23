@@ -63,7 +63,7 @@ public partial class Dot
             Hitbox.AppliesTo              = Team.Player;
 
             EffectBundle targetHitEffects = new();
-            targetHitEffects.AddEffect(new DamageEffect(~Parent.Effects.Team, SourceTag.Sword, 20));
+            targetHitEffects.AddEffect(new AttackEffect(~Parent.Effects.Team, SourceTag.Sword, 20));
             targetHitEffects.AddEffect(
                 new KnockbackEffect(
                     ~Parent.Effects.Team,
@@ -83,9 +83,9 @@ public partial class Dot
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.PoiseComponent.IsAboveThreshold)
+            if (Parent.Poise.IsAboveThreshold)
             {
-                Parent.PoiseComponent.CurrentPoiseDamage = 0;
+                Parent.Poise.CurrentPoiseDamage = 0;
                 
                 return States.Get<Idle>();
             }

@@ -26,9 +26,9 @@ public partial class Dot
 
         public override IState? EvaluateExitConditions()
         {
-            if (Parent.PoiseComponent.IsAboveThreshold)
+            if (Parent.Poise.IsAboveThreshold)
             {
-                Parent.PoiseComponent.CurrentPoiseDamage = 0;
+                Parent.Poise.CurrentPoiseDamage = 0;
                 
                 return States.Get<Idle>();
             }

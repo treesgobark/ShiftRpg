@@ -112,7 +112,7 @@ partial class FistsModel
         {
             EffectBundle targetHitEffects = new();
             
-            targetHitEffects.AddEffect(new DamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists, Damage));
+            targetHitEffects.AddEffect(new AttackEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists, Damage));
                     
             targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists,
                                                          HitstopDuration));

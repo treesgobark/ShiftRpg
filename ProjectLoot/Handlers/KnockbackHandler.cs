@@ -1,16 +1,17 @@
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class KnockbackHandler : EffectHandler<KnockbackEffect>
 {
-    private ITransformComponent Transform { get; }
+    private readonly ITransformComponent _transform;
 
     public KnockbackHandler(IEffectsComponent effects, ITransformComponent transform) : base(effects)
     {
-        Transform = transform;
+        _transform = transform;
     }
 
     protected override void HandleInternal(KnockbackEffect effect)
@@ -18,16 +19,16 @@ public class KnockbackHandler : EffectHandler<KnockbackEffect>
         switch (effect)
         {
             case { KnockbackBehavior: KnockbackBehavior.Additive }:
-                Transform.Velocity += effect.KnockbackVector;
+                _transform.Velocity += effect.KnockbackVector;
                 break;
             case { KnockbackBehavior: KnockbackBehavior.Replacement }:
-                Transform.Velocity = effect.KnockbackVector;
+                _transform.Velocity = effect.KnockbackVector;
                 break;
         }
         
-        if (Transform.CurrentSpeed > Transform.MaxSpeed && Transform.DecelerationAboveMaxSpeed > 0)
+        if (_transform.CurrentSpeed > _transform.MaxSpeed && _transform.DecelerationAboveMaxSpeed > 0)
         {
-            Transform.Acceleration = Transform.DecelerationAboveMaxSpeed * -Transform.Velocity.Normalized();
+            _transform.Acceleration = _transform.DecelerationAboveMaxSpeed * -_transform.Velocity.Normalized();
         }
     }
 }

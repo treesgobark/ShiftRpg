@@ -6,15 +6,15 @@ namespace ProjectLoot.Handlers;
 
 public class PoiseDamageHandler : EffectHandler<PoiseDamageEffect>
 {
-    private IPoiseComponent Poise { get; }
+    private readonly IPoiseComponent _poise;
 
     public PoiseDamageHandler(IEffectsComponent effects, IPoiseComponent poise) : base(effects)
     {
-        Poise = poise;
+        _poise = poise;
     }
     
     protected override void HandleInternal(PoiseDamageEffect effect)
     {
-        Poise.CurrentPoiseDamage += effect.PoiseDamage;
+        _poise.CurrentPoiseDamage += effect.PoiseDamage;
     }
 }

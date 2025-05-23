@@ -5,7 +5,7 @@ using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Handlers.Base;
 
-public class EffectHandlerCollection : IEffectHandlerCollection
+public class DictionaryEffectHandlerCollection : IEffectHandlerCollection
 {
     private List<EffectLog> RecentEffects { get; } = [];
     private List<Type> HandlerOrder { get; } = [];

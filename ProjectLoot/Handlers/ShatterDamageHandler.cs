@@ -1,17 +1,20 @@
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
 {
-    private IHealthComponent Health { get; }
-    private IShatterComponent Shatter { get; }
+    private readonly IEffectsComponent _effects;
+    private readonly IHealthComponent _health;
+    private readonly IShatterComponent _shatter;
 
     public ShatterDamageHandler(IEffectsComponent effects, IHealthComponent health, IShatterComponent shatter) : base(effects)
     {
-        Health = health;
-        Shatter = shatter;
+        _effects = effects;
+        _health        = health;
+        _shatter       = shatter;
     }
 
     protected override void HandleInternal(ShatterDamageEffect effect)
@@ -27,7 +30,7 @@ public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
     
     protected virtual bool ValidateEffect(ShatterDamageEffect effect)
     {
-        if (!Effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
+        if (!_effects.Team.IsSubsetOf(effect.AppliesTo)) { return false; }
 
         return true;
     }
@@ -44,6 +47,6 @@ public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
     
     protected virtual void ApplyDamage(ShatterDamageEffect effect, float finalDamage)
     {
-        Shatter.SetShatterDamage(Shatter.CurrentShatterDamage + finalDamage, Health);
+        _shatter.SetShatterDamage(_shatter.CurrentShatterDamage + finalDamage, _health);
     }
 }

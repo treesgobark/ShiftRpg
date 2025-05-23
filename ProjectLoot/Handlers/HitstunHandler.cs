@@ -1,38 +1,39 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
+using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
 
-namespace ProjectLoot.Effects.Handlers;
+namespace ProjectLoot.Handlers;
 
 public class HitstunHandler : EffectHandler<HitstunEffect>, IUpdateable
 {
-    private IHitstunComponent Hitstun { get; }
-    private IHitstopComponent Hitstop { get; }
-    private ITimeManager TimeManager { get; }
+    private readonly IHitstunComponent _hitstun;
+    private readonly IHitstopComponent _hitstop;
+    private readonly ITimeManager _timeManager;
 
     public HitstunHandler(IEffectsComponent effects, IHitstunComponent hitstun, IHitstopComponent hitstop, ITimeManager timeManager) : base(effects)
     {
-        Hitstun = hitstun;
-        Hitstop = hitstop;
-        TimeManager = timeManager;
+        _hitstun = hitstun;
+        _hitstop = hitstop;
+        _timeManager = timeManager;
     }
 
     protected override void HandleInternal(HitstunEffect effect)
     {
-        Hitstun.RemainingHitstunDuration = effect.Duration;
+        _hitstun.RemainingHitstunDuration = effect.Duration;
         
-        Hitstun.IsStunned = true;
+        _hitstun.IsStunned = true;
     }
 
     public void Activity()
     {
-        if (Hitstop.IsStopped)
+        if (_hitstop.IsStopped)
         {
             return;
         }
         
-        switch (Hitstun)
+        switch (_hitstun)
         {
             case { IsStunned: false, RemainingHitstunDuration.TotalSeconds: <= 0 }:
                 return;
@@ -40,7 +41,7 @@ public class HitstunHandler : EffectHandler<HitstunEffect>, IUpdateable
                 OnStunBegins();
                 break;
             case { IsStunned: true, RemainingHitstunDuration.TotalSeconds: > 0 }:
-                Hitstun.RemainingHitstunDuration -= TimeSpan.FromSeconds(TimeManager.GameTimeSinceLastFrame.TotalSeconds);
+                _hitstun.RemainingHitstunDuration -= TimeSpan.FromSeconds(_timeManager.GameTimeSinceLastFrame.TotalSeconds);
                 break;
             case { IsStunned: true, RemainingHitstunDuration.TotalSeconds: <= 0 }:
                 OnStunEnds();
@@ -50,11 +51,11 @@ public class HitstunHandler : EffectHandler<HitstunEffect>, IUpdateable
 
     private void OnStunBegins()
     {
-        Hitstun.IsStunned = true;
+        _hitstun.IsStunned = true;
     }
 
     private void OnStunEnds()
     {
-        Hitstun.IsStunned = false;
+        _hitstun.IsStunned = false;
     }
 }

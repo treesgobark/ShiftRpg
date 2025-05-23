@@ -24,6 +24,32 @@
       "Properties": [
         {
           "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ShakeRadius",
+      "DefaultValue": 2.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ShakeDurationMilliseconds",
+      "DefaultValue": 200.0,
+      "SetByDerived": true,
+      "DefinedByBase": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
           "Value": "string",
           "Type": "String"
         },

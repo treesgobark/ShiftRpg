@@ -14,8 +14,6 @@ namespace ProjectLoot.Screens;
 
 public partial class GameScreen
 {
-    private MagazineDisplay MagazineDisplay { get; set; }
-
     protected bool GameOver { get; set; }
 
     private void CustomInitialize()
@@ -26,11 +24,6 @@ public partial class GameScreen
         GumScreen.HealthBarPlayerInstance.SetBinding(nameof(HealthBarPlayerRuntime.ProgressPerCent),
                                                      nameof(HealthComponent.HealthPercentage));
         InitializePauseMenu();
-
-        MagazineDisplay = new MagazineDisplay(CartridgeDisplayFactory, new Vector3(16, -32, 0), 3, 11)
-        {
-            BindingContext = Player1.GunComponent
-        };
     }
 
     private static CartridgeDisplayRuntime CartridgeDisplayFactory()
@@ -77,11 +70,6 @@ public partial class GameScreen
             GameOver = true;
             Pause();
         }
-
-        if (!IsPaused)
-        {
-            MagazineDisplay.Activity();
-        }
     }
 
     private void DisplayEnemyInputs()
@@ -127,7 +115,7 @@ public partial class GameScreen
 
     private void CustomDestroy()
     {
-        MagazineDisplay.Destroy();
+        // MagazineDisplay.Destroy();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName)

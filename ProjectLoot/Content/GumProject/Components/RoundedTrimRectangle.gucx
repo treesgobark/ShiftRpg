@@ -64,25 +64,25 @@
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Fill.Texture Height</Name>
+      <Name>Fill.TextureHeight</Name>
       <Value xsi:type="xsd:int">48</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Fill.Texture Left</Name>
+      <Name>Fill.TextureLeft</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Fill.Texture Top</Name>
+      <Name>Fill.TextureTop</Name>
       <Value xsi:type="xsd:int">432</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Fill.Texture Width</Name>
+      <Name>Fill.TextureWidth</Name>
       <Value xsi:type="xsd:int">48</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -107,7 +107,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Height Units</Name>
+      <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -115,6 +115,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -152,7 +153,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Trim.Height Units</Name>
+      <Name>Trim.HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -177,43 +178,43 @@
     </Variable>
     <Variable>
       <Type>TextureAddress</Type>
-      <Name>Trim.Texture Address</Name>
+      <Name>Trim.TextureAddress</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Trim.Texture Height</Name>
+      <Name>Trim.TextureHeight</Name>
       <Value xsi:type="xsd:int">48</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Trim.Texture Height Scale</Name>
+      <Name>Trim.TextureHeightScale</Name>
       <Value xsi:type="xsd:float">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Trim.Texture Left</Name>
+      <Name>Trim.TextureLeft</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Trim.Texture Top</Name>
+      <Name>Trim.TextureTop</Name>
       <Value xsi:type="xsd:int">432</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Trim.Texture Width</Name>
+      <Name>Trim.TextureWidth</Name>
       <Value xsi:type="xsd:int">48</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Trim.Texture Width Scale</Name>
+      <Name>Trim.TextureWidthScale</Name>
       <Value xsi:type="xsd:float">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -225,7 +226,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Trim.Width Units</Name>
+      <Name>Trim.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -237,13 +238,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>Trim.X Origin</Name>
+      <Name>Trim.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Trim.X Units</Name>
+      <Name>Trim.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -255,13 +256,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>Trim.Y Origin</Name>
+      <Name>Trim.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Trim.Y Units</Name>
+      <Name>Trim.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -273,7 +274,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Width Units</Name>
+      <Name>WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -285,13 +286,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>X Origin</Name>
+      <Name>XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>X Units</Name>
+      <Name>XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -303,13 +304,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>Y Origin</Name>
+      <Name>YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Y Units</Name>
+      <Name>YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -330,7 +331,6 @@
   </State>
   <Category>
     <Name>ColorCategory</Name>
-    <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Gray</Name>
       <Variable>

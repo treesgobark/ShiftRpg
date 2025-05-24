@@ -19,7 +19,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>ProgressBarImprovedInstance.Height Units</Name>
+      <Name>ProgressBarImprovedInstance.HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -43,7 +43,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>ProgressBarImprovedInstance.Width Units</Name>
+      <Name>ProgressBarImprovedInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -55,13 +55,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>ProgressBarImprovedInstance.X Origin</Name>
+      <Name>ProgressBarImprovedInstance.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ProgressBarImprovedInstance.X Units</Name>
+      <Name>ProgressBarImprovedInstance.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -73,13 +73,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>ProgressBarImprovedInstance.Y Origin</Name>
+      <Name>ProgressBarImprovedInstance.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ProgressBarImprovedInstance.Y Units</Name>
+      <Name>ProgressBarImprovedInstance.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -99,6 +99,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
   </State>

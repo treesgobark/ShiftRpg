@@ -12,7 +12,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Height Units</Name>
+      <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -20,6 +20,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -30,7 +31,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>StickSprite.Height Units</Name>
+      <Name>StickSprite.HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -43,31 +44,31 @@
     </Variable>
     <Variable>
       <Type>TextureAddress</Type>
-      <Name>StickSprite.Texture Address</Name>
+      <Name>StickSprite.TextureAddress</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>StickSprite.Texture Height</Name>
+      <Name>StickSprite.TextureHeight</Name>
       <Value xsi:type="xsd:int">16</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>StickSprite.Texture Left</Name>
+      <Name>StickSprite.TextureLeft</Name>
       <Value xsi:type="xsd:int">112</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>StickSprite.Texture Top</Name>
+      <Name>StickSprite.TextureTop</Name>
       <Value xsi:type="xsd:int">432</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>StickSprite.Texture Width</Name>
+      <Name>StickSprite.TextureWidth</Name>
       <Value xsi:type="xsd:int">16</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -79,31 +80,31 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>StickSprite.Width Units</Name>
+      <Name>StickSprite.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>StickSprite.X Origin</Name>
+      <Name>StickSprite.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>StickSprite.X Units</Name>
+      <Name>StickSprite.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>StickSprite.Y Origin</Name>
+      <Name>StickSprite.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>StickSprite.Y Units</Name>
+      <Name>StickSprite.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -115,7 +116,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>WellSprite.Height Units</Name>
+      <Name>WellSprite.HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -128,43 +129,43 @@
     </Variable>
     <Variable>
       <Type>TextureAddress</Type>
-      <Name>WellSprite.Texture Address</Name>
+      <Name>WellSprite.TextureAddress</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>WellSprite.Texture Height</Name>
+      <Name>WellSprite.TextureHeight</Name>
       <Value xsi:type="xsd:int">16</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>WellSprite.Texture Height Scale</Name>
+      <Name>WellSprite.TextureHeightScale</Name>
       <Value xsi:type="xsd:float">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>WellSprite.Texture Left</Name>
+      <Name>WellSprite.TextureLeft</Name>
       <Value xsi:type="xsd:int">96</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>WellSprite.Texture Top</Name>
+      <Name>WellSprite.TextureTop</Name>
       <Value xsi:type="xsd:int">432</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>WellSprite.Texture Width</Name>
+      <Name>WellSprite.TextureWidth</Name>
       <Value xsi:type="xsd:int">16</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>WellSprite.Texture Width Scale</Name>
+      <Name>WellSprite.TextureWidthScale</Name>
       <Value xsi:type="xsd:float">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -176,7 +177,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>WellSprite.Width Units</Name>
+      <Name>WellSprite.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -188,13 +189,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>WellSprite.X Origin</Name>
+      <Name>WellSprite.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>WellSprite.X Units</Name>
+      <Name>WellSprite.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -206,13 +207,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>WellSprite.Y Origin</Name>
+      <Name>WellSprite.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>WellSprite.Y Units</Name>
+      <Name>WellSprite.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -224,7 +225,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Width Units</Name>
+      <Name>WidthUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -236,13 +237,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>X Origin</Name>
+      <Name>XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>X Units</Name>
+      <Name>XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -254,13 +255,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>Y Origin</Name>
+      <Name>YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Y Units</Name>
+      <Name>YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>

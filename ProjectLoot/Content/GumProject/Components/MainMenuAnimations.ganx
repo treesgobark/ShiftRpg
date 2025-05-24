@@ -1,4 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ElementAnimationsSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Animations />
+  <Animations>
+    <AnimationSave>
+      <Loops>false</Loops>
+      <Name>stageleft</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>movement/left</StateName>
+          <Time>0</Time>
+          <InterpolationType>Elastic</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>movement/center</StateName>
+          <Time>1</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+  </Animations>
 </ElementAnimationsSave>

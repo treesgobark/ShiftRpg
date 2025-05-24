@@ -30,13 +30,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>BackButton.X Origin</Name>
+      <Name>BackButton.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>BackButton.X Units</Name>
+      <Name>BackButton.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -48,13 +48,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>BackButton.Y Origin</Name>
+      <Name>BackButton.YOrigin</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>BackButton.Y Units</Name>
+      <Name>BackButton.YUnits</Name>
       <Value xsi:type="xsd:int">5</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -66,13 +66,13 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Height Units</Name>
+      <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>ChildrenLayout</Type>
-      <Name>SettingsViewInstance.Children Layout</Name>
+      <Name>SettingsViewInstance.ChildrenLayout</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -84,7 +84,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>SettingsViewInstance.Height Units</Name>
+      <Name>SettingsViewInstance.HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -96,7 +96,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>SettingsViewInstance.Width Units</Name>
+      <Name>SettingsViewInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -108,13 +108,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>SettingsViewInstance.X Origin</Name>
+      <Name>SettingsViewInstance.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>SettingsViewInstance.X Units</Name>
+      <Name>SettingsViewInstance.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -126,13 +126,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>SettingsViewInstance.Y Origin</Name>
+      <Name>SettingsViewInstance.YOrigin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>SettingsViewInstance.Y Units</Name>
+      <Name>SettingsViewInstance.YUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -140,6 +140,7 @@
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
+      <Category>States and Visibility</Category>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -150,7 +151,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Width Units</Name>
+      <Name>WidthUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>

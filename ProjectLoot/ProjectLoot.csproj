@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
@@ -21,6 +21,16 @@
     <None Remove="**\*.glsj" />
     <None Remove="**\*.glej" />
     <None Remove="**\*.gluj" />
+    <None Include="..\BuiltXnbs\DesktopGL\Content\Entities\DamageNumber\HitMarker.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HitMarker</Name>
+      <Link>Content\Entities\DamageNumber\HitMarker.xnb</Link>
+    </None>
+    <None Include="..\BuiltXnbs\DesktopGL\Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Saiga12SingleShot1mSide</Name>
+      <Link>Content\GlobalContent\GunSounds\Saiga12SingleShot1mSide.xnb</Link>
+    </None>
     <None Include="..\BuiltXnbs\DesktopGL\Entities\DamageNumber\HitMarker.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HitMarker</Name>
@@ -739,6 +749,7 @@
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GlueControl\CommandReceiver.Generated.cs" />
+    <Compile Include="GlueControl\CommandReplayLogic.Generated.cs" />
     <Compile Include="GlueControl\Dtos.Generated.cs" />
     <Compile Include="GlueControl\Editing\CameraLogic.Generated.cs" />
     <Compile Include="GlueControl\Editing\CopyPasteManager.Generated.cs" />

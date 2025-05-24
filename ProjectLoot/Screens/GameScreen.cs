@@ -7,6 +7,7 @@ using FlatRedBall.Input;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
+using ProjectLoot.DataTypes;
 using ProjectLoot.Entities;
 using ProjectLoot.GumRuntimes;
 using ProjectLoot.GumRuntimes.VirtualController;
@@ -59,6 +60,16 @@ public partial class GameScreen
 
         // DisplayEnemyInputs();
         DisplayPlayerInputs();
+
+        switch (Player1.MeleeWeaponComponent.CurrentMeleeWeapon.MeleeWeaponData.Name)
+        {
+            case MeleeWeaponData.Sword:
+                GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Sword;
+                break;
+            case MeleeWeaponData.Fists:
+                GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Fists;
+                break;
+        }
 
         foreach (Enemy? enemy in EnemyList)
         {

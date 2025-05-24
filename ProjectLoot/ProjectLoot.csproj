@@ -61,6 +61,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonPressed</Name>
     </None>
+    <None Include="Content\Entities\Corpse\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="Content\Entities\DefaultMeleeEnemy\TopDownValuesStatic.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TopDownValuesStatic</Name>
@@ -124,6 +128,10 @@
     <None Include="Content\GlobalContent\GunSounds\ThudShot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ThudShot</Name>
+    </None>
+    <None Include="Content\GlobalContent\GunSounds\ThudShotLow.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ThudShotLow</Name>
     </None>
     <None Include="Content\GlobalContent\MeleeWeaponData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -352,6 +360,10 @@
     <None Include="Content\GumProject\Components\MainMenu.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>MainMenu</Name>
+    </None>
+    <None Include="Content\GumProject\Components\MeleeWeaponDisplay.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MeleeWeaponDisplay</Name>
     </None>
     <None Include="Content\GumProject\Components\Options.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -661,6 +673,10 @@
     <Compile Include="Effects\StatModifierCollection.cs" />
     <Compile Include="Effects\Team.cs" />
     <Compile Include="Effects\WeaknessDamageEffect.cs" />
+    <Compile Include="Entities\Corpse.cs" />
+    <Compile Include="Entities\Corpse.Generated.cs">
+      <DependentUpon>Corpse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DamageNumber.cs" />
     <Compile Include="Entities\DamageNumber.Generated.cs">
       <DependentUpon>DamageNumber.cs</DependentUpon>
@@ -731,6 +747,7 @@
     <Compile Include="Entities\WeaponDrop.Generated.cs">
       <DependentUpon>WeaponDrop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\CorpseFactory.Generated.cs" />
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
     <Compile Include="Factories\DefaultRangedEnemyFactory.Generated.cs" />
@@ -999,6 +1016,10 @@
     <Compile Include="GumRuntimes\MainMenuRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuRuntime.Generated.cs">
       <DependentUpon>MainMenuRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\MeleeWeaponDisplayRuntime.cs" />
+    <Compile Include="GumRuntimes\MeleeWeaponDisplayRuntime.Generated.cs">
+      <DependentUpon>MeleeWeaponDisplayRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\OptionsRuntime.cs" />

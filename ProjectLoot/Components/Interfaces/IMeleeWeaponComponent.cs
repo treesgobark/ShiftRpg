@@ -12,6 +12,7 @@ public interface IMeleeWeaponComponent
     IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; }
     Vector3 HolderSpritePosition { get; }
     Rotation AttackDirection { get; }
+    IMeleeWeaponModel CurrentMeleeWeapon { get; }
 
     void AttachObjectToAttackOrigin(PositionedObject obj);
 }

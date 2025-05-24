@@ -333,6 +333,11 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
+    <Name>MeleeWeaponDisplayInstance</Name>
+    <BaseType>MeleeWeaponDisplay</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
     <Name>HealthBarPlayerInstance</Name>
     <BaseType>HealthBarPlayer</BaseType>
     <DefinedByBase>false</DefinedByBase>

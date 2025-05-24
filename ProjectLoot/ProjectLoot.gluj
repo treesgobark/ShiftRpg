@@ -213,6 +213,13 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/GunSounds/ThudShotLow.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {
@@ -248,7 +255,8 @@
         "Entities/Enemy/TopDownValuesStatic.csv",
         "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
         "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv",
-        "Entities/Dot/TopDownValuesStatic.csv"
+        "Entities/Dot/TopDownValuesStatic.csv",
+        "Entities/Corpse/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true
@@ -278,6 +286,9 @@
     }
   ],
   "EntityReferences": [
+    {
+      "Name": "Entities\\Corpse"
+    },
     {
       "Name": "Entities\\DamageNumber"
     },

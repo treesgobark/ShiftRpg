@@ -12,14 +12,16 @@ public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
     private readonly ITransformComponent _transform;
     private readonly ITimeManager _timeManager;
     private readonly ISpriteComponent? _sprite;
+    private readonly IHealthComponent? _health;
 
     public HitstopHandler(IEffectsComponent effects, IHitstopComponent hitstop, ITransformComponent transform,
-        ITimeManager timeManager, ISpriteComponent? sprite = null) : base(effects)
+                          ITimeManager timeManager, ISpriteComponent? sprite = null, IHealthComponent? health = null) : base(effects)
     {
-        _hitstop = hitstop;
-        _transform = transform;
+        _hitstop     = hitstop;
+        _transform   = transform;
         _timeManager = timeManager;
-        _sprite = sprite;
+        _sprite      = sprite;
+        _health      = health;
     }
 
     protected override void HandleInternal(HitstopEffect effect)

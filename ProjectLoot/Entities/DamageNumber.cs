@@ -54,7 +54,7 @@ namespace ProjectLoot.Entities
                     case SourceTag.Sword:
                         if (Damage >= 25)
                         {
-                            GlobalContent.ShotgunBlastQuick.Play(0.3f, pitch, 0f);
+                            GlobalContent.ShotgunBlastQuick.Play(0.3f, pitch - 0.8f, 0f);
                         }
 
                         GlobalContent.SwordImpact.Play(0.1f, pitch, 0f);
@@ -65,7 +65,7 @@ namespace ProjectLoot.Entities
                     case SourceTag.Fists:
                         if (Damage >= 25)
                         {
-                            GlobalContent.ThudShot.Play(0.25f, pitch - 0.8f, 0f);
+                            GlobalContent.ThudShotLow.Play(0.35f, pitch - 0.8f, 0f);
                         }
 
                         GlobalContent.FistHitA.Play(0.1f, pitch, 0f);

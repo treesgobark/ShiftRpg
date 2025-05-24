@@ -17,7 +17,7 @@ public partial class SwordModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
-        private static TimeSpan FinalHitstopDuration => TimeSpan.FromMilliseconds(200);
+        private static TimeSpan FinalHitstopDuration => TimeSpan.FromMilliseconds(250);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }
@@ -116,8 +116,8 @@ public partial class SwordModel
                     new KnockbackEffect(
                         ~Parent.MeleeWeaponComponent.Team,
                         SourceTag.Sword,
-                        200 + 1000 * NormalizedProgress,
-                        AttackDirection,
+                        400             + 1000                * NormalizedProgress,
+                        AttackDirection - Rotation.EighthTurn / 2,
                         KnockbackBehavior.Replacement
                         )
                     );

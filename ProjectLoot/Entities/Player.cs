@@ -39,6 +39,13 @@ public partial class Player
         InitializeControllers();
         InitializeHandlers();
         InitializeChildren();
+        GiveWeapons();
+    }
+
+    private void GiveWeapons()
+    {
+        PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Sword]);
+        PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Fists]);
     }
 
     private void InitializeInputs()
@@ -74,7 +81,7 @@ public partial class Player
     {
         EffectsComponent.AddHandler<HitstopEffect>(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
         EffectsComponent.AddHandler<AttackEffect>(new AttackHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance));
-        EffectsComponent.AddHandler<HealthReductionEffect>(new HealthReductionHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance, this));
+        EffectsComponent.AddHandler<HealthReductionEffect>(new HealthReductionHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance, HitstopComponent));
         EffectsComponent.AddHandler<HealthReductionEffect>(new DamageNumberHandler(EffectsComponent, TransformComponent));
         EffectsComponent.AddHandler<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent));
     }

@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using ANLG.Utilities.Core.Extensions;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using FlatRedBall;
+using FlatRedBall.Input;
+using FlatRedBall.Instructions;
+using FlatRedBall.AI.Pathfinding;
+using FlatRedBall.Graphics.Animation;
+using FlatRedBall.Graphics.Particle;
+using FlatRedBall.Math.Geometry;
+using Microsoft.Xna.Framework;
+
+namespace ProjectLoot.Entities
+{
+    public partial class Corpse
+    {
+        private static TimeSpan SlideDuration => TimeSpan.FromMilliseconds(1500);
+        private static int Pops => 4;
+            
+        private float NormalizedProgress => (float)(TimeSinceInitialize / SlideDuration);
+        private int GoalPopsHandled => Math.Clamp((int)(NormalizedProgress * Pops) + 1, 0, Pops);
+        private TimeSpan TimeSinceInitialize => FrbTimeManager.Instance.TotalGameTime - _creationTime;
+        
+        private int PopsHandled { get; set; }
+        
+        private TimeSpan _creationTime;
+        
+        /// <summary>
+        /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
+        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
+        /// added to managers will not have this method called.
+        /// </summary>
+        private void CustomInitialize()
+        {
+            _creationTime = FrbTimeManager.Instance.TotalGameTime;
+            ExplosionSpriteInstance.Visible = false;
+        }
+
+        private void CustomActivity()
+        {
+            HandlePops();
+            
+            Velocity *= MathF.Pow(0.1f, TimeManager.SecondDifference);
+        }
+
+        private void HandlePops()
+        {
+            
+            if (PopsHandled < GoalPopsHandled)
+            {
+                ExplosionSpriteInstance.CurrentFrameIndex = 0;
+                ExplosionSpriteInstance.Visible           = true;
+                if (PopsHandled != Pops - 1)
+                {
+                    GlobalContent.GravelHitBigA.Play(0.3f, Random.Shared.NextSingle(-0.2f, 0.2f), 0);
+                }
+                PopsHandled++;
+            }
+            
+            if (PopsHandled == Pops)
+            {
+                BodySpriteInstance.Visible = false;
+                GlobalContent.Saiga12SingleShot1mSide.Play(0.5f, Random.Shared.NextSingle(-0.2f, 0.2f), 0);
+                PopsHandled++;
+            }
+
+            if (ExplosionSpriteInstance.JustCycled)
+            {
+                ExplosionSpriteInstance.Visible = false;
+
+                if (PopsHandled > Pops)
+                {
+                    Destroy();
+                }
+            }
+        }
+
+        private void CustomDestroy()
+        {
+        }
+
+        private static void CustomLoadStaticContent(string contentManagerName)
+        {
+            
+        }
+
+        public void InitializeFromEntity(Dot entity)
+        {
+            BodySpriteInstance.AnimationChains       = DotAnimations;
+            BodySpriteInstance.CurrentChainName      = "BlueIdle";
+            ExplosionSpriteInstance.AnimationChains  = DotAnimations;
+            ExplosionSpriteInstance.CurrentChainName = "BlueExplode";
+            Velocity                                 = entity.Velocity;
+        }
+    }
+}

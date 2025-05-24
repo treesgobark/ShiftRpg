@@ -39,7 +39,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
     
     public void Add(IMeleeWeaponModel meleeWeapon) => MeleeWeapons.Add(meleeWeapon);
 
-    private IMeleeWeaponModel CurrentMeleeWeapon => MeleeWeapons.CurrentItem;
+    public IMeleeWeaponModel CurrentMeleeWeapon => MeleeWeapons.CurrentItem;
     public bool IsEmpty => MeleeWeapons.Count == 0;
 
     public void CycleToNextWeapon()
@@ -55,7 +55,6 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         
         nextMeleeWeapon.IsEquipped         = true;
         MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.MeleeWeaponData.Name;
-        Debugger.CommandLineWrite($"swapped to {nextMeleeWeapon.MeleeWeaponData.Name}");
     }
 
     public void CycleToPreviousWeapon()

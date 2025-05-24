@@ -12,14 +12,16 @@ public class HealthReductionHandler : EffectHandler<HealthReductionEffect>, IUpd
 {
     private readonly IHealthComponent _health;
     private readonly ITimeManager _timeManager;
+    private readonly IHitstopComponent _hitstop;
     private readonly IDestroyable? _destroyable;
 
     public HealthReductionHandler(IEffectsComponent effects, IHealthComponent health, ITimeManager timeManager,
-        IDestroyable? destroyable = null) : base(effects)
+                                  IHitstopComponent hitstop, IDestroyable?    destroyable = null) : base(effects)
     {
-        _health        = health;
-        _timeManager   = timeManager;
-        _destroyable   = destroyable;
+        _health       = health;
+        _timeManager  = timeManager;
+        _hitstop = hitstop;
+        _destroyable  = destroyable;
     }
 
     protected override void HandleInternal(HealthReductionEffect effect)
@@ -32,7 +34,7 @@ public class HealthReductionHandler : EffectHandler<HealthReductionEffect>, IUpd
 
     public void Activity()
     {
-        if (_health.CurrentHealth <= 0)
+        if (!_hitstop.IsStopped && _health.CurrentHealth <= 0)
         {
             _destroyable?.Destroy();
         }

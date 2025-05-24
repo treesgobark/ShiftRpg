@@ -121,8 +121,8 @@ public partial class SwordModel
                     new KnockbackEffect(
                         ~Parent.MeleeWeaponComponent.Team,
                         SourceTag.Sword,
-                        200,
-                        AttackDirection,
+                        450,
+                        AttackDirection + Rotation.EighthTurn / 2,
                         KnockbackBehavior.Replacement
                     )
                 );

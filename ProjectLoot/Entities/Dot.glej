@@ -70,7 +70,7 @@
         }
       ],
       "Name": "MaxHealth",
-      "DefaultValue": 150.0,
+      "DefaultValue": 50.0,
       "SetByDerived": true,
       "DefinedByBase": true
     },
@@ -159,6 +159,12 @@
           "Type": "float",
           "Member": "Y",
           "Value": -20.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
           "Time": 0.0
         }
       ],

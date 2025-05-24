@@ -18,6 +18,7 @@ using ProjectLoot.Components;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Effects;
+using ProjectLoot.Factories;
 using ProjectLoot.Handlers;
 using ProjectLoot.Models;
 
@@ -60,9 +61,9 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, SatelliteSpriteComponent));
+            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, SatelliteSpriteComponent, Health));
             Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
-            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance, this));
+            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance, Hitstop, this));
             Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Transform));
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, BodySpriteComponent, FrbTimeManager.Instance));
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, SatelliteSpriteComponent, FrbTimeManager.Instance));
@@ -95,8 +96,11 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            GlobalContent.GravelHitBigA.Play(0.5f, Random.Shared.NextSingle(-0.2f, 0.2f), 0);
             States.Uninitialize();
+            
+            var corpse = CorpseFactory.CreateNew(Position);
+            corpse.InitializeFromEntity(this);
+            // GlobalContent.ShotgunBlastQuick.Play(0.3f, Random.Shared.NextSingle(-0.2f, 0.2f), 0f);
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

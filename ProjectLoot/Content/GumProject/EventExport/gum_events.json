@@ -1,5 +1,28 @@
 {
   "UserEvents": {
-    "Logan": []
+    "Logan": [],
+    "logan": [
+      {
+        "NewName": "MeleeWeaponDisplay",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2025-05-24T18:48:55.7529966Z"
+      },
+      {
+        "NewName": "MeleeWeaponDisplay (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2025-05-24T18:50:05.7463233Z"
+      },
+      {
+        "NewName": "GameScreenGum.MeleeWeaponDisplayInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2025-05-24T19:00:22.7433208Z"
+      }
+    ]
   }
 }

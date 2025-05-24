@@ -226,7 +226,7 @@
     "GenerateLoadGlobalContentCode": true
   },
   "SyncedProjects": [],
-  "StartUpScreen": "Screens\\ShootingRange",
+  "StartUpScreen": "Screens\\TestLevel",
   "ResolutionPresets": [],
   "PerformanceSettingsSave": {},
   "IgnoredDirectories": [],
@@ -272,6 +272,9 @@
   "ExternallyBuiltFileDirectory": "../../",
   "FileVersion": 51,
   "ScreenReferences": [
+    {
+      "Name": "Screens\\Arena"
+    },
     {
       "Name": "Screens\\GameScreen"
     },

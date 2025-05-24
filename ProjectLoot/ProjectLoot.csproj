@@ -521,6 +521,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
     </None>
+    <None Include="Content\GumProject\Screens\ArenaGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ArenaGum</Name>
+    </None>
     <None Include="Content\GumProject\Screens\GameScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GameScreenGum</Name>
@@ -584,6 +588,10 @@
     <None Include="Content\PlayerAnimations.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimations</Name>
+    </None>
+    <None Include="Content\Screens\Arena\ArenaMap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ArenaMap</Name>
     </None>
     <None Include="content\weaponanimations.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -761,6 +769,7 @@
     <Compile Include="Forms\Components\MainMenuForms.Generated.cs" />
     <Compile Include="Forms\Components\OptionsForms.Generated.cs" />
     <Compile Include="Forms\Components\PauseMenuForms.Generated.cs" />
+    <Compile Include="Forms\Screens\ArenaGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\GameScreenGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\MainMenuGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\ShootingRangeGumForms.Generated.cs" />
@@ -811,6 +820,10 @@
     <Compile Include="GlueControl\Models\StateSaveCategory.Generated.cs" />
     <Compile Include="GlueControl\Runtime\DynamicEntity.Generated.cs" />
     <Compile Include="GlueControl\Screens\EntityViewingScreen.Generated.cs" />
+    <Compile Include="GumRuntimes\ArenaGumRuntime.cs" />
+    <Compile Include="GumRuntimes\ArenaGumRuntime.Generated.cs">
+      <DependentUpon>ArenaGumRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\Behaviors\IButtonBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\ICheckBoxBehavior.Generated.cs" />
     <Compile Include="GumRuntimes\Behaviors\IComboBoxBehavior.Generated.cs" />
@@ -1182,6 +1195,10 @@
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Screens\Arena.cs" />
+    <Compile Include="Screens\Arena.Generated.cs">
+      <DependentUpon>Arena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\GameScreen.Event.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>

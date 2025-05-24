@@ -7,21 +7,15 @@
   "BaseElement": "Screens\\GameScreen",
   "ReferencedFiles": [
     {
-      "Name": "Screens/TestLevel/TestLevelMap.tmx",
-      "Properties": [
-        {
-          "Name": "CreationOptions",
-          "Value": "{\"IncludeDefaultTileset\":true,\"IncludeGameplayLayer\":true,\"SolidCollisionCheckBoxVisibility\":0,\"IsSolidCollisionBorderChecked\":true,\"ShouldAddCollisionBorder\":true}"
-        }
-      ],
+      "Name": "GumProject/Screens/ArenaGum.gusx",
       "IsSharedStatic": true,
-      "RuntimeType": "FlatRedBall.TileGraphics.LayeredTileMap",
+      "RuntimeType": "ProjectLoot.GumRuntimes.ArenaGumRuntime",
       "ProjectsToExcludeFrom": []
     },
     {
-      "Name": "GumProject/Screens/TestLevelGum.gusx",
+      "Name": "Screens/Arena/ArenaMap.tmx",
       "IsSharedStatic": true,
-      "RuntimeType": "ProjectLoot.GumRuntimes.TestLevelGumRuntime",
+      "RuntimeType": "FlatRedBall.TileGraphics.LayeredTileMap",
       "ProjectsToExcludeFrom": []
     }
   ],
@@ -94,7 +88,7 @@
           "Time": 0.0
         }
       ],
-      "SourceFile": "Screens/TestLevel/TestLevelMap.tmx",
+      "SourceFile": "Screens/Arena/ArenaMap.tmx",
       "SourceName": "Entire File (LayeredTileMap)",
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
@@ -112,25 +106,63 @@
         {
           "Name": "CollisionCreationOptions",
           "Value": 6,
-          "Type": "Object"
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionTileSize",
+          "Value": 16.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionFillWidth",
+          "Value": 32,
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionFillHeight",
+          "Value": 1,
+          "Type": "int"
+        },
+        {
+          "Name": "InnerSizeWidth",
+          "Value": 800.0,
+          "Type": "float"
+        },
+        {
+          "Name": "InnerSizeHeight",
+          "Value": 600.0,
+          "Type": "float"
         },
         {
           "Name": "SourceTmxName",
           "Value": "Map",
-          "Type": "Object"
+          "Type": "String"
         },
         {
           "Name": "TmxCollisionName",
           "Value": "SolidCollision",
-          "Type": "Object"
+          "Type": "String"
         },
         {
           "Name": "CollisionTileTypeName",
           "Value": "SolidCollision",
-          "Type": "Object"
+          "Type": "String"
         }
       ],
-      "InstructionSaves": [],
+      "InstructionSaves": [
+        {
+          "Type": "bool",
+          "Member": "AdjustRepositionDirectionsOnAddAndRemove",
+          "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
+        }
+      ],
       "SourceType": 2,
       "SourceFile": "TileShapeCollection",
       "HasPublicProperty": true,
@@ -139,6 +171,6 @@
       "DefinedByBase": true
     }
   ],
-  "Name": "Screens\\TestLevel",
+  "Name": "Screens\\Arena",
   "CustomClassesForExport": []
 }

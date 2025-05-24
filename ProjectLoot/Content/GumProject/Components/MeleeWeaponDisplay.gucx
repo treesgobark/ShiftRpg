@@ -180,6 +180,31 @@
     <State>
       <Name>Sword</Name>
       <Variable>
+        <Type>float</Type>
+        <Name>Height</Name>
+        <Value xsi:type="xsd:float">34</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>DimensionUnitType</Type>
+        <Name>Height Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <Category>Dimensions</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>SpriteInstance.Height</Name>
+        <Value xsi:type="xsd:float">100</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>SpriteInstance.Rotation</Name>
+        <Value xsi:type="xsd:float">-90</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <IsFile>true</IsFile>
         <Type>string</Type>
         <Name>SpriteInstance.SourceFile</Name>
@@ -212,8 +237,21 @@
       </Variable>
       <Variable>
         <Type>float</Type>
-        <Name>SpriteInstance.Rotation</Name>
-        <Value xsi:type="xsd:float">-90</Value>
+        <Name>SpriteInstance.Width</Name>
+        <Value xsi:type="xsd:float">100</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>Width</Name>
+        <Value xsi:type="xsd:float">90</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>DimensionUnitType</Type>
+        <Name>Width Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <Category>Dimensions</Category>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -252,44 +290,6 @@
         <Value xsi:type="xsd:int">5</Value>
         <SetsValue>true</SetsValue>
       </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>SpriteInstance.Width</Name>
-        <Value xsi:type="xsd:float">100</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>SpriteInstance.Height</Name>
-        <Value xsi:type="xsd:float">100</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Height</Name>
-        <Value xsi:type="xsd:float">34</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Width</Name>
-        <Value xsi:type="xsd:float">90</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>Width Units</Name>
-        <Value xsi:type="xsd:int">0</Value>
-        <Category>Dimensions</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>Height Units</Name>
-        <Value xsi:type="xsd:int">0</Value>
-        <Category>Dimensions</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
       <VariableList xsi:type="VariableListSaveOfString">
         <Type>string</Type>
         <Name>SpriteInstance.AnimationFrames</Name>
@@ -304,6 +304,13 @@
         <Type>float</Type>
         <Name>Height</Name>
         <Value xsi:type="xsd:float">34</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>DimensionUnitType</Type>
+        <Name>Height Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <Category>Dimensions</Category>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -362,6 +369,13 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
+        <Type>DimensionUnitType</Type>
+        <Name>Width Units</Name>
+        <Value xsi:type="xsd:int">0</Value>
+        <Category>Dimensions</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>float</Type>
         <Name>X</Name>
         <Value xsi:type="xsd:float">-0</Value>
@@ -395,20 +409,6 @@
         <Type>PositionUnitType</Type>
         <Name>Y Units</Name>
         <Value xsi:type="xsd:int">5</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>Width Units</Name>
-        <Value xsi:type="xsd:int">0</Value>
-        <Category>Dimensions</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>Height Units</Name>
-        <Value xsi:type="xsd:int">0</Value>
-        <Category>Dimensions</Category>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

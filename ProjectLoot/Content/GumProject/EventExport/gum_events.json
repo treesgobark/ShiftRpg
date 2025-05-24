@@ -1,7 +1,6 @@
 {
   "UserEvents": {
-    "Logan": [],
-    "logan": [
+    "Logan": [
       {
         "NewName": "MeleeWeaponDisplay",
         "OldName": null,

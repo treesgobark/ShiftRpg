@@ -74,8 +74,8 @@
       "InstructionSaves": [
         {
           "Type": "float",
-          "Member": "TextureScale",
-          "Value": 1.0,
+          "Member": "Blue",
+          "Value": 0.5882353,
           "Time": 0.0
         },
         {
@@ -86,20 +86,20 @@
         },
         {
           "Type": "float",
-          "Member": "Red",
-          "Value": 0.5882353,
-          "Time": 0.0
-        },
-        {
-          "Type": "float",
           "Member": "Green",
           "Value": 0.5882353,
           "Time": 0.0
         },
         {
           "Type": "float",
-          "Member": "Blue",
+          "Member": "Red",
           "Value": 0.5882353,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
           "Time": 0.0
         }
       ],

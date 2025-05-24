@@ -156,15 +156,15 @@
       ],
       "InstructionSaves": [
         {
-          "Type": "float",
-          "Member": "Y",
-          "Value": -20.0,
-          "Time": 0.0
-        },
-        {
           "Type": "bool",
           "Member": "Visible",
           "Value": false,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -20.0,
           "Time": 0.0
         }
       ],
@@ -200,6 +200,12 @@
           "Time": 0.0
         },
         {
+          "Type": "ColorOperation",
+          "Member": "ColorOperation",
+          "Value": 1,
+          "Time": 0.0
+        },
+        {
           "Type": "string",
           "Member": "CurrentChainName",
           "Value": "BlueIdle",
@@ -221,12 +227,6 @@
           "Type": "bool",
           "Member": "UseAnimationTextureFlip",
           "Value": false,
-          "Time": 0.0
-        },
-        {
-          "Type": "ColorOperation",
-          "Member": "ColorOperation",
-          "Value": 1,
           "Time": 0.0
         }
       ],
@@ -259,6 +259,12 @@
           "Time": 0.0
         },
         {
+          "Type": "ColorOperation",
+          "Member": "ColorOperation",
+          "Value": 1,
+          "Time": 0.0
+        },
+        {
           "Type": "string",
           "Member": "CurrentChainName",
           "Value": "BlueSquares",
@@ -280,12 +286,6 @@
           "Type": "bool",
           "Member": "UseAnimationTextureFlip",
           "Value": false,
-          "Time": 0.0
-        },
-        {
-          "Type": "ColorOperation",
-          "Member": "ColorOperation",
-          "Value": 1,
           "Time": 0.0
         }
       ],

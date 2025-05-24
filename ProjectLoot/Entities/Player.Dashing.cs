@@ -26,7 +26,7 @@ public partial class Player
             Parent.CurrentMovement.IsUsingCustomDeceleration = false;
             Parent.CurrentMovement.DecelerationTime = 100;
             
-            Parent.Velocity = 250f * Parent.GameplayInputDevice.Movement.GetNormalizedPositionOrZero().ToVec3();
+            Parent.Velocity = 400f * Parent.GameplayInputDevice.Movement.GetNormalizedPositionOrZero().ToVec3();
         }
 
         protected override void AfterTimedStateActivity() { }

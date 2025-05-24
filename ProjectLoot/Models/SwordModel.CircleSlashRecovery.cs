@@ -10,17 +10,37 @@ public partial class SwordModel
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         
+        private IState? NextState { get; set; }
+        
         public CircleSlashRecovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
             : base(states, timeManager, parent) { }
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate() { }
+        protected override void AfterTimedStateActivate()
+        {
+            NextState       = null;
+        }
 
         public override IState? EvaluateExitConditions()
         {
+            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
+            {
+                NextState = States.Get<Slash1>();
+            }
+
             if (TimeInState >= Duration)
             {
+                if (!Parent.IsEquipped)
+                {
+                    return States.Get<NotEquipped>();
+                }
+
+                if (NextState is not null)
+                {
+                    return NextState;
+                }
+                
                 return States.Get<Idle>();
             }
 

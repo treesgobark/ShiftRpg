@@ -117,6 +117,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ShotgunBlast</Name>
     </None>
+    <None Include="Content\GlobalContent\GunSounds\ShotgunBlastQuick.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShotgunBlastQuick</Name>
+    </None>
     <None Include="Content\GlobalContent\GunSounds\ThudShot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ThudShot</Name>
@@ -1064,6 +1068,7 @@
     <Compile Include="Handlers\AttackHandler.cs" />
     <Compile Include="Handlers\Base\ListEffectHandlerCollection.cs" />
     <Compile Include="Handlers\DamageNumberHandler.cs" />
+    <Compile Include="Handlers\FlashOnDamageHandler.cs" />
     <Compile Include="Handlers\HealthReductionHandler.cs" />
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
@@ -1252,9 +1257,6 @@
       <Name>SkiaInGum</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall\ANLG.Utilities.FlatRedBall.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handlers\Bespoke\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

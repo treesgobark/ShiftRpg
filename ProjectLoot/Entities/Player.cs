@@ -75,7 +75,7 @@ public partial class Player
         EffectsComponent.AddHandler<HitstopEffect>(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
         EffectsComponent.AddHandler<AttackEffect>(new AttackHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance));
         EffectsComponent.AddHandler<HealthReductionEffect>(new HealthReductionHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance, this));
-        EffectsComponent.AddHandler<HealthReductionEffect>(new DamageNumberHandler(EffectsComponent, HealthComponent, TransformComponent));
+        EffectsComponent.AddHandler<HealthReductionEffect>(new DamageNumberHandler(EffectsComponent, TransformComponent));
         EffectsComponent.AddHandler<KnockbackEffect>(new KnockbackHandler(EffectsComponent, TransformComponent));
     }
 

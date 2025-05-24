@@ -44,7 +44,7 @@ namespace ProjectLoot.Entities
         {
             Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
             Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance));
-            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Health, Transform));
+            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Transform));
             Effects.AddHandler<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
             Effects.AddHandler<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.AddHandler<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Weakness));

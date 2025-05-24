@@ -15,7 +15,7 @@ public partial class SwordModel
     private class Slash1 : ParentedTimedState<SwordModel>
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(120);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }

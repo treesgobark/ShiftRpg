@@ -16,8 +16,8 @@ public partial class SwordModel
     private class CircleSlash : ParentedTimedState<SwordModel>
     {
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
-        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
-        private static TimeSpan FinalHitstopDuration => TimeSpan.FromMilliseconds(500);
+        private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
+        private static TimeSpan FinalHitstopDuration => TimeSpan.FromMilliseconds(200);
         private float NormalizedProgress => (float)(TimeInState / Duration);
 
         private MeleeHitbox? Hitbox { get; set; }
@@ -31,7 +31,7 @@ public partial class SwordModel
         private int GoalSegmentsHandled => Math.Clamp((int)(NormalizedProgress * TotalSegments) + 1, 0, TotalSegments);
         private int GoalWhooshesHandled => Math.Clamp((int)(NormalizedProgress * TotalWhooshes) + 1, 0, TotalWhooshes);
         private bool IsFinalSegment => SegmentsHandled >= TotalSegments - 1;
-        
+        private bool _hasMadeContact;
         private IState? NextState { get; set; }
         
         public CircleSlash(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
@@ -76,7 +76,7 @@ public partial class SwordModel
                 new KnockbackEffect(
                     Parent.MeleeWeaponComponent.Team,
                     SourceTag.None,
-                    100,
+                    200,
                     AttackDirection,
                     KnockbackBehavior.Additive
                 )

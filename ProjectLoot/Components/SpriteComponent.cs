@@ -1,4 +1,5 @@
 using FlatRedBall;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 
 namespace ProjectLoot.Components;
@@ -46,7 +47,9 @@ public class SpriteComponent : ISpriteComponent
     }
 
     private bool IsStopped => StopCount > 0;
-    
+
+    public Color Color { get => StoredSprite.Color; set => StoredSprite.Color = value; }
+
     public void StopAnimation()
     {
         if (StopCount == 0)

@@ -1,34 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
-
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
 using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
 using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Gui;
-using FlatRedBall.Math;
+using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
-using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
 
-using ProjectLoot.Entities;
-using ProjectLoot.Factories;
-
-
-namespace ProjectLoot.Screens
+namespace ProjectLoot.Entities
 {
-    public partial class Arena
+    public partial class Spawner
     {
+        /// <summary>
+        /// Initialization logic which is executed only one time for this Entity (unless the Entity is pooled).
+        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
+        /// added to managers will not have this method called.
+        /// </summary>
         private void CustomInitialize()
         {
-            SummonWaveButton.ButtonPushed += SpawnNextWave;
+            
         }
 
-        private void CustomActivity(bool firstTimeCalled)
+        private void CustomActivity()
         {
             
         }
@@ -41,14 +37,6 @@ namespace ProjectLoot.Screens
         private static void CustomLoadStaticContent(string contentManagerName)
         {
             
-        }
-
-        private void SpawnNextWave()
-        {
-            foreach (Spawner spawner in SpawnerList)
-            {
-                DotFactory.CreateNew(spawner.Position);
-            }
         }
     }
 }

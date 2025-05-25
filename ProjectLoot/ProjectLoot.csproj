@@ -681,6 +681,10 @@
     <Compile Include="Effects\StatModifierCollection.cs" />
     <Compile Include="Effects\Team.cs" />
     <Compile Include="Effects\WeaknessDamageEffect.cs" />
+    <Compile Include="Entities\Button.cs" />
+    <Compile Include="Entities\Button.Generated.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Corpse.cs" />
     <Compile Include="Entities\Corpse.Generated.cs">
       <DependentUpon>Corpse.cs</DependentUpon>
@@ -747,6 +751,10 @@
     <Compile Include="Entities\Projectile.Generated.cs">
       <DependentUpon>Projectile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Spawner.cs" />
+    <Compile Include="Entities\Spawner.Generated.cs">
+      <DependentUpon>Spawner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\TargetDummy.cs" />
     <Compile Include="Entities\TargetDummy.Generated.cs">
       <DependentUpon>TargetDummy.cs</DependentUpon>
@@ -755,6 +763,7 @@
     <Compile Include="Entities\WeaponDrop.Generated.cs">
       <DependentUpon>WeaponDrop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\ButtonFactory.Generated.cs" />
     <Compile Include="Factories\CorpseFactory.Generated.cs" />
     <Compile Include="Factories\DamageNumberFactory.Generated.cs" />
     <Compile Include="Factories\DefaultMeleeEnemyFactory.Generated.cs" />
@@ -763,6 +772,7 @@
     <Compile Include="Factories\MeleeHitboxFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\ProjectileFactory.Generated.cs" />
+    <Compile Include="Factories\SpawnerFactory.Generated.cs" />
     <Compile Include="Factories\TargetDummyFactory.Generated.cs" />
     <Compile Include="Factories\WeaponDropFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
@@ -1101,6 +1111,7 @@
     <Compile Include="Handlers\Base\IEffectHandlerCollection.cs" />
     <Compile Include="Handlers\AttackHandler.cs" />
     <Compile Include="Handlers\Base\ListEffectHandlerCollection.cs" />
+    <Compile Include="Handlers\CustomEventHandler.cs" />
     <Compile Include="Handlers\DamageNumberHandler.cs" />
     <Compile Include="Handlers\FlashOnDamageHandler.cs" />
     <Compile Include="Handlers\HealthReductionHandler.cs" />

@@ -1,5 +1,6 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Math.Geometry;
 using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
@@ -20,6 +21,7 @@ partial class FistsModel
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(200);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
+        private float NormalizedProgress => (float)Math.Clamp(TimeInState      / TotalDuration, 0, 1);
         private static float HitboxRadius => 12;
         private static float PerpendicularOffset => -4;
         private static float TravelDistance => 24;
@@ -76,6 +78,7 @@ partial class FistsModel
         protected override void AfterTimedStateActivity()
         {
             Hitbox.SpriteInstance.RelativeX = InitialDistance + MathHelper.SmoothStep(0, 1, NormalizedSwingProgress) * TravelDistance;
+            Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
             Circle.RelativeX                = InitialDistance + MathF.Pow(NormalizedSwingProgress, 4) * TravelDistance;
         }
 

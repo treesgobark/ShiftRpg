@@ -51,14 +51,25 @@ public partial class SwordModel
             
             Circle hitboxShape = new()
             {
-                Radius                  = 6,
-                RelativeX               = 18,
+                Radius                  = 6.5f,
+                RelativeX               = 16.5f,
                 Visible                 = false,
                 IgnoresParentVisibility = true,
             };
 
             hitboxShape.AttachTo(Hitbox);
             Hitbox.Collision.Add(hitboxShape);
+            
+            Circle hitboxShape2 = new()
+            {
+                Radius                  = 2,
+                RelativeX               = 8,
+                Visible                 = false,
+                IgnoresParentVisibility = true,
+            };
+
+            hitboxShape2.AttachTo(Hitbox);
+            Hitbox.Collision.Add(hitboxShape2);
 
             Hitbox.SpriteInstance.CurrentChainName = "ThreeEighthsSlash";
             Hitbox.SpriteInstance.AnimationSpeed   = 0.99f / (float)Duration.TotalSeconds;
@@ -107,6 +118,7 @@ public partial class SwordModel
         {
             Hitbox.RelativeRotationZ =
                 (HitboxStartDirection + Rotation.HalfTurn * NormalizedProgress).NormalizedRadians;
+            Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
 
             if (SegmentsHandled < GoalSegmentsHandled)
             {

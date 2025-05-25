@@ -110,5 +110,15 @@ namespace ProjectLoot.Screens
                 }
             }
         }
+        
+        void OnMeleeHitboxVsButtonCollided (Entities.MeleeHitbox meleeHitbox, Entities.Button button) 
+        {
+            if (!meleeHitbox.AppliesTo.Contains(button.Effects.Team)) { return; }
+            if (!meleeHitbox.IsActive) { return; }
+            
+            button.Effects.Handle(meleeHitbox.TargetHitEffects);
+            meleeHitbox.HolderEffectsComponent.Handle(meleeHitbox.HolderHitEffects);
+        }
+
     }
 }

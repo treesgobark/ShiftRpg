@@ -239,6 +239,12 @@
           "Member": "Radius",
           "Value": 35.0,
           "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "Visible",
+          "Value": false,
+          "Time": 0.0
         }
       ],
       "SourceType": 2,

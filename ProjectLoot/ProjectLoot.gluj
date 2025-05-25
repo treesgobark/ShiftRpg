@@ -226,7 +226,7 @@
     "GenerateLoadGlobalContentCode": true
   },
   "SyncedProjects": [],
-  "StartUpScreen": "Screens\\TestLevel",
+  "StartUpScreen": "Screens\\Arena",
   "ResolutionPresets": [],
   "PerformanceSettingsSave": {},
   "IgnoredDirectories": [],
@@ -290,6 +290,9 @@
   ],
   "EntityReferences": [
     {
+      "Name": "Entities\\Button"
+    },
+    {
       "Name": "Entities\\Corpse"
     },
     {
@@ -315,6 +318,9 @@
     },
     {
       "Name": "Entities\\Projectile"
+    },
+    {
+      "Name": "Entities\\Spawner"
     },
     {
       "Name": "Entities\\TargetDummy"
@@ -346,6 +352,7 @@
     "Scale": 400,
     "ScaleGum": 100,
     "ResizeBehavior": 1,
+    "ResizeBehaviorGum": 1,
     "DominantInternalCoordinates": 1,
     "TextureFilter": 1
   },

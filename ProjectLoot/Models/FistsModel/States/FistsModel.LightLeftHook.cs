@@ -18,6 +18,7 @@ partial class FistsModel
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
+        private float NormalizedProgress => (float)Math.Clamp(TimeInState      / TotalDuration, 0, 1);
         private static float HitboxRadius => 10;
         private static float PerpendicularOffset => -8;
         private static float ForwardOffset => 6;
@@ -86,6 +87,7 @@ partial class FistsModel
         {
             Hitbox.RelativeRotationZ =
                 (HitboxStartDirection - Rotation.EighthTurn * NormalizedSwingProgress).NormalizedRadians;
+            Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
         }
 
         public override void BeforeDeactivate()

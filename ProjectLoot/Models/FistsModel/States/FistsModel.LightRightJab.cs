@@ -18,6 +18,7 @@ partial class FistsModel
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
+        private float NormalizedProgress => (float)Math.Clamp(TimeInState      / TotalDuration, 0, 1);
         private static float HitboxRadius => 10;
         private static float PerpendicularOffset => -4;
         private static float TravelDistance => 8;
@@ -79,6 +80,7 @@ partial class FistsModel
         protected override void AfterTimedStateActivity()
         {
             Hitbox.SpriteInstance.RelativeX = InitialDistance + NormalizedSwingProgress * TravelDistance;
+            Hitbox.SpriteInstance.Alpha     = 1f              - NormalizedProgress;
             Circle.RelativeX                = InitialDistance + NormalizedSwingProgress * TravelDistance;
         }
 

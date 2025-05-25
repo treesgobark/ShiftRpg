@@ -3,12 +3,12 @@
  <tileset firstgid="1" source="../../WhiteVoid.tsx"/>
  <layer id="2" name="Floor" width="48" height="48">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3asQnAMAxEUeHOY6XUFhnNo3i0XOEqnUlAnPnFR2oEbwBlRHTTMmJojku7Y335m3bH8OPHjx8/fscO8d/VDvz1Fvx+4cePHz9+/I7hx48fP378juHHjx8/fvyOneBP+TXnRu8/kJ3bX5N9Vv+QfO0Blfu05AAkAAA=
+   H4sIAAAAAAAACu3QwQkAIAwEwWj/RVuCiGCMzmN+F1jSIqIBAAAA8LQ+sbo/dfNL/63069ef36G/Jv369ed36K9Jv379+R27/ZVl/3DXANsKlqIAJAAA
   </data>
  </layer>
  <layer id="1" name="GameplayLayer" width="48" height="48" tintcolor="#ffffff">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAgFcDEWH4ywAkAAA=
+   H4sIAAAAAAAACu2aQQ6CMBBFayImbPRKuuQA7jkKCz2C0SVH4WiOgSZkgu1MLe1M8Sc/VjNDnr9YsKExxtRK3RjTw2t/gbFG1xP/HsaVMgNzZ/nhfXuCz8CdYeg4mtwTo95yVhO75aceU4oo/DnypdZvIX8sSfNRYv6S8vXVp8g/ZE2m6r/+5NWMv1W+/pD5JWmJX1K+vvoS88eSPB9byB9L0nyUmL+kfH31JeUP/4XPlcMHsO2D8eCqTdUDzIPl9+1T3MD3yTDuKHsbKXosv2+u8HF99al6qPxStcT/2GWC+SIXT4z8c37fEs+fnHox55LK/ww4R0J6uJKWv09XlIk2fqyc/DjLEEnNn/rbkcpP1Td+zty6atfcP/yo1Py1SBs/vj5r48fi8FPXtJT3oyny59wHca9pc/6117pYmnOWcP43wF+PexFU4+dAOL1RDexD7mdIfvUbOn9CdQAkAAA=
   </data>
  </layer>
 </map>

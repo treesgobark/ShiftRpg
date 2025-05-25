@@ -1159,6 +1159,7 @@
     <Compile Include="Models\FistsModel\States\FistsModel.NotEquipped.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightRightJabRecovery.cs" />
     <Compile Include="Models\SpearModel\SpearModel.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.Thrust.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Idle.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.NotEquipped.cs" />
     <Compile Include="Models\SwordModel.Active.cs">

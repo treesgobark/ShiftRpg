@@ -52,6 +52,7 @@ namespace ProjectLoot.Entities
                 switch (Source)
                 {
                     case SourceTag.Sword:
+                    case SourceTag.Spear:
                         if (Damage >= 25)
                         {
                             GlobalContent.ShotgunBlastQuick.Play(0.3f, pitch - 0.8f, 0f);

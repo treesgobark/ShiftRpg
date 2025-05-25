@@ -20,8 +20,9 @@ public class GameplayInputDevice : IGameplayInputDevice
         switch (inputDevice)
         {
             case Xbox360GamePad gamePad:
-                Movement = new Gated2DInput(gamePad.LeftStick, 8);
-                _aim = gamePad.RightStick;
+                Movement                   = gamePad.LeftStick;
+                gamePad.LeftStick.Deadzone = 0.2f;
+                _aim                       = gamePad.RightStick;
                 LightAttack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)
                     .Or(gamePad.GetButton(Xbox360GamePad.Button.X));
                 HeavyAttack = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder)

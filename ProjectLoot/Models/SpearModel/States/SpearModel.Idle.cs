@@ -24,6 +24,11 @@ partial class SpearModel
                 return States.Get<NotEquipped>();
             }
 
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
+            {
+                return States.Get<Thrust>();
+            }
+
             return null;
         }
 

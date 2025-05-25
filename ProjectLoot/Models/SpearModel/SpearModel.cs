@@ -20,6 +20,7 @@ public partial class SpearModel : IMeleeWeaponModel
         States = new StateMachine();
         States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
         States.Add(new Idle(States, FrbTimeManager.Instance, this));
+        States.Add(new Thrust(States, FrbTimeManager.Instance, this));
         
         States.InitializeStartingState<NotEquipped>();
     }

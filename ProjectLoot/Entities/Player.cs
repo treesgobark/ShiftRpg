@@ -12,6 +12,7 @@ using ProjectLoot.Effects;
 using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
+using ProjectLoot.Models.SpearModel;
 
 namespace ProjectLoot.Entities;
 
@@ -46,6 +47,7 @@ public partial class Player
     {
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Sword]);
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Fists]);
+        PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Spear]);
     }
 
     private void InitializeInputs()
@@ -170,6 +172,9 @@ public partial class Player
             case { Name: MeleeWeaponData.Sword }:
             case { Name: MeleeWeaponData.Dagger }:
                 model = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                break;
+            case { Name: MeleeWeaponData.Spear }:
+                model = new SpearModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
                 break;
             default:
                 throw new ArgumentException($"Unrecognized weapon type: {meleeWeapon.Name}");

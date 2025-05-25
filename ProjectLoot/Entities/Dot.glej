@@ -85,6 +85,17 @@
       "Name": "PoiseThreshold",
       "DefaultValue": 20.0,
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "bool",
+          "Type": "String"
+        }
+      ],
+      "Name": "IsBig",
+      "SetByDerived": true
     }
   ],
   "Properties": [

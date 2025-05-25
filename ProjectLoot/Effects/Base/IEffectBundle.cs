@@ -35,6 +35,11 @@ public class EffectBundle : IEffectBundle
         _effects[typeof(T)] = effect;
     }
 
+    public void UpsertEffect<T>(T effect) where T : IEffect
+    {
+        _effects[typeof(T)] = effect;
+    }
+
     public bool TryGetEffect(Type type, out IEffect effect)
     {
         if (_effects.TryGetValue(type, out effect!))

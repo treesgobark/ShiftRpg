@@ -45,14 +45,14 @@ public partial class Dot
         {
             SwooshesPlayed = 0;
             
-            Parent.SatelliteSprite.CurrentChainName  =  "BlueSquaresSmear";
-            Parent.SatelliteSprite.FlipHorizontal    =  true;
+            Parent.SatelliteSprite.CurrentChainName = Parent.IsBig ? "BigBlueSquaresSmear" : "BlueSquaresSmear";
+            Parent.SatelliteSprite.FlipHorizontal   = true;
 
             Hitbox = MeleeHitboxFactory.CreateNew();
             
             Circle circle = new()
             {
-                Radius = 10,
+                Radius = Parent.IsBig ? 20 : 10,
                 Visible = false,
             };
             circle.AttachTo(Hitbox);

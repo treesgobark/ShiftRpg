@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-
+using ANLG.Utilities.Core.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
@@ -47,7 +47,8 @@ namespace ProjectLoot.Screens
         {
             foreach (Spawner spawner in SpawnerList)
             {
-                DotFactory.CreateNew(spawner.Position);
+                var dot = DotFactory.CreateNew(spawner.Position);
+                dot.IsBig = Random.Shared.NextBool();
             }
         }
     }

@@ -43,7 +43,7 @@ public partial class Dot
 
         protected override void AfterTimedStateActivity()
         {
-            Parent.SatelliteSprite.CurrentChainName  =  "BlueSquares";
+            Parent.SatelliteSprite.CurrentChainName  =  Parent.IsBig ? "BigBlueSquares" : "BlueSquares";
             Parent.SatelliteSprite.FlipHorizontal    =  false;
             Parent.SatelliteSprite.RelativeRotationZ += (float)TimeManager.GameTimeSinceLastFrame.TotalSeconds
                                                         * RotationPerSecond.TotalRadians;

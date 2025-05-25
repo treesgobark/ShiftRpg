@@ -68,6 +68,9 @@ public partial class GameScreen
             case MeleeWeaponData.Fists:
                 GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Fists;
                 break;
+            case MeleeWeaponData.Spear:
+                GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Spear;
+                break;
         }
 
         foreach (Enemy? enemy in EnemyList)

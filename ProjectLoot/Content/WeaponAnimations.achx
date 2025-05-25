@@ -117,5 +117,24 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>Spear</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>230</LeftCoordinate>
+      <RightCoordinate>235</RightCoordinate>
+      <TopCoordinate>277</TopCoordinate>
+      <BottomCoordinate>350</BottomCoordinate>
+      <RelativeX>6</RelativeX>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
   <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

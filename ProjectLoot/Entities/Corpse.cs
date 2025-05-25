@@ -89,7 +89,7 @@ namespace ProjectLoot.Entities
         public void InitializeFromEntity(Dot entity)
         {
             BodySpriteInstance.AnimationChains       = DotAnimations;
-            BodySpriteInstance.CurrentChainName      = "BlueIdle";
+            BodySpriteInstance.CurrentChainName      = entity.IsBig ? "BigBlueIdle" : "BlueIdle";
             ExplosionSpriteInstance.AnimationChains  = DotAnimations;
             ExplosionSpriteInstance.CurrentChainName = "BlueExplode";
             Velocity                                 = entity.Velocity;

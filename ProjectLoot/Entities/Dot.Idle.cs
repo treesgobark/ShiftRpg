@@ -47,10 +47,14 @@ public partial class Dot
                 TimeInState                              = TimeSpan.Zero;
             }
             
-            Parent.SatelliteSprite.CurrentChainName  =  "BlueSquares";
-            Parent.SatelliteSprite.FlipHorizontal    =  false;
+            Parent.SatelliteSprite.CurrentChainName = Parent.IsBig ? "BigBlueSquares" : "BlueSquares";
+            Parent.SatelliteSprite.FlipHorizontal   = false;
             Parent.SatelliteSprite.RelativeRotationZ += (float)TimeManager.GameTimeSinceLastFrame.TotalSeconds
                                                         * RotationPerSecond.TotalRadians;
+            
+            Parent.BodySprite.CurrentChainName = Parent.IsBig ? "BigBlueIdle" : "BlueIdle";
+            
+            Parent.CircleInstance.Radius = Parent.IsBig ? 16 : 8;
         }
 
         public override void BeforeDeactivate()

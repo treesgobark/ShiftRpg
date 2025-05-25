@@ -627,11 +627,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\DamageableSpriteComponent.cs" />
     <Compile Include="Components\EffectsComponent.cs" />
     <Compile Include="Components\GunComponent.cs" />
     <Compile Include="Components\HealthComponent.cs" />
     <Compile Include="Components\HitstopComponent.cs" />
     <Compile Include="Components\HitstunComponent.cs" />
+    <Compile Include="Components\Interfaces\IDamageableSpriteComponent.cs" />
     <Compile Include="Components\Interfaces\IEffectsComponent.cs" />
     <Compile Include="Components\Interfaces\IGunComponent.cs" />
     <Compile Include="Components\Interfaces\IHealthComponent.cs" />
@@ -1117,6 +1119,7 @@
     <Compile Include="Handlers\AttackHandler.cs" />
     <Compile Include="Handlers\Base\ListEffectHandlerCollection.cs" />
     <Compile Include="Handlers\CustomEventHandler.cs" />
+    <Compile Include="Handlers\DamageAnimationHandler.cs" />
     <Compile Include="Handlers\DamageNumberHandler.cs" />
     <Compile Include="Handlers\FlashOnDamageHandler.cs" />
     <Compile Include="Handlers\HealthReductionHandler.cs" />
@@ -1142,6 +1145,7 @@
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Models\FistsModel\FistsModel.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.HeavyRightJab.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.HeavyRightJabRecovery.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.Idle.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHook.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightLeftHookRecovery.cs" />
@@ -1154,6 +1158,9 @@
     <Compile Include="Models\FistsModel\States\FistsModel.LightRightJab.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.NotEquipped.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightRightJabRecovery.cs" />
+    <Compile Include="Models\SpearModel\SpearModel.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.Idle.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.NotEquipped.cs" />
     <Compile Include="Models\SwordModel.Active.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>
     </Compile>

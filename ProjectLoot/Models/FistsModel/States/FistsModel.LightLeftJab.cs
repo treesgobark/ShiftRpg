@@ -60,6 +60,11 @@ partial class FistsModel
             {
                 NextState = States.Get<LightRightHook>();
             }
+            
+            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                NextState = States.Get<HeavyRightJab>();
+            }
 
             if (TimeInState >= TotalDuration)
             {

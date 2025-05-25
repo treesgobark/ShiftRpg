@@ -14,7 +14,7 @@ public class FlashOnDamageHandler : EffectHandler<HealthReductionEffect>, IUpdat
 
     private TimeSpan _flashStarted;
     private TimeSpan _flashEnded;
-    private static TimeSpan FlashDuration => TimeSpan.FromSeconds(0.5);
+    private static TimeSpan FlashDuration => TimeSpan.FromSeconds(0.2);
 
     public FlashOnDamageHandler(IEffectsComponent effects, ISpriteComponent sprite, ITimeManager timeManager) : base(effects)
     {

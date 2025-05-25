@@ -31,7 +31,7 @@ namespace ProjectLoot.Entities
         private TransformComponent Transform { get; set; }
         private HealthComponent Health { get; set; }
         private HitstopComponent Hitstop { get; set; }
-        private SpriteComponent BodySpriteComponent { get; set; }
+        private DamageableSpriteComponent BodySpriteComponent { get; set; }
         private SpriteComponent SatelliteSpriteComponent { get; set; }
         private PoiseComponent Poise { get; set; }
         
@@ -54,7 +54,7 @@ namespace ProjectLoot.Entities
             Transform                = new TransformComponent(this, this);
             Health                   = new HealthComponent(MaxHealth, HealthBarRuntimeInstance);
             Hitstop                  = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
-            BodySpriteComponent      = new SpriteComponent(BodySprite);
+            BodySpriteComponent      = new DamageableSpriteComponent(BodySprite);
             SatelliteSpriteComponent = new SpriteComponent(SatelliteSprite);
             Poise                    = new PoiseComponent { PoiseThreshold = PoiseThreshold };
         }
@@ -67,6 +67,7 @@ namespace ProjectLoot.Entities
             Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Transform));
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, BodySpriteComponent, FrbTimeManager.Instance));
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, SatelliteSpriteComponent, FrbTimeManager.Instance));
+            // Effects.AddHandler<HealthReductionEffect>(new DamageAnimationHandler(Effects, BodySpriteComponent));
             Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, Transform));
             Effects.AddHandler<KnockTowardEffect>(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
             Effects.AddHandler<PoiseDamageEffect>(new PoiseDamageHandler(Effects, Poise));

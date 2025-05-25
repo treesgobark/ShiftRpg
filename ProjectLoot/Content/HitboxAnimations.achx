@@ -289,5 +289,23 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>SpearThrust</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>549</LeftCoordinate>
+      <RightCoordinate>603</RightCoordinate>
+      <TopCoordinate>389</TopCoordinate>
+      <BottomCoordinate>396</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
   <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

@@ -16,7 +16,7 @@ partial class FistsModel
 {
     private class HeavyRightJab : ParentedTimedState<FistsModel>
     {
-        private static TimeSpan MinStartupDuration => TimeSpan.FromMilliseconds(180);
+        private static TimeSpan MinStartupDuration => TimeSpan.FromMilliseconds(18);
         private static TimeSpan MaxStartupDuration => TimeSpan.FromMilliseconds(480);
         private static TimeSpan ActiveDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan RecoveryDuration => TimeSpan.FromMilliseconds(120);
@@ -40,17 +40,17 @@ partial class FistsModel
         
         private bool HasAddedHitEffects { get; set; }
         
-        private static float HitboxRadius => 12;
+        private static float HitboxRadius => 24;
         private static float PerpendicularOffset => -4;
         private static float TravelDistance => 16;
         private static float InitialDistance => 4;
         private static float MinDamage => 16;
-        private static float MaxDamage => 32;
+        private static float MaxDamage => 28;
         private static float MinPoiseDamage => 10;
         private static float MaxPoiseDamage => 30;
-        private static float MinKnockbackVelocity => 200;
-        private static float MaxKnockbackVelocity => 500;
-        private static TimeSpan MinHitstopDuration => TimeSpan.FromMilliseconds(100);
+        private static float MinKnockbackVelocity => 400;
+        private static float MaxKnockbackVelocity => 1200;
+        private static TimeSpan MinHitstopDuration => TimeSpan.FromMilliseconds(50);
         private static TimeSpan MaxHitstopDuration => TimeSpan.FromMilliseconds(250);
         
         private float Damage => MathHelper.Lerp(MinDamage,                       MaxDamage,            ChargeProgress);
@@ -104,8 +104,8 @@ partial class FistsModel
                     return NextState;
                 }
 
-                // return States.Get<HeavyRightJabRecovery>();
-                return States.Get<Idle>();
+                return States.Get<HeavyRightJabRecovery>();
+                // return States.Get<Idle>();
             }
 
             return null;
@@ -113,6 +113,8 @@ partial class FistsModel
 
         protected override void AfterTimedStateActivity()
         {
+            Hitbox.SpriteInstance.Alpha = (2f - ActiveProgress - RecoveryProgress) / 2f;
+            
             if (IsRecovering)
             {
                 Hitbox.IsActive    =  false;
@@ -121,7 +123,7 @@ partial class FistsModel
             
             if (IsActive)
             {
-                if (!HasAddedHitEffects)
+                if (!HasAddedHitEffects && ActiveProgress >= 0.5f)
                 {
                     AddTargetHitEffects();
                     HasAddedHitEffects = true;
@@ -132,7 +134,7 @@ partial class FistsModel
                 Hitbox.SpriteInstance.RelativeX = InitialDistance - TravelDistance + ActiveProgress * 2 * TravelDistance;
                 Circle.RelativeX                = InitialDistance - TravelDistance + ActiveProgress * 2 * TravelDistance;
 
-                NormalizedProgress += ActiveProgressPerFrame;
+                NormalizedProgress          += ActiveProgressPerFrame;
             }
             
             if (IsStartingUp)

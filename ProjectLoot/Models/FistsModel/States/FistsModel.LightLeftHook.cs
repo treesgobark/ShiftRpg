@@ -143,7 +143,7 @@ partial class FistsModel
                     Source    = SourceTag.Fists,
                     Duration  = Parent.KnockTowardDuration,
                     TargetPosition = Parent.MeleeWeaponComponent.HolderGameplayCenterPosition.AtZ(0)
-                                     + Vector2Extensions.FromAngleAndLength(AttackDirection.NormalizedRadians, Parent.KnockTowardDistance).ToVector3(),
+                                     + Vector2Extensions.FromAngleAndLength(AttackDirection.NormalizedRadians, Parent.KnockTowardDistance + 20f).ToVector3(),
                 }
             );
                 

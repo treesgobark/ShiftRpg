@@ -63,7 +63,7 @@ namespace ProjectLoot.Entities
                         HitMarker.Play(0.1f, pitch, 0f);
                         break;
                     case SourceTag.Fists:
-                        if (Damage >= 25)
+                        if (Damage >= 16)
                         {
                             GlobalContent.ThudShotLow.Play(0.35f, pitch - 0.8f, 0f);
                         }

@@ -31,10 +31,8 @@ namespace ProjectLoot.Screens
                     enemy.CollideAgainstMove(enemy2, 0, 1);
                     break;
                 case (not TargetDummy, not TargetDummy):
+                case (TargetDummy, TargetDummy):
                     enemy.CollideAgainstMove(enemy2, 1, 1);
-                    break;
-                default:
-                    enemy.CollideAgainstMove(enemy2, 0, 0);
                     break;
             }
         }

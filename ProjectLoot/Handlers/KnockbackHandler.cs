@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;
@@ -24,11 +23,6 @@ public class KnockbackHandler : EffectHandler<KnockbackEffect>
             case { KnockbackBehavior: KnockbackBehavior.Replacement }:
                 _transform.Velocity = effect.KnockbackVector;
                 break;
-        }
-        
-        if (_transform.CurrentSpeed > _transform.MaxSpeed && _transform.DecelerationAboveMaxSpeed > 0)
-        {
-            _transform.Acceleration = _transform.DecelerationAboveMaxSpeed * -_transform.Velocity.Normalized();
         }
     }
 }

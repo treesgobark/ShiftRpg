@@ -451,7 +451,7 @@
         {
           "Type": "float",
           "Member": "Z",
-          "Value": 0.6,
+          "Value": 0.5,
           "Time": 0.0
         }
       ],

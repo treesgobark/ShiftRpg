@@ -8,16 +8,16 @@
   "Is2D": true,
   "ReferencedFiles": [
     {
+      "Name": "DotAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
+    },
+    {
       "Name": "Entities/Dot/TopDownValuesStatic.csv",
       "IsSharedStatic": true,
       "HasPublicProperty": true,
       "CreatesDictionary": true,
-      "ProjectsToExcludeFrom": []
-    },
-    {
-      "Name": "DotAnimations.achx",
-      "IsSharedStatic": true,
-      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
       "ProjectsToExcludeFrom": []
     }
   ],
@@ -94,12 +94,12 @@
       "Type": "int"
     },
     {
-      "Name": "IsTopDown",
+      "Name": "ImplementsICollidable",
       "Value": true,
       "Type": "bool"
     },
     {
-      "Name": "ImplementsICollidable",
+      "Name": "IsTopDown",
       "Value": true,
       "Type": "bool"
     }

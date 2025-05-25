@@ -11,6 +11,7 @@ public interface IMeleeWeaponComponent
     Team Team { get; }
     IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; }
     Vector3 HolderSpritePosition { get; }
+    Vector3 HolderGameplayCenterPosition { get; }
     Rotation AttackDirection { get; }
     IMeleeWeaponModel CurrentMeleeWeapon { get; }
 

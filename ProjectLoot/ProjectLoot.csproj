@@ -101,6 +101,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>DummySprite</Name>
     </None>
+    <None Include="Content\Entities\TargetDummy\TopDownValuesStatic.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TopDownValuesStatic</Name>
+    </None>
     <None Include="Content\Entities\WeaponDrop\WeaponDropPreview.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WeaponDropPreview</Name>
@@ -675,6 +679,7 @@
     <Compile Include="Effects\HitstopEffect.cs" />
     <Compile Include="Effects\HitstunEffect.cs" />
     <Compile Include="Effects\KnockbackEffect.cs" />
+    <Compile Include="Effects\KnockTowardEffect.cs" />
     <Compile Include="Effects\PoiseDamageEffect.cs" />
     <Compile Include="Effects\ShatterDamageEffect.cs" />
     <Compile Include="Effects\SourceTag.cs" />
@@ -1118,6 +1123,7 @@
     <Compile Include="Handlers\HitstopHandler.cs" />
     <Compile Include="Handlers\HitstunHandler.cs" />
     <Compile Include="Handlers\KnockbackHandler.cs" />
+    <Compile Include="Handlers\KnockTowardHandler.cs" />
     <Compile Include="Handlers\PlayerHitstopHandler.cs" />
     <Compile Include="Handlers\PoiseDamageHandler.cs" />
     <Compile Include="Handlers\ShatterDamageHandler.cs" />

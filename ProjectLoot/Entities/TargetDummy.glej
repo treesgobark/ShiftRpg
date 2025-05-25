@@ -12,6 +12,13 @@
       "IsSharedStatic": true,
       "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/TargetDummy/TopDownValuesStatic.csv",
+      "IsSharedStatic": true,
+      "HasPublicProperty": true,
+      "CreatesDictionary": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "CustomVariables": [
@@ -71,8 +78,18 @@
   "Properties": [
     {
       "Name": "InputDevice",
-      "Value": 0,
+      "Value": 2,
       "Type": "int"
+    },
+    {
+      "Name": "IsTopDown",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
     }
   ],
   "NamedObjects": [

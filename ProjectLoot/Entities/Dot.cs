@@ -68,6 +68,7 @@ namespace ProjectLoot.Entities
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, BodySpriteComponent, FrbTimeManager.Instance));
             Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, SatelliteSpriteComponent, FrbTimeManager.Instance));
             Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, Transform));
+            Effects.AddHandler<KnockTowardEffect>(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
             Effects.AddHandler<PoiseDamageEffect>(new PoiseDamageHandler(Effects, Poise));
         }
 

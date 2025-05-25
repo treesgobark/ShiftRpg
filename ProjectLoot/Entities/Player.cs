@@ -62,7 +62,7 @@ public partial class Player
         HitstopComponent      = new HitstopComponent(() => CurrentMovement, m => CurrentMovement = m);
         HitstunComponent      = new HitstunComponent();
         GunComponent          = new GunComponent(Team.Player, GameplayInputDevice, GunSprite, GameplayCenter);
-        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite, PlayerSprite);
+        MeleeWeaponComponent  = new MeleeWeaponComponent(Team.Player, GameplayInputDevice, this, GameplayCenter, MeleeWeaponSprite, PlayerSprite, GameplayCenter);
         PlayerSpriteComponent = new SpriteComponent(PlayerSprite);
     }
 

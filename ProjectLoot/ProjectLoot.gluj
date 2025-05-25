@@ -256,7 +256,8 @@
         "Entities/DefaultMeleeEnemy/TopDownValuesStatic.csv",
         "Entities/DefaultRangedEnemy/TopDownValuesStatic.csv",
         "Entities/Dot/TopDownValuesStatic.csv",
-        "Entities/Corpse/TopDownValuesStatic.csv"
+        "Entities/Corpse/TopDownValuesStatic.csv",
+        "Entities/TargetDummy/TopDownValuesStatic.csv"
       ],
       "RequiredProperties": [],
       "GenerateCode": true

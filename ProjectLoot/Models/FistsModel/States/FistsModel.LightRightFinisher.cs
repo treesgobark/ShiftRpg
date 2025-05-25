@@ -22,7 +22,7 @@ partial class FistsModel
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(200);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
         private float NormalizedProgress => (float)Math.Clamp(TimeInState      / TotalDuration, 0, 1);
-        private static float HitboxRadius => 12;
+        private static float HitboxRadius => 24;
         private static float PerpendicularOffset => -4;
         private static float TravelDistance => 24;
         private static float InitialDistance => -4;

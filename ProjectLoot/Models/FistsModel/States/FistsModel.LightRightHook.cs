@@ -1,6 +1,8 @@
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
+using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall.Math.Geometry;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
@@ -19,7 +21,7 @@ partial class FistsModel
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
         private float NormalizedSwingProgress => (float)Math.Clamp(TimeInState / SwingDuration, 0, 1);
         private float NormalizedProgress => (float)Math.Clamp(TimeInState      / TotalDuration, 0, 1);
-        private static float HitboxRadius => 10;
+        private static float HitboxRadius => 20;
         private static float PerpendicularOffset => 8;
         private static float ForwardOffset => 6;
         private static float Damage => 8;
@@ -119,14 +121,25 @@ partial class FistsModel
             targetHitEffects.AddEffect(new HitstopEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Fists,
                                                          HitstopDuration));
 
+            // targetHitEffects.AddEffect(
+            //     new KnockbackEffect(
+            //         ~Parent.MeleeWeaponComponent.Team,
+            //         SourceTag.Fists,
+            //         300,
+            //         AttackDirection + Rotation.EighthTurn / 2,
+            //         KnockbackBehavior.Replacement
+            //     )
+            // );
+
             targetHitEffects.AddEffect(
-                new KnockbackEffect(
-                    ~Parent.MeleeWeaponComponent.Team,
-                    SourceTag.Fists,
-                    300,
-                    AttackDirection + Rotation.EighthTurn / 2,
-                    KnockbackBehavior.Replacement
-                )
+                new KnockTowardEffect
+                {
+                    AppliesTo = ~Parent.MeleeWeaponComponent.Team,
+                    Source    = SourceTag.Fists,
+                    Duration  = Parent.KnockTowardDuration,
+                    TargetPosition = Parent.MeleeWeaponComponent.HolderGameplayCenterPosition.AtZ(0)
+                                     + Vector2Extensions.FromAngleAndLength(AttackDirection.NormalizedRadians, Parent.KnockTowardDistance).ToVector3(),
+                }
             );
                 
             targetHitEffects.AddEffect(new PoiseDamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Sword, 7));

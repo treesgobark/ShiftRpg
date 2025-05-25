@@ -1,5 +1,6 @@
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
@@ -41,6 +42,9 @@ public partial class FistsModel : IMeleeWeaponModel
     private IEffectsComponent HolderEffects { get; }
 
     private IMeleeWeaponComponent MeleeWeaponComponent { get; }
+
+    private TimeSpan KnockTowardDuration => TimeSpan.FromMilliseconds(60);
+    private float KnockTowardDistance => 40f;
     
     public void Activity()
     {

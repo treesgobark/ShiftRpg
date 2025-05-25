@@ -58,8 +58,8 @@ public partial class SwordModel
             
             Circle hitboxShape = new()
             {
-                Radius                  = 6.5f,
-                RelativeX               = 16.5f,
+                Radius                  = 10f,
+                RelativeX               = 20f,
                 Visible                 = false,
                 IgnoresParentVisibility = true,
             };
@@ -128,7 +128,7 @@ public partial class SwordModel
                     new KnockbackEffect(
                         ~Parent.MeleeWeaponComponent.Team,
                         SourceTag.Sword,
-                        400             + 1000                * NormalizedProgress,
+                        400             + 800                * SegmentsHandled,
                         AttackDirection - Rotation.EighthTurn / 2,
                         KnockbackBehavior.Replacement
                         )

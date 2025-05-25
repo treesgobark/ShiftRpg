@@ -51,9 +51,9 @@ public partial class SwordModel
             
             Circle hitboxShape = new()
             {
-                Radius    = 6.5f,
-                RelativeX = 16.5f,
-                Visible   = false,
+                Radius    = 10f,
+                RelativeX = 20f,
+                Visible   = true,
                 IgnoresParentVisibility = true,
             };
 

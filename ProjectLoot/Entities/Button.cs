@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ANLG.Utilities.Core.Extensions;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
@@ -29,7 +30,9 @@ namespace ProjectLoot.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            Effects = new EffectsComponent { Team = Team.Enemy };
+            ButtonPushed += () => 
+                GlobalContent.TuningFork.Play(0.3f, Random.Shared.NextSingle(-0.2f, 0.2f), 0);
+            Effects      =  new EffectsComponent { Team = Team.Enemy };
             Effects.AddHandler<AttackEffect>(new CustomEventHandler<AttackEffect>(Effects, _ => ButtonPushed()));
         }
 

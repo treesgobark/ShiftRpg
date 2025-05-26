@@ -117,6 +117,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GravelHitBigA</Name>
     </None>
+    <None Include="Content\GlobalContent\EnvironmentSounds\TuningFork.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TuningFork</Name>
+    </None>
     <None Include="Content\GlobalContent\GunData.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GunData</Name>
@@ -1159,6 +1163,7 @@
     <Compile Include="Models\FistsModel\States\FistsModel.NotEquipped.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.LightRightJabRecovery.cs" />
     <Compile Include="Models\SpearModel\SpearModel.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.Toss.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Thrust.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Idle.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.NotEquipped.cs" />

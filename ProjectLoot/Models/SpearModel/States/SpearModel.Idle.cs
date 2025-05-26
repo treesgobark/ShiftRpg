@@ -29,6 +29,11 @@ partial class SpearModel
                 return States.Get<Thrust>();
             }
 
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                return States.Get<Toss>();
+            }
+
             return null;
         }
 

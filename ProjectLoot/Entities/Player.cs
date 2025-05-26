@@ -48,6 +48,7 @@ public partial class Player
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Sword]);
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Fists]);
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Spear]);
+        PickUpWeapon(GlobalContent.GunData[GunData.Rifle]);
     }
 
     private void InitializeInputs()

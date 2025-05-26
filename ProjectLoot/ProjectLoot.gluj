@@ -220,6 +220,13 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/EnvironmentSounds/TuningFork.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {

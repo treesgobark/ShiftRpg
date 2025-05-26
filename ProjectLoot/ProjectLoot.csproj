@@ -1168,6 +1168,7 @@
     <Compile Include="Models\SpearModel\States\SpearModel.Idle.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.NotEquipped.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.TossedSpearInGround.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.TossRecall.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.TossWindup.cs" />
     <Compile Include="Models\SwordModel.Active.cs">
       <DependentUpon>SwordModel.cs</DependentUpon>

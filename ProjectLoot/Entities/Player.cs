@@ -4,6 +4,7 @@ using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
 using FlatRedBall.Input;
+using GlueControl.Editing;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;

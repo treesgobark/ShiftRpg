@@ -16,7 +16,7 @@ partial class SpearModel
 {
     private class TossedSpearInGround : ParentedTimedState<SpearModel>
     {
-        private static TimeSpan RecoveryDuration => TimeSpan.FromMilliseconds(480);
+        private static TimeSpan RecoveryDuration => TimeSpan.FromMilliseconds(960);
         
         private float NormalizedProgress => (float)(TimeInState / RecoveryDuration).Saturate();
 
@@ -32,13 +32,26 @@ partial class SpearModel
 
         public override IState? EvaluateExitConditions()
         {
+            // if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
+            // {
+            //     Parent.Hitbox?.Destroy();
+            //     return States.Get<Thrust>();
+            // }
+            
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                return States.Get<TossRecall>();
+            }
+            
             if (!Parent.IsEquipped)
             {
+                Parent.Hitbox?.Destroy();
                 return States.Get<NotEquipped>();
             }
 
             if (NormalizedProgress >= 1)
             {
+                Parent.Hitbox?.Destroy();
                 return States.Get<Idle>();
             }
 
@@ -52,7 +65,6 @@ partial class SpearModel
 
         public override void BeforeDeactivate()
         {
-            Parent.Hitbox?.Destroy();
         }
 
         public override void Uninitialize() { }

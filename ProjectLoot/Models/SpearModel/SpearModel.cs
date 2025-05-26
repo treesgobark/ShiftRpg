@@ -26,6 +26,7 @@ public partial class SpearModel : IMeleeWeaponModel
         States.Add(new TossWindup(States, FrbTimeManager.Instance, this));
         States.Add(new TossActive(States, FrbTimeManager.Instance, this));
         States.Add(new TossedSpearInGround(States, FrbTimeManager.Instance, this));
+        States.Add(new TossRecall(States, FrbTimeManager.Instance, this));
         
         States.InitializeStartingState<NotEquipped>();
     }

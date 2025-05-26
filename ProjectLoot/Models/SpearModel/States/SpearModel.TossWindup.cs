@@ -3,7 +3,9 @@ using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.Core.StaticUtilities;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using FlatRedBall.Debugging;
 using FlatRedBall.Math.Geometry;
+using GlueControl.Editing;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
@@ -31,7 +33,8 @@ partial class SpearModel
         private static float HitboxSpriteOffset => -24;
 
         private Vector3 CurrentWindupVector =>
-            Vector3Extensions.FromRotationAndLength(Parent.AttackDirection, LateralOffset + ChargeProgress * WindupDistance);
+            Vector3Extensions.FromRotationAndLength(Parent.AttackDirection, LateralOffset + ChargeProgress * WindupDistance)
+            + Vector3Extensions.FromRotationAndLength(Parent.AttackDirection + Rotation.QuarterTurn, PerpendicularOffset);
         
         private static float CircleRadius => 4;
         private static int CircleCount => 5;
@@ -120,7 +123,6 @@ partial class SpearModel
                     Visible                 = false,
                     IgnoresParentVisibility = true,
                     RelativeX               = -i * DistanceBetweenCircles,
-                    RelativeY               = PerpendicularOffset,
                     Color                   = i == 0 ? Color.Red : Color.White,
                 };
 
@@ -133,7 +135,6 @@ partial class SpearModel
         {
             Parent.Hitbox.SpriteInstance.CurrentChainName = "SpearThrust";
             Parent.Hitbox.SpriteInstance.RelativeX        = HitboxSpriteOffset;
-            Parent.Hitbox.SpriteInstance.RelativeY        = PerpendicularOffset;
 
             Parent.Hitbox.SpriteInstance.RelativeZ = Parent.MeleeWeaponComponent.HolderSpritePosition.Z + ZOffset;
         }

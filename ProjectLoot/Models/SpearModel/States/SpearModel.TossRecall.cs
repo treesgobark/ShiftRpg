@@ -71,7 +71,7 @@ partial class SpearModel
             Parent.Hitbox.Position = Vector3.Lerp(Parent.Hitbox.Position,
                                                   Parent.MeleeWeaponComponent.HolderGameplayCenterPosition,
                                                   LerpCoefficient);
-            Parent.Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
+            Parent.Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress * NormalizedProgress;
             UpdateHitEffects();
         }
 

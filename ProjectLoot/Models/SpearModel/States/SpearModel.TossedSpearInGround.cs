@@ -60,7 +60,7 @@ partial class SpearModel
 
         protected override void AfterTimedStateActivity()
         {
-            Parent.Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
+            Parent.Hitbox.SpriteInstance.Alpha = 1f - MathF.Pow(NormalizedProgress, 3);
         }
 
         public override void BeforeDeactivate()

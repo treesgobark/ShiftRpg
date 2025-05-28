@@ -31,7 +31,7 @@ partial class StandardGunModel
 
         protected override void AfterTimedStateActivity() { }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             GunModel.GunViewModel.MaximumMagazineCount = GunModel.GunData.MagazineSize;
             GunModel.GunViewModel.CurrentMagazineCount = GunModel.CurrentRoundsInMagazine;

@@ -57,7 +57,7 @@ public partial class Dot
             Parent.CircleInstance.Radius = Parent.IsBig ? 16 : 8;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
         }
 

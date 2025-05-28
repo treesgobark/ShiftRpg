@@ -39,7 +39,7 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity() { }
 
-        public override void BeforeDeactivate() { }
+        public override void BeforeDeactivate(IState? nextState) { }
 
         public override void Uninitialize() { }
     }

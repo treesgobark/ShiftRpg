@@ -60,7 +60,7 @@ public partial class Player
             return null;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Parent.MeleeWeaponComponent.Unequip();
         }

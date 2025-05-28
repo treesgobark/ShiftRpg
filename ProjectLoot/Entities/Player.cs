@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
@@ -32,7 +33,7 @@ public partial class Player
     public MeleeWeaponComponent MeleeWeaponComponent { get; private set; }
     public SpriteComponent PlayerSpriteComponent { get; private set; }
 
-    public StateMachine States { get; protected set; }
+    public StateMachineManager StateMachines { get; private set; }
 
     private void CustomInitialize()
     {
@@ -72,13 +73,14 @@ public partial class Player
 
     private void InitializeControllers()
     {
-        States = new StateMachine();
-        States.Add(new Unarmed(this, States, FrbTimeManager.Instance));
-        States.Add(new MeleeWeaponMode(this, States, FrbTimeManager.Instance));
-        States.Add(new GunMode(this, States, FrbTimeManager.Instance));
-        States.Add(new Dashing(this, States, FrbTimeManager.Instance));
-        States.Add(new Guarding(this, States, FrbTimeManager.Instance));
-        States.InitializeStartingState<Unarmed>();
+        var states = new StateMachine();
+        states.Add(new Unarmed(this, states, FrbTimeManager.Instance));
+        states.Add(new MeleeWeaponMode(this, states, FrbTimeManager.Instance));
+        states.Add(new GunMode(this, states, FrbTimeManager.Instance));
+        states.Add(new Dashing(this, states, FrbTimeManager.Instance));
+        states.Add(new Guarding(this, states, FrbTimeManager.Instance));
+        
+        StateMachines.Add<Unarmed>(states);
     }
 
     private void InitializeHandlers()
@@ -110,7 +112,7 @@ public partial class Player
 
         PlayerSprite.ForceUpdateDependenciesDeep();
         
-        States.DoCurrentStateActivity();
+        StateMachines.DoAllStateMachineActivity();
         
         if (HitstopComponent.IsStopped)
         {
@@ -150,7 +152,7 @@ public partial class Player
 
     private void CustomDestroy()
     {
-        States.Uninitialize();
+        StateMachines.Uninitialize();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName) { }
@@ -191,5 +193,53 @@ public partial class Player
     {
         SpriteHolder.RelativeY =  1f * (float)Math.Sin(2f * BobTimer);
         BobTimer               += FrbTimeManager.Instance.GameTimeSinceLastFrame.TotalSeconds;
+    }
+}
+
+public class StateMachineManager : IStateMachineManager
+{
+    private readonly List<IStateMachine> _stateMachines = [];
+
+    public void Add(IStateMachine stateMachine)
+    {
+        if (!stateMachine.IsInitialized)
+        {
+            throw new InvalidOperationException("Cannot add a state machine that has not already been initialized");
+        }
+        
+        _stateMachines.Add(stateMachine);
+    }
+
+    public void Add<TSearch>(IStateMachine stateMachine, bool isExact = false) where TSearch : IState
+    {
+        if (stateMachine.IsInitialized)
+        {
+            throw new InvalidOperationException("Cannot add a state machine that has already been initialized");
+        }
+        
+        stateMachine.InitializeStartingState<TSearch>(isExact);
+        _stateMachines.Add(stateMachine);
+    }
+
+    public void DoAllStateMachineActivity()
+    {
+        // evaluate exit conditions for each machine's current state
+        // determine if any of the new states contain a dependency on another state machine
+        // send each 
+        
+        foreach (var stateMachine in _stateMachines)
+        {
+            stateMachine.DoCurrentStateActivity();
+        }
+    }
+
+    public void Uninitialize()
+    {
+        foreach (var stateMachine in _stateMachines)
+        {
+            stateMachine.Uninitialize();
+        }
+        
+        _stateMachines.Clear();
     }
 }

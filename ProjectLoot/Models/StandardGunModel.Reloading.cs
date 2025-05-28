@@ -40,7 +40,7 @@ public partial class StandardGunModel
         {
         }
     
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
         }
 

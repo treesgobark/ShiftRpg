@@ -55,7 +55,7 @@ public partial class Player
             Parent.HandleBobbing();
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Parent.HealthComponent.DamageModifiers.Delete("guard");
 

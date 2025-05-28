@@ -27,7 +27,7 @@ partial class FistsModel
             return null;
         }
 
-        public override void BeforeDeactivate() { }
+        public override void BeforeDeactivate(IState? nextState) { }
 
         public override void Uninitialize() { }
     }

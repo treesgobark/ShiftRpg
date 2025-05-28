@@ -153,7 +153,7 @@ public partial class SwordModel
             }
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Hitbox?.Destroy();
         }

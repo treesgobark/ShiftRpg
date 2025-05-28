@@ -49,7 +49,7 @@ public partial class Dot
                                                         * RotationPerSecond.TotalRadians;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
         }
 

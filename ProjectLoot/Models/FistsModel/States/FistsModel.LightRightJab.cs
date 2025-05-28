@@ -86,7 +86,7 @@ partial class FistsModel
             Circle.RelativeX                = InitialDistance + NormalizedSwingProgress * TravelDistance;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Hitbox?.Destroy();
         }

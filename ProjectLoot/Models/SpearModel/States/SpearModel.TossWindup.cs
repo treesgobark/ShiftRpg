@@ -63,7 +63,6 @@ partial class SpearModel
         {
             if (NormalizedProgress >= 1)
             {
-                Parent.Hitbox?.Destroy();
                 return States.Get<Idle>();
             }
             
@@ -71,12 +70,10 @@ partial class SpearModel
             {
                 if (!IsCharged)
                 {
-                    Parent.Hitbox?.Destroy();
                     return States.Get<Idle>();
                 }
                 else
                 {
-                    Parent.ChargeProgress = ChargeProgress;
                     return States.Get<TossActive>();
                 }
             }
@@ -90,7 +87,16 @@ partial class SpearModel
             Parent.Hitbox.RelativeY = CurrentWindupVector.Y;
         }
 
-        public override void BeforeDeactivate() { }
+        public override void BeforeDeactivate(IState? nextState)
+        {
+            if (nextState is TossActive)
+            {
+                Parent.ChargeProgress = ChargeProgress;
+                return;
+            }
+            
+            Parent.Hitbox?.Destroy();
+        }
 
         public override void Uninitialize() { }
 

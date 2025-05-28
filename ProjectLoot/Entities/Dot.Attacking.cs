@@ -131,7 +131,7 @@ public partial class Dot
             SwooshesPlayed++;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Hitbox.Destroy();
         }

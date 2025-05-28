@@ -46,7 +46,7 @@ public partial class Player
             };
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Parent.CurrentMovement.IsUsingCustomDeceleration = CachedValues.IsUsingCustomDeceleration;
             Parent.CurrentMovement.DecelerationTime = CachedValues.DecelerationTime;

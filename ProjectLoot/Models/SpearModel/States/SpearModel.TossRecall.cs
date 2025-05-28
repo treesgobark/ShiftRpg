@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
+using ProjectLoot.Entities;
 
 namespace ProjectLoot.Models.SpearModel;
 
@@ -28,11 +29,11 @@ partial class SpearModel
 
         private float NormalizedProgress => 1f - (DistanceFromGameplayCenter /
                                              (DistanceFromInitialPosition + DistanceFromGameplayCenter)).Saturate();
-        private float DistanceFromInitialPosition => Vector3.Distance(Parent.Hitbox.Position, _initialHitboxPosition);
+        private float DistanceFromInitialPosition => Vector3.Distance(Hitbox.Position, _initialHitboxPosition);
         private float DistanceFromGameplayCenter =>
-            Vector3.Distance(Parent.Hitbox.Position, Parent.MeleeWeaponComponent.HolderGameplayCenterPosition);
+            Vector3.Distance(Hitbox.Position, Parent.MeleeWeaponComponent.HolderGameplayCenterPosition);
         private Vector3 VectorToGameplayCenter =>
-            Parent.Hitbox.Position.GetVectorTo(Parent.MeleeWeaponComponent.HolderGameplayCenterPosition);
+            Hitbox.Position.GetVectorTo(Parent.MeleeWeaponComponent.HolderGameplayCenterPosition);
         
 
         public TossRecall(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
@@ -40,14 +41,16 @@ partial class SpearModel
         
         private Vector3 _initialHitboxPosition;
         
+        public MeleeHitbox Hitbox { get; set; }
+        
         public override void Initialize() { }
 
         protected override void AfterTimedStateActivate()
         {
             AddHitEffects();
             GlobalContent.SwingA.Play(0.1f, 0, 0);
-            Parent.Hitbox.IsActive = true;
-            _initialHitboxPosition = Parent.Hitbox.Position;
+            Hitbox.IsActive = true;
+            _initialHitboxPosition = Hitbox.Position;
         }
 
         public override IState? EvaluateExitConditions()
@@ -67,17 +70,17 @@ partial class SpearModel
 
         protected override void AfterTimedStateActivity()
         {
-            Parent.Hitbox.RotationZ = VectorToGameplayCenter.AngleOrZero();
-            Parent.Hitbox.Position = Vector3.Lerp(Parent.Hitbox.Position,
+            Hitbox.RotationZ = VectorToGameplayCenter.AngleOrZero();
+            Hitbox.Position = Vector3.Lerp(Hitbox.Position,
                                                   Parent.MeleeWeaponComponent.HolderGameplayCenterPosition,
                                                   LerpCoefficient);
-            Parent.Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress * NormalizedProgress;
+            Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress * NormalizedProgress;
             UpdateHitEffects();
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
-            Parent.Hitbox?.Destroy();
+            Hitbox?.Destroy();
         }
 
         public override void Uninitialize() { }
@@ -118,13 +121,13 @@ partial class SpearModel
                 
             _targetHitEffects.AddEffect(new PoiseDamageEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Spear, PoiseDamage));
             
-            Parent.Hitbox.TargetHitEffects = _targetHitEffects;
+            Hitbox.TargetHitEffects = _targetHitEffects;
                 
             EffectBundle holderHitEffects = new();
         
             holderHitEffects.AddEffect(new HitstopEffect(Parent.MeleeWeaponComponent.Team, SourceTag.Spear, HitstopDuration));
         
-            Parent.Hitbox.HolderHitEffects = holderHitEffects;
+            Hitbox.HolderHitEffects = holderHitEffects;
         }
     }
 }

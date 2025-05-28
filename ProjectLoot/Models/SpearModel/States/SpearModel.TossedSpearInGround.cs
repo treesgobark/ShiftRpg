@@ -45,13 +45,11 @@ partial class SpearModel
             
             if (!Parent.IsEquipped)
             {
-                Parent.Hitbox?.Destroy();
                 return States.Get<NotEquipped>();
             }
 
             if (NormalizedProgress >= 1)
             {
-                Parent.Hitbox?.Destroy();
                 return States.Get<Idle>();
             }
 
@@ -63,8 +61,15 @@ partial class SpearModel
             Parent.Hitbox.SpriteInstance.Alpha = 1f - MathF.Pow(NormalizedProgress, 3);
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
+            if (nextState is TossRecall tossRecall)
+            {
+                tossRecall.Hitbox = Parent.Hitbox;
+                return;
+            }
+            
+            Parent.Hitbox?.Destroy();
         }
 
         public override void Uninitialize() { }

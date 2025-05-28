@@ -92,7 +92,7 @@ partial class FistsModel
             Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Hitbox?.Destroy();
         }

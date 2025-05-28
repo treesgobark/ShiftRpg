@@ -39,7 +39,7 @@ public partial class DefaultRangedEnemy
             return null;
         }
 
-        public override void BeforeDeactivate()
+        public override void BeforeDeactivate(IState? nextState)
         {
             Parent.GunComponent.Unequip();
         }

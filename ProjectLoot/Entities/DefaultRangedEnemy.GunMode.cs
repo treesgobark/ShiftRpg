@@ -14,7 +14,7 @@ public partial class DefaultRangedEnemy
 
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             Parent.GunComponent.Equip();
         }

@@ -22,7 +22,7 @@ partial class StandardGunModel
         {
         }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
         }
 

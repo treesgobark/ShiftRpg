@@ -20,7 +20,7 @@ public partial class Dot
         {
         }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
         }
 

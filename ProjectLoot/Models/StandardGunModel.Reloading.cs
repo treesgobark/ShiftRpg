@@ -17,7 +17,7 @@ public partial class StandardGunModel
 
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate() { }
+        protected override void AfterTimedStateActivate(IState? previousState) { }
     
         public override IState? EvaluateExitConditions()
         {

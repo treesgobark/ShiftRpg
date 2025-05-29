@@ -15,7 +15,7 @@ public partial class SwordModel
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate() { }
+        protected override void AfterTimedStateActivate(IState? previousState) { }
 
         public override IState? EvaluateExitConditions()
         {

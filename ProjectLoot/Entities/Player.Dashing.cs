@@ -18,7 +18,7 @@ public partial class Player
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             CachedValues.IsUsingCustomDeceleration = Parent.CurrentMovement.IsUsingCustomDeceleration;
             CachedValues.DecelerationTime = Parent.CurrentMovement.DecelerationTime;

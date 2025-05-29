@@ -49,7 +49,7 @@ partial class SpearModel
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             Parent.AttackDirection = Parent.MeleeWeaponComponent.AttackDirection;
 

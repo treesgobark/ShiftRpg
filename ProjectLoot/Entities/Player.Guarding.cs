@@ -21,7 +21,7 @@ public partial class Player
         {
         }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             Parent.HealthComponent.DamageModifiers.Upsert("guard", new StatModifier<float>(
                                                      _ => true,

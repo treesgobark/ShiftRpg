@@ -45,7 +45,7 @@ partial class SpearModel
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             AddHitEffects();
             GlobalContent.SwingA.Play(0.1f, 0, 0);

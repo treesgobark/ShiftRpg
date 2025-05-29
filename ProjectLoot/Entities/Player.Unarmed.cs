@@ -16,7 +16,7 @@ public partial class Player
 
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate() { }
+        protected override void AfterTimedStateActivate(IState? previousState) { }
 
         protected override void AfterTimedStateActivity()
         {

@@ -58,7 +58,7 @@ partial class SpearModel
         
         public override void Initialize() { }
 
-        protected override void AfterTimedStateActivate()
+        protected override void AfterTimedStateActivate(IState? previousState)
         {
             _nextState = null;
             Parent.Hitbox.AttachTo(null);

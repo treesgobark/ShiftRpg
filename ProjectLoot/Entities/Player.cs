@@ -73,6 +73,8 @@ public partial class Player
 
     private void InitializeControllers()
     {
+        StateMachines = new();
+        
         var states = new StateMachine();
         states.Add(new Unarmed(this, states, FrbTimeManager.Instance));
         states.Add(new MeleeWeaponMode(this, states, FrbTimeManager.Instance));

@@ -17,14 +17,13 @@ namespace ProjectLoot.Models.SpearModel;
 
 partial class SpearModel
 {
-    private class TossActive : ParentedTimedState<SpearModel>
+    private class TossActive : ParentedTimedState<Toss>
     {
         private EffectBundle _targetHitEffects;
         private static TimeSpan ActiveDuration => TimeSpan.FromMilliseconds(120);
         
         private float NormalizedProgress => (float)(TimeInState / ActiveDuration).Saturate();
         
-        private bool HasAddedHitEffects { get; set; }
         private static float MinTravelDistance => 24;
         private static float MaxTravelDistance => 196;
         private static float MinDamage => 10;
@@ -53,8 +52,8 @@ partial class SpearModel
         private Vector3 _initialHitboxPosition;
         private IState? _nextState;
 
-        public TossActive(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+        public TossActive(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
+            : base(states, timeManager, tossState) { }
         
         public override void Initialize() { }
 
@@ -65,7 +64,6 @@ partial class SpearModel
             Parent.Hitbox.RotationX = 0;
             Parent.Hitbox.RotationY = 0;
             AddHitEffects();
-            HasAddedHitEffects = true;
             GlobalContent.SwingA.Play(0.1f, 0, 0);
             Parent.Hitbox.IsActive = true;
             _initialHitboxPosition = Parent.Hitbox.Position;
@@ -80,12 +78,6 @@ partial class SpearModel
             
             if (NormalizedProgress >= 1)
             {
-                if (!Parent.IsEquipped)
-                {
-                    Parent.Hitbox?.Destroy();
-                    return States.Get<NotEquipped>();
-                }
-                
                 if (_nextState is not null)
                 {
                     return _nextState;
@@ -104,9 +96,7 @@ partial class SpearModel
             UpdateHitEffects();
         }
 
-        public override void BeforeDeactivate(IState? nextState)
-        {
-        }
+        public override void BeforeDeactivate(IState? nextState) { }
 
         public override void Uninitialize() { }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
@@ -34,15 +35,23 @@ public partial class Player
     public SpriteComponent PlayerSpriteComponent { get; private set; }
 
     public StateMachineManager StateMachines { get; private set; }
+    
+    public ITimeManager HitstopTimeManager { get; private set; }
 
     private void CustomInitialize()
     {
         InitializeInputs();
         InitializeComponents();
+        InitializeTimeManager();
         InitializeControllers();
         InitializeHandlers();
         InitializeChildren();
         GiveWeapons();
+    }
+
+    private void InitializeTimeManager()
+    {
+        HitstopTimeManager = new HitstopAwareTimeManager(HitstopComponent);
     }
 
     private void GiveWeapons()
@@ -50,7 +59,7 @@ public partial class Player
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Sword]);
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Fists]);
         PickUpWeapon(GlobalContent.MeleeWeaponData[MeleeWeaponData.Spear]);
-        PickUpWeapon(GlobalContent.GunData[GunData.Rifle]);
+        // PickUpWeapon(GlobalContent.GunData[GunData.Rifle]);
     }
 
     private void InitializeInputs()
@@ -116,15 +125,8 @@ public partial class Player
         
         StateMachines.DoAllStateMachineActivity();
         
-        if (HitstopComponent.IsStopped)
-        {
-            MeleeWeaponComponent.DoMinimumStateActivity();
-        }
-        else
-        {
-            GunComponent.Activity();
-            MeleeWeaponComponent.Activity();
-        }
+        GunComponent.Activity();
+        MeleeWeaponComponent.Activity();
         
         UpdateReticlePosition();
 
@@ -173,14 +175,14 @@ public partial class Player
         switch (meleeWeapon)
         {
             case { Name: MeleeWeaponData.Fists }:
-                model = new FistsModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                model = new FistsModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
                 break;
             case { Name: MeleeWeaponData.Sword }:
             case { Name: MeleeWeaponData.Dagger }:
-                model = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                model = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
                 break;
             case { Name: MeleeWeaponData.Spear }:
-                model = new SpearModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent);
+                model = new SpearModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
                 break;
             default:
                 throw new ArgumentException($"Unrecognized weapon type: {meleeWeapon.Name}");

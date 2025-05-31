@@ -1,3 +1,4 @@
+using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ProjectLoot.Components.Interfaces;
@@ -8,26 +9,28 @@ namespace ProjectLoot.Models;
 
 public partial class SwordModel : IMeleeWeaponModel
 {
+    private readonly ITimeManager _timeManager;
     private StateMachine States { get; }
     
     public SwordModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
-                      IEffectsComponent holderEffects)
+                      IEffectsComponent holderEffects,   ITimeManager          timeManager)
     {
+        _timeManager         = timeManager;
         MeleeWeaponComponent = meleeWeaponComponent;
         HolderEffects        = holderEffects;
-        MeleeWeaponData = meleeWeaponData;
+        MeleeWeaponData      = meleeWeaponData;
 
         States = new StateMachine();
-        States.Add(new NotEquipped(States, FrbTimeManager.Instance, this));
-        States.Add(new Idle(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash1(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash1Recovery(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash2(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash2Recovery(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash3(States, FrbTimeManager.Instance, this));
-        States.Add(new Slash3Recovery(States, FrbTimeManager.Instance, this));
-        States.Add(new CircleSlash(States, FrbTimeManager.Instance, this));
-        States.Add(new CircleSlashRecovery(States, FrbTimeManager.Instance, this));
+        States.Add(new NotEquipped(States, _timeManager, this));
+        States.Add(new Idle(States, _timeManager, this));
+        States.Add(new Slash1(States, _timeManager, this));
+        States.Add(new Slash1Recovery(States, _timeManager, this));
+        States.Add(new Slash2(States, _timeManager, this));
+        States.Add(new Slash2Recovery(States, _timeManager, this));
+        States.Add(new Slash3(States, _timeManager, this));
+        States.Add(new Slash3Recovery(States, _timeManager, this));
+        States.Add(new CircleSlash(States, _timeManager, this));
+        States.Add(new CircleSlashRecovery(States, _timeManager, this));
         
         States.InitializeStartingState<NotEquipped>();
     }
@@ -46,6 +49,6 @@ public partial class SwordModel : IMeleeWeaponModel
     
     public void EvaluateExitConditions()
     {
-        States.EvaluateExitConditions();
+        States.AdvanceCurrentState();
     }
 }

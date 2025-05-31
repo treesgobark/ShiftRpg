@@ -1,27 +1,20 @@
-using System.Collections.Generic;
 using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.Core.StaticUtilities;
-using FlatRedBall.Math.Geometry;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
-using ProjectLoot.Effects;
-using ProjectLoot.Effects.Base;
-using ProjectLoot.Entities;
-using ProjectLoot.Factories;
 
 namespace ProjectLoot.Models.SpearModel;
 
 partial class SpearModel
 {
-    private class TossedSpearInGround : ParentedTimedState<SpearModel>
+    private class TossedSpearInGround : ParentedTimedState<Toss>
     {
         private static TimeSpan RecoveryDuration => TimeSpan.FromMilliseconds(960);
         
         private float NormalizedProgress => (float)(TimeInState / RecoveryDuration).Saturate();
 
-        public TossedSpearInGround(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+        public TossedSpearInGround(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
+            : base(states, timeManager, tossState) { }
         
         public override void Initialize() { }
 
@@ -43,14 +36,9 @@ partial class SpearModel
                 return States.Get<TossRecall>();
             }
             
-            if (!Parent.IsEquipped)
-            {
-                return States.Get<NotEquipped>();
-            }
-
             if (NormalizedProgress >= 1)
             {
-                return States.Get<Idle>();
+                return EmptyState.Instance;
             }
 
             return null;
@@ -61,16 +49,7 @@ partial class SpearModel
             Parent.Hitbox.SpriteInstance.Alpha = 1f - MathF.Pow(NormalizedProgress, 3);
         }
 
-        public override void BeforeDeactivate(IState? nextState)
-        {
-            if (nextState is TossRecall tossRecall)
-            {
-                tossRecall.Hitbox = Parent.Hitbox;
-                return;
-            }
-            
-            Parent.Hitbox?.Destroy();
-        }
+        public override void BeforeDeactivate(IState? nextState) { }
 
         public override void Uninitialize() { }
     }

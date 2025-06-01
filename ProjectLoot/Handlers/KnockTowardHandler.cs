@@ -28,7 +28,7 @@ public class KnockTowardHandler : EffectHandler<KnockTowardEffect>, IUpdateable
         _timeManager = timeManager;
     }
 
-    protected override void HandleInternal(KnockTowardEffect effect)
+    public override void Handle(KnockTowardEffect effect)
     {
         _remainingDuration = effect.Duration;
         _startingPosition  = _transform.Position;

@@ -17,7 +17,7 @@ public class ShatterDamageHandler : EffectHandler<ShatterDamageEffect>
         _shatter       = shatter;
     }
 
-    protected override void HandleInternal(ShatterDamageEffect effect)
+    public override void Handle(ShatterDamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

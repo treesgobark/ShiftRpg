@@ -19,7 +19,7 @@ public class DamageNumberHandler : EffectHandler<HealthReductionEffect>
         _transform = transform;
     }
 
-    protected override void HandleInternal(HealthReductionEffect effect)
+    public override void Handle(HealthReductionEffect effect)
     {
         DamageNumberFactory.CreateNew()
                            .SetStartingValues(effect.Value, 1, _transform.Position, effect.Source, _effects.Team);

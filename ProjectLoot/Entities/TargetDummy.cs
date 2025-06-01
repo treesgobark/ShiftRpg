@@ -42,15 +42,15 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
-            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance, Hitstop));
-            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Transform));
-            Effects.AddHandler<ShatterDamageEffect>(new ShatterDamageHandler(Effects, Health, Shatter));
-            Effects.AddHandler<ApplyShatterEffect>(new ApplyShatterDamageHandler(Effects, Shatter, Health));
-            Effects.AddHandler<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, Weakness));
-            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
-            Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, Transform));
-            Effects.AddHandler<KnockTowardEffect>(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
+            Effects.AddHandler(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler(new DamageNumberHandler(Effects, Transform));
+            Effects.AddHandler(new ShatterDamageHandler(Effects, Health, Shatter));
+            Effects.AddHandler(new ApplyShatterDamageHandler(Effects, Shatter, Health));
+            Effects.AddHandler(new WeaknessDamageHandler(Effects, Weakness));
+            Effects.AddHandler(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
+            Effects.AddHandler(new KnockbackHandler(Effects, Transform));
+            Effects.AddHandler(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
         }
 
         private void CustomActivity()

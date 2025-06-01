@@ -13,7 +13,7 @@ public class PoiseDamageHandler : EffectHandler<PoiseDamageEffect>
         _poise = poise;
     }
     
-    protected override void HandleInternal(PoiseDamageEffect effect)
+    public override void Handle(PoiseDamageEffect effect)
     {
         _poise.CurrentPoiseDamage += effect.PoiseDamage;
     }

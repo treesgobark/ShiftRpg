@@ -22,7 +22,7 @@ public class PlayerHitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         _sprite = sprite;
     }
 
-    protected override void HandleInternal(HitstopEffect effect)
+    public override void Handle(HitstopEffect effect)
     {
         _hitstop.RemainingHitstopTime = effect.Duration;
         

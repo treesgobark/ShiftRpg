@@ -43,7 +43,7 @@ public class TransformComponent : ITransformComponent
 
     public Vector3 Velocity
     {
-        get => PositionedObject.Velocity;
+        get => IsStopped ? _cachedVelocity : PositionedObject.Velocity;
         set
         {
             if (!IsStopped)
@@ -59,7 +59,7 @@ public class TransformComponent : ITransformComponent
 
     public Vector3 Acceleration
     {
-        get => PositionedObject.Acceleration;
+        get => IsStopped ? _cachedAcceleration : PositionedObject.Acceleration;
         set
         {
             if (!IsStopped)

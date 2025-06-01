@@ -53,7 +53,7 @@ public partial class SwordModel
             {
                 Radius    = 10f,
                 RelativeX = 20f,
-                Visible   = true,
+                Visible   = false,
                 IgnoresParentVisibility = true,
             };
 

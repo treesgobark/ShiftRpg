@@ -17,7 +17,7 @@ public class ApplyShatterDamageHandler : EffectHandler<ApplyShatterEffect>
         _health  = health;
     }
 
-    protected override void HandleInternal(ApplyShatterEffect effect)
+    public override void Handle(ApplyShatterEffect effect)
     {
          if (_shatter.CurrentShatterDamage > 0)
          {

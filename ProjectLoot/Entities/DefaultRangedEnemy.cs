@@ -66,12 +66,12 @@ namespace ProjectLoot.Entities
 
         private void InitializeHandlers()
         {
-            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent));
-            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, HealthComponent, FrbTimeManager.Instance));
-            Effects.AddHandler<ShatterDamageEffect>(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
-            Effects.AddHandler<ApplyShatterDamageHandler>(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
-            Effects.AddHandler<WeaknessDamageEffect>(new WeaknessDamageHandler(Effects, WeaknessComponent));
-            Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, TransformComponent));
+            Effects.AddHandler(new HitstopHandler(Effects, HitstopComponent, TransformComponent, FrbTimeManager.Instance, SpriteComponent));
+            Effects.AddHandler(new AttackHandler(Effects, HealthComponent, FrbTimeManager.Instance));
+            Effects.AddHandler(new ShatterDamageHandler(Effects, HealthComponent, ShatterComponent));
+            Effects.AddHandler(new ApplyShatterDamageHandler(Effects, ShatterComponent, HealthComponent));
+            Effects.AddHandler(new WeaknessDamageHandler(Effects, WeaknessComponent));
+            Effects.AddHandler(new KnockbackHandler(Effects, TransformComponent));
         }
 
         private void InitializeControllers()

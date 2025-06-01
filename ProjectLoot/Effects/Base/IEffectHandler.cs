@@ -7,3 +7,8 @@ public interface IEffectHandler
     
     bool IsActive { get; set; }
 }
+
+public interface IEffectHandler<in T> : IEffectHandler where T : IEffect
+{
+    void Handle(T effect);
+}

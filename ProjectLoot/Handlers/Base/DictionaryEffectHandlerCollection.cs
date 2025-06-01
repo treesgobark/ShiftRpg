@@ -12,9 +12,9 @@ public class DictionaryEffectHandlerCollection : IEffectHandlerCollection
     private Dictionary<Type, IEffectHandler> Handlers { get; } = [];
     private Dictionary<Type, IUpdateable> Updateables { get; } = [];
 
-    public void Add<T>(IEffectHandler handler) where T : class => Add<T>(handler, HandlerOrder.Count);
+    public void Add<T>(IEffectHandler handler) where T : IEffect => Add<T>(handler, HandlerOrder.Count);
 
-    public void Add<T>(IEffectHandler handler, int index) where T: class
+    public void Add<T>(IEffectHandler handler, int index) where T: IEffect
     {
         Type type = typeof(T);
         
@@ -28,7 +28,7 @@ public class DictionaryEffectHandlerCollection : IEffectHandlerCollection
         UpsertHandlerToDictionaries(handler, type);
     }
 
-    public void Replace<T>(IEffectHandler handler) where T: class
+    public void Replace<T>(IEffectHandler handler) where T: IEffect
     {
         Type type = typeof(T);
         if (!Handlers.ContainsKey(type))
@@ -42,7 +42,7 @@ public class DictionaryEffectHandlerCollection : IEffectHandlerCollection
         UpsertHandlerToDictionaries(handler, type);
     }
 
-    public void Remove<T>(IEffectHandler handler) where T: class
+    public void Remove<T>(IEffectHandler handler) where T: IEffect
     {
         Type type = typeof(T);
         if (!Handlers.ContainsKey(type))

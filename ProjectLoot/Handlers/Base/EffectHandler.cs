@@ -5,7 +5,7 @@ using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Handlers.Base;
 
-public abstract class EffectHandler<T> : IEffectHandler
+public abstract class EffectHandler<T> : IEffectHandler<T> where T : IEffect
 {
     private readonly IEffectsComponent _effects;
 
@@ -20,7 +20,7 @@ public abstract class EffectHandler<T> : IEffectHandler
         
         if (effect is T castedEffect)
         {
-            HandleInternal(castedEffect);
+            Handle(castedEffect);
         }
         else
         {
@@ -45,5 +45,5 @@ public abstract class EffectHandler<T> : IEffectHandler
 
     public bool IsActive { get; set; }
 
-    protected abstract void HandleInternal(T effect);
+    public abstract void Handle(T effect);
 }

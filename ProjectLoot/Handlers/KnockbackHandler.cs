@@ -13,7 +13,7 @@ public class KnockbackHandler : EffectHandler<KnockbackEffect>
         _transform = transform;
     }
 
-    protected override void HandleInternal(KnockbackEffect effect)
+    public override void Handle(KnockbackEffect effect)
     {
         switch (effect)
         {

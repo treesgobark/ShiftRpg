@@ -17,7 +17,7 @@ public class DamageAnimationHandler : EffectHandler<HealthReductionEffect>, IUpd
         _sprite = sprite;
     }
 
-    protected override void HandleInternal(HealthReductionEffect effect)
+    public override void Handle(HealthReductionEffect effect)
     {
         _sprite.PlayDamageAnimation();
     }

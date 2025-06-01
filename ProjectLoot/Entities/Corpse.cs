@@ -11,6 +11,8 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
+using ProjectLoot.Components;
+using ProjectLoot.Components.Interfaces;
 
 namespace ProjectLoot.Entities
 {
@@ -86,13 +88,13 @@ namespace ProjectLoot.Entities
             
         }
 
-        public void InitializeFromEntity(Dot entity)
+        public void InitializeFromEntity(ICorpseInformationComponent corpseInformation, ITransformComponent transformComponent)
         {
-            BodySpriteInstance.AnimationChains       = DotAnimations;
-            BodySpriteInstance.CurrentChainName      = entity.IsBig ? "BigBlueIdle" : "BlueIdle";
-            ExplosionSpriteInstance.AnimationChains  = DotAnimations;
-            ExplosionSpriteInstance.CurrentChainName = "BlueExplode";
-            Velocity                                 = entity.Velocity;
+            BodySpriteInstance.AnimationChains       = corpseInformation.BodyAnimationChains;
+            BodySpriteInstance.CurrentChainName      = corpseInformation.BodyChainName;
+            ExplosionSpriteInstance.AnimationChains  = corpseInformation.ExplosionAnimationChains;
+            ExplosionSpriteInstance.CurrentChainName = corpseInformation.ExplosionChainName;
+            Velocity                                 = transformComponent.Velocity;
         }
     }
 }

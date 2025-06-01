@@ -11,9 +11,9 @@ public class ListEffectHandlerCollection : IEffectHandlerCollection
     private List<IEffectHandler> Handlers { get; } = [];
     private List<IUpdateable> Updateables { get; } = [];
 
-    public void Add<T>(IEffectHandler handler) where T : class => Add<T>(handler, Handlers.Count);
+    public void Add<T>(IEffectHandler handler) where T : IEffect => Add<T>(handler, Handlers.Count);
 
-    public void Add<T>(IEffectHandler handler, int index) where T: class
+    public void Add<T>(IEffectHandler handler, int index) where T: IEffect
     {
         Handlers.Add(handler);
 
@@ -23,12 +23,12 @@ public class ListEffectHandlerCollection : IEffectHandlerCollection
         }
     }
 
-    public void Replace<T>(IEffectHandler handler) where T: class
+    public void Replace<T>(IEffectHandler handler) where T: IEffect
     {
         throw new NotImplementedException();
     }
 
-    public void Remove<T>(IEffectHandler handler) where T: class
+    public void Remove<T>(IEffectHandler handler) where T: IEffect
     {
         Handlers.Remove(handler);
 

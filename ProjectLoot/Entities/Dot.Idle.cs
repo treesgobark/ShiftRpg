@@ -47,8 +47,10 @@ public partial class Dot
                 TimeInState                              = TimeSpan.Zero;
             }
             
-            Parent.SatelliteSprite.CurrentChainName = Parent.IsBig ? "BigBlueSquares" : "BlueSquares";
-            Parent.SatelliteSprite.FlipHorizontal   = false;
+            Parent.CorpseInformationComponent.BodyChainName = Parent.IsBig ? "BigBlueIdle" : "BlueIdle";
+            
+            Parent.SatelliteSprite.CurrentChainName         = Parent.IsBig ? "BigBlueSquares" : "BlueSquares";
+            Parent.SatelliteSprite.FlipHorizontal           = false;
             Parent.SatelliteSprite.RelativeRotationZ += (float)TimeManager.GameTimeSinceLastFrame.TotalSeconds
                                                         * RotationPerSecond.TotalRadians;
             

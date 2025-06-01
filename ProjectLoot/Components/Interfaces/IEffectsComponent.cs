@@ -12,5 +12,5 @@ public interface IEffectsComponent
 
     void Handle(IEffectBundle bundle);
     void Handle<T>(T effect) where T : IEffect;
-    void AddHandler<T>(IEffectHandler handler) where T : class;
+    void AddHandler<T>(IEffectHandler<T> handler) where T : IEffect;
 }

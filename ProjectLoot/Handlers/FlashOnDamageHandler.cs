@@ -22,7 +22,7 @@ public class FlashOnDamageHandler : EffectHandler<HealthReductionEffect>, IUpdat
         _timeManager = timeManager;
     }
 
-    protected override void HandleInternal(HealthReductionEffect effect)
+    public override void Handle(HealthReductionEffect effect)
     {
         _flashStarted = _timeManager.TotalGameTime;
         _sprite.Color = new Color(150, 150, 150, 255);

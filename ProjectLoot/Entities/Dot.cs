@@ -1,26 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ANLG.Utilities.Core.Extensions;
-using ANLG.Utilities.Core.NonStaticUtilities;
 using ANLG.Utilities.Core.States;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Debugging;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Graphics.Particle;
-using FlatRedBall.Math.Geometry;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
-using ProjectLoot.Components.Interfaces;
-using ProjectLoot.DataTypes;
-using ProjectLoot.Effects;
-using ProjectLoot.Factories;
 using ProjectLoot.Handlers;
-using ProjectLoot.Models;
 
 namespace ProjectLoot.Entities
 {
@@ -34,6 +17,7 @@ namespace ProjectLoot.Entities
         private DamageableSpriteComponent BodySpriteComponent { get; set; }
         private SpriteComponent SatelliteSpriteComponent { get; set; }
         private PoiseComponent Poise { get; set; }
+        private CorpseInformationComponent CorpseInformationComponent { get; set; }
         
         public PositionedObject Target { get; set; }
         
@@ -57,20 +41,29 @@ namespace ProjectLoot.Entities
             BodySpriteComponent      = new DamageableSpriteComponent(BodySprite);
             SatelliteSpriteComponent = new SpriteComponent(SatelliteSprite);
             Poise                    = new PoiseComponent { PoiseThreshold = PoiseThreshold };
+            
+            CorpseInformationComponent = new CorpseInformationComponent
+            {
+                BodyAnimationChains      = DotAnimations,
+                BodyChainName            = IsBig ? "BigBlueIdle" : "BlueIdle",
+                ExplosionAnimationChains = DotAnimations,
+                ExplosionChainName       = "BlueExplode",
+            };
         }
 
         private void InitializeHandlers()
         {
-            Effects.AddHandler<HitstopEffect>(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, SatelliteSpriteComponent, Health));
-            Effects.AddHandler<AttackEffect>(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
-            Effects.AddHandler<HealthReductionEffect>(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance, Hitstop, this));
-            Effects.AddHandler<HealthReductionEffect>(new DamageNumberHandler(Effects, Transform));
-            Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, BodySpriteComponent, FrbTimeManager.Instance));
-            Effects.AddHandler<HealthReductionEffect>(new FlashOnDamageHandler(Effects, SatelliteSpriteComponent, FrbTimeManager.Instance));
-            // Effects.AddHandler<HealthReductionEffect>(new DamageAnimationHandler(Effects, BodySpriteComponent));
-            Effects.AddHandler<KnockbackEffect>(new KnockbackHandler(Effects, Transform));
-            Effects.AddHandler<KnockTowardEffect>(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
-            Effects.AddHandler<PoiseDamageEffect>(new PoiseDamageHandler(Effects, Poise));
+            Effects.AddHandler(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance, SatelliteSpriteComponent, Health));
+            Effects.AddHandler(new AttackHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler(new HealthReductionHandler(Effects, Health, FrbTimeManager.Instance));
+            Effects.AddHandler(new DamageNumberHandler(Effects, Transform));
+            Effects.AddHandler(new FlashOnDamageHandler(Effects, BodySpriteComponent, FrbTimeManager.Instance));
+            Effects.AddHandler(new FlashOnDamageHandler(Effects, SatelliteSpriteComponent, FrbTimeManager.Instance));
+            Effects.AddHandler(new KnockbackHandler(Effects, Transform));
+            Effects.AddHandler(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
+            Effects.AddHandler(new PoiseDamageHandler(Effects, Poise));
+            Effects.AddHandler(new CorpseSpawnHandler(Effects, Transform, CorpseInformationComponent));
+            Effects.AddHandler(new DestructionHandler(Effects, this));
         }
 
         private void InitializeStates()
@@ -92,17 +85,12 @@ namespace ProjectLoot.Entities
             if (Health.CurrentHealth <= 0)
             {
                 Debugger.Log($"_Dot@{TimeManager.CurrentFrame}:Health:{Health.CurrentHealth}");
-                // Destroy();
             }
         }
 
         private void CustomDestroy()
         {
             States.Uninitialize();
-            
-            var corpse = CorpseFactory.CreateNew(Position);
-            corpse.InitializeFromEntity(this);
-            // GlobalContent.ShotgunBlastQuick.Play(0.3f, Random.Shared.NextSingle(-0.2f, 0.2f), 0f);
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

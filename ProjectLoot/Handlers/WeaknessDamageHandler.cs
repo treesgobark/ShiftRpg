@@ -17,7 +17,7 @@ public class WeaknessDamageHandler : EffectHandler<WeaknessDamageEffect>, IUpdat
         _weakness = weakness;
     }
 
-    protected override void HandleInternal(WeaknessDamageEffect effect)
+    public override void Handle(WeaknessDamageEffect effect)
     {
         bool valid = ValidateEffect(effect);
         if (!valid) { return; }

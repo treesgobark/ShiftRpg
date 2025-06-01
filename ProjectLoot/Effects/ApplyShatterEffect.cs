@@ -1,6 +1,8 @@
+using ProjectLoot.Effects.Base;
+
 namespace ProjectLoot.Effects;
 
-public class ApplyShatterEffect
+public class ApplyShatterEffect : IEffect
 {
     public ApplyShatterEffect(Team appliesTo, SourceTag source)
     {

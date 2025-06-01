@@ -10,10 +10,10 @@ public interface IReadOnlyEffectHandlerCollection
 
 public interface IEffectHandlerCollection : IReadOnlyEffectHandlerCollection
 {
-    void Add<T>(IEffectHandler     handler) where T: class;
-    void Add<T>(IEffectHandler     handler, int index) where T: class;
-    void Replace<T>(IEffectHandler handler) where T: class;
-    void Remove<T>(IEffectHandler  handler) where T : class;
+    void Add<T>(IEffectHandler     handler) where T: IEffect;
+    void Add<T>(IEffectHandler     handler, int index) where T: IEffect;
+    void Replace<T>(IEffectHandler handler) where T: IEffect;
+    void Remove<T>(IEffectHandler  handler) where T : IEffect;
 
     void Activity();
 }

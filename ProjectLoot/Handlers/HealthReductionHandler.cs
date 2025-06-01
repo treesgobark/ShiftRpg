@@ -8,35 +8,29 @@ using ProjectLoot.Handlers.Base;
 
 namespace ProjectLoot.Handlers;
 
-public class HealthReductionHandler : EffectHandler<HealthReductionEffect>, IUpdateable
+public class HealthReductionHandler : EffectHandler<HealthReductionEffect>
 {
+    private readonly IEffectsComponent _effects;
     private readonly IHealthComponent _health;
     private readonly ITimeManager _timeManager;
-    private readonly IHitstopComponent _hitstop;
-    private readonly IDestroyable? _destroyable;
 
-    public HealthReductionHandler(IEffectsComponent effects, IHealthComponent health, ITimeManager timeManager,
-                                  IHitstopComponent hitstop, IDestroyable?    destroyable = null) : base(effects)
+    public HealthReductionHandler(IEffectsComponent effects, IHealthComponent health, ITimeManager timeManager) : base(effects)
     {
-        _health       = health;
-        _timeManager  = timeManager;
-        _hitstop = hitstop;
-        _destroyable  = destroyable;
+        _effects     = effects;
+        _health      = health;
+        _timeManager = timeManager;
     }
 
-    protected override void HandleInternal(HealthReductionEffect effect)
+    public override void Handle(HealthReductionEffect effect)
     {
         float finalDamage = effect.Value;
         
         _health.CurrentHealth  -= finalDamage;
         _health.LastDamageTime =  _timeManager.TotalGameTime;
-    }
 
-    public void Activity()
-    {
-        if (!_hitstop.IsStopped && _health.CurrentHealth <= 0)
+        if (_health.CurrentHealth <= 0)
         {
-            _destroyable?.Destroy();
+            _effects.Handle(new DeathEffect(effect.AppliesTo, effect.Source));
         }
     }
 }

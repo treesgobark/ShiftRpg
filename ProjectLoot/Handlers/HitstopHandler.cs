@@ -24,7 +24,7 @@ public class HitstopHandler : EffectHandler<HitstopEffect>, IUpdateable
         _health      = health;
     }
 
-    protected override void HandleInternal(HitstopEffect effect)
+    public override void Handle(HitstopEffect effect)
     {
         _hitstop.RemainingHitstopTime = effect.Duration;
         

@@ -18,7 +18,7 @@ public class AttackHandler : EffectHandler<AttackEffect>
         _timeManager = timeManager;
     }
 
-    protected override void HandleInternal(AttackEffect effect)
+    public override void Handle(AttackEffect effect)
     {
         float finalDamage = effect.Value;
         

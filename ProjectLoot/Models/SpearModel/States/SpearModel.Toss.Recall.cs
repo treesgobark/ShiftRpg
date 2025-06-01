@@ -20,8 +20,8 @@ partial class SpearModel
         private static float MaxDamage => 30;
         private static float PoiseDamage => 10;
         private static float KnockbackVelocity => 400;
-        private static float MinLerpCoefficient => 0.05f;
-        private static float MaxLerpCoefficient => 0.2f;
+        private static float MinLerpCoefficient => 0.01f;
+        private static float MaxLerpCoefficient => 0.3f;
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(100);
         private static float CompletionDistance => 16f;
         

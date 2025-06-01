@@ -19,7 +19,7 @@ public class HitstunHandler : EffectHandler<HitstunEffect>, IUpdateable
         _timeManager = timeManager;
     }
 
-    protected override void HandleInternal(HitstunEffect effect)
+    public override void Handle(HitstunEffect effect)
     {
         _hitstun.RemainingHitstunDuration = effect.Duration;
         

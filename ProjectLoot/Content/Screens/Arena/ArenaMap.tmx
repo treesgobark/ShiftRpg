@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" source="../../WhiteVoid.tsx"/>
  <layer id="2" name="Floor" width="48" height="48">
   <data encoding="base64" compression="gzip">
@@ -8,7 +8,7 @@
  </layer>
  <layer id="1" name="GameplayLayer" width="48" height="48" tintcolor="#ffffff">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2aQQ6CMBBFayImbPRKuuQA7jkKCz2C0SVH4WiOgSZkgu1MLe1M8Sc/VjNDnr9YsKExxtRK3RjTw2t/gbFG1xP/HsaVMgNzZ/nhfXuCz8CdYeg4mtwTo95yVhO75aceU4oo/DnypdZvIX8sSfNRYv6S8vXVp8g/ZE2m6r/+5NWMv1W+/pD5JWmJX1K+vvoS88eSPB9byB9L0nyUmL+kfH31JeUP/4XPlcMHsO2D8eCqTdUDzIPl9+1T3MD3yTDuKHsbKXosv2+u8HF99al6qPxStcT/2GWC+SIXT4z8c37fEs+fnHox55LK/ww4R0J6uJKWv09XlIk2fqyc/DjLEEnNn/rbkcpP1Td+zty6atfcP/yo1Py1SBs/vj5r48fi8FPXtJT3oyny59wHca9pc/6117pYmnOWcP43wF+PexFU4+dAOL1RDexD7mdIfvUbOn9CdQAkAAA=
+   H4sIAAAAAAAACt2aMQ6DMAxF0xGG9kwdOUD3HIWhPULVjhyFo9UIkCILGjuE2M6XLFBlR68/IYkCnXOuMRqdcwNchzvcW4xm4XdGFfLf5ug59dc5yDU58kPOmvzfkoS/nPza/cfS1h+1+a/N31j+2f6nzMkcWZ9/1jWYWq9RwO+pudr6YxKHX6NCfm3+xvLb+fn11Pa0qYnwS/sby4/xaxeXX1t/1Oa/Nn+J+x9PbU+bauGPnVM8IV5LwH1POdsoUUP1H7dL8aZETS3jJ/ztfRGC2dE/nhz+S/7fGsePpL7MvqTyfxLGSEoNV9r8j+mBPJn4W0P8WOu7CwlhL1Ok9eyE+uxo5adqj5/Tt/9yS5wftob7wNr8iWWNH6/P1vixOPzUOa3kfrSE/5x9EHdNC/nPnutyaeP9tRcFOqCJvwN+uI6MwN+BcGqzBrCP0t+QHI0f8KmqSgAkAAA=
   </data>
  </layer>
 </map>

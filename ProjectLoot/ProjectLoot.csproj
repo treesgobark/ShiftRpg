@@ -722,6 +722,10 @@
     <Compile Include="Entities\DefaultRangedEnemy.Generated.cs">
       <DependentUpon>DefaultRangedEnemy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Door.cs" />
+    <Compile Include="Entities\Door.Generated.cs">
+      <DependentUpon>Door.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Dot.Attacking.cs">
       <DependentUpon>Dot.cs</DependentUpon>
     </Compile>

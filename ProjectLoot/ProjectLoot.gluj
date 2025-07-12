@@ -313,6 +313,9 @@
       "Name": "Entities\\DefaultRangedEnemy"
     },
     {
+      "Name": "Entities\\Door"
+    },
+    {
       "Name": "Entities\\Dot"
     },
     {

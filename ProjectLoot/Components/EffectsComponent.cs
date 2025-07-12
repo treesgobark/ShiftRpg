@@ -9,24 +9,19 @@ namespace ProjectLoot.Components;
 
 public class EffectsComponent : IEffectsComponent
 {
-    private Team? _team;
     private readonly IEffectHandlerCollection _handlerCollection = new ListEffectHandlerCollection();
     
     private IEffectBundle? _currentlyProcessingEffectBundle;
-    private Queue<IEffectBundle> _bundleQueue = new();
+    private readonly Queue<IEffectBundle> _bundleQueue = new();
 
-    public Team Team
-    {
-        get => _team ?? throw new InvalidOperationException("Team not set");
-        set => _team = value;
-    }
+    public required Team Team { get; set; }
     
     public SourceTag Source { get; set; }
 
     public void Handle(IEffectBundle bundle)
     {
         _bundleQueue.Enqueue(bundle);
-        
+
         if (_currentlyProcessingEffectBundle is not null)
         {
             return;

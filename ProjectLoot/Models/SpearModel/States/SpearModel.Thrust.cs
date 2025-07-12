@@ -60,6 +60,11 @@ partial class SpearModel
                 NextState = States.Get<Thrust>();
             }
             
+            if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                NextState = States.Get<Toss>();
+            }
+            
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)

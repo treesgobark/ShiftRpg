@@ -1,4 +1,3 @@
-using ProjectLoot.Contracts;
 using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Handlers.Base;

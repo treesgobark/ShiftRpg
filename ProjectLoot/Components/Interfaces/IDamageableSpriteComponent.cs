@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace ProjectLoot.Components.Interfaces;
 
 public interface IDamageableSpriteComponent : ISpriteComponent

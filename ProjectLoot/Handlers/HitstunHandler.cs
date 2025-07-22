@@ -1,4 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.Core;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.Effects;

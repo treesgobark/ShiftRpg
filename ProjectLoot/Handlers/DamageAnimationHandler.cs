@@ -1,6 +1,3 @@
-using System.Threading.Tasks;
-using ANLG.Utilities.Core.NonStaticUtilities;
-using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Effects;
 using ProjectLoot.Handlers.Base;

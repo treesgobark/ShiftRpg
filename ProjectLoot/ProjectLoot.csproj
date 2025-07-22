@@ -665,6 +665,7 @@
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
     <Compile Include="Contracts\IWeaponHolder.cs" />
+    <Compile Include="Controllers\ChargingState.cs" />
     <Compile Include="Controllers\ParentedTimedState.cs" />
     <Compile Include="DataTypes\AttackData.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs">

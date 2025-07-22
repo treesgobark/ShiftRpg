@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ProjectLoot.Effects.Base;
 
 namespace ProjectLoot.Effects;

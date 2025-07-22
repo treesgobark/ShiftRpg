@@ -1,6 +1,6 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.States;
 using ProjectLoot.Entities;
 using ProjectLoot.Factories;
 

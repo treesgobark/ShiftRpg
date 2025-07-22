@@ -1,6 +1,5 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
-using FlatRedBall.Debugging;
+using ANLG.Utilities.Core;
+using ANLG.Utilities.States;
 using FlatRedBall.Input;
 using ProjectLoot.Controllers;
 

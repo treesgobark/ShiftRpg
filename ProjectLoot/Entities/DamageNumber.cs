@@ -1,5 +1,4 @@
-using ANLG.Utilities.Core.Constants;
-using ANLG.Utilities.Core.Extensions;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using Microsoft.Xna.Framework;

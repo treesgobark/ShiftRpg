@@ -1,6 +1,5 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
-using Microsoft.Xna.Framework;
+using ANLG.Utilities.Core;
+using ANLG.Utilities.States;
 using ProjectLoot.Controllers;
 
 namespace ProjectLoot.Entities;

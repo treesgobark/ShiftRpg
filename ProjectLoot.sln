@@ -27,7 +27,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StateInterpolationShared", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiaInGum", "..\Gum\SvgPlugin\SkiaInGumShared\SkiaInGum.csproj", "{610E7665-E62F-4E1E-8A8E-8B48CA792E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities.Core", "..\ANLG.Utilities.FlatRedBall\ANLG.Utilities.Core\ANLG.Utilities.Core.csproj", "{BF58D4FF-589A-4714-8A27-8336C2EF3292}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANLG.Utilities", "..\ANLG.Utilities.FlatRedBall\ANLG.Utilities\ANLG.Utilities.csproj", "{BF58D4FF-589A-4714-8A27-8336C2EF3292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

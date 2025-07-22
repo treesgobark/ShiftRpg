@@ -1,4 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using ProjectLoot.Components.Interfaces;
 

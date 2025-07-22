@@ -1,9 +1,8 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.States;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
-using ProjectLoot.Contracts;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;

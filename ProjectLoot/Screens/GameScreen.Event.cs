@@ -109,7 +109,7 @@ namespace ProjectLoot.Screens
             }
         }
         
-        void OnMeleeHitboxVsButtonCollided (Entities.MeleeHitbox meleeHitbox, Entities.Button button) 
+        void OnMeleeHitboxVsButtonCollided (MeleeHitbox meleeHitbox, Button button) 
         {
             if (!meleeHitbox.AppliesTo.Contains(button.Effects.Team)) { return; }
             if (!meleeHitbox.IsActive) { return; }

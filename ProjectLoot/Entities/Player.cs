@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using ANLG.Utilities.States;
 using FlatRedBall;
 using FlatRedBall.Input;
-using GlueControl.Editing;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components;
 using ProjectLoot.Contracts;

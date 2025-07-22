@@ -1,9 +1,7 @@
 using ANLG.Utilities.FlatRedBall.Extensions;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
 using Microsoft.Xna.Framework.Input;
-using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using Keyboard = FlatRedBall.Input.Keyboard;
 using Mouse = FlatRedBall.Input.Mouse;

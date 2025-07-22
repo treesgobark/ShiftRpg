@@ -1,6 +1,5 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
-using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using ANLG.Utilities.Core;
+using ANLG.Utilities.States;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;

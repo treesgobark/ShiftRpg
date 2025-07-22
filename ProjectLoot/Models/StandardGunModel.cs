@@ -1,6 +1,6 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
+using ANLG.Utilities.States;
 using Microsoft.Xna.Framework.Audio;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;

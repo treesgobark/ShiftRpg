@@ -1,4 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.Core;
 using FlatRedBall;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Contracts;

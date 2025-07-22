@@ -1,6 +1,6 @@
 // using System.Diagnostics;
-// using ANLG.Utilities.Core.NonStaticUtilities;
-// using ANLG.Utilities.Core.States;
+// using ANLG.Utilities.NonStaticUtilities;
+// using ANLG.Utilities.States;
 // using Microsoft.Xna.Framework;
 // using ProjectLoot.Components;
 // using ProjectLoot.Components.Interfaces;

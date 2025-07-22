@@ -1,17 +1,10 @@
-using System.Collections.Generic;
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
-using ANLG.Utilities.Core.StaticUtilities;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
-using FlatRedBall.Debugging;
-using FlatRedBall.Math.Geometry;
-using GlueControl.Editing;
+using ANLG.Utilities.States;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
-using ProjectLoot.Entities;
-using ProjectLoot.Factories;
 
 namespace ProjectLoot.Models.SpearModel;
 

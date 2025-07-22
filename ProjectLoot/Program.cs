@@ -1,5 +1,7 @@
 global using System;
 global using System.Linq;
+using System.IO;
+using System.Linq;
 
 namespace ProjectLoot
 {
@@ -26,7 +28,7 @@ namespace ProjectLoot
                     }
                     catch (Exception e)
                     {
-                        System.IO.File.WriteAllText("CrashInfo.txt", e.ToString());
+                        File.WriteAllText("CrashInfo.txt", e.ToString());
                         throw;
                     }
                 }

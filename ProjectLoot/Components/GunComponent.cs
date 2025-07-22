@@ -1,4 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
 using FlatRedBall;
 using FlatRedBall.Forms.MVVM;

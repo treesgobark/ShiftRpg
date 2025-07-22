@@ -1,6 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.StaticUtilities;
-using FlatRedBall.Glue.StateInterpolation;
+using ANLG.Utilities.Core;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Effects;

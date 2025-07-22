@@ -1,18 +1,19 @@
 using FlatRedBall;
+using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
 
 namespace ProjectLoot
 {
-    public partial class Game1 : Microsoft.Xna.Framework.Game
+    public partial class Game1 : Game
     {
         GraphicsDeviceManager graphics;
 
         
         partial void GeneratedInitializeEarly();
         partial void GeneratedInitialize();
-        partial void GeneratedUpdate(Microsoft.Xna.Framework.GameTime gameTime);
-        partial void GeneratedDrawEarly(Microsoft.Xna.Framework.GameTime gameTime);
-        partial void GeneratedDraw(Microsoft.Xna.Framework.GameTime gameTime);
+        partial void GeneratedUpdate(GameTime gameTime);
+        partial void GeneratedDrawEarly(GameTime gameTime);
+        partial void GeneratedDraw(GameTime gameTime);
 
         public Game1() : base()
         {
@@ -56,7 +57,7 @@ namespace ProjectLoot
         {
             FlatRedBallServices.Update(gameTime);
 
-            FlatRedBall.Screens.ScreenManager.Activity();
+            ScreenManager.Activity();
 
             GeneratedUpdate(gameTime);
 

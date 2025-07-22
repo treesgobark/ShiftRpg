@@ -1,5 +1,5 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
+using ANLG.Utilities.States;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;

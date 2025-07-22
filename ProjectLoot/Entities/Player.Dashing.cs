@@ -1,6 +1,6 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.Core.States;
+using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.Extensions;
+using ANLG.Utilities.States;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Controllers;
 using ProjectLoot.DataTypes;

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
 using ProjectLoot.Handlers.Base;

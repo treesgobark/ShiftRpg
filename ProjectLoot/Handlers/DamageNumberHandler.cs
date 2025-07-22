@@ -1,7 +1,4 @@
-using ANLG.Utilities.Core.NonStaticUtilities;
-using FlatRedBall.Graphics;
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Factories;
 using ProjectLoot.Handlers.Base;

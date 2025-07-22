@@ -17,11 +17,11 @@ namespace ProjectLoot.Screens
                 Forms.MainMenuInstance.PlayButton.IsFocused = true;
             }
 
-            GumScreen.CurrentScreenState = MainMenuGumRuntime.Screen.Main;
-            Forms.MainMenuInstance.PlayButton.Click += (_, _) => ScreenManager.MoveToScreen("TestLevel");
+            GumScreen.CurrentScreenState               =  MainMenuGumRuntime.Screen.Main;
+            Forms.MainMenuInstance.PlayButton.Click    += (_, _) => ScreenManager.MoveToScreen("TestLevel");
             Forms.MainMenuInstance.OptionsButton.Click += OnClickOptions;
-            Forms.OptionsInstance.BackButton.Click += OnClickBack;
-            Forms.MainMenuInstance.QuitButton.Click += (_, _) => FlatRedBallServices.Game.Exit();
+            Forms.OptionsInstance.BackButton.Click     += OnClickBack;
+            Forms.MainMenuInstance.QuitButton.Click    += (_, _) => FlatRedBallServices.Game.Exit();
         }
 
         private void OnClickBack(object o, EventArgs eventArgs)

@@ -1,23 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using ANLG.Utilities.Core.Extensions;
-using FlatRedBall;
-using FlatRedBall.Input;
-using FlatRedBall.Instructions;
-using FlatRedBall.AI.Pathfinding;
-using FlatRedBall.Debugging;
-using FlatRedBall.Graphics.Animation;
-using FlatRedBall.Gui;
-using FlatRedBall.Math;
-using FlatRedBall.Math.Geometry;
-using FlatRedBall.Localization;
-using Microsoft.Xna.Framework;
-
+using ANLG.Utilities.Core;
 using ProjectLoot.Entities;
 using ProjectLoot.Factories;
-
 
 namespace ProjectLoot.Screens
 {

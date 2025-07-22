@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using ANLG.Utilities.Core.NonStaticUtilities;
-using ANLG.Utilities.FlatRedBall.Extensions;
 using Microsoft.Xna.Framework;
 using ProjectLoot.Effects.Base;
 

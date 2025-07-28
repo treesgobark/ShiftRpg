@@ -9,4 +9,5 @@ public class CorpseInformationComponent : ICorpseInformationComponent
     public required string BodyChainName { get; set; }
     public required AnimationChainList ExplosionAnimationChains { get; set; }
     public required string ExplosionChainName { get; set; }
+    public TimeSpan HitstopDuration { get; set; }
 }

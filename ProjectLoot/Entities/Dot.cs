@@ -63,7 +63,7 @@ namespace ProjectLoot.Entities
             Effects.AddHandler(new KnockbackHandler(Effects, Transform));
             Effects.AddHandler(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
             Effects.AddHandler(new PoiseDamageHandler(Effects, Poise));
-            Effects.AddHandler(new CorpseSpawnHandler(Effects, Transform, CorpseInformationComponent));
+            Effects.AddHandler(new CorpseSpawnHandler(Effects, Transform, CorpseInformationComponent, Hitstop));
             Effects.AddHandler(new DestructionHandler(Effects, this));
         }
 

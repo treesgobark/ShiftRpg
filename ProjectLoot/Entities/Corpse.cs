@@ -1,12 +1,18 @@
 using ANLG.Utilities.Core;
 using ANLG.Utilities.FlatRedBall.NonStaticUtilities;
 using FlatRedBall;
+using Microsoft.Xna.Framework;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Controllers.ModularStates;
 
 namespace ProjectLoot.Entities
 {
     public partial class Corpse
     {
+        private Vector3 StoredVelocity { get; set; }
+        private DurationModule HitstopDuration { get; set; }
+        private bool _hasSetVelocity;
+        
         private static TimeSpan SlideDuration => TimeSpan.FromMilliseconds(1500);
         private static int Pops => 4;
             
@@ -31,6 +37,18 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
+            HitstopDuration.CustomActivity();
+            if (HitstopDuration is not { HasDurationCompleted: true })
+            {
+                return;
+            }
+
+            if (!_hasSetVelocity)
+            {
+                Velocity        = StoredVelocity;
+                _hasSetVelocity = true;
+            }
+                
             HandlePops();
             
             Velocity *= MathF.Pow(0.1f, TimeManager.SecondDifference);
@@ -38,7 +56,6 @@ namespace ProjectLoot.Entities
 
         private void HandlePops()
         {
-            
             if (PopsHandled < GoalPopsHandled)
             {
                 ExplosionSpriteInstance.CurrentFrameIndex = 0;
@@ -83,7 +100,8 @@ namespace ProjectLoot.Entities
             BodySpriteInstance.CurrentChainName      = corpseInformation.BodyChainName;
             ExplosionSpriteInstance.AnimationChains  = corpseInformation.ExplosionAnimationChains;
             ExplosionSpriteInstance.CurrentChainName = corpseInformation.ExplosionChainName;
-            Velocity                                 = transformComponent.Velocity;
+            StoredVelocity                           = transformComponent.Velocity;
+            HitstopDuration = new DurationModule(FrbTimeManager.Instance, corpseInformation.HitstopDuration);
         }
     }
 }

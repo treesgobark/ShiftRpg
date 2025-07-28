@@ -8,4 +8,5 @@ public interface ICorpseInformationComponent
     string BodyChainName { get; }
     AnimationChainList ExplosionAnimationChains { get; }
     string ExplosionChainName { get; }
+    TimeSpan HitstopDuration { get; set; }
 }

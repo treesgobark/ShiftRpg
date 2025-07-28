@@ -15,6 +15,7 @@ partial class FistsModel
 {
     private class LightRightHook : ParentedTimedState<FistsModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
@@ -35,11 +36,12 @@ partial class FistsModel
         private IState? NextState { get; set; }
         
         public LightRightHook(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState = null;
 
@@ -58,14 +60,14 @@ partial class FistsModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                NextState = States.Get<LightLeftHook>();
+                NextState = _states.Get<LightLeftHook>();
             }
             
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -73,7 +75,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<LightRightHookRecovery>();
+                return _states.Get<LightRightHookRecovery>();
             }
 
             return null;
@@ -86,12 +88,10 @@ partial class FistsModel
             Hitbox.SpriteInstance.Alpha = 1f - NormalizedProgress;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

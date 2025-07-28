@@ -13,6 +13,7 @@ partial class SpearModel
 {
     private class Thrust : ParentedTimedState<SpearModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(180);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(75);
@@ -34,11 +35,12 @@ partial class SpearModel
         private IState? NextState { get; set; }
         
         public Thrust(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState = null;
 
@@ -57,19 +59,19 @@ partial class SpearModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                NextState = States.Get<Thrust>();
+                NextState = _states.Get<Thrust>();
             }
             
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                NextState = States.Get<Toss>();
+                NextState = _states.Get<Toss>();
             }
             
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -77,7 +79,7 @@ partial class SpearModel
                     return NextState;
                 }
 
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
@@ -105,12 +107,10 @@ partial class SpearModel
             );
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

@@ -8,13 +8,15 @@ namespace ProjectLoot.Models.SpearModel;
 
 partial class SpearModel
 {
-    private class TossWindup : ChargingState<Toss>
+    private class TossWindup : DurationState<Toss>
     {
-        public override TimeSpan MaxChargeDuration => TimeSpan.FromMilliseconds(480);
-        private static TimeSpan MaxWindupDuration => TimeSpan.FromMilliseconds(960);
-
-        private float NormalizedProgress => (float)(TimeInState / MaxWindupDuration).Saturate();
+        private readonly IReadonlyStateMachine _states;
+        private static TimeSpan MaxChargeDuration => TimeSpan.FromMilliseconds(480);
+        public override TimeSpan Duration => TimeSpan.FromMilliseconds(960);
         
+        private float ChargeProgress => (float)(TimeInState / MaxChargeDuration).Saturate();
+        private bool HasChargeCompleted => ChargeProgress >= 1;
+
         private static float LateralOffset => 24;
         private static float PerpendicularOffset => -4;
         private static float WindupDistance => -16;
@@ -24,24 +26,25 @@ partial class SpearModel
             + Vector3Extensions.FromRotationAndLength(Parent.AttackDirection + Rotation.QuarterTurn, PerpendicularOffset);
 
         public TossWindup(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
-            : base(states, timeManager, tossState) { }
+            : base(timeManager, tossState)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
         }
 
         public override IState? EvaluateExitConditions()
         {
-            if (NormalizedProgress >= 1)
+            if (HasDurationCompleted)
             {
                 return EmptyState.Instance;
             }
             
             if (!Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.IsDown)
             {
-                return IsCharged ? States.Get<TossActive>() : EmptyState.Instance;
+                return HasChargeCompleted ? _states.Get<TossActive>() : EmptyState.Instance;
             }
 
             return null;
@@ -53,17 +56,10 @@ partial class SpearModel
             Parent.Hitbox.RelativeY = CurrentWindupVector.Y;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
-            if (nextState is TossActive)
-            {
-                Parent.ChargeProgress = ChargeProgress;
-                return;
-            }
-            
+            Parent.ChargeProgress = NormalizedProgress;
             Parent.Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
     }
 }

@@ -9,12 +9,15 @@ public partial class Player
 {
     protected class GunMode : ParentedTimedState<Player>
     {
+        private readonly IReadonlyStateMachine _states;
+
         public GunMode(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
-            : base(states, timeManager, parent) { }
+            : base(timeManager, parent)
+        {
+            _states = states;
+        }
 
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             Parent.GunComponent.Equip();
             Parent.TargetLineSprite.Visible = true;
@@ -41,33 +44,31 @@ public partial class Player
         {
             if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude > 0)
             {
-                return States.Get<Dashing>();
+                return _states.Get<Dashing>();
             }
 
             if (Parent.GameplayInputDevice.Dash.WasJustPressed && Parent.GameplayInputDevice.Movement.Magnitude == 0)
             {
-                return States.Get<Guarding>();
+                return _states.Get<Guarding>();
             }
             
             if (Parent.GameplayInputDevice.AimInMeleeRange)
             {
                 return Parent.MeleeWeaponComponent.IsEmpty
-                    ? States.Get<Unarmed>()
-                    : States.Get<MeleeWeaponMode>();
+                    ? _states.Get<Unarmed>()
+                    : _states.Get<MeleeWeaponMode>();
             }
         
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Parent.GunComponent.Unequip();
             Parent.TargetLineSprite.Visible = false;
             Parent.ReticleSprite.Visible    = false;
         }
 
-        public override void Uninitialize() { }
-    
         private void SetRotation()
         {
             float? angle = Parent.GameplayInputDevice.Aim.GetAngle();

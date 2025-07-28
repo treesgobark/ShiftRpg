@@ -23,14 +23,14 @@ public partial class SpearModel : IMeleeWeaponModel
         States.Add(new Thrust(States, timeManager, this));
         States.Add(new Toss(States, timeManager, this));
         
-        States.InitializeStartingState<NotEquipped>();
+        States.SetStartingState<NotEquipped>();
     }
     
     public MeleeWeaponData MeleeWeaponData { get; set; }
     public bool IsEquipped { get; set; }
     
-    private IEffectsComponent HolderEffects { get; }
-    private IMeleeWeaponComponent MeleeWeaponComponent { get; }
+    public IEffectsComponent HolderEffects { get; }
+    public IMeleeWeaponComponent MeleeWeaponComponent { get; }
     
     public void Activity()
     {

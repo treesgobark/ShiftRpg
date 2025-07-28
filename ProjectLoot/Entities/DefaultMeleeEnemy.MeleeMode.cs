@@ -10,11 +10,9 @@ public partial class DefaultMeleeEnemy
     protected class MeleeMode : ParentedTimedState<DefaultMeleeEnemy>
     {
         public MeleeMode(DefaultMeleeEnemy parent, IReadonlyStateMachine states, ITimeManager timeManager)
-            : base(states, timeManager, parent) { }
+            : base(timeManager, parent) { }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity()
         {
@@ -26,10 +24,8 @@ public partial class DefaultMeleeEnemy
             return null;
         }
     
-        public override void BeforeDeactivate(IState? nextState) { }
+        public override void BeforeDeactivate() { }
 
-        public override void Uninitialize() { }
-    
         private void SetRotation()
         {
             if (!Parent.InputEnabled)

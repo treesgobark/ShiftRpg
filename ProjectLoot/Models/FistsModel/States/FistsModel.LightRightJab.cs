@@ -15,6 +15,7 @@ partial class FistsModel
 {
     private class LightRightJab : ParentedTimedState<FistsModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(50);
@@ -34,11 +35,12 @@ partial class FistsModel
         private IState? NextState { get; set; }
         
         public LightRightJab(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState = null;
 
@@ -57,14 +59,14 @@ partial class FistsModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                NextState = States.Get<LightLeftJab>();
+                NextState = _states.Get<LightLeftJab>();
             }
             
             if (TimeInState >= TotalDuration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -72,7 +74,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<LightRightJabRecovery>();
+                return _states.Get<LightRightJabRecovery>();
             }
 
             return null;
@@ -85,12 +87,10 @@ partial class FistsModel
             Circle.RelativeX                = InitialDistance + NormalizedSwingProgress * TravelDistance;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

@@ -10,19 +10,17 @@ partial class StandardGunModel
 {
     private class Ready : TimedState
     {
+        private readonly IReadonlyStateMachine _states;
         private StandardGunModel GunModel { get; }
 
         public Ready(IReadonlyStateMachine states, ITimeManager timeManager, StandardGunModel gunModel)
-            : base(states, timeManager)
+            : base(timeManager)
         {
-            GunModel  = gunModel;
+            _states = states;
+            GunModel     = gunModel;
         }
 
-        public override void Initialize()
-        {
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
         }
 
@@ -30,20 +28,20 @@ partial class StandardGunModel
         {
             if (!GunModel.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
 
             if (GunModel.CurrentRoundsInMagazine <= 0
                 || GunModel.GunComponent.GunInputDevice.Reload.WasJustPressed && !GunModel.IsFull)
             {
-                return States.Get<Reloading>();
+                return _states.Get<Reloading>();
             }
 
             if (GunModel.GunData.IsSingleShot     && GunModel.GunComponent.GunInputDevice.Fire.WasJustPressed
                 || !GunModel.GunData.IsSingleShot && GunModel.GunComponent.GunInputDevice.Fire.IsDown)
             {
                 Fire();
-                return States.Get<Recovery>();
+                return _states.Get<Recovery>();
             }
 
             return null;
@@ -53,11 +51,7 @@ partial class StandardGunModel
         {
         }
 
-        public override void BeforeDeactivate(IState? nextState)
-        {
-        }
-
-        public override void Uninitialize()
+        public override void BeforeDeactivate()
         {
         }
 

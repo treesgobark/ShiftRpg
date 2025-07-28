@@ -8,7 +8,8 @@ public interface IEffectBundle : IEnumerable<IEffect>
     Guid EffectId { get; }
     bool IgnoreUniqueness { get; }
 
-    bool TryGetEffect(Type type, out IEffect effect);
+    bool          TryGetEffect(Type type, out IEffect effect);
+    EffectBundle Clone();
 }
 
 public class EffectBundle : IEffectBundle
@@ -25,11 +26,16 @@ public class EffectBundle : IEffectBundle
         IgnoreUniqueness = ignoreUniqueness;
     }
 
+    private EffectBundle(EffectBundle other)
+    {
+        _effects = other._effects.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+    }
+
     public void AddEffect<T>(T effect) where T : IEffect
     {
         if (_effects.ContainsKey(typeof(T)))
         {
-            throw new InvalidOperationException($"Handler already exists for {typeof(T).Name}");
+            throw new InvalidOperationException($"Effect already exists for {typeof(T).Name}");
         }
 
         _effects[typeof(T)] = effect;
@@ -49,6 +55,11 @@ public class EffectBundle : IEffectBundle
 
         effect = null!;
         return false;
+    }
+
+    public EffectBundle Clone()
+    {
+        return new EffectBundle(this);
     }
 
     public IEnumerator<IEffect> GetEnumerator() => _effects.Values.GetEnumerator();

@@ -72,7 +72,7 @@ namespace ProjectLoot.Entities
         {
             States = new StateMachine();
             States.Add(new MeleeMode(this, States, FrbTimeManager.Instance));
-            States.InitializeStartingState<MeleeMode>();
+            States.SetStartingState<MeleeMode>();
         }
 
         private void CustomActivity()
@@ -89,7 +89,7 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            States.Uninitialize();
+            States.ShutDown();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

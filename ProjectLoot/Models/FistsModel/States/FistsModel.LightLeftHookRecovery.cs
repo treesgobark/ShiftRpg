@@ -8,35 +8,37 @@ partial class FistsModel
 {
     private class LightLeftHookRecovery : ParentedTimedState<FistsModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
 
         public LightLeftHookRecovery(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        protected override void AfterTimedStateActivate() { }
 
         public override IState? EvaluateExitConditions()
         {
             if (!Parent.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                return States.Get<LightRightFinisher>();
+                return _states.Get<LightRightFinisher>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                return States.Get<HeavyRightJab>();
+                return _states.Get<HeavyRightJab>();
             }
             
             if (TimeInState >= Duration)
             {
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
@@ -46,10 +48,8 @@ partial class FistsModel
         {
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
         }
-
-        public override void Uninitialize() { }
     }
 }

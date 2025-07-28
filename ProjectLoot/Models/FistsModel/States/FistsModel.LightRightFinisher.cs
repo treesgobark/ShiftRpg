@@ -14,6 +14,7 @@ partial class FistsModel
 {
     private class LightRightFinisher : ParentedTimedState<FistsModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan SwingDuration => TimeSpan.FromMilliseconds(60);
         private static TimeSpan TotalDuration => TimeSpan.FromMilliseconds(120);
         private static TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(150);
@@ -33,11 +34,12 @@ partial class FistsModel
         private IState? NextState { get; set; }
         
         public LightRightFinisher(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState = null;
 
@@ -58,7 +60,7 @@ partial class FistsModel
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -66,7 +68,7 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<LightRightFinisherRecovery>();
+                return _states.Get<LightRightFinisherRecovery>();
             }
 
             return null;
@@ -79,12 +81,10 @@ partial class FistsModel
             Circle.RelativeX                = InitialDistance + MathF.Pow(NormalizedSwingProgress, 4) * TravelDistance;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

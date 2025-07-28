@@ -14,6 +14,7 @@ partial class FistsModel
 {
     private class HeavyRightJab : ParentedTimedState<FistsModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan MinStartupDuration => TimeSpan.FromMilliseconds(18);
         private static TimeSpan MaxStartupDuration => TimeSpan.FromMilliseconds(480);
         private static TimeSpan ActiveDuration => TimeSpan.FromMilliseconds(60);
@@ -64,11 +65,12 @@ partial class FistsModel
         private IState? NextState { get; set; }
 
         public HeavyRightJab(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState          = null;
             NormalizedProgress = 0;
@@ -87,14 +89,14 @@ partial class FistsModel
         {
             // if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.Attack.WasJustPressed)
             // {
-            //     NextState = States.Get<HeavyLeftJab>();
+            //     NextState = _states.Get<HeavyLeftJab>();
             // }
             
             if (RecoveryProgress >= 1)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -102,8 +104,8 @@ partial class FistsModel
                     return NextState;
                 }
 
-                return States.Get<HeavyRightJabRecovery>();
-                // return States.Get<Idle>();
+                return _states.Get<HeavyRightJabRecovery>();
+                // return _states.Get<Idle>();
             }
 
             return null;
@@ -150,12 +152,10 @@ partial class FistsModel
             }
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

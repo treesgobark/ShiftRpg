@@ -8,16 +8,18 @@ partial class SpearModel
 {
     private class TossedSpearInGround : ParentedTimedState<Toss>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan RecoveryDuration => TimeSpan.FromMilliseconds(960);
         
         private float NormalizedProgress => (float)(TimeInState / RecoveryDuration).Saturate();
 
         public TossedSpearInGround(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
-            : base(states, timeManager, tossState) { }
+            : base(timeManager, tossState)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             Parent.Hitbox.IsActive = false;
         }
@@ -27,12 +29,12 @@ partial class SpearModel
             // if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             // {
             //     Parent.Hitbox?.Destroy();
-            //     return States.Get<Thrust>();
+            //     return _states.Get<Thrust>();
             // }
             
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                return States.Get<TossRecall>();
+                return _states.Get<TossRecall>();
             }
             
             if (NormalizedProgress >= 1)
@@ -48,8 +50,6 @@ partial class SpearModel
             Parent.Hitbox.SpriteInstance.Alpha = 1f - MathF.Pow(NormalizedProgress, 3);
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

@@ -665,7 +665,16 @@
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponCache.cs" />
     <Compile Include="Contracts\IWeaponHolder.cs" />
-    <Compile Include="Controllers\ChargingState.cs" />
+    <Compile Include="Controllers\DurationState.cs" />
+    <Compile Include="Controllers\ModularStates\Abstractions\IDurationModule.cs" />
+    <Compile Include="Controllers\ModularStates\Abstractions\ISegmentModule.cs" />
+    <Compile Include="Controllers\ModularStates\Abstractions\ITimerModule.cs" />
+    <Compile Include="Controllers\ModularStates\DurationModule.cs" />
+    <Compile Include="Controllers\ModularStates\LoggingModule.cs" />
+    <Compile Include="Controllers\ModularStates\ModularState.cs" />
+    <Compile Include="Controllers\ModularStates\SegmentModule.cs" />
+    <Compile Include="Controllers\ModularStates\StateMachineModule.cs" />
+    <Compile Include="Controllers\ModularStates\TimerModule.cs" />
     <Compile Include="Controllers\ParentedTimedState.cs" />
     <Compile Include="DataTypes\AttackData.cs" />
     <Compile Include="DataTypes\AttackData.Generated.cs">
@@ -1182,45 +1191,6 @@
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.SpearInGround.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.Recall.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.Windup.cs" />
-    <Compile Include="Models\SwordModel.Active.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Idle.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.NotEquipped.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Recovery.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash1.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash1Recovery.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash2.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash2Recovery.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.CircleSlash.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.CircleSlashRecovery.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash3.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Slash3Recovery.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SwordModel.Startup.cs">
-      <DependentUpon>SwordModel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\StandardGunModel.Reloading.cs">
       <DependentUpon>StandardGunModel.cs</DependentUpon>
     </Compile>
@@ -1235,7 +1205,23 @@
     <Compile Include="Models\StandardGunModel.Recovery.cs">
       <DependentUpon>StandardGunModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\SwordModel.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Spin.Active.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Spin.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Active.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.CircleSlash.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.CircleSlashRecovery.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Idle.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.NotEquipped.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Recovery.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash1.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash1Recovery.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash2.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash2Recovery.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash3.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Slash3Recovery.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Spin.Windup.cs" />
+    <Compile Include="Models\SwordModel\States\SwordModel.Startup.cs" />
+    <Compile Include="Models\SwordModel\SwordModel.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />

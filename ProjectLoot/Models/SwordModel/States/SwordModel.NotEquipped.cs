@@ -8,12 +8,15 @@ partial class SwordModel
 {
     private class NotEquipped : ParentedTimedState<SwordModel>
     {
-        public NotEquipped(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel)
-            : base(states, timeManager, swordModel) { }
-        
-        public override void Initialize() { }
+        private readonly IReadonlyStateMachine _states;
 
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        public NotEquipped(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel)
+            : base(timeManager, swordModel)
+        {
+            _states = states;
+        }
+        
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity() { }
 
@@ -21,14 +24,12 @@ partial class SwordModel
         {
             if (Parent.IsEquipped)
             {
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

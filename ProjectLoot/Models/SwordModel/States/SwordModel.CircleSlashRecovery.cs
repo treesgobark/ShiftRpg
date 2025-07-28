@@ -8,16 +8,18 @@ public partial class SwordModel
 {
     private class CircleSlashRecovery : ParentedTimedState<SwordModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(240);
         
         private IState? NextState { get; set; }
         
         public CircleSlashRecovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
-            : base(states, timeManager, parent) { }
+            : base(timeManager, parent)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             NextState       = null;
         }
@@ -26,14 +28,14 @@ public partial class SwordModel
         {
             if (TimeInState > TimeSpan.Zero && Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                NextState = States.Get<Slash1>();
+                NextState = _states.Get<Slash1>();
             }
 
             if (TimeInState >= Duration)
             {
                 if (!Parent.IsEquipped)
                 {
-                    return States.Get<NotEquipped>();
+                    return _states.Get<NotEquipped>();
                 }
 
                 if (NextState is not null)
@@ -41,7 +43,7 @@ public partial class SwordModel
                     return NextState;
                 }
                 
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
@@ -49,8 +51,6 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity() { }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

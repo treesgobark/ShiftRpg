@@ -35,15 +35,15 @@ public partial class FistsModel : IMeleeWeaponModel
         States.Add(new HeavyRightJab(States, _timeManager, this));
         States.Add(new HeavyRightJabRecovery(States, _timeManager, this));
         
-        States.InitializeStartingState<NotEquipped>();
+        States.SetStartingState<NotEquipped>();
     }
     
     public MeleeWeaponData MeleeWeaponData { get; set; }
     public bool IsEquipped { get; set; }
 
-    private IEffectsComponent HolderEffects { get; }
+    public IEffectsComponent HolderEffects { get; }
 
-    private IMeleeWeaponComponent MeleeWeaponComponent { get; }
+    public IMeleeWeaponComponent MeleeWeaponComponent { get; }
 
     private TimeSpan KnockTowardDuration => TimeSpan.FromMilliseconds(60);
     private float KnockTowardDistance => 40f;

@@ -12,6 +12,7 @@ partial class SpearModel
 {
     private class TossActive : ParentedTimedState<Toss>
     {
+        private readonly IReadonlyStateMachine _states;
         private EffectBundle _targetHitEffects;
         private static TimeSpan ActiveDuration => TimeSpan.FromMilliseconds(120);
         
@@ -46,11 +47,12 @@ partial class SpearModel
         private IState? _nextState;
 
         public TossActive(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
-            : base(states, timeManager, tossState) { }
+            : base(timeManager, tossState)
+        {
+            _states = states;
+        }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             _nextState = null;
             Parent.Hitbox.AttachTo(null);
@@ -66,7 +68,7 @@ partial class SpearModel
         {
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                _nextState = States.Get<TossRecall>();
+                _nextState = _states.Get<TossRecall>();
             }
             
             if (NormalizedProgress >= 1)
@@ -76,7 +78,7 @@ partial class SpearModel
                     return _nextState;
                 }
 
-                return States.Get<TossedSpearInGround>();
+                return _states.Get<TossedSpearInGround>();
             }
 
             return null;
@@ -89,9 +91,7 @@ partial class SpearModel
             UpdateHitEffects();
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
 
         private void UpdateHitEffects()
         {

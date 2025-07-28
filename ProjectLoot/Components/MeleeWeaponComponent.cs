@@ -81,11 +81,9 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
             throw new InvalidOperationException("No melee weapons present. Cannot equip.");
         }
 
-        // IsEquipped = true;
-
         meleeWeaponModel.IsEquipped = true;
         
-        // MeleeWeaponSprite.Visible          = true;
+        MeleeWeaponSprite.Visible          = false;
         MeleeWeaponSprite.CurrentChainName = meleeWeaponModel.MeleeWeaponData.Name;
     }
 
@@ -95,8 +93,6 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         {
             meleeWeaponModel.IsEquipped = false;
         }
-
-        // IsEquipped = false;
 
         MeleeWeaponSprite.Visible = false;
     }

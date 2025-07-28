@@ -13,13 +13,22 @@ partial class SpearModel
 {
     private class Toss : ParentedTimedState<SpearModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private readonly ITimeManager _timeManager;
         private StateMachine _stateMachine;
         
         public Toss(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
-            : base(states, timeManager, weaponModel)
+            : base(timeManager, weaponModel)
         {
-            _timeManager = timeManager;
+            _states       = states;
+            _timeManager  = timeManager;
+            
+            _stateMachine = new StateMachine();
+            
+            _stateMachine.Add(new TossWindup(_stateMachine, _timeManager, this));
+            _stateMachine.Add(new TossActive(_stateMachine, _timeManager, this));
+            _stateMachine.Add(new TossedSpearInGround(_stateMachine, _timeManager, this));
+            _stateMachine.Add(new TossRecall(_stateMachine, _timeManager, this));
         }
 
         public Rotation AttackDirection { get; set; }
@@ -37,19 +46,10 @@ partial class SpearModel
         
         private float ZOffset { get; set; }
 
-        public override void Initialize()
+        protected override void AfterTimedStateActivate()
         {
-            _stateMachine = new StateMachine();
-            
-            _stateMachine.Add(new TossWindup(_stateMachine, _timeManager, this));
-            _stateMachine.Add(new TossActive(_stateMachine, _timeManager, this));
-            _stateMachine.Add(new TossedSpearInGround(_stateMachine, _timeManager, this));
-            _stateMachine.Add(new TossRecall(_stateMachine, _timeManager, this));
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
-        {
-            _stateMachine.InitializeStartingState<TossWindup>();
+            _stateMachine.SetStartingState<TossWindup>();
+            _stateMachine.AdvanceCurrentState();
             
             AttackDirection = Parent.MeleeWeaponComponent.AttackDirection;
 
@@ -68,19 +68,17 @@ partial class SpearModel
         {
             if (!_stateMachine.IsRunning)
             {
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox?.Destroy();
-            _stateMachine.Uninitialize();
+            _stateMachine.ShutDown();
         }
-
-        public override void Uninitialize() { }
 
         private void CalculateZOffset()
         {

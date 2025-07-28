@@ -1,6 +1,9 @@
+using FlatRedBall.Math.Geometry;
 using ProjectLoot.Components.Interfaces;
+using ProjectLoot.Contracts;
 using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
+using ProjectLoot.Factories;
 
 namespace ProjectLoot.Entities
 {
@@ -24,5 +27,41 @@ namespace ProjectLoot.Entities
         public IEffectBundle HolderHitEffects { get; set; } = EffectBundle.Empty;
         public IEffectsComponent HolderEffectsComponent { get; set; }
         public Team AppliesTo { get; set; }
+
+        public static MeleeHitbox CreateHitbox(IMeleeWeaponModel weaponModel)
+        {
+            MeleeHitbox? hitbox = MeleeHitboxFactory.CreateNew();
+            
+            weaponModel.MeleeWeaponComponent.AttachObjectToAttackOrigin(hitbox);
+            hitbox.ParentRotationChangesPosition   = false;
+            hitbox.ParentRotationChangesRotation   = false;
+            hitbox.HolderEffectsComponent = weaponModel.HolderEffects;
+            hitbox.AppliesTo              = ~weaponModel.MeleeWeaponComponent.Team;
+            
+            return hitbox;
+        }
+
+        public MeleeHitbox AddSpriteInfo(string chainName, TimeSpan duration)
+        {
+            SpriteInstance.CurrentChainName = chainName;
+            SpriteInstance.AnimationSpeed   = 0.99f / (float)duration.TotalSeconds;
+            SpriteInstance.RelativeZ        = 0.2f;
+            return this;
+        }
+
+        public MeleeHitbox AddCircle(float radius, float relativeX)
+        {
+            var circle = new Circle
+            {
+                Radius                  = radius,
+                RelativeX               = relativeX,
+                Visible                 = false,
+                IgnoresParentVisibility = true,
+            };
+            
+            circle.AttachTo(this);
+            Collision.Add(circle);
+            return this;
+        }
     }
 }

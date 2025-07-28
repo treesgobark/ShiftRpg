@@ -10,11 +10,9 @@ public partial class DefaultRangedEnemy
     protected class GunMode : ParentedTimedState<DefaultRangedEnemy>
     {
         public GunMode(DefaultRangedEnemy parent, IReadonlyStateMachine states, ITimeManager timeManager)
-            : base(states, timeManager, parent) { }
+            : base(timeManager, parent) { }
 
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             Parent.GunComponent.Equip();
         }
@@ -39,13 +37,11 @@ public partial class DefaultRangedEnemy
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Parent.GunComponent.Unequip();
         }
 
-        public override void Uninitialize() { }
-    
         private void SetRotation()
         {
             float? angle = Parent.EnemyInputDevice.Aim.GetAngle();

@@ -28,7 +28,7 @@
 //         {
 //             if (TimeInState > SwordModel.CurrentAttackData.StartupTimeSpan)
 //             {
-//                 return States.Get<Active>();
+//                 return _states.Get<Active>();
 //             }
 //
 //             return null;

@@ -73,15 +73,12 @@ namespace ProjectLoot.Entities
             States.Add(new Idle(States, FrbTimeManager.Instance, this));
             States.Add(new Windup(States, FrbTimeManager.Instance, this));
             States.Add(new Attacking(States, FrbTimeManager.Instance, this));
-            States.InitializeStartingState<Idle>();
+            States.SetStartingState<Idle>();
         }
 
         private void CustomActivity()
         {
-            if (States.IsInitialized)
-            {
-                States.DoCurrentStateActivity();
-            }
+            States.DoCurrentStateActivity();
             
             if (Health.CurrentHealth <= 0)
             {
@@ -91,7 +88,7 @@ namespace ProjectLoot.Entities
 
         private void CustomDestroy()
         {
-            States.Uninitialize();
+            States.ShutDown();
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)

@@ -8,18 +8,16 @@ public partial class Dot
 {
     private class Windup : ParentedTimedState<Dot>
     {
+        private readonly IReadonlyStateMachine _states;
         private static Rotation RotationPerSecond => Rotation.FullTurn;
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(1000);
         
-        public Windup(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(states, timeManager, parent)
+        public Windup(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(timeManager, parent)
         {
+            _states = states;
         }
-
-        public override void Initialize()
-        {
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        
+        protected override void AfterTimedStateActivate()
         {
         }
 
@@ -29,12 +27,12 @@ public partial class Dot
             {
                 Parent.Poise.CurrentPoiseDamage = 0;
                 
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
             
             if (TimeInState >= Duration)
             {
-                return States.Get<Attacking>();
+                return _states.Get<Attacking>();
             }
             
             return null;
@@ -48,11 +46,7 @@ public partial class Dot
                                                         * RotationPerSecond.TotalRadians;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
-        {
-        }
-
-        public override void Uninitialize()
+        public override void BeforeDeactivate()
         {
         }
     }

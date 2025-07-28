@@ -8,12 +8,15 @@ partial class SpearModel
 {
     private class Idle : ParentedTimedState<SpearModel>
     {
-        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
-        
-        public override void Initialize() { }
+        private readonly IReadonlyStateMachine _states;
 
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, SpearModel weaponModel)
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
+        
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity() { }
 
@@ -21,24 +24,22 @@ partial class SpearModel
         {
             if (!Parent.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                return States.Get<Thrust>();
+                return _states.Get<Thrust>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                return States.Get<Toss>();
+                return _states.Get<Toss>();
             }
 
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

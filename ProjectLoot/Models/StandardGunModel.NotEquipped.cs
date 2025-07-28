@@ -7,23 +7,23 @@ partial class StandardGunModel
 {
     private class NotEquipped : TimedState
     {
+        private readonly IReadonlyStateMachine _states;
         private StandardGunModel GunModel { get; }
 
         public NotEquipped(IReadonlyStateMachine states, ITimeManager timeManager, StandardGunModel gunModel)
-            : base(states, timeManager)
+            : base(timeManager)
         {
-            GunModel = gunModel;
+            _states = states;
+            GunModel     = gunModel;
         }
     
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        protected override void AfterTimedStateActivate() { }
 
         public override IState? EvaluateExitConditions()
         {
             if (GunModel.IsEquipped)
             {
-                return States.Get<Ready>();
+                return _states.Get<Ready>();
             }
         
             return null;
@@ -31,13 +31,11 @@ partial class StandardGunModel
 
         protected override void AfterTimedStateActivity() { }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             GunModel.GunViewModel.MaximumMagazineCount = GunModel.GunData.MagazineSize;
             GunModel.GunViewModel.CurrentMagazineCount = GunModel.CurrentRoundsInMagazine;
             GunModel.GunViewModel.GunClass = GunModel.GunData.GunClass;
         }
-
-        public override void Uninitialize() { }
     }
 }

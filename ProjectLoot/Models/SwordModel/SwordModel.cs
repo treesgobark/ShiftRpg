@@ -30,16 +30,17 @@ public partial class SwordModel : IMeleeWeaponModel
         States.Add(new Slash3Recovery(States, _timeManager, this));
         States.Add(new CircleSlash(States, _timeManager, this));
         States.Add(new CircleSlashRecovery(States, _timeManager, this));
+        States.Add(new Spin(_timeManager, States, this));
         
-        States.InitializeStartingState<NotEquipped>();
+        States.SetStartingState<NotEquipped>();
     }
     
     public MeleeWeaponData MeleeWeaponData { get; set; }
     public bool IsEquipped { get; set; }
 
-    private IEffectsComponent HolderEffects { get; }
+    public IEffectsComponent HolderEffects { get; }
 
-    private IMeleeWeaponComponent MeleeWeaponComponent { get; }
+    public IMeleeWeaponComponent MeleeWeaponComponent { get; }
     
     public void Activity()
     {

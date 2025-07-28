@@ -15,6 +15,7 @@ using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
 using ProjectLoot.Models.SpearModel;
+using SwordModel = ProjectLoot.Models.SwordModel;
 
 namespace ProjectLoot.Entities;
 
@@ -155,7 +156,7 @@ public partial class Player
 
     private void CustomDestroy()
     {
-        StateMachines.Uninitialize();
+        StateMachines.ShutDown();
     }
 
     private static void CustomLoadStaticContent(string contentManagerName) { }
@@ -205,22 +206,12 @@ public class StateMachineManager : IStateMachineManager
 
     public void Add(IStateMachine stateMachine)
     {
-        if (!stateMachine.IsInitialized)
-        {
-            throw new InvalidOperationException("Cannot add a state machine that has not already been initialized");
-        }
-        
         _stateMachines.Add(stateMachine);
     }
 
     public void Add<TSearch>(IStateMachine stateMachine, bool isExact = false) where TSearch : IState
     {
-        if (stateMachine.IsInitialized)
-        {
-            throw new InvalidOperationException("Cannot add a state machine that has already been initialized");
-        }
-        
-        stateMachine.InitializeStartingState<TSearch>(isExact);
+        stateMachine.SetStartingState<TSearch>(isExact);
         _stateMachines.Add(stateMachine);
     }
 
@@ -236,11 +227,11 @@ public class StateMachineManager : IStateMachineManager
         }
     }
 
-    public void Uninitialize()
+    public void ShutDown()
     {
-        foreach (var stateMachine in _stateMachines)
+        foreach (IStateMachine stateMachine in _stateMachines)
         {
-            stateMachine.Uninitialize();
+            stateMachine.ShutDown();
         }
         
         _stateMachines.Clear();

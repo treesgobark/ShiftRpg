@@ -11,14 +11,16 @@ public partial class Player
 {
     protected class Dashing : ParentedTimedState<Player>
     {
+        private readonly IReadonlyStateMachine _states;
         private TopDownValues CachedValues { get; set; } = new();
 
         public Dashing(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
-            : base(states, timeManager, parent) { }
-        
-        public override void Initialize() { }
+            : base(timeManager, parent)
+        {
+            _states = states;
+        }
 
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             CachedValues.IsUsingCustomDeceleration = Parent.CurrentMovement.IsUsingCustomDeceleration;
             CachedValues.DecelerationTime = Parent.CurrentMovement.DecelerationTime;
@@ -38,15 +40,15 @@ public partial class Player
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (false, true, _)      => States.Get<MeleeWeaponMode>(),
-                (true, false, _)      => States.Get<GunMode>(),
-                (false, false, true)  => States.Get<MeleeWeaponMode>(),
-                (false, false, false) => States.Get<GunMode>(),
-                _                     => States.Get<Unarmed>()
+                (false, true, _)      => _states.Get<MeleeWeaponMode>(),
+                (true, false, _)      => _states.Get<GunMode>(),
+                (false, false, true)  => _states.Get<MeleeWeaponMode>(),
+                (false, false, false) => _states.Get<GunMode>(),
+                _                     => _states.Get<Unarmed>()
             };
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Parent.CurrentMovement.IsUsingCustomDeceleration = CachedValues.IsUsingCustomDeceleration;
             Parent.CurrentMovement.DecelerationTime = CachedValues.DecelerationTime;
@@ -56,7 +58,5 @@ public partial class Player
                 Parent.Velocity = Parent.Velocity.AtLength(Parent.CurrentMovement.MaxSpeed);
             }
         }
-
-        public override void Uninitialize() { }
     }
 }

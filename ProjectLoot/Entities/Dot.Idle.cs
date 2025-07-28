@@ -9,6 +9,7 @@ public partial class Dot
 {
     private class Idle : ParentedTimedState<Dot>
     {
+        private readonly IReadonlyStateMachine _states;
         private Rotation RotationPerSecond => Rotation.EighthTurn;
         private TimeSpan Duration => TimeSpan.FromMilliseconds(1500);
         private TimeSpan RandomDuration =>
@@ -16,15 +17,12 @@ public partial class Dot
         private float DurationTolerance => 0.3f;
         private float RandomizedTValue { get; set; }
         
-        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(states, timeManager, parent)
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(timeManager, parent)
         {
+            _states = states;
         }
 
-        public override void Initialize()
-        {
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             RandomizedTValue = Random.Shared.NextSingle();
         }
@@ -33,7 +31,7 @@ public partial class Dot
         {
             if (TimeInState >= RandomDuration)
             {
-                return States.Get<Windup>();
+                return _states.Get<Windup>();
             }
             
             return null;
@@ -59,11 +57,7 @@ public partial class Dot
             Parent.CircleInstance.Radius = Parent.IsBig ? 16 : 8;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
-        {
-        }
-
-        public override void Uninitialize()
+        public override void BeforeDeactivate()
         {
         }
     }

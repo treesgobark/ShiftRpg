@@ -10,18 +10,17 @@ public partial class Player
 {
     protected class Guarding : ParentedTimedState<Player>
     {
+        private readonly IReadonlyStateMachine _states;
+
         public Guarding(Player parent, IReadonlyStateMachine states, ITimeManager timeManager)
-            : base(states, timeManager, parent)
+            : base(timeManager, parent)
         {
+            _states = states;
         }
 
         private string StoredMovementName { get; set; } = null!;
 
-        public override void Initialize()
-        {
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             Parent.HealthComponent.DamageModifiers.Upsert("guard", new StatModifier<float>(
                                                      _ => true,
@@ -41,11 +40,11 @@ public partial class Player
             return (Parent.MeleeWeaponComponent.IsEmpty, Parent.GunComponent.IsEmpty,
                     Parent.GameplayInputDevice.AimInMeleeRange) switch
             {
-                (false, true, _)      => States.Get<MeleeWeaponMode>(),
-                (true, false, _)      => States.Get<GunMode>(),
-                (false, false, true)  => States.Get<MeleeWeaponMode>(),
-                (false, false, false) => States.Get<GunMode>(),
-                _                     => States.Get<Unarmed>()
+                (false, true, _)      => _states.Get<MeleeWeaponMode>(),
+                (true, false, _)      => _states.Get<GunMode>(),
+                (false, false, true)  => _states.Get<MeleeWeaponMode>(),
+                (false, false, false) => _states.Get<GunMode>(),
+                _                     => _states.Get<Unarmed>()
             };
         }
 
@@ -55,7 +54,7 @@ public partial class Player
             Parent.HandleBobbing();
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Parent.HealthComponent.DamageModifiers.Delete("guard");
 
@@ -63,8 +62,6 @@ public partial class Player
 
             Parent.CurrentMovement = TopDownValuesStatic[StoredMovementName];
         }
-
-        public override void Uninitialize() { }
     
         private void SetRotation()
         {

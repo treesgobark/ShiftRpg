@@ -8,12 +8,15 @@ partial class SwordModel
 {
     private class Idle : ParentedTimedState<SwordModel>
     {
-        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel)
-            : base(states, timeManager, swordModel) { }
-        
-        public override void Initialize() { }
+        private readonly IReadonlyStateMachine _states;
 
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel swordModel)
+            : base(timeManager, swordModel)
+        {
+            _states = states;
+        }
+        
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity() { }
 
@@ -21,19 +24,22 @@ partial class SwordModel
         {
             if (!Parent.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
             
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                return States.Get<Slash1>();
+                return _states.Get<Slash1>();
+            }
+            
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
+            {
+                return _states.Get<Spin>();
             }
 
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

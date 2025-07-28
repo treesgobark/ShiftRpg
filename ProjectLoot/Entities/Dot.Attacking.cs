@@ -14,6 +14,7 @@ public partial class Dot
 {
     private class Attacking : ParentedTimedState<Dot>
     {
+        private readonly IReadonlyStateMachine _states;
         private Rotation RotationPerSecond => 3 * Rotation.FullTurn;
         private float AttackVelocity => 800;
         private Vector3 ToTargetDirection => Parent.Position.GetVectorTo(Parent.Target.Position)
@@ -28,17 +29,14 @@ public partial class Dot
         
         private float NormalizedProgress => (float)(TimeInState / Duration);
         
-        public Attacking(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(states, timeManager, parent)
+        public Attacking(IReadonlyStateMachine states, ITimeManager timeManager, Dot parent) : base(timeManager, parent)
         {
+            _states = states;
         }
 
         private MeleeHitbox Hitbox { get; set; }
 
-        public override void Initialize()
-        {
-        }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             SwooshesPlayed = 0;
             
@@ -84,12 +82,12 @@ public partial class Dot
             {
                 Parent.Poise.CurrentPoiseDamage = 0;
                 
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             if (TimeInState >= Duration)
             {
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
@@ -128,13 +126,9 @@ public partial class Dot
             SwooshesPlayed++;
         }
 
-        public override void BeforeDeactivate(IState? nextState)
+        public override void BeforeDeactivate()
         {
             Hitbox.Destroy();
-        }
-
-        public override void Uninitialize()
-        {
         }
     }
 }

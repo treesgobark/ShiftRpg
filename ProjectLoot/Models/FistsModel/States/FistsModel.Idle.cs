@@ -8,12 +8,15 @@ partial class FistsModel
 {
     private class Idle : ParentedTimedState<FistsModel>
     {
-        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
-            : base(states, timeManager, weaponModel) { }
-        
-        public override void Initialize() { }
+        private readonly IReadonlyStateMachine _states;
 
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        public Idle(IReadonlyStateMachine states, ITimeManager timeManager, FistsModel weaponModel)
+            : base(timeManager, weaponModel)
+        {
+            _states = states;
+        }
+        
+        protected override void AfterTimedStateActivate() { }
 
         protected override void AfterTimedStateActivity() { }
 
@@ -21,24 +24,22 @@ partial class FistsModel
         {
             if (!Parent.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                return States.Get<LightRightJab>();
+                return _states.Get<LightRightJab>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.WasJustPressed)
             {
-                return States.Get<HeavyRightJab>();
+                return _states.Get<HeavyRightJab>();
             }
 
             return null;
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

@@ -6,32 +6,34 @@ namespace ProjectLoot.Models;
 
 public partial class SwordModel
 {
-    private class Slash1Recovery : ParentedTimedState<SwordModel>
+    private class Slash3Recovery : ParentedTimedState<SwordModel>
     {
+        private readonly IReadonlyStateMachine _states;
         private static TimeSpan Duration => TimeSpan.FromMilliseconds(360);
-
-        public Slash1Recovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
-            : base(states, timeManager, parent) { }
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState) { }
+        public Slash3Recovery(IReadonlyStateMachine states, ITimeManager timeManager, SwordModel parent)
+            : base(timeManager, parent)
+        {
+            _states = states;
+        }
+        
+        protected override void AfterTimedStateActivate() { }
 
         public override IState? EvaluateExitConditions()
         {
             if (!Parent.IsEquipped)
             {
-                return States.Get<NotEquipped>();
+                return _states.Get<NotEquipped>();
             }
 
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
-                return States.Get<Slash2>();
+                return _states.Get<CircleSlash>();
             }
             
             if (TimeInState >= Duration)
             {
-                return States.Get<Idle>();
+                return _states.Get<Idle>();
             }
 
             return null;
@@ -39,8 +41,6 @@ public partial class SwordModel
 
         protected override void AfterTimedStateActivity() { }
 
-        public override void BeforeDeactivate(IState? nextState) { }
-
-        public override void Uninitialize() { }
+        public override void BeforeDeactivate() { }
     }
 }

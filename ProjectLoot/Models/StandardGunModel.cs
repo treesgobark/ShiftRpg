@@ -28,7 +28,7 @@ public partial class StandardGunModel : IGunModel
         States.Add(new Ready(States, FrbTimeManager.Instance, this));
         States.Add(new Recovery(States, FrbTimeManager.Instance, this));
         States.Add(new Reloading(States, FrbTimeManager.Instance, this));
-        States.InitializeStartingState<NotEquipped>();
+        States.SetStartingState<NotEquipped>();
 
         GunshotSound = gunData.GunName switch
         {

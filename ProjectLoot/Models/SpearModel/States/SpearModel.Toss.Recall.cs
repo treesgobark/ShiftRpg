@@ -36,13 +36,11 @@ partial class SpearModel
         
 
         public TossRecall(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
-            : base(states, timeManager, tossState) { }
+            : base(timeManager, tossState) { }
         
         private Vector3 _initialHitboxPosition;
         
-        public override void Initialize() { }
-
-        protected override void AfterTimedStateActivate(IState? previousState)
+        protected override void AfterTimedStateActivate()
         {
             AddHitEffects();
             GlobalContent.SwingA.Play(0.1f, 0, 0);
@@ -70,10 +68,8 @@ partial class SpearModel
             UpdateHitEffects();
         }
 
-        public override void BeforeDeactivate(IState? nextState) { }
+        public override void BeforeDeactivate() { }
         
-        public override void Uninitialize() { }
-
         private void UpdateHitEffects()
         {
             _targetHitEffects.UpsertEffect(new AttackEffect(~Parent.MeleeWeaponComponent.Team, SourceTag.Spear, Damage));

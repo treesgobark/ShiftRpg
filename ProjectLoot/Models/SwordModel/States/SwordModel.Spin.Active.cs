@@ -18,7 +18,7 @@ public class SpinActive : ModularState
         AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));
     }
     
-    private class SpinActiveModule : IState
+    private class SpinActiveModule : IActivate, IActivity, IDeactivate
     {
         private readonly IDurationModule _duration;
         private readonly IMeleeWeaponModel _weaponModel;
@@ -89,8 +89,6 @@ public class SpinActive : ModularState
                 }
             }
         }
-
-        public IState? EvaluateExitConditions() => null;
 
         public void BeforeDeactivate()
         {

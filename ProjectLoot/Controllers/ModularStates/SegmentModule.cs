@@ -2,7 +2,7 @@ using ANLG.Utilities.States;
 
 namespace ProjectLoot.Controllers.ModularStates;
 
-public class SegmentModule : IState, ISegmentModule
+public class SegmentModule : IActivate, ISegmentModule
 {
     private readonly IDurationModule _durationModule;
     private int _segmentsHandled;
@@ -33,15 +33,5 @@ public class SegmentModule : IState, ISegmentModule
     public void OnActivate()
     {
         _segmentsHandled = 0;
-    }
-
-    public void CustomActivity()
-    {
-    }
-
-    public IState? EvaluateExitConditions() => null;
-
-    public void BeforeDeactivate()
-    {
     }
 }

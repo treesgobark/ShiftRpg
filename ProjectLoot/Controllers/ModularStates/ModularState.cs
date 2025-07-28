@@ -5,17 +5,49 @@ namespace ProjectLoot.Controllers.ModularStates;
 
 public class ModularState : IState
 {
-    private readonly List<IState> _modules = [];
-    
-    public T AddModule<T>(T module) where T : IState
+    private readonly List<IActivate> _activates = [];
+    private readonly List<IActivity> _activities = [];
+    private readonly List<IExitCondition> _exitConditions = [];
+    private readonly List<IDeactivate> _deactivates = [];
+
+    protected T AddModule<T>(T module) where T : class, IModule
     {
-        _modules.Add(module);
+        bool added = false;
+        if (module is IActivate activate)
+        {
+            _activates.Add(activate);
+            added = true;
+        }
+        
+        if (module is IActivity activity)
+        {
+            _activities.Add(activity);
+            added = true;
+        }
+        
+        if (module is IExitCondition exitCondition)
+        {
+            _exitConditions.Add(exitCondition);
+            added = true;
+        }
+        
+        if (module is IDeactivate deactivate)
+        {
+            _deactivates.Add(deactivate);
+            added = true;
+        }
+
+        if (!added)
+        {
+            throw new ArgumentException("Unrecognized module type");
+        }
+
         return module;
     }
 
     public void OnActivate()
     {
-        foreach (IState module in _modules)
+        foreach (IActivate module in _activates)
         {
             module.OnActivate();
         }
@@ -23,7 +55,7 @@ public class ModularState : IState
 
     public void CustomActivity()
     {
-        foreach (IState module in _modules)
+        foreach (IActivity module in _activities)
         {
             module.CustomActivity();
         }
@@ -31,7 +63,7 @@ public class ModularState : IState
 
     public IState? EvaluateExitConditions()
     {
-        foreach (IState module in _modules)
+        foreach (IExitCondition module in _exitConditions)
         {
             IState? result = module.EvaluateExitConditions();
             if (result != null)
@@ -45,7 +77,7 @@ public class ModularState : IState
 
     public void BeforeDeactivate()
     {
-        foreach (IState module in _modules)
+        foreach (IDeactivate module in _deactivates)
         {
             module.BeforeDeactivate();
         }

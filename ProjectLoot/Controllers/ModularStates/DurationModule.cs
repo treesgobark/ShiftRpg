@@ -16,7 +16,7 @@ public class DurationModule : TimerModule, IDurationModule
     public bool HasDurationCompleted => NormalizedProgress >= 1;
 }
 
-public class DurationExitModule<TNextState> : IState where TNextState : IState
+public class DurationExitModule<TNextState> : IExitCondition where TNextState : IState
 {
     private readonly IDurationModule _durationModule;
     private readonly IReadonlyStateMachine _stateMachine;
@@ -26,15 +26,7 @@ public class DurationExitModule<TNextState> : IState where TNextState : IState
         _durationModule = durationModule;
         _stateMachine   = stateMachine;
     }
-
-    public void OnActivate()
-    {
-    }
-
-    public void CustomActivity()
-    {
-    }
-
+    
     public IState? EvaluateExitConditions()
     {
         if (_durationModule.HasDurationCompleted)
@@ -43,9 +35,5 @@ public class DurationExitModule<TNextState> : IState where TNextState : IState
         }
 
         return null;
-    }
-
-    public void BeforeDeactivate()
-    {
     }
 }

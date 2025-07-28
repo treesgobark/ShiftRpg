@@ -15,7 +15,7 @@ using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
 using ProjectLoot.Models.SpearModel;
-using SwordModel = ProjectLoot.Models.SwordModel;
+using SwordModel = ProjectLoot.Models.SwordModel.SwordModel;
 
 namespace ProjectLoot.Entities;
 

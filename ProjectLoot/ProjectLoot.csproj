@@ -1207,12 +1207,10 @@
     </Compile>
     <Compile Include="Models\SwordModel\States\SwordModel.Spin.Active.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Spin.cs" />
-    <Compile Include="Models\SwordModel\States\SwordModel.Active.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.CircleSlash.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.CircleSlashRecovery.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Idle.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.NotEquipped.cs" />
-    <Compile Include="Models\SwordModel\States\SwordModel.Recovery.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Slash1.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Slash1Recovery.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Slash2.cs" />
@@ -1220,7 +1218,6 @@
     <Compile Include="Models\SwordModel\States\SwordModel.Slash3.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Slash3Recovery.cs" />
     <Compile Include="Models\SwordModel\States\SwordModel.Spin.Windup.cs" />
-    <Compile Include="Models\SwordModel\States\SwordModel.Startup.cs" />
     <Compile Include="Models\SwordModel\SwordModel.cs" />
     <Compile Include="Models\WeaponCache.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />

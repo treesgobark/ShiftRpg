@@ -6,31 +6,28 @@ using ProjectLoot.Effects;
 using ProjectLoot.Effects.Base;
 using ProjectLoot.Entities;
 
-namespace ProjectLoot.Models;
+namespace ProjectLoot.Models.SwordModel;
 
-partial class SwordModel
+public class SpinActive : ModularState
 {
-    private class SpinActive : ModularState
+    public SpinActive(ITimeManager timeManager, IReadonlyStateMachine states, IMeleeWeaponModel weaponModel)
     {
-        public SpinActive(ITimeManager timeManager, IReadonlyStateMachine states, IMeleeWeaponModel weaponModel)
-        {
-            DurationModule timeoutDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.5)));
-            SegmentModule  segmentModule   = AddModule(new SegmentModule(timeoutDuration, 6));
-            AddModule(new SpinActiveModule(timeoutDuration, weaponModel, segmentModule));
-            AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));
-            AddModule(new LoggingModule(" " + nameof(SpinActive)));
-        }
+        DurationModule timeoutDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.5)));
+        SegmentModule  segmentModule   = AddModule(new SegmentModule(timeoutDuration, 5));
+        AddModule(new SpinActiveModule(timeoutDuration, weaponModel, segmentModule));
+        AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));
     }
-
+    
     private class SpinActiveModule : IState
     {
         private readonly IDurationModule _duration;
         private readonly IMeleeWeaponModel _weaponModel;
         private readonly ISegmentModule _segmentModule;
         private MeleeHitbox? _hitbox;
+        private Rotation _attackDirection;
 
         private TimeSpan HitstopDuration => TimeSpan.FromMilliseconds(25);
-        private TimeSpan IncreasedHitstopDuration => TimeSpan.FromMilliseconds(150);
+        private TimeSpan IncreasedHitstopDuration => TimeSpan.FromMilliseconds(250);
 
         public SpinActiveModule(IDurationModule duration, IMeleeWeaponModel weaponModel, ISegmentModule segmentModule)
         {
@@ -44,6 +41,7 @@ partial class SwordModel
             _hitbox = MeleeHitbox.CreateHitbox(_weaponModel)
                                  .AddCircle(32, 0)
                                  .AddSpriteInfo("ThreeQuartersSlash", _duration.Duration);
+            _attackDirection = _weaponModel.MeleeWeaponComponent.AttackDirection;
             AddHitEffects();
         }
 
@@ -51,7 +49,9 @@ partial class SwordModel
         {
             if (_hitbox is not null)
             {
-                _hitbox.RotationZ = (_segmentModule.TotalSegments * Rotation.FullTurn * _duration.NormalizedProgress).NormalizedRadians;
+                _hitbox.RelativeRotationZ =
+                    (_segmentModule.TotalSegments * Rotation.FullTurn * _duration.NormalizedProgress -
+                        Rotation.QuarterTurn - Rotation.EighthTurn + _attackDirection).NormalizedRadians;
                 while (_segmentModule.TryHandleSegment())
                 {
                     EffectBundle newTargetEffects = _hitbox.TargetHitEffects.Clone();
@@ -77,7 +77,7 @@ partial class SwordModel
                                 ~_weaponModel.MeleeWeaponComponent.Team,
                                 SourceTag.Sword,
                                 1000,
-                                Rotation.Zero,
+                                _weaponModel.MeleeWeaponComponent.AttackDirection,
                                 KnockbackBehavior.Replacement,
                                 relativeDirection: true
                             )
@@ -101,7 +101,7 @@ partial class SwordModel
         {
             EffectBundle targetHitEffects = new();
         
-            targetHitEffects.AddEffect(new AttackEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 6));
+            targetHitEffects.AddEffect(new AttackEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
                 
             targetHitEffects.AddEffect(new HitstopEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword,
                                                          HitstopDuration));
@@ -110,8 +110,8 @@ partial class SwordModel
                 new KnockbackEffect(
                     ~_weaponModel.MeleeWeaponComponent.Team,
                     SourceTag.Sword,
-                    50,
-                    Rotation.EighthTurn / 2,
+                    150,
+                    _weaponModel.MeleeWeaponComponent.AttackDirection,
                     KnockbackBehavior.Replacement
                 )
             );

@@ -4,9 +4,9 @@ using ProjectLoot.Components.Interfaces;
 using ProjectLoot.Contracts;
 using ProjectLoot.DataTypes;
 
-namespace ProjectLoot.Models;
+namespace ProjectLoot.Models.SwordModel;
 
-public partial class SwordModel : IMeleeWeaponModel
+public class SwordModel : IMeleeWeaponModel
 {
     private readonly ITimeManager _timeManager;
     private StateMachine States { get; }

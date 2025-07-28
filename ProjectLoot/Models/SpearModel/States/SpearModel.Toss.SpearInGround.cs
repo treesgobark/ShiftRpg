@@ -39,7 +39,7 @@ partial class SpearModel
             
             if (NormalizedProgress >= 1)
             {
-                return EmptyState.Instance;
+                return _states.Get<TossCleanup>();
             }
 
             return null;

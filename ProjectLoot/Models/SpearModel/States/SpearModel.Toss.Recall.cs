@@ -12,6 +12,7 @@ partial class SpearModel
 {
     private class TossRecall : ParentedTimedState<Toss>
     {
+        private readonly IReadonlyStateMachine _states;
         private EffectBundle _targetHitEffects;
 
         private static float MinDamage => 15;
@@ -36,7 +37,10 @@ partial class SpearModel
         
 
         public TossRecall(IReadonlyStateMachine states, ITimeManager timeManager, Toss tossState)
-            : base(timeManager, tossState) { }
+            : base(timeManager, tossState)
+        {
+            _states = states;
+        }
         
         private Vector3 _initialHitboxPosition;
         
@@ -52,7 +56,7 @@ partial class SpearModel
         {
             if (DistanceFromGameplayCenter <= CompletionDistance)
             {
-                return EmptyState.Instance;
+                return _states.Get<TossCleanup>();
             }
 
             return null;

@@ -1187,6 +1187,7 @@
     <Compile Include="Models\SpearModel\States\SpearModel.Thrust.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Idle.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.NotEquipped.cs" />
+    <Compile Include="Models\SpearModel\States\SpearModel.Toss.Cleanup.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.SpearInGround.cs" />
     <Compile Include="Models\SpearModel\States\SpearModel.Toss.Recall.cs" />

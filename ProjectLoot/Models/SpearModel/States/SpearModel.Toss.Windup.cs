@@ -39,12 +39,12 @@ partial class SpearModel
         {
             if (HasDurationCompleted)
             {
-                return EmptyState.Instance;
+                return _states.Get<TossCleanup>();
             }
             
             if (!Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.HeavyAttack.IsDown)
             {
-                return HasChargeCompleted ? _states.Get<TossActive>() : EmptyState.Instance;
+                return HasChargeCompleted ? _states.Get<TossActive>() : _states.Get<TossCleanup>();
             }
 
             return null;
@@ -58,8 +58,7 @@ partial class SpearModel
 
         public override void BeforeDeactivate()
         {
-            Parent.ChargeProgress = NormalizedProgress;
-            Parent.Hitbox?.Destroy();
+            Parent.ChargeProgress = ChargeProgress;
         }
     }
 }

@@ -29,6 +29,7 @@ partial class SpearModel
             _stateMachine.Add(new TossActive(_stateMachine, _timeManager, this));
             _stateMachine.Add(new TossedSpearInGround(_stateMachine, _timeManager, this));
             _stateMachine.Add(new TossRecall(_stateMachine, _timeManager, this));
+            _stateMachine.Add(new TossCleanup(this));
         }
 
         public Rotation AttackDirection { get; set; }

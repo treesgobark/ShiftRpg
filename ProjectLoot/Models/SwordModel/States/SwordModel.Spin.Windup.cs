@@ -11,7 +11,7 @@ public class SpinWindup : ModularState
 {
     public SpinWindup(ITimeManager timeManager, IReadonlyStateMachine states, IMeleeWeaponModel weaponModel)
     {
-        DurationModule chargeDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.5)));
+        DurationModule chargeDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.25)));
         DurationModule timeoutDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(2)));
         AddModule(new SpinWindupModule(chargeDuration, states, weaponModel));
         AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));

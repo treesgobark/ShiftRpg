@@ -12,7 +12,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Check.Height Units</Name>
+      <Name>Check.HeightUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -42,7 +42,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Check.Width Units</Name>
+      <Name>Check.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -78,7 +78,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>CheckboxBackground.Height Units</Name>
+      <Name>CheckboxBackground.HeightUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -102,19 +102,19 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>CheckboxBackground.Width Units</Name>
+      <Name>CheckboxBackground.WidthUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>CheckboxBackground.X Origin</Name>
+      <Name>CheckboxBackground.XOrigin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>CheckboxBackground.X Units</Name>
+      <Name>CheckboxBackground.XUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -137,7 +137,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>FocusedIndicator.Height Units</Name>
+      <Name>FocusedIndicator.HeightUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -166,13 +166,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>FocusedIndicator.Y Origin</Name>
+      <Name>FocusedIndicator.YOrigin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>FocusedIndicator.Y Units</Name>
+      <Name>FocusedIndicator.YUnits</Name>
       <Value xsi:type="xsd:int">5</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -214,7 +214,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>TextInstance.Height Units</Name>
+      <Name>TextInstance.HeightUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -263,31 +263,31 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>TextInstance.Width Units</Name>
+      <Name>TextInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>TextInstance.X Origin</Name>
+      <Name>TextInstance.XOrigin</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>TextInstance.X Units</Name>
+      <Name>TextInstance.XUnits</Name>
       <Value xsi:type="xsd:int">4</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>TextInstance.Y Origin</Name>
+      <Name>TextInstance.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>TextInstance.Y Units</Name>
+      <Name>TextInstance.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>

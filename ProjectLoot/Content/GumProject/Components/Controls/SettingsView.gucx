@@ -6,7 +6,7 @@
     <Name>Default</Name>
     <Variable>
       <Type>ChildrenLayout</Type>
-      <Name>Children Layout</Name>
+      <Name>ChildrenLayout</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -29,7 +29,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>FullscreenCheckboxInstance.Width Units</Name>
+      <Name>FullscreenCheckboxInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -41,7 +41,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Height Units</Name>
+      <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -53,7 +53,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>MusicSliderInstance.Width Units</Name>
+      <Name>MusicSliderInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -71,7 +71,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>MusicVolumeLabel.Width Units</Name>
+      <Name>MusicVolumeLabel.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -89,7 +89,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>SoundSliderInstance.Width Units</Name>
+      <Name>SoundSliderInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -107,7 +107,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>SoundVolumeLabel.Width Units</Name>
+      <Name>SoundVolumeLabel.WidthUnits</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>

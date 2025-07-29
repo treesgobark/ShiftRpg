@@ -272,6 +272,11 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
+    <Name>PlayMenu</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>ProgressAndSubprogressBar</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>

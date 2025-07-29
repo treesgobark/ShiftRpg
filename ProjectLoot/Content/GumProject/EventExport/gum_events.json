@@ -2,25 +2,88 @@
   "UserEvents": {
     "Logan": [
       {
-        "NewName": "MeleeWeaponDisplay",
+        "NewName": "PlayMenu",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 0,
-        "TimestampUtc": "2025-05-24T18:48:55.7529966Z"
+        "TimestampUtc": "2025-07-29T14:30:15.9115005Z"
       },
       {
-        "NewName": "MeleeWeaponDisplay (Container).SpriteInstance",
+        "NewName": "PauseMenu1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2025-07-29T14:30:27.5398878Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "PlayMenu",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2025-07-29T14:30:30.4377517Z"
+      },
+      {
+        "NewName": "PlayMenu",
+        "OldName": "PauseMenu1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2025-07-29T14:30:36.2893143Z"
+      },
+      {
+        "NewName": "PlayMenu (Container).TextInstance1",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 5,
-        "TimestampUtc": "2025-05-24T18:50:05.7463233Z"
+        "TimestampUtc": "2025-07-29T14:31:45.3617995Z"
       },
       {
-        "NewName": "GameScreenGum.MeleeWeaponDisplayInstance",
+        "NewName": null,
+        "OldName": "PlayMenu (Container).Text TextInstance in PlayMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2025-07-29T14:32:04.1679534Z"
+      },
+      {
+        "NewName": "PlayMenu (Container).TextInstance",
+        "OldName": "PlayMenu (Container).TextInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2025-07-29T14:32:09.0249647Z"
+      },
+      {
+        "NewName": "PlayMenu (Container).ArenaButton",
+        "OldName": "PlayMenu (Container).ResumeButton",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2025-07-29T14:32:16.1943007Z"
+      },
+      {
+        "NewName": "PlayMenu (Container).TrainingGroundsButton",
+        "OldName": "PlayMenu (Container).OptionsButton",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2025-07-29T14:32:37.8874997Z"
+      },
+      {
+        "NewName": "PlayMenu (Container).BackButton",
+        "OldName": "PlayMenu (Container).ExitToDesktopButton",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2025-07-29T14:32:47.8029224Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "PlayMenu (Container).Controls/ButtonStandard ExitToMainButton in PlayMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2025-07-29T14:32:54.371921Z"
+      },
+      {
+        "NewName": "MainMenuGum.PlayMenuInstance",
         "OldName": null,
         "ElementType": "Screens",
         "EventType": 5,
-        "TimestampUtc": "2025-05-24T19:00:22.7433208Z"
+        "TimestampUtc": "2025-07-29T14:33:51.4889631Z"
       }
     ]
   }

@@ -1,9 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ComponentSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>MainMenu</Name>
+  <Name>PlayMenu</Name>
   <BaseType>Container</BaseType>
   <State>
     <Name>Default</Name>
+    <Variable>
+      <Type>string</Type>
+      <Name>ArenaButton.ButtonDisplayText</Name>
+      <Value xsi:type="xsd:string">Arena</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ArenaButton.Height</Name>
+      <Value xsi:type="xsd:float">26</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ArenaButton.Width</Name>
+      <Value xsi:type="xsd:float">96</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ArenaButton.X</Name>
+      <Value xsi:type="xsd:float">-60</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>ArenaButton.XOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ArenaButton.XUnits</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ArenaButton.Y</Name>
+      <Value xsi:type="xsd:float">-10</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>ArenaButton.YOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ArenaButton.YUnits</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>BackButton.ButtonDisplayText</Name>
+      <Value xsi:type="xsd:string">Back</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>BackButton.Height</Name>
+      <Value xsi:type="xsd:float">26</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>BackButton.Parent</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>BackButton.Width</Name>
+      <Value xsi:type="xsd:float">96</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>BackButton.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>BackButton.XOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>BackButton.XUnits</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>BackButton.Y</Name>
+      <Value xsi:type="xsd:float">30</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>BackButton.YOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>BackButton.YUnits</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
     <Variable>
       <Type>float</Type>
       <Name>Height</Name>
@@ -14,255 +127,6 @@
       <Type>DimensionUnitType</Type>
       <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>OptionsButton.BackgroundBlue</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>OptionsButton.BackgroundGreen</Name>
-      <Value xsi:type="xsd:int">139</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>OptionsButton.BackgroundRed</Name>
-      <Value xsi:type="xsd:int">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>ButtonCategory</Type>
-      <Name>OptionsButton.ButtonCategoryState</Name>
-      <Value xsi:type="xsd:string">Enabled</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>OptionsButton.ButtonDisplayText</Name>
-      <Value xsi:type="xsd:string">Options</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>OptionsButton.Height</Name>
-      <Value xsi:type="xsd:float">24</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>OptionsButton.Parent</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>OptionsButton.Width</Name>
-      <Value xsi:type="xsd:float">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>OptionsButton.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>OptionsButton.XOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>OptionsButton.XUnits</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>OptionsButton.Y</Name>
-      <Value xsi:type="xsd:float">15</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>OptionsButton.YOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>OptionsButton.YUnits</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>PlayButton.BackgroundBlue</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>PlayButton.BackgroundGreen</Name>
-      <Value xsi:type="xsd:int">139</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>PlayButton.BackgroundRed</Name>
-      <Value xsi:type="xsd:int">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>ButtonCategory</Type>
-      <Name>PlayButton.ButtonCategoryState</Name>
-      <Value xsi:type="xsd:string">Enabled</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>PlayButton.ButtonDisplayText</Name>
-      <Value xsi:type="xsd:string">Play</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PlayButton.Height</Name>
-      <Value xsi:type="xsd:float">24</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>PlayButton.Parent</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PlayButton.Width</Name>
-      <Value xsi:type="xsd:float">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PlayButton.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>PlayButton.XOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>PlayButton.XUnits</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PlayButton.Y</Name>
-      <Value xsi:type="xsd:float">-14</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>PlayButton.YOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>PlayButton.YUnits</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>QuitButton.BackgroundBlue</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>QuitButton.BackgroundGreen</Name>
-      <Value xsi:type="xsd:int">139</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>QuitButton.BackgroundRed</Name>
-      <Value xsi:type="xsd:int">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>ButtonCategory</Type>
-      <Name>QuitButton.ButtonCategoryState</Name>
-      <Value xsi:type="xsd:string">Enabled</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>QuitButton.ButtonDisplayText</Name>
-      <Value xsi:type="xsd:string">Quit</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>QuitButton.Height</Name>
-      <Value xsi:type="xsd:float">24</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>QuitButton.Parent</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>QuitButton.Width</Name>
-      <Value xsi:type="xsd:float">94</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>QuitButton.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>QuitButton.XOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>QuitButton.XUnits</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>QuitButton.Y</Name>
-      <Value xsi:type="xsd:float">43</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>QuitButton.YOrigin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>QuitButton.YUnits</Name>
-      <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -374,6 +238,61 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>string</Type>
+      <Name>TrainingGroundsButton.ButtonDisplayText</Name>
+      <Value xsi:type="xsd:string">Training
+Ground</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TrainingGroundsButton.Height</Name>
+      <Value xsi:type="xsd:float">26</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TrainingGroundsButton.Width</Name>
+      <Value xsi:type="xsd:float">96</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TrainingGroundsButton.X</Name>
+      <Value xsi:type="xsd:float">60</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>TrainingGroundsButton.XOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>TrainingGroundsButton.XUnits</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TrainingGroundsButton.Y</Name>
+      <Value xsi:type="xsd:float">-10</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>TrainingGroundsButton.YOrigin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>TrainingGroundsButton.YUnits</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>Width</Name>
       <Value xsi:type="xsd:float">100</Value>
@@ -392,17 +311,17 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>PlayButton</Name>
+    <Name>ArenaButton</Name>
     <BaseType>Controls/ButtonStandard</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>OptionsButton</Name>
+    <Name>TrainingGroundsButton</Name>
     <BaseType>Controls/ButtonStandard</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>QuitButton</Name>
+    <Name>BackButton</Name>
     <BaseType>Controls/ButtonStandard</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>

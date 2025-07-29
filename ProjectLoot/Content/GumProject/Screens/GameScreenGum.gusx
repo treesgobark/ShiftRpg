@@ -29,7 +29,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>ColoredRectangleInstance.Height Units</Name>
+      <Name>ColoredRectangleInstance.HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -47,7 +47,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>ColoredRectangleInstance.Width Units</Name>
+      <Name>ColoredRectangleInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -83,7 +83,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>PauseMenuInstance.Height Units</Name>
+      <Name>PauseMenuInstance.HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -95,7 +95,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>PauseMenuInstance.Width Units</Name>
+      <Name>PauseMenuInstance.WidthUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>

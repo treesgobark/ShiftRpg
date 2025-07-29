@@ -233,7 +233,7 @@
     "GenerateLoadGlobalContentCode": true
   },
   "SyncedProjects": [],
-  "StartUpScreen": "Screens\\Arena",
+  "StartUpScreen": "Screens\\MainMenu",
   "ResolutionPresets": [],
   "PerformanceSettingsSave": {},
   "IgnoredDirectories": [],

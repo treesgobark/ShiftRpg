@@ -35,13 +35,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>ExitToDesktopButton.X Origin</Name>
+      <Name>ExitToDesktopButton.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ExitToDesktopButton.X Units</Name>
+      <Name>ExitToDesktopButton.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -53,13 +53,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>ExitToDesktopButton.Y Origin</Name>
+      <Name>ExitToDesktopButton.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ExitToDesktopButton.Y Units</Name>
+      <Name>ExitToDesktopButton.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -94,13 +94,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>ExitToMainButton.X Origin</Name>
+      <Name>ExitToMainButton.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ExitToMainButton.X Units</Name>
+      <Name>ExitToMainButton.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -112,13 +112,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>ExitToMainButton.Y Origin</Name>
+      <Name>ExitToMainButton.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ExitToMainButton.Y Units</Name>
+      <Name>ExitToMainButton.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -130,7 +130,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Height Units</Name>
+      <Name>HeightUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -160,13 +160,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>OptionsButton.X Origin</Name>
+      <Name>OptionsButton.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>OptionsButton.X Units</Name>
+      <Name>OptionsButton.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -178,13 +178,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>OptionsButton.Y Origin</Name>
+      <Name>OptionsButton.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>OptionsButton.Y Units</Name>
+      <Name>OptionsButton.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -214,13 +214,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>ResumeButton.X Origin</Name>
+      <Name>ResumeButton.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ResumeButton.X Units</Name>
+      <Name>ResumeButton.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -232,13 +232,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>ResumeButton.Y Origin</Name>
+      <Name>ResumeButton.YOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>ResumeButton.Y Units</Name>
+      <Name>ResumeButton.YUnits</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -311,13 +311,13 @@
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>TextInstance.X Origin</Name>
+      <Name>TextInstance.XOrigin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>TextInstance.X Units</Name>
+      <Name>TextInstance.XUnits</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -329,13 +329,13 @@
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>TextInstance.Y Origin</Name>
+      <Name>TextInstance.YOrigin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>TextInstance.Y Units</Name>
+      <Name>TextInstance.YUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -347,7 +347,7 @@
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Width Units</Name>
+      <Name>WidthUnits</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>

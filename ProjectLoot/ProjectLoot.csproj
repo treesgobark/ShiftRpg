@@ -381,6 +381,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PauseMenu</Name>
     </None>
+    <None Include="Content\GumProject\Components\PlayMenu.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayMenu</Name>
+    </None>
     <None Include="Content\GumProject\Components\ProgressAndSubprogressBar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ProgressAndSubprogressBar</Name>
@@ -808,6 +812,7 @@
     <Compile Include="Forms\Components\MainMenuForms.Generated.cs" />
     <Compile Include="Forms\Components\OptionsForms.Generated.cs" />
     <Compile Include="Forms\Components\PauseMenuForms.Generated.cs" />
+    <Compile Include="Forms\Components\PlayMenuForms.Generated.cs" />
     <Compile Include="Forms\Screens\ArenaGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\GameScreenGumForms.Generated.cs" />
     <Compile Include="Forms\Screens\MainMenuGumForms.Generated.cs" />
@@ -1081,6 +1086,10 @@
     <Compile Include="GumRuntimes\PauseMenuRuntime.cs" />
     <Compile Include="GumRuntimes\PauseMenuRuntime.Generated.cs">
       <DependentUpon>PauseMenuRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\PlayMenuRuntime.cs" />
+    <Compile Include="GumRuntimes\PlayMenuRuntime.Generated.cs">
+      <DependentUpon>PlayMenuRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ProgressAndSubprogressBarRuntime.cs" />

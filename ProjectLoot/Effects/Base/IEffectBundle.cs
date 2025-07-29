@@ -8,15 +8,17 @@ public interface IEffectBundle : IEnumerable<IEffect>
     Guid EffectId { get; }
     bool IgnoreUniqueness { get; }
 
-    bool          TryGetEffect(Type type, out IEffect effect);
+    bool         TryGetEffect(Type type, out IEffect effect);
+    void         UpsertEffect<T>(T effect) where T : IEffect;
     EffectBundle Clone();
+    void ResetId();
 }
 
 public class EffectBundle : IEffectBundle
 {
     public static readonly EffectBundle Empty = new();
 
-    public Guid EffectId { get; } = Guid.NewGuid();
+    public Guid EffectId { get; private set; } = Guid.NewGuid();
     public bool IgnoreUniqueness { get; }
 
     private readonly Dictionary<Type, IEffect> _effects = new();
@@ -60,6 +62,11 @@ public class EffectBundle : IEffectBundle
     public EffectBundle Clone()
     {
         return new EffectBundle(this);
+    }
+
+    public void ResetId()
+    {
+        EffectId = Guid.NewGuid();
     }
 
     public IEnumerator<IEffect> GetEnumerator() => _effects.Values.GetEnumerator();

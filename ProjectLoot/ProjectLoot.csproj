@@ -673,8 +673,11 @@
     <Compile Include="Controllers\ModularStates\Abstractions\IDurationModule.cs" />
     <Compile Include="Controllers\ModularStates\Abstractions\ISegmentModule.cs" />
     <Compile Include="Controllers\ModularStates\Abstractions\ITimerModule.cs" />
+    <Compile Include="Controllers\ModularStates\ActivityModule.cs" />
     <Compile Include="Controllers\ModularStates\DurationModule.cs" />
+    <Compile Include="Controllers\ModularStates\ExitConditionModule.cs" />
     <Compile Include="Controllers\ModularStates\LoggingModule.cs" />
+    <Compile Include="Controllers\ModularStates\ModularDelegateState.cs" />
     <Compile Include="Controllers\ModularStates\ModularState.cs" />
     <Compile Include="Controllers\ModularStates\SegmentModule.cs" />
     <Compile Include="Controllers\ModularStates\StateMachineModule.cs" />
@@ -1177,6 +1180,10 @@
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
     <Compile Include="Models\FistsModel\FistsModel.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.Burst.Cleanup.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.Burst.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.Burst.Expand.cs" />
+    <Compile Include="Models\FistsModel\States\FistsModel.Burst.Fade.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.HeavyRightJab.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.HeavyRightJabRecovery.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.Idle.cs" />

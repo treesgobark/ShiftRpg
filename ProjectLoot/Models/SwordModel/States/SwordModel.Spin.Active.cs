@@ -12,8 +12,8 @@ public class SpinActive : ModularState
 {
     public SpinActive(ITimeManager timeManager, IReadonlyStateMachine states, IMeleeWeaponModel weaponModel)
     {
-        DurationModule timeoutDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.5)));
-        SegmentModule  segmentModule   = AddModule(new SegmentModule(timeoutDuration, 5));
+        DurationModule timeoutDuration = AddModule(new DurationModule(timeManager, TimeSpan.FromSeconds(0.67)));
+        SegmentModule  segmentModule   = AddModule(new SegmentModule(timeoutDuration, 8));
         AddModule(new SpinActiveModule(timeoutDuration, weaponModel, segmentModule));
         AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));
     }
@@ -39,10 +39,11 @@ public class SpinActive : ModularState
         public void OnActivate()
         {
             _hitbox = MeleeHitbox.CreateHitbox(_weaponModel)
-                                 .AddCircle(32, 0)
-                                 .AddSpriteInfo("ThreeQuartersSlash", _duration.Duration);
+                                 .AddCircle(32)
+                                 .AddSpriteInfo("ThreeQuartersSlash", _duration.Duration)
+                                 .Build();
             _attackDirection = _weaponModel.MeleeWeaponComponent.AttackDirection;
-            AddHitEffects();
+            UpdateHitEffects();
         }
 
         public void CustomActivity()
@@ -54,46 +55,32 @@ public class SpinActive : ModularState
                         Rotation.QuarterTurn - Rotation.EighthTurn + _attackDirection).NormalizedRadians;
                 while (_segmentModule.TryHandleSegment())
                 {
-                    EffectBundle newTargetEffects = _hitbox.TargetHitEffects.Clone();
-                    _hitbox.TargetHitEffects = newTargetEffects;
+                    UpdateHitEffects();
                     
-                    EffectBundle newHolderEffects = _hitbox.HolderHitEffects.Clone();
-                    _hitbox.HolderHitEffects = newHolderEffects;
-                        
                     float pitch = Random.Shared.NextSingle(-0.1f, 0.1f);
                     GlobalContent.BladeSwingF.Play(0.15f, pitch, 0);
-
-                    newTargetEffects.UpsertEffect(
-                        new KnockTowardEffect
-                        {
-                            AppliesTo      = ~_weaponModel.MeleeWeaponComponent.Team,
-                            Source         = SourceTag.Sword,
-                            TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
-                            Strength       = 200f,
-                        }
-                    );
                     
                     if (_segmentModule.CurrentSegmentIndex == _segmentModule.TotalSegments - 1)
                     {
-                        newTargetEffects.UpsertEffect(
+                        _hitbox?.TargetHitEffects.UpsertEffect(
                             new AttackEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 25));
-                        newTargetEffects.UpsertEffect(
+                        _hitbox?.TargetHitEffects.UpsertEffect(
                             new HitstopEffect(~_weaponModel.MeleeWeaponComponent.Team,
                                               SourceTag.Sword,
                                               IncreasedHitstopDuration));
 
-                        newTargetEffects.UpsertEffect(
+                        _hitbox?.TargetHitEffects.UpsertEffect(
                             new KnockTowardEffect
                             {
                                 AppliesTo      = ~_weaponModel.MeleeWeaponComponent.Team,
                                 Source         = SourceTag.Sword,
                                 TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
-                                Strength       = -800f,
+                                Strength       = -1000f,
                             }
                         );
 
-                        newHolderEffects.UpsertEffect(new HitstopEffect(_weaponModel.MeleeWeaponComponent.Team,
-                                                                        SourceTag.Sword, IncreasedHitstopDuration));
+                        _hitbox?.HolderHitEffects.UpsertEffect(new HitstopEffect(_weaponModel.MeleeWeaponComponent.Team,
+                                                                                 SourceTag.Sword, IncreasedHitstopDuration));
                     }
                 }
             }
@@ -104,34 +91,29 @@ public class SpinActive : ModularState
             _hitbox?.Destroy();
         }
         
-        private void AddHitEffects()
+        private void UpdateHitEffects()
         {
-            EffectBundle targetHitEffects = new();
-        
-            targetHitEffects.AddEffect(new AttackEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
-                
-            targetHitEffects.AddEffect(new HitstopEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword,
-                                                         HitstopDuration));
+            _hitbox?.TargetHitEffects.ResetId();
+            _hitbox?.HolderHitEffects.ResetId();
 
-            targetHitEffects.AddEffect(
+            _hitbox?.TargetHitEffects.UpsertEffect(new AttackEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 4));
+                
+            _hitbox?.TargetHitEffects.UpsertEffect(new HitstopEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword,
+                                                                     HitstopDuration));
+                
+            _hitbox?.TargetHitEffects.UpsertEffect(new PoiseDamageEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 4));
+
+            _hitbox?.TargetHitEffects.UpsertEffect(
                 new KnockTowardEffect
                 {
-                    AppliesTo = ~_weaponModel.MeleeWeaponComponent.Team,
-                    Source = SourceTag.Sword,
+                    AppliesTo      = ~_weaponModel.MeleeWeaponComponent.Team,
+                    Source         = SourceTag.Sword,
                     TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
-                    Strength = 100f,
+                    Strength       = 100f,
                 }
             );
-                
-            targetHitEffects.AddEffect(new PoiseDamageEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 10));
         
-            _hitbox.TargetHitEffects = targetHitEffects;
-                
-            EffectBundle holderHitEffects = new();
-        
-            holderHitEffects.AddEffect(new HitstopEffect(_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
-        
-            _hitbox.HolderHitEffects = holderHitEffects;
+            _hitbox?.HolderHitEffects.UpsertEffect(new HitstopEffect(_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, HitstopDuration));
         }
     }
 }

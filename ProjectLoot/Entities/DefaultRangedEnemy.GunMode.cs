@@ -24,7 +24,7 @@ public partial class DefaultRangedEnemy
                 Parent.GunComponent.CycleToNextWeapon();
             }
             
-            if (Parent.EnemyInputDevice.PreviousWeapon.WasJustPressed)
+            if (Parent.EnemyInputDevice.Modifier.WasJustPressed)
             {
                 Parent.GunComponent.CycleToPreviousWeapon();
             }

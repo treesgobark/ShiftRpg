@@ -34,6 +34,7 @@ public partial class FistsModel : IMeleeWeaponModel
         States.Add(new LightRightFinisherRecovery(States, _timeManager, this));
         States.Add(new HeavyRightJab(States, _timeManager, this));
         States.Add(new HeavyRightJabRecovery(States, _timeManager, this));
+        States.Add(new Burst(States, this, timeManager));
         
         States.SetStartingState<NotEquipped>();
     }
@@ -45,7 +46,6 @@ public partial class FistsModel : IMeleeWeaponModel
 
     public IMeleeWeaponComponent MeleeWeaponComponent { get; }
 
-    private TimeSpan KnockTowardDuration => TimeSpan.FromMilliseconds(60);
     private float KnockTowardDistance => 40f;
     
     public void Activity()

@@ -31,7 +31,7 @@ public partial class Player
                 Parent.GunComponent.CycleToNextWeapon();
             }
             
-            if (Parent.GameplayInputDevice.PreviousWeapon.WasJustPressed)
+            if (Parent.GameplayInputDevice.Modifier.WasJustPressed)
             {
                 Parent.GunComponent.CycleToPreviousWeapon();
             }

@@ -12,7 +12,7 @@ public interface IGameplayInputDevice
     IPressableInput Dash { get; }
     IPressableInput QuickSwapWeapon { get; }
     IPressableInput NextWeapon { get; }
-    IPressableInput PreviousWeapon { get; }
+    IPressableInput Modifier { get; }
     IPressableInput Interact { get; }
     
     IGunInputDevice GunInputDevice { get; }

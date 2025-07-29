@@ -29,10 +29,8 @@ public class GameplayInputDevice : IGameplayInputDevice
                 Dash            = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
                 QuickSwapWeapon = gamePad.GetButton(Xbox360GamePad.Button.Y);
                 NextWeapon      = gamePad.GetButton(Xbox360GamePad.Button.RightTrigger);
-                PreviousWeapon  = FalsePressableInput.Instance;
+                Modifier        = gamePad.GetButton(Xbox360GamePad.Button.LeftTrigger);
                 Interact        = gamePad.GetButton(Xbox360GamePad.Button.A);
-                // NextWeapon      = ;
-                // PreviousWeapon  = ;
                 break;
             case Keyboard keyboard:
                 Movement        = keyboard.GetWasdInput();
@@ -43,7 +41,7 @@ public class GameplayInputDevice : IGameplayInputDevice
                 Dash            = keyboard.GetKey(Keys.Space);
                 QuickSwapWeapon = keyboard.GetKey(Keys.Q);
                 NextWeapon      = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Up);
-                PreviousWeapon  = InputManager.Mouse.GetPressableScrollWheel(MouseExtensions.WheelDirection.Down);
+                Modifier        = keyboard.GetKey(Keys.LeftShift);
                 Interact        = keyboard.GetKey(Keys.E);
                 break;
             default:
@@ -73,7 +71,7 @@ public class GameplayInputDevice : IGameplayInputDevice
     public IPressableInput Dash { get; private set; }
     public IPressableInput QuickSwapWeapon { get; }
     public IPressableInput NextWeapon { get; }
-    public IPressableInput PreviousWeapon { get; }
+    public IPressableInput Modifier { get; }
     public IPressableInput Interact { get; }
     public IGunInputDevice GunInputDevice { get; private set; }
     public IMeleeWeaponInputDevice MeleeWeaponInputDevice { get; private set; }

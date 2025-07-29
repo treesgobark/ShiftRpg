@@ -5,6 +5,7 @@ using FlatRedBall.Gui;
 using FlatRedBall.Input;
 using FlatRedBall.Screens;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using ProjectLoot.Components;
 using ProjectLoot.DataTypes;
 using ProjectLoot.Entities;
@@ -55,6 +56,10 @@ public partial class GameScreen
 
     private void CustomActivity(bool firstTimeCalled)
     {
+        if (InputManager.Keyboard.GetKey(Keys.F1).WasJustPressed)
+        {
+            ScreenManager.MoveToScreen(ScreenManager.CurrentScreen.Name);
+        }
         // Debugger.CommandLineWrite(GuiManager.Cursor.WindowOver);
 
         // DisplayEnemyInputs();

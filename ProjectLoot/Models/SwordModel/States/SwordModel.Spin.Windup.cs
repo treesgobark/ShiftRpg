@@ -35,8 +35,9 @@ public class SpinWindup : ModularState
         public void OnActivate()
         {
             _hitbox = MeleeHitbox.CreateHitbox(_weaponModel)
-                                 .AddCircle(32, 0)
-                                 .AddSpriteInfo("StillSword", _chargeDuration.Duration);
+                                 .AddCircle(32)
+                                 .AddSpriteInfo("StillSword", _chargeDuration.Duration)
+                                 .Build();
             _hitbox.SpriteInstance.RelativeX                     = 20;
             _hitbox.SpriteInstance.ParentRotationChangesPosition = true;
             _hitbox.IsActive                                     = false;

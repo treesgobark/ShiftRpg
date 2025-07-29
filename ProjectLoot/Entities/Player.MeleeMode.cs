@@ -29,10 +29,10 @@ public partial class Player
                 Parent.MeleeWeaponComponent.CycleToNextWeapon();
             }
             
-            if (Parent.GameplayInputDevice.PreviousWeapon.WasJustPressed)
-            {
-                Parent.MeleeWeaponComponent.CycleToPreviousWeapon();
-            }
+            // if (Parent.GameplayInputDevice.Modifier.WasJustPressed)
+            // {
+            //     Parent.MeleeWeaponComponent.CycleToPreviousWeapon();
+            // }
 
             SetRotation();
             Parent.HandleBobbing();

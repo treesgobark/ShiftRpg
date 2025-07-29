@@ -27,6 +27,11 @@ partial class FistsModel
                 return _states.Get<NotEquipped>();
             }
 
+            if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice is { Modifier.IsDown: true, HeavyAttack.WasJustPressed: true })
+            {
+                return _states.Get<Burst>();
+            }
+
             if (Parent.MeleeWeaponComponent.MeleeWeaponInputDevice.LightAttack.WasJustPressed)
             {
                 return _states.Get<LightRightJab>();

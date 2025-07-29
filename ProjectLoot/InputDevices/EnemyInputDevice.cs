@@ -60,7 +60,7 @@ public class EnemyInputDevice : InputDeviceBase, IGameplayInputDevice
     public IPressableInput Guard => FalsePressableInput.Instance;
     public IPressableInput QuickSwapWeapon => FalsePressableInput.Instance;
     public IPressableInput NextWeapon => FalsePressableInput.Instance;
-    public IPressableInput PreviousWeapon => FalsePressableInput.Instance;
+    public IPressableInput Modifier => FalsePressableInput.Instance;
     public IPressableInput Interact => FalsePressableInput.Instance;
     public IGunInputDevice GunInputDevice { get; set; }
 

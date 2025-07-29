@@ -41,7 +41,8 @@ public class Slash1 : ParentedTimedState<SwordModel>
         Hitbox = MeleeHitbox.CreateHitbox(Parent)
                             .AddCircle(10, 20)
                             .AddCircle(2,  8)
-                            .AddSpriteInfo("ThreeEighthsSlash", Duration);
+                            .AddSpriteInfo("ThreeEighthsSlash", Duration)
+                            .Build();
 
         GlobalContent.BladeSwingA.Play(0.1f, 0, 0);
         GlobalContent.WhooshA.Play(0.2f, 0, 0);

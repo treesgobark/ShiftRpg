@@ -28,28 +28,32 @@ namespace ProjectLoot.Entities
         public IEffectsComponent HolderEffectsComponent { get; set; }
         public Team AppliesTo { get; set; }
 
-        public static MeleeHitbox CreateHitbox(IMeleeWeaponModel weaponModel)
+        public static MeleeHitboxBuilder CreateHitbox(IMeleeWeaponModel weaponModel)
         {
             MeleeHitbox? hitbox = MeleeHitboxFactory.CreateNew();
             
             weaponModel.MeleeWeaponComponent.AttachObjectToAttackOrigin(hitbox);
-            hitbox.ParentRotationChangesPosition   = false;
-            hitbox.ParentRotationChangesRotation   = false;
-            hitbox.HolderEffectsComponent = weaponModel.HolderEffects;
-            hitbox.AppliesTo              = ~weaponModel.MeleeWeaponComponent.Team;
+            hitbox.ParentRotationChangesPosition = false;
+            hitbox.ParentRotationChangesRotation = false;
+            hitbox.HolderEffectsComponent        = weaponModel.HolderEffects;
+            hitbox.AppliesTo                     = ~weaponModel.MeleeWeaponComponent.Team;
+            hitbox.TargetHitEffects              = new EffectBundle();
+            hitbox.HolderHitEffects              = new EffectBundle();
             
-            return hitbox;
+            return new MeleeHitboxBuilder(hitbox);
         }
+    }
 
-        public MeleeHitbox AddSpriteInfo(string chainName, TimeSpan duration)
+    public class MeleeHitboxBuilder
+    {
+        private readonly MeleeHitbox _meleeHitbox;
+
+        public MeleeHitboxBuilder(MeleeHitbox meleeHitbox)
         {
-            SpriteInstance.CurrentChainName = chainName;
-            SpriteInstance.AnimationSpeed   = 0.99f / (float)duration.TotalSeconds;
-            SpriteInstance.RelativeZ        = 0.2f;
-            return this;
+            _meleeHitbox = meleeHitbox;
         }
-
-        public MeleeHitbox AddCircle(float radius, float relativeX)
+        
+        public MeleeHitboxBuilder AddCircle(float radius, float relativeX = 0f)
         {
             var circle = new Circle
             {
@@ -59,9 +63,22 @@ namespace ProjectLoot.Entities
                 IgnoresParentVisibility = true,
             };
             
-            circle.AttachTo(this);
-            Collision.Add(circle);
+            circle.AttachTo(_meleeHitbox);
+            _meleeHitbox.Collision.Add(circle);
             return this;
+        }
+
+        public MeleeHitboxBuilder AddSpriteInfo(string chainName, TimeSpan duration = default)
+        {
+            _meleeHitbox.SpriteInstance.CurrentChainName = chainName;
+            _meleeHitbox.SpriteInstance.AnimationSpeed   = duration != TimeSpan.Zero ? 0.99f / (float)duration.TotalSeconds : 1f;
+            _meleeHitbox.SpriteInstance.RelativeZ        = 0.2f;
+            return this;
+        }
+
+        public MeleeHitbox Build()
+        {
+            return _meleeHitbox;
         }
     }
 }

@@ -139,7 +139,6 @@ partial class FistsModel
                 {
                     AppliesTo = ~Parent.MeleeWeaponComponent.Team,
                     Source    = SourceTag.Fists,
-                    Duration  = Parent.KnockTowardDuration,
                     TargetPosition = Parent.MeleeWeaponComponent.HolderGameplayCenterPosition.AtZ(0)
                                      + Vector2Extensions.FromAngleAndLength(AttackDirection.NormalizedRadians, Parent.KnockTowardDistance).ToVector3(),
                 }

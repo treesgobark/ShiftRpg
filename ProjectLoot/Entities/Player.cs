@@ -85,20 +85,21 @@ public partial class Player
         StateMachines = new();
         
         var states = new StateMachine();
-        states.Add(new Unarmed(this, states, FrbTimeManager.Instance));
-        states.Add(new MeleeWeaponMode(this, states, FrbTimeManager.Instance));
-        states.Add(new GunMode(this, states, FrbTimeManager.Instance));
-        states.Add(new Dashing(this, states, FrbTimeManager.Instance));
-        states.Add(new Guarding(this, states, FrbTimeManager.Instance));
+        states.Add(new Unarmed(this, states, HitstopTimeManager));
+        states.Add(new MeleeWeaponMode(this, states, HitstopTimeManager));
+        states.Add(new GunMode(this, states, HitstopTimeManager));
+        states.Add(new Dashing(this, states, HitstopTimeManager));
+        states.Add(new Guarding(this, states, HitstopTimeManager));
         
         StateMachines.Add<Unarmed>(states);
+        
     }
 
     private void InitializeHandlers()
     {
         EffectsComponent.AddHandler(new PlayerHitstopHandler(EffectsComponent, HitstopComponent, FrbTimeManager.Instance, PlayerSpriteComponent));
-        EffectsComponent.AddHandler(new AttackHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance));
-        EffectsComponent.AddHandler(new HealthReductionHandler(EffectsComponent, HealthComponent, FrbTimeManager.Instance));
+        EffectsComponent.AddHandler(new AttackHandler(EffectsComponent, HealthComponent, HitstopTimeManager));
+        EffectsComponent.AddHandler(new HealthReductionHandler(EffectsComponent, HealthComponent, HitstopTimeManager));
         EffectsComponent.AddHandler(new DamageNumberHandler(EffectsComponent, TransformComponent));
         EffectsComponent.AddHandler(new KnockbackHandler(EffectsComponent, TransformComponent));
     }

@@ -343,5 +343,23 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>Shockwave</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>752</LeftCoordinate>
+      <RightCoordinate>832</RightCoordinate>
+      <TopCoordinate>352</TopCoordinate>
+      <BottomCoordinate>432</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
   <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

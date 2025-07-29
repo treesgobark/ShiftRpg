@@ -62,6 +62,16 @@ public class SpinActive : ModularState
                         
                     float pitch = Random.Shared.NextSingle(-0.1f, 0.1f);
                     GlobalContent.BladeSwingF.Play(0.15f, pitch, 0);
+
+                    newTargetEffects.UpsertEffect(
+                        new KnockTowardEffect
+                        {
+                            AppliesTo      = ~_weaponModel.MeleeWeaponComponent.Team,
+                            Source         = SourceTag.Sword,
+                            TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
+                            Strength       = 200f,
+                        }
+                    );
                     
                     if (_segmentModule.CurrentSegmentIndex == _segmentModule.TotalSegments - 1)
                     {
@@ -73,14 +83,13 @@ public class SpinActive : ModularState
                                               IncreasedHitstopDuration));
 
                         newTargetEffects.UpsertEffect(
-                            new KnockbackEffect(
-                                ~_weaponModel.MeleeWeaponComponent.Team,
-                                SourceTag.Sword,
-                                1000,
-                                _weaponModel.MeleeWeaponComponent.AttackDirection,
-                                KnockbackBehavior.Replacement,
-                                relativeDirection: true
-                            )
+                            new KnockTowardEffect
+                            {
+                                AppliesTo      = ~_weaponModel.MeleeWeaponComponent.Team,
+                                Source         = SourceTag.Sword,
+                                TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
+                                Strength       = -800f,
+                            }
                         );
 
                         newHolderEffects.UpsertEffect(new HitstopEffect(_weaponModel.MeleeWeaponComponent.Team,
@@ -105,13 +114,13 @@ public class SpinActive : ModularState
                                                          HitstopDuration));
 
             targetHitEffects.AddEffect(
-                new KnockbackEffect(
-                    ~_weaponModel.MeleeWeaponComponent.Team,
-                    SourceTag.Sword,
-                    150,
-                    _weaponModel.MeleeWeaponComponent.AttackDirection,
-                    KnockbackBehavior.Replacement
-                )
+                new KnockTowardEffect
+                {
+                    AppliesTo = ~_weaponModel.MeleeWeaponComponent.Team,
+                    Source = SourceTag.Sword,
+                    TargetPosition = _weaponModel.MeleeWeaponComponent.HolderGameplayCenterPosition,
+                    Strength = 100f,
+                }
             );
                 
             targetHitEffects.AddEffect(new PoiseDamageEffect(~_weaponModel.MeleeWeaponComponent.Team, SourceTag.Sword, 10));

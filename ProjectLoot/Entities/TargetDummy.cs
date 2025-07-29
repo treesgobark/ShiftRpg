@@ -49,8 +49,8 @@ namespace ProjectLoot.Entities
             Effects.AddHandler(new ApplyShatterDamageHandler(Effects, Shatter, Health));
             Effects.AddHandler(new WeaknessDamageHandler(Effects, Weakness));
             Effects.AddHandler(new HitstopHandler(Effects, Hitstop, Transform, FrbTimeManager.Instance));
-            Effects.AddHandler(new KnockbackHandler(Effects, Transform));
-            Effects.AddHandler(new KnockTowardHandler(Effects, Transform, Hitstop, FrbTimeManager.Instance));
+            // Effects.AddHandler(new KnockbackHandler(Effects, Transform));
+            Effects.AddHandler(new KnockTowardHandler(Effects, Transform));
         }
 
         private void CustomActivity()

@@ -5,8 +5,8 @@ namespace ProjectLoot.Effects;
 
 public class KnockTowardEffect : IEffect
 {
-    public Team AppliesTo { get; init; }
-    public SourceTag Source { get; init; }
-    public TimeSpan Duration { get; init; }
-    public Vector3 TargetPosition { get; init; }
+    public required Team AppliesTo { get; init; }
+    public required SourceTag Source { get; init; }
+    public required Vector3 TargetPosition { get; init; }
+    public float Strength { get; init; } = 400f;
 }

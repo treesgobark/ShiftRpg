@@ -42,7 +42,7 @@ public class StateMachineModule : IState
         Substates.AdvanceCurrentState();
     }
 
-    public void CustomActivity()
+    public void Update()
     {
         Substates.DoCurrentStateActivity();
     }

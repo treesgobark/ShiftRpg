@@ -11,7 +11,7 @@ public partial class FistsModel
         public BurstFade(IReadonlyStateMachine states, ITimeManager timeManager, Burst burst)
         {
             DurationModule durationModule = AddModule(new DurationModule(timeManager, TimeSpan.FromMilliseconds(120)));
-            AddActivity(() =>
+            AddUpdate(() =>
             {
                 if (burst.Hitbox is not null)
                 {

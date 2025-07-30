@@ -45,7 +45,7 @@ public class SpinWindup : ModularState
             _attackDirection = _weaponModel.MeleeWeaponComponent.AttackDirection;
         }
 
-        public void CustomActivity()
+        public void Update()
         {
             if (_hitbox is not null)
             {

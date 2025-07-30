@@ -6,7 +6,7 @@ namespace ProjectLoot.Controllers.ModularStates;
 public class ModularDelegateState : IState
 {
     private Action? _activate;
-    private Action? _activity;
+    private Action? _update;
     private Func<IState?>? _exitConditions;
     private Action? _deactivate;
 
@@ -19,9 +19,9 @@ public class ModularDelegateState : IState
             added = true;
         }
         
-        if (module is IActivity activity)
+        if (module is IUpdate activity)
         {
-            _activity += activity.CustomActivity;
+            _update += activity.Update;
             added = true;
         }
         
@@ -46,7 +46,7 @@ public class ModularDelegateState : IState
     }
     
     protected void AddActivate(Action             d) => _activate += d;
-    protected void AddActivity(Action             d) => _activity += d;
+    protected void AddUpdate(Action             d) => _update += d;
     protected void AddExitCondition(Func<IState?> d) => _exitConditions += d;
     protected void AddDeactivate(Action           d) => _deactivate += d;
 
@@ -55,9 +55,9 @@ public class ModularDelegateState : IState
         _activate?.Invoke();
     }
 
-    public void CustomActivity()
+    public void Update()
     {
-        _activity?.Invoke();
+        _update?.Invoke();
     }
 
     public IState? EvaluateExitConditions()

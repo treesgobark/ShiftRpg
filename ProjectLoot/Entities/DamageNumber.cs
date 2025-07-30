@@ -51,6 +51,14 @@ namespace ProjectLoot.Entities
                 switch (Source)
                 {
                     case SourceTag.Sword:
+                        if (Damage >= 25)
+                        {
+                            GlobalContent.BigHit.Play(0.3f, pitch, 0f);
+                            GlobalContent.ShotgunBlastQuick.Play(0.15f, pitch - 0.8f, 0f);
+                        }
+                        
+                        GlobalContent.SwordImpact.Play(0.1f, pitch, 0f);
+                        break;
                     case SourceTag.Spear:
                         if (Damage >= 25)
                         {

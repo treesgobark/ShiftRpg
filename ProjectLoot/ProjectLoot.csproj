@@ -149,6 +149,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>FistHitA</Name>
     </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\Shockwave.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Shockwave</Name>
+    </None>
     <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\SwingA.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SwingA</Name>
@@ -156,6 +160,22 @@
     <None Include="Content\GlobalContent\MeleeWeaponSounds\Fists\SwingB.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SwingB</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Spear\BowArrowDrawA.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BowArrowDrawA</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Spear\ShurikenB.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShurikenB</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Spear\ShurikenC.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ShurikenC</Name>
+    </None>
+    <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BigHit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BigHit</Name>
     </None>
     <None Include="Content\GlobalContent\MeleeWeaponSounds\Sword\BladeSwingA.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

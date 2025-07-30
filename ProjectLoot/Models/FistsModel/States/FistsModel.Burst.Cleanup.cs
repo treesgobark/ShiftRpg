@@ -10,7 +10,7 @@ public partial class FistsModel
         public BurstCleanup(Burst burst)
         {
             AddActivate(() => burst.Hitbox?.Destroy());
-            AddModule(new LoggingModule(" " + nameof(BurstCleanup)));
+            AddExitCondition(() => EmptyState.Instance);
         }
     }
 }

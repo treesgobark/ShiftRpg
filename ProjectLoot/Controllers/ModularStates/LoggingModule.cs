@@ -20,7 +20,7 @@ public class LoggingModule : IState
         Debugger.CommandLineWrite($"{TimeManager.CurrentFrame}: {_identifier} - OnActivate");
     }
 
-    public void CustomActivity()
+    public void Update()
     {
         if (_logLevel is LogLevel.Verbose)
         {

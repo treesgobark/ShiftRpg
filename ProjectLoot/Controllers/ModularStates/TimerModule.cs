@@ -4,7 +4,7 @@ using ANLG.Utilities.States;
 namespace ProjectLoot.Controllers.ModularStates;
 
 
-public class TimerModule : ITimerModule, IActivate, IActivity
+public class TimerModule : ITimerModule, IActivate, IUpdate
 {
     private readonly ITimeManager _timeManager;
     public TimeSpan TimeInState { get; private set; }
@@ -19,7 +19,7 @@ public class TimerModule : ITimerModule, IActivate, IActivity
         TimeInState = TimeSpan.Zero;
     }
 
-    public virtual void CustomActivity()
+    public virtual void Update()
     {
         TimeInState += _timeManager.GameTimeSinceLastFrame;
     }

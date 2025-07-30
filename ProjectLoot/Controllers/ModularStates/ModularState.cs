@@ -6,7 +6,7 @@ namespace ProjectLoot.Controllers.ModularStates;
 public class ModularState : IState
 {
     private readonly List<IActivate> _activates = [];
-    private readonly List<IActivity> _activities = [];
+    private readonly List<IUpdate> _activities = [];
     private readonly List<IExitCondition> _exitConditions = [];
     private readonly List<IDeactivate> _deactivates = [];
 
@@ -19,7 +19,7 @@ public class ModularState : IState
             added = true;
         }
         
-        if (module is IActivity activity)
+        if (module is IUpdate activity)
         {
             _activities.Add(activity);
             added = true;
@@ -53,11 +53,11 @@ public class ModularState : IState
         }
     }
 
-    public void CustomActivity()
+    public void Update()
     {
-        foreach (IActivity module in _activities)
+        foreach (IUpdate module in _activities)
         {
-            module.CustomActivity();
+            module.Update();
         }
     }
 

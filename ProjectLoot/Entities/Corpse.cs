@@ -37,7 +37,7 @@ namespace ProjectLoot.Entities
 
         private void CustomActivity()
         {
-            HitstopDuration.CustomActivity();
+            HitstopDuration.Update();
             if (HitstopDuration is not { HasDurationCompleted: true })
             {
                 return;

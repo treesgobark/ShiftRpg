@@ -20,7 +20,7 @@ partial class SpearModel
             _tossState.Hitbox?.Destroy();
         }
 
-        public void CustomActivity()
+        public void Update()
         {
         }
 

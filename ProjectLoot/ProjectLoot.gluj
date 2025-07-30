@@ -227,6 +227,41 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Fists/Shockwave.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Spear/BowArrowDrawA.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Spear/ShurikenC.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Spear/ShurikenB.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "GlobalContent/MeleeWeaponSounds/Sword/BigHit.wav",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {

@@ -59,7 +59,7 @@ partial class SpearModel
             Parent.Hitbox.RotationX = 0;
             Parent.Hitbox.RotationY = 0;
             AddHitEffects();
-            GlobalContent.SwingA.Play(0.1f, 0, 0);
+            GlobalContent.ShurikenB.Play(0.2f, 0, 0);
             Parent.Hitbox.IsActive = true;
             _initialHitboxPosition = Parent.Hitbox.Position;
         }

@@ -15,7 +15,7 @@ public partial class FistsModel
     {
         public BurstExpand(IReadonlyStateMachine states, IMeleeWeaponModel model, ITimeManager timeManager, Burst burst)
         {
-            DurationModule duration = AddModule(new DurationModule(FrbTimeManager.Instance, TimeSpan.FromMilliseconds(120)));
+            DurationModule duration = AddModule(new DurationModule(FrbTimeManager.Instance, TimeSpan.FromMilliseconds(60)));
             AddActivate(() =>
             {
                 burst.Hitbox = MeleeHitbox.CreateHitbox(model)
@@ -35,10 +35,12 @@ public partial class FistsModel
                 burst.Hitbox.TargetHitEffects = bundle;
 
                 var holderBundle = new EffectBundle();
-                holderBundle.AddEffect(new HitstopEffect(model.MeleeWeaponComponent.Team, SourceTag.Fists, TimeSpan.FromMilliseconds(250)));
+                holderBundle.AddEffect(new HitstopEffect(model.MeleeWeaponComponent.Team, SourceTag.Fists, TimeSpan.FromMilliseconds(150)));
                 burst.Hitbox.HolderHitEffects = holderBundle;
+                
+                GlobalContent.Shockwave.Play(0.3f, 0, 0);
             });
-            AddActivity(() => burst.Hitbox.SpriteInstance.TextureScale = duration.NormalizedProgress);
+            AddUpdate(() => burst.Hitbox.SpriteInstance.TextureScale = duration.NormalizedProgress);
             AddModule(new DurationExitModule<BurstFade>(duration, states));
         }
     }

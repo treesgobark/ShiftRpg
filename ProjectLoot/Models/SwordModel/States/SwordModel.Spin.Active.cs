@@ -18,7 +18,7 @@ public class SpinActive : ModularState
         AddModule(new DurationExitModule<EmptyState>(timeoutDuration, states));
     }
     
-    private class SpinActiveModule : IActivate, IActivity, IDeactivate
+    private class SpinActiveModule : IActivate, IUpdate, IDeactivate
     {
         private readonly IDurationModule _duration;
         private readonly IMeleeWeaponModel _weaponModel;
@@ -46,7 +46,7 @@ public class SpinActive : ModularState
             UpdateHitEffects();
         }
 
-        public void CustomActivity()
+        public void Update()
         {
             if (_hitbox is not null)
             {

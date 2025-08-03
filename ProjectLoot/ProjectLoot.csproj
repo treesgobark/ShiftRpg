@@ -1199,6 +1199,9 @@
     <Compile Include="InputDevices\ScrollWheelPressableInput.cs" />
     <Compile Include="InputDevices\TruePressableInput.cs" />
     <Compile Include="InputDevices\VirtualAimer.cs" />
+    <Compile Include="Models\BallModel\BallModel.cs" />
+    <Compile Include="Models\BallModel\States\Idle.cs" />
+    <Compile Include="Models\BallModel\States\NotEquipped.cs" />
     <Compile Include="Models\FistsModel\FistsModel.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.Burst.Cleanup.cs" />
     <Compile Include="Models\FistsModel\States\FistsModel.Burst.cs" />

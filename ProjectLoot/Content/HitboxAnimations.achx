@@ -361,5 +361,45 @@
       </ShapeCollectionSave>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>LightBall</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>304</LeftCoordinate>
+      <RightCoordinate>352</RightCoordinate>
+      <TopCoordinate>352</TopCoordinate>
+      <BottomCoordinate>400</BottomCoordinate>
+      <RelativeX>16</RelativeX>
+      <RelativeY>-16</RelativeY>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>HeavyBall</Name>
+    <Frame>
+      <TextureName>tileset.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>304</LeftCoordinate>
+      <RightCoordinate>352</RightCoordinate>
+      <TopCoordinate>400</TopCoordinate>
+      <BottomCoordinate>432</BottomCoordinate>
+      <RelativeX>8</RelativeX>
+      <RelativeY>-8</RelativeY>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
   <ProjectFile>..\projectloot.gluj</ProjectFile>
 </AnimationChainArraySave>

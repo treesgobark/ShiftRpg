@@ -56,7 +56,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         IMeleeWeaponModel nextMeleeWeapon = MeleeWeapons.CycleToNextItem();
         
         nextMeleeWeapon.IsEquipped         = true;
-        MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.MeleeWeaponData.Name;
+        MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.WeaponName;
     }
 
     public void CycleToPreviousWeapon()
@@ -71,7 +71,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         IMeleeWeaponModel nextMeleeWeapon = MeleeWeapons.CycleToPreviousItem();
         
         nextMeleeWeapon.IsEquipped         = true;
-        MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.MeleeWeaponData.Name;
+        MeleeWeaponSprite.CurrentChainName = nextMeleeWeapon.WeaponName;
     }
 
     public void Equip()
@@ -84,7 +84,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
         meleeWeaponModel.IsEquipped = true;
         
         MeleeWeaponSprite.Visible          = false;
-        MeleeWeaponSprite.CurrentChainName = meleeWeaponModel.MeleeWeaponData.Name;
+        MeleeWeaponSprite.CurrentChainName = meleeWeaponModel.WeaponName;
     }
 
     public void Unequip()
@@ -101,15 +101,7 @@ public class MeleeWeaponComponent : IMeleeWeaponComponent
     {
         foreach (IMeleeWeaponModel meleeWeapon in MeleeWeapons)
         {
-            meleeWeapon.Activity();
-        }
-    }
-
-    public void DoMinimumStateActivity()
-    {
-        foreach (IMeleeWeaponModel meleeWeapon in MeleeWeapons)
-        {
-            meleeWeapon.EvaluateExitConditions();
+            meleeWeapon.Update();
         }
     }
     

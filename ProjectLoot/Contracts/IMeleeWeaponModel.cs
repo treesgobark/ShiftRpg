@@ -1,15 +1,13 @@
+using ANLG.Utilities.States;
 using ProjectLoot.Components.Interfaces;
-using ProjectLoot.DataTypes;
 
 namespace ProjectLoot.Contracts;
 
-public interface IMeleeWeaponModel : IUpdateable
+public interface IMeleeWeaponModel : IUpdate
 {
-    MeleeWeaponData MeleeWeaponData { get; }
+    string WeaponName { get; }
     IEffectsComponent HolderEffects { get; }
     IMeleeWeaponComponent MeleeWeaponComponent { get; }
     
     bool IsEquipped { get; set; }
-
-    void EvaluateExitConditions();
 }

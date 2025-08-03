@@ -10,12 +10,11 @@ public partial class SpearModel : IMeleeWeaponModel
 {
     private StateMachine States { get; }
     
-    public SpearModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
+    public SpearModel(IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects, ITimeManager timeManager)
     {
         MeleeWeaponComponent = meleeWeaponComponent;
         HolderEffects        = holderEffects;
-        MeleeWeaponData      = meleeWeaponData;
 
         States = new StateMachine();
         States.Add(new NotEquipped(States, timeManager, this));
@@ -26,13 +25,13 @@ public partial class SpearModel : IMeleeWeaponModel
         States.SetStartingState<NotEquipped>();
     }
     
-    public MeleeWeaponData MeleeWeaponData { get; set; }
+    public string WeaponName => MeleeWeaponData.Spear;
     public bool IsEquipped { get; set; }
     
     public IEffectsComponent HolderEffects { get; }
     public IMeleeWeaponComponent MeleeWeaponComponent { get; }
     
-    public void Activity()
+    public void Update()
     {
         States.DoCurrentStateActivity();
     }

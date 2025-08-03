@@ -65,7 +65,7 @@ public partial class GameScreen
         // DisplayEnemyInputs();
         DisplayPlayerInputs();
 
-        switch (Player1.MeleeWeaponComponent.CurrentMeleeWeapon.MeleeWeaponData.Name)
+        switch (Player1.MeleeWeaponComponent.CurrentMeleeWeapon.WeaponName)
         {
             case MeleeWeaponData.Sword:
                 GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Sword;
@@ -75,6 +75,9 @@ public partial class GameScreen
                 break;
             case MeleeWeaponData.Spear:
                 GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Spear;
+                break;
+            case "Ball":
+                GumScreen.MeleeWeaponDisplayInstance.CurrentWeaponState = MeleeWeaponDisplayRuntime.Weapon.Ball;
                 break;
         }
 

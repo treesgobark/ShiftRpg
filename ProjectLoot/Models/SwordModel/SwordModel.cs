@@ -11,13 +11,12 @@ public class SwordModel : IMeleeWeaponModel
     private readonly ITimeManager _timeManager;
     private StateMachine States { get; }
     
-    public SwordModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
+    public SwordModel(IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects,   ITimeManager          timeManager)
     {
         _timeManager         = timeManager;
         MeleeWeaponComponent = meleeWeaponComponent;
         HolderEffects        = holderEffects;
-        MeleeWeaponData      = meleeWeaponData;
 
         States = new StateMachine();
         States.Add(new NotEquipped(States, _timeManager, this));
@@ -35,14 +34,14 @@ public class SwordModel : IMeleeWeaponModel
         States.SetStartingState<NotEquipped>();
     }
     
-    public MeleeWeaponData MeleeWeaponData { get; set; }
+    public string WeaponName => MeleeWeaponData.Sword;
     public bool IsEquipped { get; set; }
 
     public IEffectsComponent HolderEffects { get; }
 
     public IMeleeWeaponComponent MeleeWeaponComponent { get; }
     
-    public void Activity()
+    public void Update()
     {
         States.DoCurrentStateActivity();
     }

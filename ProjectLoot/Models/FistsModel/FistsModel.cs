@@ -11,13 +11,12 @@ public partial class FistsModel : IMeleeWeaponModel
     private readonly ITimeManager _timeManager;
     private StateMachine States { get; }
     
-    public FistsModel(MeleeWeaponData   meleeWeaponData, IMeleeWeaponComponent meleeWeaponComponent,
+    public FistsModel(IMeleeWeaponComponent meleeWeaponComponent,
                       IEffectsComponent holderEffects, ITimeManager timeManager)
     {
         _timeManager         = timeManager;
         MeleeWeaponComponent = meleeWeaponComponent;
         HolderEffects        = holderEffects;
-        MeleeWeaponData      = meleeWeaponData;
 
         States = new StateMachine();
         States.Add(new NotEquipped(States, _timeManager, this));
@@ -38,8 +37,8 @@ public partial class FistsModel : IMeleeWeaponModel
         
         States.SetStartingState<NotEquipped>();
     }
-    
-    public MeleeWeaponData MeleeWeaponData { get; set; }
+
+    public string WeaponName => MeleeWeaponData.Fists;
     public bool IsEquipped { get; set; }
 
     public IEffectsComponent HolderEffects { get; }
@@ -48,7 +47,7 @@ public partial class FistsModel : IMeleeWeaponModel
 
     private float KnockTowardDistance => 40f;
     
-    public void Activity()
+    public void Update()
     {
         States.DoCurrentStateActivity();
     }

@@ -14,6 +14,7 @@ using ProjectLoot.Effects;
 using ProjectLoot.Handlers;
 using ProjectLoot.InputDevices;
 using ProjectLoot.Models;
+using ProjectLoot.Models.BallModel;
 using ProjectLoot.Models.SpearModel;
 using SwordModel = ProjectLoot.Models.SwordModel.SwordModel;
 
@@ -171,24 +172,19 @@ public partial class Player
 
     public bool PickUpWeapon(MeleeWeaponData meleeWeapon)
     {
-        IMeleeWeaponModel model;
-
-        switch (meleeWeapon)
+        IMeleeWeaponModel model = meleeWeapon switch
         {
-            case { Name: MeleeWeaponData.Fists }:
-                model = new FistsModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
-                break;
-            case { Name: MeleeWeaponData.Sword }:
-            case { Name: MeleeWeaponData.Dagger }:
-                model = new SwordModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
-                break;
-            case { Name: MeleeWeaponData.Spear }:
-                model = new SpearModel(meleeWeapon, MeleeWeaponComponent, EffectsComponent, HitstopTimeManager);
-                break;
-            default:
-                throw new ArgumentException($"Unrecognized weapon type: {meleeWeapon.Name}");
-        }
-        
+            { Name: MeleeWeaponData.Fists } =>
+                new FistsModel(MeleeWeaponComponent, EffectsComponent, HitstopTimeManager),
+            { Name: MeleeWeaponData.Sword } or { Name: MeleeWeaponData.Dagger } =>
+                new SwordModel(MeleeWeaponComponent, EffectsComponent, HitstopTimeManager),
+            { Name: MeleeWeaponData.Spear } =>
+                new SpearModel(MeleeWeaponComponent, EffectsComponent, HitstopTimeManager),
+            { Name: "Ball" } =>
+                new BallModel(MeleeWeaponComponent, EffectsComponent, HitstopTimeManager),
+            _ => throw new ArgumentException($"Unrecognized weapon type: {meleeWeapon.Name}")
+        };
+
         MeleeWeaponComponent.Add(model);
         
         return true;
